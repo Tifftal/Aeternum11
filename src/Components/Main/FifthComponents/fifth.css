@@ -1,0 +1,133 @@
+.fifth {
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footerMenu {
+    margin-top: 5%;
+    width: 45%;
+    /* display: flex;
+    flex-direction: row; */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footerMenu button {
+    width: auto;
+    padding: 3% 0;
+    margin: 0 2%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background: none;
+    color: white;
+    border: none;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-family: 'Assistant', sans-serif;
+    font-size: 110%;
+    transition: .3s;
+    font-weight: 700;
+    border-radius: 7px;
+}
+
+.footerMenu button:hover {
+    background-color: #383838;
+}
+
+.footerMenu img {
+    padding-left: 5%;
+    width: 10%;
+    height: auto;
+    filter: invert(1);
+}
+
+/* .socials {
+    align-self: center;
+    display: none;
+    position: absolute;
+    width: auto;
+    background-color: none;
+    z-index: 1;
+    background-color: rgb(147, 47, 47);
+}
+
+.footerDr:hover .socials {
+    display: block;
+}
+
+.footerDr:hover button {
+    background-color: rgba(255, 255, 255, 0.328);
+} */
+
+
+.assistant {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3%;
+    width: 100%;
+}
+
+.assistant h1 {
+    font-family: 'Assistant', sans-serif;
+    font-size: 110%;
+    font-weight: 700;
+    text-transform: uppercase;
+    align-self: center;
+    letter-spacing: 0.18px;
+}
+
+.phone {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.phone img {
+    width: 10%;
+    height: auto;
+    align-self: center;
+    padding-right: 3%;
+}
+
+.phone p {
+    align-self: center;
+    text-align: center;
+    font-size: 110%;
+    font-family: 'Assistant', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.18px;
+}
+
+.fifth h2 {
+    margin-top: 15%;
+    font-family: 'Assistant', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.18px;
+    font-size: 90%;
+}
+
+.fifth h3 {
+    padding: 2% 35%;
+    color: #FFF;
+    text-align: center;
+    font-family: 'Prata', sans-serif;
+    font-size: 80%;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+    letter-spacing: 0.2px;
+}
+
+

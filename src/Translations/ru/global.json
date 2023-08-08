@@ -1,0 +1,62 @@
+{
+    "navbar": {
+        "women": "Женщины",
+        "all gender": "Унисекс",
+        "about us": "О нас",
+        "search": "Поиск",
+        "account": "Аккаунт",
+        "wishlist": "Избранное",
+        "bag": "Корзина"
+    },
+    "first": {
+        "text1": "Aeternum Eleven – экологически сознательный бренд доступной роскоши.",
+        "text2": "Альтернативная вселенная, в которой творчество, образ и жизнь человека сосуществуют органично с окружающей средой.",
+        "catalog": "каталог"
+    },
+    "second": {
+        "block1": "юбки",
+        "block2": "джинсы",
+        "block3": "шорты",
+        "block4": "пальто",
+        "block5": "платья",
+        "text1": "Aeternum – бесконечный ( лат. ), отражает философию бесконечного цикла жизни, творчества, энергии, процесса производства (upcycle)",
+        "text2": "Eleven – сакральное число 11, отражает концепцию дуальности духовного и творческого начала."
+    },
+    "third": {
+        "title1": "рекомендуем",
+        "title2": "Lorem ipsum dolor",
+        "info": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+        "btn": "узнать больше"
+    },
+    "fourth": {
+        "info": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        "title": "ПОДПИШИТЕСЬ НА НОВОСТИ",
+        "text": "Будьте в курсе новых коллекций, событий и эксклюзивного контента.",
+        "email": "Адрес эл. почты",
+        "please": "Заполните поле.",
+        "women": "Женщина",
+        "men": "Мужчина",
+        "none-binary": "Не указано",
+        "agree": "Having read the Information notice, I authorize Margiela S.a.s.u. to the processing of my Personal Data for Marketing purposes as described in paragraph 3.1.b) of the information notice",
+        "subscribe": "Подписаться"
+    },
+    "fifth": {
+        "follow us": "подписаться",
+        "assistant": "Нужна помощь?",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+    },
+    "drop": {
+        "women": {
+            "title1": "Заголовок1",
+            "title2": "Заголовок2",
+            "title3": "Заголовок3",
+            "el": "Элемент"
+        },
+        "unisex": {
+            "title4": "Заголовок4",
+            "title5": "Заголовок5",
+            "title6": "Заголовок6",
+            "el": "Элемент"
+        }
+    }
+}

@@ -1,0 +1,52 @@
+.menuDrop {
+    background-color: rgba(17, 17, 17, 0.184);
+    backdrop-filter: blur(50px);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 2% 2% 2%;
+}
+
+.col a {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+
+.col h1 {
+    color: #CDCDCD;
+    text-align: center;
+    font-family: 'Manrope', sans-serif;
+    font-size: 90%;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin: 30%;
+}
+
+.col button {
+    background: none;
+    border: none;
+    color: white;
+    font-family: 'Manrope', sans-serif;
+    font-size: 90%;
+    transition: .3s;
+    padding: 4px 8px;
+    border-radius: 7px;
+    cursor: pointer;
+    white-space: nowrap;
+    margin: 7%;
+}

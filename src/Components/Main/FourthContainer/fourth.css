@@ -1,0 +1,236 @@
+.fourth {
+    height: 100vh;
+}
+
+.fourthInfo {
+    margin: 5% 27%;
+    text-align: center;
+    font-family: 'Prata', serif;
+    line-height: 180%;
+    letter-spacing: 0.4px;
+    font-size: 120%;
+}
+
+.NewSt {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.NewSt h1 {
+    text-transform: uppercase;
+    font-family: 'Assistant', sans-serif;
+    font-size: 120%;
+    margin: 5% 0 0 0;
+}
+
+.NewSt p {
+    color: #BDBDBD;
+    font-family: 'Manrope', sans-serif;
+    font-size: 80%;
+    margin: 2% 0;
+}
+
+.emailForm {
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.email {
+    font-family: 'Manrope', serif;
+    caret-color: white;
+    padding: 0 5%;
+    width: 100%;
+    height: 40px;
+    background: none;
+    border: #818181 1px solid;
+    border-radius: 7px;
+    margin: 0 0 5% 0;
+    transition: .3s;
+    color: white;
+    font-size: 90%;
+}
+
+.email::placeholder {
+    font-size: 90%;
+    color: #818181;
+    transition: .3s;
+    font-family: 'Manrope', serif;
+}
+
+.email:hover,
+.email:focus {
+    border: 1px white solid;
+}
+
+.email:hover::placeholder,
+.email:focus::placeholder {
+    color: white;
+}
+
+.email:focus {
+    outline: none;
+}
+
+/* .email:focus {
+    border: #FF5656 1px solid;
+    box-shadow: 0px 0px 10px 3px rgba(107, 0, 0, 0.5);
+}
+
+.email:focus::placeholder {
+    color: #FF5656;
+} */
+
+.emailForm p {
+    margin: 0;
+    padding: 1% 5%;
+    color: #FF5656;
+    border-radius: 7px;
+    background-color: rgba(255, 86, 86, 0.14);
+}
+
+.chooseGender {
+    margin-top: 10%;
+    width: 110%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.gender {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.gender input {
+    margin: 0 8px 0 0;
+}
+
+.gender label {
+    font-size: 90%;
+    font-family: 'Manrope', serif;
+    white-space: nowrap;
+}
+
+.agree {
+    align-self: flex-start;
+    margin: 10% 0 0 -5%;
+    padding: 0;
+    text-align: left;
+    display: grid;
+    grid-template-columns: 10% 90%;
+    align-items: flex-start;
+    justify-content: start;
+}
+
+.agree input {
+    margin: 2px 8px 0 0;
+    padding: 0;
+
+}
+
+.agree label {
+    font-size: 80%;
+    text-align: left;
+    margin: 0;
+    padding: 0;
+}
+
+
+.BtnSb {
+    width: 110%;
+    margin-top: 15%;
+}
+
+.BtnSb button {
+    width: 100%;
+    border: none;
+    height: 5vh;
+    border-radius: 10px;
+    cursor: pointer;
+    color: white;
+    font-family: 'Assistant', sans-serif;
+    text-transform: uppercase;
+    font-size: 130%;
+    padding: 0;
+    transition: .3s;
+    font-weight: 700;
+    background-color: rgba(255, 255, 255, 0.26);
+}
+
+.BtnSb button:hover {
+    background-color: rgba(255, 255, 255, 0.10);
+}
+
+.gender {
+    display: grid;
+    grid-template-columns: 20px auto;
+    gap: auto;
+}
+
+.gender input[type="checkbox"] {
+    appearance: none;
+    background-color: rgba(255, 255, 255, 0);
+    border: 1px solid rgba(255, 255, 255, 0.26);
+    margin: 0;
+    padding: 0;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: grid;
+    place-content: center;
+}
+
+.gender input[type="checkbox"]::before {
+    content: "";
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+    box-shadow: inset 1em 1em rgb(255, 255, 255);
+}
+
+.gender input[type="checkbox"]:checked::before {
+    transform: scale(1);
+}
+
+.agree {
+    display: grid;
+    grid-template-columns: 20px auto;
+    gap: auto;
+}
+
+.agree input[type="checkbox"] {
+    appearance: none;
+    background-color: rgba(255, 255, 255, 0);
+    border: 1px solid rgba(255, 255, 255, 0.26);
+    margin: 0;
+    padding: 0;
+    width: 13px;
+    height: 13px;
+    border-radius: 2px;
+    display: grid;
+    place-content: center;
+}
+
+.agree input[type="checkbox"]::before {
+    content: "";
+    width: 10px;
+    height: 10px;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+    box-shadow: inset 1em 1em rgba(255, 255, 255, 0.438);
+    transform-origin: bottom left;
+    clip-path: polygon(5% 60%, 10% 80%, 50% 100%, 100% 9%, 70% 10%, 50% 70%);
+}
+
+.agree input[type="checkbox"]:checked::before {
+    transform: scale(1);
+}

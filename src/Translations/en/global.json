@@ -1,0 +1,62 @@
+{
+    "navbar": {
+        "women": "Women",
+        "all gender": "All Gender",
+        "about us": "About Us",
+        "search": "Search",
+        "account": "Account",
+        "wishlist": "Wishlist",
+        "bag": "Bag"
+    },
+    "first": {
+        "text1": "Aeternum Eleven – an environmentally conscious brand, representing an affordable luxury fashion.",
+        "text2": "An alternate universe where human creativity and way of life coexist organically with nature.",
+        "catalog": "catalog"
+    },
+    "second": {
+        "block1": "skirts",
+        "block2": "jeans",
+        "block3": "shorts",
+        "block4": "coats",
+        "block5": "dresses",
+        "text1": "Aeternum – infinite (lat.), reflects the philosophy of infinite life cycle, creativity, energy, an up-cycle production process.",
+        "text2": "Eleven – sacral number 11 reflects the concept of spiritual and creative duality."
+    },
+    "third": {
+        "title1": "featured",
+        "title2": "Lorem ipsum dolor",
+        "info": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+        "btn": "discover more"
+    },
+    "fourth": {
+        "info": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        "title": "RECEIVE THE NEWSLETTER",
+        "text": "Stay up-to-date with the new collections, events and exclusive content.",
+        "email": "Email Address",
+        "please": "Please fill out this field.",
+        "women": "Women",
+        "men": "Men",
+        "none-binary": "None-Binary",
+        "agree": "Having read the Information notice, I authorize Margiela S.a.s.u. to the processing of my Personal Data for Marketing purposes as described in paragraph 3.1.b) of the information notice",
+        "subscribe": "subscribe"
+    },
+    "fifth": {
+        "follow us": "follow us",
+        "assistant": "Need assistant?",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+    },
+    "drop": {
+        "women": {
+            "title1": "Title1",
+            "title2": "Title2",
+            "title3": "Title3",
+            "el": "Element"
+        },
+        "unisex": {
+            "title4": "Title4",
+            "title5": "Title5",
+            "title6": "Title6",
+            "el": "Element"
+        }
+    }
+}
