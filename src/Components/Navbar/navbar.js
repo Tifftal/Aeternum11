@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import './navbar.css';
 import { useTranslation } from "react-i18next";
 import DropW from "./DropDownMenu/dropWomen";
 import DropUn from "./DropDownMenu/dropUnisex";
 
 const Navbar = () => {
+    const [language, setLanguage] = useState("en");
     const [t, i18n] = useTranslation("global");
-    const handleChangeLanguage = (lang) => {
-        i18n.changeLanguage(lang);
+    const handleChangeLanguage = (e) => {
+        const newLanguage = language === "en" ? "ru" : "en";
+        setLanguage(newLanguage);
+        i18n.changeLanguage(newLanguage);
     };
 
     return (
@@ -50,7 +53,7 @@ const Navbar = () => {
                     {t("navbar.bag")}
                 </button>
                 <button className="lang" onClick={() => handleChangeLanguage("ru")}>
-                    RU
+                    {language.toUpperCase()}
                 </button>
             </div>
         </div>
