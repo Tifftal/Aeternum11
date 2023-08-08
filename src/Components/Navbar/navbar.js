@@ -5,12 +5,13 @@ import DropW from "./DropDownMenu/dropWomen";
 import DropUn from "./DropDownMenu/dropUnisex";
 
 const Navbar = () => {
-    const [language, setLanguage] = useState("en");
+    const [language, setLanguage] = useState("ru");
     const [t, i18n] = useTranslation("global");
     const handleChangeLanguage = (e) => {
         const newLanguage = language === "en" ? "ru" : "en";
-        setLanguage(newLanguage);
-        i18n.changeLanguage(newLanguage);
+        const languageToShow = newLanguage === "ru" ? "en" : "ru"
+        setLanguage(newLanguage)
+        i18n.changeLanguage(languageToShow);
     };
 
     return (
