@@ -1,0 +1,226 @@
+.account {
+    height: auto;
+    padding: 8% 25% 0 25%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.account h4 {
+    width: 75%;
+    text-align: left;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 5%;
+    font-family: 'Manrope', sans-serif;
+    font-size: 80%;
+    font-weight: normal;
+    letter-spacing: 0.7px;
+    line-height: 170%;
+}
+
+.account h3 {
+    width: 75%;
+    text-align: left;
+    margin: 2% 0 5% 0;
+    padding: 0;
+    font-family: 'Manrope', sans-serif;
+    font-size: 70%;
+    font-weight: normal;
+    letter-spacing: 0.7px;
+    line-height: 170%;
+    color: #ffffffd1;
+}
+
+.account h2 {
+    margin: 0;
+    padding: 0;
+    font-family: 'Assistant', sans-serif;
+    text-transform: uppercase;
+    font-size: 100%;
+    letter-spacing: 0.18px;
+    font-weight: 700;
+}
+
+.account h1 {
+    margin: 2% 0;
+    padding: 0;
+    font-family: 'Prata', serif;
+    font-size: 180%;
+    font-weight: normal;
+}
+
+.account p {
+    width: 75%;
+    text-align: left;
+    margin: 0;
+    padding: 0;
+    margin-top: 5%;
+    font-family: 'Manrope', sans-serif;
+    font-size: 80%;
+    font-weight: normal;
+    letter-spacing: 0.7px;
+    line-height: 170%;
+}
+
+.registration {
+    margin-top: 10%;
+    display: grid;
+    width: 75%;
+    grid-template-columns: repeat(2, 48%);
+    grid-template-rows: repeat(auto, 45px);
+    gap: 20px 4%;
+    align-items: center;
+    justify-content: center;
+}
+
+.registration input {
+    font-family: 'Manrope', serif;
+    caret-color: white;
+    padding: 0 5%;
+    height: 45px;
+    background: none;
+    border: #818181 1px solid;
+    border-radius: 15px;
+    transition: .3s;
+    color: white;
+    font-size: 90%;
+}
+
+.registration input::placeholder,
+.reg input::placeholder {
+    font-size: 90%;
+    color: #818181;
+    transition: .3s;
+    font-family: 'Manrope', serif;
+}
+
+.registration input:hover,
+.registration input:focus,
+.reg input:hover,
+.reg input:focus {
+    border: 1px white solid;
+}
+
+.registration input:hover::placeholder,
+.registration input:focus::placeholder,
+.reg input:hover::placeholder,
+.reg input:focus::placeholder {
+    color: white;
+}
+
+.registration input:focus,
+.reg input:focus {
+    outline: none;
+}
+
+/* .registration input:focus {
+    border: #FF5656 1px solid;
+    box-shadow: 0px 0px 10px 3px rgba(107, 0, 0, 0.5);
+}
+
+.registration input:focus::placeholder {
+    color: #FF5656;
+} */
+
+.reg {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px 0;
+    width: 75%;
+}
+
+.reg input {
+    width: 94%;
+    font-family: 'Manrope', serif;
+    caret-color: white;
+    padding: 0 3%;
+    height: 45px;
+    background: none;
+    border: #818181 1px solid;
+    border-radius: 15px;
+    transition: .3s;
+    color: white;
+    font-size: 90%;
+}
+
+
+.agreeAc {
+    width: 75%;
+    display: grid;
+    grid-template-columns: 20px auto;
+    gap: auto;
+    align-items: flex-start;
+    justify-content: flex-start;
+    text-align: left;
+    margin-bottom: 5%;
+    font-family: 'Manrope', sans-serif;
+    font-size: 80%;
+}
+
+.agreeAc input[type="checkbox"] {
+    appearance: none;
+    background-color: rgba(255, 255, 255, 0);
+    border: 1px solid rgba(255, 255, 255, 0.26);
+    margin: 0;
+    padding: 0;
+    margin-top: 3px;
+    width: 13px;
+    height: 13px;
+    border-radius: 2px;
+    display: grid;
+    place-content: center;
+    transition: .3s;
+}
+
+.agreeAc input[type="checkbox"]::before {
+    content: "";
+    width: 10px;
+    height: 10px;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+    box-shadow: inset 1em 1em rgba(255, 255, 255, 0.63);
+    transform-origin: bottom left;
+    clip-path: polygon(5% 60%, 10% 80%, 50% 100%, 100% 9%, 70% 10%, 50% 70%);
+}
+
+.agreeAc input[type="checkbox"]:checked::before {
+    transform: scale(1);
+}
+
+.agreeAc input[type="checkbox"]:checked {
+    border: 1px solid rgba(255, 255, 255, 0.63);
+}
+
+.agreeAc input[type="checkbox"]:hover {
+    border: 1px solid rgba(255, 255, 255, 0.63);
+}
+
+.BtnAc {
+    width: 75%;
+    margin-bottom: 15%;
+}
+
+.BtnAc button {
+    width: 100%;
+    border: none;
+    height: 5vh;
+    border-radius: 10px;
+    cursor: pointer;
+    color: white;
+    font-family: 'Assistant', sans-serif;
+    text-transform: uppercase;
+    font-size: 130%;
+    padding: 0;
+    transition: .3s;
+    font-weight: 700;
+    background-color: rgba(255, 255, 255, 0.26);
+}
+
+.BtnAc button:hover {
+    background-color: rgba(255, 255, 255, 0.10);
+}

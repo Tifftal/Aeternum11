@@ -30,10 +30,12 @@ const Fourth = () => {
                         </div>
                     </div>
                     <div className="agree">
-                        <input type="checkbox" checked />
+                        <input type="checkbox" />
                         <label>{t("fourth.agree")}</label>
                     </div>
                     <a className="BtnSb" href="/"><button>{t("fourth.subscribe")}</button></a>
+
+                    {/* <input className="email test" type="email" id="email" name="email" placeholder={t("fourth.email")} /> */}
                 </div>
             </div>
         </div>

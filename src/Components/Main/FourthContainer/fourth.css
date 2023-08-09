@@ -218,6 +218,7 @@
     border-radius: 2px;
     display: grid;
     place-content: center;
+    transition: .3s;
 }
 
 .agree input[type="checkbox"]::before {
@@ -226,11 +227,29 @@
     height: 10px;
     transform: scale(0);
     transition: 120ms transform ease-in-out;
-    box-shadow: inset 1em 1em rgba(255, 255, 255, 0.438);
+    box-shadow: inset 1em 1em rgba(255, 255, 255, 0.63);
     transform-origin: bottom left;
     clip-path: polygon(5% 60%, 10% 80%, 50% 100%, 100% 9%, 70% 10%, 50% 70%);
 }
 
 .agree input[type="checkbox"]:checked::before {
     transform: scale(1);
+}
+
+.agree input[type="checkbox"]:checked {
+    border: 1px solid rgba(255, 255, 255, 0.63);
+}
+
+.agree input[type="checkbox"]:hover {
+    border: 1px solid rgba(255, 255, 255, 0.63);
+}
+
+
+.test {
+    margin-top: 10%;
+}
+
+.test:focus::placeholder {
+    background-color: red;
+    
 }

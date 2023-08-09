@@ -33,9 +33,11 @@ const Navbar = () => {
                         <DropUn />
                     </div>
                 </div>
-                <button className="ordinary">
-                    {t("navbar.about us")}
-                </button>
+                <a href="/">
+                    <button className="ordinary">
+                        {t("navbar.about us")}
+                    </button>
+                </a>
                 <button className="ordinary">
                     {t("navbar.search")}
                 </button>
@@ -44,15 +46,21 @@ const Navbar = () => {
                 <a href="/"> Aeternum Eleven </a>
             </div>
             <div className="right">
-                <button className="ordinary">
-                    {t("navbar.account")}
-                </button>
-                <button className="ordinary">
-                    {t("navbar.wishlist")}
-                </button>
-                <button className="ordinary">
-                    {t("navbar.bag")}
-                </button>
+                <a href="/create_account">
+                    <button className="ordinary">
+                        {t("navbar.account")}
+                    </button>
+                </a>
+                <a href="/">
+                    <button className="ordinary">
+                        {t("navbar.wishlist")}
+                    </button>
+                </a>
+                <a href="/">
+                    <button className="ordinary">
+                        {t("navbar.bag")}
+                    </button>
+                </a>
                 <button className="lang" onClick={() => handleChangeLanguage("ru")}>
                     {language.toUpperCase()}
                 </button>

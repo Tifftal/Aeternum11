@@ -58,5 +58,10 @@
             "title6": "Заголовок6",
             "el": "Элемент"
         }
+    },
+    "account": {
+        "title1": "profile",
+        "title2": "Create your Account",
+        "text": "Our members receive tailor-made assistance and content according to their preferences. You will enjoy access to special events, updates on our new collections, notifications when your favourite products arrive in boutique, and more exclusive offers."
     }
 }
