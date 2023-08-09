@@ -33,7 +33,7 @@ const Navbar = () => {
                         <DropUn />
                     </div>
                 </div>
-                <a href="/">
+                <a href="/about">
                     <button className="ordinary">
                         {t("navbar.about us")}
                     </button>
@@ -51,12 +51,12 @@ const Navbar = () => {
                         {t("navbar.account")}
                     </button>
                 </a>
-                <a href="/">
+                <a href="/wishlist">
                     <button className="ordinary">
                         {t("navbar.wishlist")}
                     </button>
                 </a>
-                <a href="/">
+                <a href="/bag">
                     <button className="ordinary">
                         {t("navbar.bag")}
                     </button>
