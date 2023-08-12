@@ -3,9 +3,9 @@ import "./bag.css"
 import { useTranslation } from "react-i18next";
 
 const Bag = () => {
-    const[t]=useTransition("global");
+    const [t] = useTranslation("global");
 
-    return(
+    return (
         <div className="bag">
             bag
         </div>

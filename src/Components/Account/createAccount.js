@@ -15,15 +15,16 @@ const CreateAccount = () => {
                 <input type="text" placeholder={t("create_account.first_name")} />
                 <input type="text" placeholder={t("create_account.last_name")} />
                 <input type="text" placeholder={t("create_account.gender")} />
+                <input type="text" placeholder={t("create_account.date")} />
                 <input type="text" placeholder={t("create_account.country")} />
                 <input type="text" placeholder={t("create_account.state")} />
                 <input type="text" placeholder={t("create_account.sity")} />
-                <input type="text" placeholder={t("create_account.postcode")} />
-                <input type="text" placeholder={t("create_account.email")} />
+                <input type="text" placeholder={t("create_account.phone")} />
             </div>
             <div className="reg">
-                <input type="text" placeholder={t("create_account.password")} />
-                <input type="text" placeholder={t("create_account.confirm")} />
+                <input type="text" placeholder={t("create_account.email")} />
+                <input type="password" placeholder={t("create_account.password")} />
+                <input type="password" placeholder={t("create_account.confirm")} />
             </div>
             <h3>{t("create_account.*")}</h3>
             <h4>{t("create_account.text2")}</h4>

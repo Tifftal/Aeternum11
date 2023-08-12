@@ -13,7 +13,8 @@ const Fourth = () => {
                 <h1>{t("fourth.title")}</h1>
                 <p>{t("fourth.text")}</p>
                 <div className="emailForm">
-                    <input className="email" type="email" id="email" name="email" placeholder={t("fourth.email")} />
+                    <input className="email" type="email" id="email" name="email"/>
+                    <label for="email" className="email-label">{t("fourth.email")}</label>
                     <p>{t("fourth.please")}</p>
                     <div className="chooseGender">
                         <div className="gender" >
@@ -35,7 +36,7 @@ const Fourth = () => {
                     </div>
                     <a className="BtnSb" href="/"><button>{t("fourth.subscribe")}</button></a>
 
-                    <input className="email test" type="email" id="email" name="email" placeholder={t("fourth.email")} />
+                    
                 </div>
             </div>
         </div>
