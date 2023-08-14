@@ -1,0 +1,220 @@
+.modal {
+  position: fixed;
+  z-index: 10;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: rgba(255, 255, 255, 0.4);
+  padding: 2vw;
+  width: 28vw;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header h1 {
+  margin: 0;
+  padding: 0;
+  font-family: 'Assistant', sans-serif;
+  text-transform: uppercase;
+  font-size: 90%;
+  letter-spacing: 0.3px;
+  font-weight: 700;
+}
+
+.modal-content p {
+  margin: 8% 0;
+  padding: 0;
+  font-family: 'Manrope', serif;
+  font-size: 100%;
+  letter-spacing: 0.2px;
+  text-align: left;
+}
+
+.close {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(255, 255, 255, 0.2);
+  border: none;
+  border-radius: 10px;
+  width: 30px;
+  height: 30px;
+  float: right;
+  font-size: 2rem;
+  font-weight: normal;
+  transition: .3s;
+  padding: 0;
+}
+
+.close:hover,
+.close:focus {
+  text-decoration: none;
+  cursor: pointer;
+  background-color: rgb(255, 255, 255, 0.4);
+}
+
+.close img {
+  width: 90%;
+  height: auto;
+  filter: invert(1);
+}
+
+.login-input {
+  font-family: 'Manrope', serif;
+  caret-color: white;
+  height: 3rem;
+  background: none;
+  width: 26vw;
+  padding: 0 1vw;
+  border: #c2c2c2 1px solid;
+  border-radius: 7px;
+  margin: 0 0 5% 0;
+  transition: .3s;
+  color: white;
+  font-size: 90%;
+  margin-top: 0.5rem;
+}
+
+.login-input::placeholder {
+  color: #c2c2c2;
+  transition: .3s;
+}
+
+.login-input:focus,
+.login-input:hover {
+  outline: none;
+  border: white 1px solid;
+}
+
+.login-input:hover::placeholder,
+.login-input:focus::placeholder {
+  color: white;
+}
+
+.forgot {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10%;
+}
+
+.forgot button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  background: none;
+  border: none;
+  font-family: 'Manrope', serif;
+  font-size: 80%;
+  color: #c2c2c2;
+  font-weight: 600;
+  transition: .3s;
+}
+
+.forgot button:hover {
+  color: white;
+}
+
+.remember {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.remember input[type="checkbox"] {
+  appearance: none;
+  background-color: rgba(255, 255, 255, 0);
+  border: 1px solid rgba(255, 255, 255, 0.26);
+  margin: 0;
+  padding: 0;
+  width: 13px;
+  height: 13px;
+  border-radius: 2px;
+  display: grid;
+  place-content: center;
+  transition: .3s;
+}
+
+.remember input[type="checkbox"]::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  transform: scale(0);
+  transition: 120ms transform ease-in-out;
+  box-shadow: inset 1em 1em rgba(255, 255, 255, 0.63);
+  transform-origin: bottom left;
+  clip-path: polygon(5% 60%, 10% 80%, 50% 100%, 100% 9%, 70% 10%, 50% 70%);
+}
+
+.remember input[type="checkbox"]:checked::before {
+  transform: scale(1);
+}
+
+.remember input[type="checkbox"]:checked {
+  border: 1px solid rgba(255, 255, 255, 0.63);
+}
+
+.remember input[type="checkbox"]:hover {
+  border: 1px solid rgba(255, 255, 255, 0.63);
+}
+
+.remember label {
+  font-family: 'Manrope', serif;
+  font-size: 80%;
+  letter-spacing: 0.2px;
+  text-align: left;
+}
+
+.but {
+  margin: 2% 0;
+  border: none;
+  width: 100%;
+  height: 5vh;
+  border-radius: 10px;
+  cursor: pointer;
+  font-family: 'Assistant', sans-serif;
+  text-transform: uppercase;
+  font-size: 130%;
+  padding: 0;
+  transition: .3s;
+  font-weight: 700;
+}
+
+.log {
+  background-color: rgba(255, 255, 255, 0.8);
+  color: rgb(104, 104, 104);
+}
+
+.log:hover {
+  background-color: rgba(255, 255, 255);
+}
+
+.create {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+.create:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+}

@@ -6,6 +6,7 @@ import CreateAccount from './Components/Account/createAccount';
 import About from './Components/About Us/about';
 import Wishlist from './Components/Wishlist/wishlist';
 import Bag from './Components/Bag/bag';
+import Account from './Components/Account/account';
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
           <Route path="/about" element={<About />}></Route>
           <Route path="/wishlist" element={<Wishlist />}></Route>
           <Route path="/bag" element={<Bag />}></Route>
+          <Route path="/account" element={<Account />}></Route>
         </Routes>
       </BrowserRouter>
     </div>

@@ -6,7 +6,7 @@ const CreateAccount = () => {
     const [t] = useTranslation("global");
 
     return (
-        <div className="account">
+        <div className="create_account">
             <h2>{t("create_account.title1")}</h2>
             <h1>{t("create_account.title2")}</h1>
             <p>{t("create_account.text1")}</p>

@@ -3,6 +3,7 @@ import './navbar.css';
 import { useTranslation } from "react-i18next";
 import DropW from "./DropDownMenu/dropWomen";
 import DropUn from "./DropDownMenu/dropUnisex";
+import Popup from "../Popup/Popup";
 
 const Navbar = () => {
     const [language, setLanguage] = useState("ru");
@@ -14,8 +15,23 @@ const Navbar = () => {
         i18n.changeLanguage(languageToShow);
     };
 
+
+    const [isOpen, setIsOpen] = useState(false);
+
+    const HandleOpenNote = () => {
+        setIsOpen(true)
+    };
+
+    const HandleCloseNote = () => {
+        setIsOpen(false)
+    };
+
+
     return (
         <div className="navbar">
+            {isOpen && (
+                <Popup onClose={HandleCloseNote} setIsOpen={setIsOpen} />
+            )}
             <div className="left">
                 <div className="dropDown">
                     <button className="dropDownBtn">
@@ -46,11 +62,9 @@ const Navbar = () => {
                 <a href="/"> Aeternum Eleven </a>
             </div>
             <div className="right">
-                <a href="/create_account">
-                    <button className="ordinary">
-                        {t("navbar.account")}
-                    </button>
-                </a>
+                <button className="ordinary" onClick={HandleOpenNote}>
+                    {t("navbar.account")}
+                </button>
                 <a href="/wishlist">
                     <button className="ordinary">
                         {t("navbar.wishlist")}

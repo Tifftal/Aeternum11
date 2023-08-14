@@ -1,4 +1,4 @@
-.account {
+.create_account {
     height: auto;
     padding: 8% 25% 0 25%;
     display: flex;
@@ -7,7 +7,7 @@
     align-items: center;
 }
 
-.account h4 {
+.create_account h4 {
     width: 75%;
     text-align: left;
     margin: 0;
@@ -20,7 +20,7 @@
     line-height: 170%;
 }
 
-.account h3 {
+.create_account h3 {
     width: 75%;
     text-align: left;
     margin: 2% 0 5% 0;
@@ -33,7 +33,7 @@
     color: #ffffffd1;
 }
 
-.account h2 {
+.create_account h2 {
     margin: 0;
     padding: 0;
     font-family: 'Assistant', sans-serif;
@@ -43,7 +43,7 @@
     font-weight: 700;
 }
 
-.account h1 {
+.create_account h1 {
     margin: 2% 0;
     padding: 0;
     font-family: 'Prata', serif;
@@ -51,7 +51,7 @@
     font-weight: normal;
 }
 
-.account p {
+.create_account p {
     width: 75%;
     text-align: left;
     margin: 0;
