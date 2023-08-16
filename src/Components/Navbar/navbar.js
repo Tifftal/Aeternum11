@@ -8,6 +8,7 @@ import Popup from "../Popup/Popup";
 const Navbar = () => {
     const [language, setLanguage] = useState("ru");
     const [t, i18n] = useTranslation("global");
+    
     const handleChangeLanguage = (e) => {
         const newLanguage = language === "en" ? "ru" : "en";
         const languageToShow = newLanguage === "ru" ? "en" : "ru"
