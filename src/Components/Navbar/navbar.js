@@ -16,7 +16,6 @@ const Navbar = () => {
         i18n.changeLanguage(languageToShow);
     };
 
-
     const [isOpen, setIsOpen] = useState(false);
 
     const HandleOpenNote = () => {
