@@ -1,0 +1,35 @@
+.bwBtn {
+    padding-top: 8%;
+    display: flex;
+    justify-content: center;
+}
+
+.actBtn,
+.defBtn {
+    border: none;
+    background: none;
+    height: 80%;
+    width: 49%;
+    border-radius: 15px;
+    color: white;
+    font-size: 100%;
+    font-family: 'Manrope', serif;
+}
+
+.defBtn {
+    background-color: none;
+}
+
+.actBtn {
+    background-color: rgba(255, 255, 255, 0.30);
+}
+
+.floating-btn {
+    background-color: rgba(255, 255, 255, 0.10);
+    width: 30%;
+    height: 3rem;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

@@ -65,12 +65,12 @@ const Navbar = () => {
                 <button className="ordinary" onClick={HandleOpenNote}>
                     {t("navbar.account")}
                 </button>
-                <a href="/wishlist">
+                <a href="/bw">
                     <button className="ordinary">
                         {t("navbar.wishlist")}
                     </button>
                 </a>
-                <a href="/bag">
+                <a href="/bw">
                     <button className="ordinary">
                         {t("navbar.bag")}
                     </button>
