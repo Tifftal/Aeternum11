@@ -43,7 +43,7 @@ const Fourth = () => {
             setAgreedError(true);
         }
 
-        console.log("Form submitted successfully!");
+        
     }
 
     return (
@@ -59,9 +59,9 @@ const Fourth = () => {
                     onSubmit={handleSubmit}
                 >
                     <input
-                        className={emailError ? "email error" : "email"}
+                        className="email"
+                        id={emailError ? "error" : ""}
                         type="email"
-                        id="email"
                         name="email"
                         onChange={handleEmailChange}
                     />

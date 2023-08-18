@@ -71,7 +71,7 @@
         "date": "Date of birth *",
         "country": "Country/Region",
         "state": "State/Province",
-        "sity": "Sity",
+        "city": "City",
         "phone": "Phone *",
         "email": "Email *",
         "password": "Password *",
