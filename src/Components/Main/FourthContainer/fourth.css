@@ -48,7 +48,6 @@
     background: none;
     border: #818181 1px solid;
     border-radius: 7px;
-    margin: 0 0 5% 0;
     transition: .3s;
     color: white;
     font-size: 90%;
@@ -84,14 +83,15 @@
     outline: none;
 }
 
-/* .email:focus {
+#error,
+#error:hover,
+#error:focus {
     border: #FF5656 1px solid;
     box-shadow: 0px 0px 10px 3px rgba(107, 0, 0, 0.5);
 }
-*/
 
 .emailForm p {
-    margin: 0;
+    margin-top: 10px;
     padding: 1% 5%;
     color: #FF5656;
     border-radius: 7px;
