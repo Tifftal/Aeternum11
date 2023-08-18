@@ -187,6 +187,7 @@
 }
 
 .but {
+  display: flex;
   margin: 2% 0;
   border: none;
   width: 100%;
@@ -199,6 +200,9 @@
   padding: 0;
   transition: .3s;
   font-weight: 700;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
 }
 
 .log {
