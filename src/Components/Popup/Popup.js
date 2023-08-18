@@ -72,8 +72,8 @@ const Popup = (props) => {
                     </div>
                     <button>Forgot password</button>
                 </div>
-                <a href='/account'><button className='but log' type="submit">Log in</button></a>
-                <a href='/create_account'><button className='but create'>Create your account</button></a>
+                <a href='/account'><button className='but log'>Log in</button></a>
+                <a href='/create_account' className="but create">Create your account</a>
             </form>
         </div>
     );
