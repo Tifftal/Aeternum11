@@ -1,0 +1,243 @@
+.pers {
+    height: auto;
+    padding: 5% 4% 0 4%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.pers h4 {
+    width: 75%;
+    text-align: left;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 5%;
+    font-family: 'Manrope', sans-serif;
+    font-size: 80%;
+    font-weight: normal;
+    letter-spacing: 0.7px;
+    line-height: 170%;
+}
+
+.pers h3 {
+    width: 75%;
+    text-align: left;
+    margin: 2% 0 5% 0;
+    padding: 0;
+    font-family: 'Manrope', sans-serif;
+    font-size: 70%;
+    font-weight: normal;
+    letter-spacing: 0.7px;
+    line-height: 170%;
+    color: #ffffffd1;
+}
+
+.pers h2 {
+    margin: 0;
+    padding: 0;
+    font-family: 'Assistant', sans-serif;
+    text-transform: uppercase;
+    font-size: 100%;
+    letter-spacing: 0.18px;
+    font-weight: 700;
+}
+
+.pers h1 {
+    margin: 2% 0;
+    padding: 0;
+    font-family: 'Prata', serif;
+    font-size: 180%;
+    font-weight: normal;
+}
+
+.pers p {
+    width: 75%;
+    text-align: left;
+    margin: 0;
+    padding: 0;
+    margin-top: 5%;
+    font-family: 'Manrope', sans-serif;
+    font-size: 80%;
+    font-weight: normal;
+    letter-spacing: 0.7px;
+    line-height: 170%;
+}
+
+.pers-data {
+    margin-top: 5%;
+    display: grid;
+    width: 75%;
+    grid-template-columns: repeat(2, 48%);
+    grid-template-rows: repeat(auto, 45px);
+    gap: 20px 4%;
+    align-items: center;
+    justify-content: center;
+}
+
+.pers-data input {
+    font-family: 'Manrope', serif;
+    caret-color: white;
+    padding: 0 5%;
+    height: 45px;
+    background: none;
+    border: #818181 1px solid;
+    border-radius: 15px;
+    transition: .3s;
+    color: white;
+    font-size: 90%;
+}
+
+.pers-data input::placeholder{
+    font-size: 90%;
+    color: #818181;
+    transition: .3s;
+    font-family: 'Manrope', serif;
+}
+
+.pers-data input:hover,
+.pers-data input:focus {
+    border: 1px white solid;
+}
+
+.pers-data input:hover::placeholder,
+.pers-data input:focus::placeholder {
+    color: white;
+}
+
+.pers-data input:focus {
+    outline: none;
+}
+
+/* .pers-data input:focus {
+    border: #FF5656 1px solid;
+    box-shadow: 0px 0px 10px 3px rgba(107, 0, 0, 0.5);
+}
+
+.pers-data input:focus::placeholder {
+    color: #FF5656;
+} */
+
+
+.agreeAc {
+    width: 75%;
+    display: grid;
+    grid-template-columns: 20px auto;
+    gap: auto;
+    align-items: flex-start;
+    justify-content: flex-start;
+    text-align: left;
+    margin-bottom: 5%;
+    font-family: 'Manrope', sans-serif;
+    font-size: 80%;
+}
+
+.agreeAc input[type="checkbox"] {
+    appearance: none;
+    background-color: rgba(255, 255, 255, 0);
+    border: 1px solid rgba(255, 255, 255, 0.26);
+    margin: 0;
+    padding: 0;
+    margin-top: 3px;
+    width: 13px;
+    height: 13px;
+    border-radius: 2px;
+    display: grid;
+    place-content: center;
+    transition: .3s;
+}
+
+.agreeAc input[type="checkbox"]::before {
+    content: "";
+    width: 10px;
+    height: 10px;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+    box-shadow: inset 1em 1em rgba(255, 255, 255, 0.63);
+    transform-origin: bottom left;
+    clip-path: polygon(5% 60%, 10% 80%, 50% 100%, 100% 9%, 70% 10%, 50% 70%);
+}
+
+.agreeAc input[type="checkbox"]:checked::before {
+    transform: scale(1);
+}
+
+.agreeAc input[type="checkbox"]:checked {
+    border: 1px solid rgba(255, 255, 255, 0.63);
+}
+
+.agreeAc input[type="checkbox"]:hover {
+    border: 1px solid rgba(255, 255, 255, 0.63);
+}
+
+.BtnAc {
+    width: 75%;
+    margin-bottom: 15%;
+}
+
+.BtnAc button {
+    width: 100%;
+    border: none;
+    height: 5vh;
+    border-radius: 10px;
+    cursor: pointer;
+    color: white;
+    font-family: 'Assistant', sans-serif;
+    text-transform: uppercase;
+    font-size: 130%;
+    padding: 0;
+    transition: .3s;
+    font-weight: 700;
+    background-color: rgba(255, 255, 255, 0.26);
+}
+
+.BtnAc button:hover {
+    background-color: rgba(255, 255, 255, 0.10);
+}
+
+
+
+.label-input {
+    background-color: red;
+    font-family: 'Manrope', serif;
+    caret-color: white;
+    padding: 0 5%;
+    width: 100%;
+    height: 3rem;
+    border: #818181 1px solid;
+    border-radius: 7px;
+    margin: 0 0 5% 0;
+    transition: .3s;
+    color: white;
+    font-size: 90%;
+    margin-top: 0.5rem;
+}
+
+.pers-data label {
+    margin: 0;
+    position: absolute;
+    top: 0rem;
+    font-size: 0.75rem;
+    background-color: #111111;
+    left: -0.4rem;
+    padding: 0 2%;
+    transition: .2s;
+    font-family: 'Manrope', serif;
+    color: #818181;
+}
+
+.label-input:focus ~ .pers-data label {
+    color: white;  
+}
+
+.label-input:hover ~ .pers-data label {
+    color: white;
+}
+.label-input:hover,
+.label-input:focus {
+    border: 1px white solid;
+}
+
+.email:focus {
+    outline: none;
+}

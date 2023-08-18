@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import "./account.css";
+import MyAccount from "./My Account/myAccount";
+import Personal from "./PersInf/personal";
 
 const Account = () => {
 
@@ -28,16 +30,17 @@ const Account = () => {
                         <div className={clasProfile}>
                             <button onClick={HandleDropMenuProfile}><img src="../../IMG/icons8-user-96.png" alt="profile" />Profile</button>
                             <div className="account-drop">
-                                <a href="/account">Orders</a>
-                                <a href="/account">Orders</a>
-                                <a href="/account">Orders</a>
+                                <a href="/account">Personal Information</a>
+                                <a href="/account">Addresses</a>
+                                <a href="/account">Registered Cards</a>
+                                <a href="/account">Preferences</a>
                             </div>
                         </div>
 
                         <div className={clasOrder}>
                             <button onClick={HandleDropMenuOrder}><img src="../../IMG/icons8-картонная-коробка-100.png" alt="orders" />Orders</button>
                             <div className="account-drop">
-                                <a href="/account">Orders</a>
+                                <a href="/account">Order Details</a>
                             </div>
                         </div>
 
@@ -48,22 +51,8 @@ const Account = () => {
                 <a href="/account" className="log-out"><button><img src="../../IMG/icons8-выход-100.png" alt="log-out" />Log out</button></a>
             </div>
             <div className="account-content">
-                <div className="profile">
-                    <p><img src="../../IMG/icons8-user-96.png" alt="profile" />Profile</p>
-                    <div className="profile-menu">
-                        <a href="/account"><button>Personal Information</button></a>
-                        <a href="/account"><button>Addresses</button></a>
-                        <a href="/account"><button>Registrated Cards</button></a>
-                        <a href="/account"><button>Edit your details</button></a>
-                        <a href="/account"><button>Preferences</button></a>
-                    </div>
-                </div>
-                <div className="profile">
-                    <p><img src="../../IMG/icons8-круглая-стрелка-100.png" alt="orders" />Orders</p>
-                    <div className="profile-menu">
-                        <a href="/account"><button>Order Details</button></a>
-                    </div>
-                </div>
+                {/* <MyAccount/> */}
+                {/* <Personal /> */}
             </div>
         </div>
     )
