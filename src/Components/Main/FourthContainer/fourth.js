@@ -51,7 +51,7 @@ const Fourth = () => {
             <div className="fourthInfo">
                 {t("fourth.info")}
             </div>
-            <div className="NewSt">
+            <div className="NewSt ofnt-gramatika-bold">
                 <h1>{t("fourth.title")}</h1>
                 <p>{t("fourth.text")}</p>
                 <form
@@ -109,7 +109,7 @@ const Fourth = () => {
                         <label>{t("fourth.agree")}</label>
                     </div>
                     {agreedError && <p>{t("fourth.agreeError")}</p>}
-                    <span className="BtnSb">
+                    <span className="BtnSb font-gramatika-bold">
                         <button type="submit">{t("fourth.subscribe")}</button>
                     </span>
                 </form>

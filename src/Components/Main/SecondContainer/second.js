@@ -11,7 +11,7 @@ const Second = () => {
 
     return (
         <div className="second">
-            <div className="menu">
+            <div className="menu font-gramatika-bold">
                 {
                     data.map(card => (
                         <MenuCard data={card} />

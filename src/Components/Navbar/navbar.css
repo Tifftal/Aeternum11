@@ -16,10 +16,9 @@
 
 .center {
     text-transform: uppercase;
-    font-family: 'Assistant', sans-serif;
     font-size: 180%;
-    /* background-color: green; */
     transition: .3s;
+    letter-spacing: 0.5px;
 }
 
 .center:hover {

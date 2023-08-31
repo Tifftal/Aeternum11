@@ -12,3 +12,28 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+@font-face {
+  font-family: 'GramatikaRegular';
+  src: local('Gramatika'),
+    url('./fonts/Gramatika/GramatikaRegular.otf') format('truetype');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'GramatikaBold';
+  src: local('Gramatika'),
+    url('./fonts/Gramatika/GramatikaBold.otf') format('truetype');
+  font-weight: bold;
+}
+
+
+.font-gramatika-reg {
+  font-family: "GramatikaRegular";
+  letter-spacing: 0.5px;
+}
+
+.font-gramatika-bold {
+  font-family: "GramatikaBold";
+  letter-spacing: 0.5px;
+}

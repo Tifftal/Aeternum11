@@ -44,7 +44,7 @@ const Popup = (props) => {
                 className="modal-content"
                 onSubmit={handleSubmitForm}
             >
-                <div className='header'>
+                <div className='header font-gramatika-bold'>
                     <h1>account login</h1>
                     <button className='close' onClick={props.onClose}><img src='../../IMG/icons8-крестик-78.png' alt='close' /></button>
                 </div>
@@ -72,8 +72,8 @@ const Popup = (props) => {
                     </div>
                     <button>Forgot password</button>
                 </div>
-                <a href='/account'><button className='but log'>Log in</button></a>
-                <a href='/create_account' className="but create">Create your account</a>
+                <a href='/account'><button className='but log font-gramatika-bold'>Log in</button></a>
+                <a href='/create_account' className='but create font-gramatika-bold'>Create your account</a>
             </form>
         </div>
     );

@@ -7,6 +7,8 @@ import global_en from './Translations/en/global.json';
 import global_ru from './Translations/ru/global.json';
 import i18next from 'i18next';
 import { I18nextProvider } from 'react-i18next';
+import './fonts/Gramatika/GramatikaBold.otf';
+import './fonts/Gramatika/GramatikaRegular.otf';
 
 i18next.init({
   interpolation: { escapeValue: false },

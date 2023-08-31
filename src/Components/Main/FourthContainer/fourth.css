@@ -19,8 +19,7 @@
 
 .NewSt h1 {
     text-transform: uppercase;
-    font-family: 'Assistant', sans-serif;
-    font-size: 120%;
+    font-size: 110%;
     margin: 5% 0 0 0;
 }
 
@@ -67,13 +66,14 @@
     color: #818181;
 }
 
-.email:focus ~ .email-label {
-    color: white;  
-}
-
-.email:hover ~ .email-label {
+.email:focus~.email-label {
     color: white;
 }
+
+.email:hover~.email-label {
+    color: white;
+}
+
 .email:hover,
 .email:focus {
     border: 1px white solid;
@@ -162,9 +162,8 @@
     border-radius: 10px;
     cursor: pointer;
     color: white;
-    font-family: 'Assistant', sans-serif;
     text-transform: uppercase;
-    font-size: 130%;
+    font-size: 120%;
     padding: 0;
     transition: .3s;
     font-weight: 700;

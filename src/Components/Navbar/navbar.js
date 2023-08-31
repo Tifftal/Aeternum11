@@ -58,7 +58,7 @@ const Navbar = () => {
                     {t("navbar.search")}
                 </button>
             </div>
-            <div className="center">
+            <div className="center font-gramatika-bold">
                 <a href="/"> Aeternum Eleven </a>
             </div>
             <div className="right">

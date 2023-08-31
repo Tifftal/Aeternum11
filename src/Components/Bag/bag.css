@@ -1,3 +1,87 @@
 .bag {
-    padding-top: 8%;
+    padding-top: 2%;
+    width: 90%;
+    height: auto;
+    display: grid;
+    grid-template-columns: 27% 36% 27%;
+    /* background-color: red; */
+    grid-gap: 5%;
+}
+
+.sale-card {
+    display: flex;
+    flex-direction: row;
+    background-color: rgba(255, 255, 255, 0.20);
+    height: 9rem;
+    margin: 5% 0;
+    border-radius: 20px;
+    align-items: center;
+    padding: 0.5rem;
+}
+
+.photo-sale {
+    display: flex;
+}
+
+.photo-sale img {
+    width: 7rem;
+    height: 9rem;
+    border-radius: 10px;
+    align-self: flex-start;
+}
+
+.content-sale {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0.5rem 0 0.5rem 0.5rem
+}
+
+.content-sale h2 {
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    font-size: 100%;
+}
+
+.title-sale {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0;
+    padding: 0;
+}
+
+.title-sale h1,
+.title-sale button {
+    margin: 0;
+    padding: 0;
+    font-size: 100%;
+    background: none;
+    border: none;
+}
+
+.title-sale button {
+    color: rgba(255, 255, 255, 0.5);
+    transition: .3s;
+    cursor: pointer;
+}
+
+.title-sale button:hover {
+    color: white;
+}
+
+.amount {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 100%;
+}
+
+.amount h3,
+.amount button {
+    margin: 0;
+    padding: 0;
 }

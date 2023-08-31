@@ -30,15 +30,11 @@
     border: none;
     text-transform: uppercase;
     cursor: pointer;
-    font-family: 'Assistant', sans-serif;
+    font-family: 'GramatikaBold';
     font-size: 110%;
     transition: .3s;
     font-weight: 700;
     border-radius: 7px;
-}
-
-.footerMenu button:hover {
-    background-color: #383838;
 }
 
 .footerMenu img {
@@ -77,12 +73,10 @@
 }
 
 .assistant h1 {
-    font-family: 'Assistant', sans-serif;
     font-size: 110%;
     font-weight: 700;
     text-transform: uppercase;
     align-self: center;
-    letter-spacing: 0.18px;
 }
 
 .phone {
@@ -103,19 +97,15 @@
     align-self: center;
     text-align: center;
     font-size: 110%;
-    font-family: 'Assistant', sans-serif;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.18px;
 }
 
 .fifth h2 {
     margin-top: 15%;
-    font-family: 'Assistant', sans-serif;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.18px;
-    font-size: 90%;
+    font-size: 100%;
 }
 
 .fifth h3 {

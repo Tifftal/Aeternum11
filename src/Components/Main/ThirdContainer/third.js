@@ -10,7 +10,7 @@ const Third = () => {
             <div className="poster">
                 <div className="posterImg">
                 </div>
-                <div className="posterInfo">
+                <div className="posterInfo font-gramatika-bold">
                     <h2>{t("third.title1")}</h2>
                     <h1>{t("third.title2")}</h1>
                     <p>{t("third.info")}</p>

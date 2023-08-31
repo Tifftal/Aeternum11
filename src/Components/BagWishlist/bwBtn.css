@@ -2,6 +2,9 @@
     padding-top: 8%;
     display: flex;
     justify-content: center;
+    align-items: center;
+    height:  auto;
+    flex-direction: column;
 }
 
 .actBtn,
