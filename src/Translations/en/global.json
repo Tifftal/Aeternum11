@@ -81,5 +81,15 @@
         "check1": "Having read the Information notice, I authorize Margiela S.a.s.u. to the processing of my Personal Data for Marketing purposes as described in paragraph 3.1.b) of the information notice",
         "check2": "Having read the information notice, I authorize the Joint Controllers OTB S.p.A. and Margiela S.a.s.u. to process my Personal Data for the purpose of Customer analysis to provide experiences in line with your preferences as described in paragraph 3.2.a) of the information notice",
         "create": "Create Account"
+    },
+    "popup": {
+        "title": "account login",
+        "text": "Enjoy exclusive benefits",
+        "input1": "Email Address",
+        "input2": "Password",
+        "remember": "Remember me",
+        "forgot": "Forgot password",
+        "login": "Log in",
+        "create": "Create account"
     }
 }

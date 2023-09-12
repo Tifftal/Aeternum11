@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import './Popup.css'
+import './Popup.css';
+import { useTranslation } from "react-i18next";
 
 const Popup = (props) => {
 
@@ -13,7 +14,7 @@ const Popup = (props) => {
 
     const handleChangeInput = (e, field, setError) => {
         const value = e.target.value;
-        setError(value === "");
+        // setError(value === "");
 
         switch (field) {
             case "email":
@@ -35,46 +36,48 @@ const Popup = (props) => {
             password: password === "",
         };
 
-        setErrors(newErrors);
+        // setErrors(newErrors);
     }
+
+    const [t] = useTranslation("global");
 
     return (
         <div className="modal">
-            <form
+            <div
                 className="modal-content"
-                onSubmit={handleSubmitForm}
+                // onSubmit={handleSubmitForm}
             >
                 <div className='header font-gramatika-bold'>
-                    <h1>account login</h1>
+                    <h1>{t("popup.title")}</h1>
                     <button className='close' onClick={props.onClose}><img src='../../IMG/icons8-крестик-78.png' alt='close' /></button>
                 </div>
-                <p>Enjoy exclusive benefits</p>
+                <p>{t("popup.text")}</p>
                 <input
                     className='login-input'
                     type="email"
-                    name="email"
-                    placeholder='Email Address'
-                    onChange={(e) => { handleChangeInput(e, "email", setErrors) }}
+                    // name="email"
+                    placeholder={t("popup.input1")}
+                    // onChange={(e) => { handleChangeInput(e, "email", setErrors) }}
                     id={errors.email ? "error" : ""}
                 />
                 <input
                     className='login-input'
                     type="password"
-                    name="password"
-                    placeholder='Password'
-                    onChange={(e) => { handleChangeInput(e, "password", setErrors) }}
+                    // name="password"
+                    placeholder={t("popup.input2")}
+                    // onChange={(e) => { handleChangeInput(e, "password", setErrors) }}
                     id={errors.password ? "error" : ""}
                 />
                 <div className='forgot'>
                     <div className='remember'>
                         <input type="checkbox" />
-                        <label>Remember me</label>
+                        <label>{t("popup.remember")}</label>
                     </div>
-                    <button>Forgot password</button>
+                    <button>{t("popup.forgot")}</button>
                 </div>
-                <a href='/account'><button className='but log font-gramatika-bold'>Log in</button></a>
-                <a href='/create_account' className='but create font-gramatika-bold'>Create your account</a>
-            </form>
+                <a href='/account'><button className='but log font-gramatika-bold'>{t("popup.login")}</button></a>
+                <a href='/create_account' className='but create font-gramatika-bold'>{t("popup.create")}</a>
+            </div>
         </div>
     );
 }

@@ -7,6 +7,7 @@ const First = () => {
 
     return (
         <div className="first">
+            
             <div className="text">
                 <p>
                     {t("first.text1")}
