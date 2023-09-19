@@ -1,6 +1,7 @@
 import React, { useState, useTransition } from "react";
 import "./bag.css"
 import { useTranslation } from "react-i18next";
+import Card from "./card";
 
 const Bag = () => {
     const [t] = useTranslation("global");
@@ -9,32 +10,43 @@ const Bag = () => {
         <div className="bag">
             <div></div>
             <div className="sale">
-                <div className="sale-card">
-                    <div className="photo-sale">
-                        <img src="../../IMG/timothy-dykes-xhuaL95bQ8Q-unsplash.jpg"/>
-                    </div>
-                    <div className="content-sale">
-                        <div className="title-sale">
-                            <h1>Title</h1>
-                            <button>Edit</button>
-                        </div>
-                        <h2>Size</h2>
-                        <h2>Colour</h2>
-                        <div className="amount">
-                            <button>Amount</button>
-                            <h3>Price</h3>
-                        </div>
-                    </div>
-                </div>
-                <div className="sale-card">
-                    Card
-                </div>
-                <div className="sale-card">
-                    Card
-                </div>
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
             </div>
             <div className="total">
-                total
+                <h1 className="font-gramatika-bold">{t("bag.summary")}</h1>
+                <div className="purchase">
+                    <div>
+                        <p>{t("bag.subtotal")}</p>
+                        <p>€2.650.00</p>
+                    </div>
+                    <div>
+                        <p>{t("bag.shipping")}</p>
+                        <p>Free</p>
+                    </div>
+                    <div>
+                        <p>Est. Sales Tax</p>
+                        <p>Included</p>
+                    </div>
+                    <div>
+                        <p>{t("bag.total")}</p>
+                        <p>€2.650.00</p>
+                    </div>
+                </div>
+                <div className="promo">
+                    <input placeholder="Promo Code"/>
+                </div>
+                <button className="font-gramatika-bold">{t("bag.continue")}</button>
             </div>
         </div>
     )

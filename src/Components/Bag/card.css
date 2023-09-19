@@ -1,0 +1,122 @@
+.sale-card {
+    display: flex;
+    flex-direction: row;
+    background-color: rgba(255, 255, 255, 0.20);
+    height: 9rem;
+    margin: 5% 0;
+    border-radius: 20px;
+    align-items: center;
+    padding: 0.5rem;
+}
+
+.photo-sale {
+    display: flex;
+}
+
+.photo-sale img {
+    width: 7rem;
+    height: 9rem;
+    border-radius: 10px;
+    align-self: flex-start;
+}
+
+.content-sale {
+    width: 90%;
+    display: grid;
+    grid-template-rows: 35% 40% 25%;
+    height: 100%;
+    padding: 0.5rem;
+}
+
+.size-colour {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 1%;
+}
+
+.content-sale h2 {
+    margin: 0;
+    padding: 1% 0;
+    text-align: left;
+    font-size: 90%;
+}
+
+.title-sale {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    align-self: flex-start;
+    margin: 0;
+    padding: 2% 1%;
+}
+
+.title-sale h1,
+.title-sale button {
+    margin: 0;
+    padding: 0;
+    font-size: 90%;
+    background: none;
+    border: none;
+}
+
+.title-sale button {
+    color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: .3s;
+}
+
+.title-sale button:hover {
+    color: white;
+}
+
+.amount {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 90%;
+    padding: 0 1% 0 0;
+}
+
+.amount h3,
+.amount h4,
+.amount button {
+    margin: 0;
+    padding: 0;
+    font-size: 90%;
+}
+.amountBtn {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+    width: 25%;
+    height: 90%;
+    padding: 0;
+    margin: 0;
+}
+.amountBtn button {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    height: 100%;
+    width: 40%;
+    border-radius: 10px;
+    color: white;
+    font-size: 120%;
+    text-align: center;
+    background: none;
+    padding: 0;
+    margin: 0;
+    transition: .3s;
+}
+
+.amountBtn button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}

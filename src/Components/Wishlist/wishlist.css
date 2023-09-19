@@ -2,4 +2,145 @@
     padding-top: 4%;
     width: 100%;
     height: auto;
+    font-family: 'Manrope', serif;
 }
+
+
+.menu_wishlist {
+    display: grid;
+    grid-template-columns: repeat(5, 18vw);
+    grid-template-rows: repeat(auto, auto);
+    justify-content: center;
+    margin-bottom: 5%;
+}
+
+.wishlist-card {
+    height: auto;
+    margin: 5%;
+    padding: 2%;
+    margin-bottom: 20%;
+}
+
+.wishlist-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 25px;
+    margin-bottom: 5%;
+}
+
+.nameOfCloth {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.nameOfCloth h1 {
+    font-size: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.nameOfCloth button {
+    cursor: pointer;
+    background: none;
+    border: none;
+    width: 8%;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    margin-left: 5%;
+}
+
+.nameOfCloth img {
+    width: 100%;
+    height: auto;
+    padding: 0;
+    margin: 0;
+    filter: invert(1);
+}
+
+.wishlist-card p {
+    font-family: 'Manrope', serif;
+    font-size: 90%;
+    margin: 5% 0;
+    padding: 0;
+}
+
+.AddToBag {
+    width: 96%;
+    height: 4vh;
+    background-color: rgba(255, 255, 255, 0.2);
+    margin-bottom: 5%;
+    border-radius: 15px;
+    display: grid;
+    grid-template-columns: 30% 66%;
+    padding: 2%;
+    justify-content: space-between;
+}
+
+.AddToBag div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    cursor: pointer;
+}
+
+.AddToBag div img {
+    width: 20%;
+    height: auto;
+    filter: invert(1);
+    padding: 0;
+    margin: 0;
+    margin-left: 5%;
+}
+
+.sizeBtn {
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    border: none;
+    outline: none;
+    text-align: center;
+    font-size: 90%;
+    color: white;
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-size: 20%;
+    background-position: 100% 50%;
+    background-image: url("../../IMG/icons8-вниз-90.png");
+    padding-left: 40%;
+}
+
+.toBag {
+    background: none;
+    border: none;
+    background-color: rgb(255, 255, 255);
+    border-radius: 12.5px;
+    font-size: 90%;
+    cursor: pointer;
+    transition: .3s;
+    font-weight: 600;
+}
+
+.toBag:hover {
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.removeBtn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 80%;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 5%;
+    cursor: pointer;
+}
+
+

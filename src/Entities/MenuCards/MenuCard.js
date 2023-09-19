@@ -1,7 +1,8 @@
-import React, { useTransition } from "react";
+import React from "react";
+import { useTranslation } from "react-i18next";
 
 const MenuCard = ({ data }) => {
-    const [t] = useTransition("global");
+    const [t] = useTranslation("global");
 
     return (
         <div>

@@ -62,25 +62,25 @@
         }
     },
     "create_account": {
-        "title1": "profile",
-        "title2": "Create your Account",
+        "title1": "профиль",
+        "title2": "Создайте свой Аккаунт",
         "text1": "Our members receive tailor-made assistance and content according to their preferences. You will enjoy access to special events, updates on our new collections, notifications when your favourite products arrive in boutique, and more exclusive offers.",
-        "first_name": "First name *",
-        "last_name": "Last name *",
-        "gender": "Gender *",
-        "date": "Date of birth *",
-        "country": "Country/Region",
-        "state": "State/Province",
-        "city": "City",
-        "phone": "Phone *",
-        "email": "Email *",
-        "password": "Password *",
-        "confirm": "Confirm Password *",
-        "*": "* Required fields",
+        "first_name": "Имя *",
+        "last_name": "Фамилия *",
+        "gender": "Пол *",
+        "date": "Дата рождения *",
+        "country": "Страна/Регион",
+        "state": "Область",
+        "city": "Город",
+        "phone": "Телефон *",
+        "email": "Адрес эл. почты",
+        "password": "Пароль *",
+        "confirm": "Подтвердить пароль *",
+        "*": "* Обязательные поля",
         "text2": "You can at any time withdraw your consent to receive the above-mentioned communications by clicking on the appropriate option in each email received, as well as by writing to the address privacy@maisonmargiela.com, or otherwise contacting Margiela S.a.s.u. at the addresses indicated at paragraph 1 of the information notice. You can at any time withdraw your consent to be subject to profiling by writing to the address privacy@maisonmargiela.com, privacy@otb.net or otherwise contacting the Joint Controllers at the addresses indicated at paragraph 1 of the information notice.",
         "check1": "Having read the Information notice, I authorize Margiela S.a.s.u. to the processing of my Personal Data for Marketing purposes as described in paragraph 3.1.b) of the information notice",
         "check2": "Having read the information notice, I authorize the Joint Controllers OTB S.p.A. and Margiela S.a.s.u. to process my Personal Data for the purpose of Customer analysis to provide experiences in line with your preferences as described in paragraph 3.2.a) of the information notice",
-        "create": "Create Account"
+        "create": "Создать аккаунт"
     },
     "popup": {
         "title": "Вход в аккаунт",
@@ -91,5 +91,34 @@
         "forgot": "Забыл пароль",
         "login": "Войти",
         "create": "Создать аккаунт"
+    },
+    "account": {
+        "account": "аккаунт",
+        "my_account": "Мой аккаунт",
+        "personal": "Персональные данные",
+        "addresses": "Адреса",
+        "cards": "Зарегестрированные карты",
+        "preferences": "Preferences",
+        "profile": "Профиль",
+        "orders": "Заказы",
+        "wishlist": "Избранное",
+        "log_out": "Выйти",
+        "details": "Детали заказов"
+    },
+    "bag": {
+        "summary": "Сводка заказа",
+        "subtotal": "Цена",
+        "shipping": "Доставка",
+        "total": "Всего",
+        "continue": "Продолжить"
+    },
+    "bw": {
+        "bag": "Корзина",
+        "wishlist": "Избранное"
+    },
+    "card": {
+        "edit": "Редактировать",
+        "size": "Размер:",
+        "colour": "Цвет:"
     }
 }

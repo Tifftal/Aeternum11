@@ -1,0 +1,143 @@
+.product {
+    padding: 8% 5% 0 5%;
+    font-family: 'Manrope', serif;
+    width: 90%;
+    height: auto;
+    display: grid;
+    grid-template-columns: 25% 50% 25%;
+}
+
+.scroll-panel {
+    /* background-color: red; */
+    width: 100%;
+}
+
+.product-photo {
+    /* background-color: blue; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    
+}
+
+.product-photo img {
+    width: 70%;
+    height: auto;
+    margin: 0%;
+    padding: 0%;
+    border-radius: 30px;
+}
+
+.product-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 0;
+    width: 100%;
+    padding: 5%;
+}
+
+.product-info h1 {
+    padding: 0 0 10% 0;
+    margin: 0%;
+    font-family: 'Prata', serif;
+    font-size: 160%;
+    font-weight: normal;
+}
+
+.product-info h2 {
+    padding: 0;
+    margin: 0 0 5% 0;
+    text-transform: uppercase;
+    font-size: 90%;
+    letter-spacing: 0.18px;
+    font-weight: 600;
+}
+
+.product-info p {
+    font-size: 100%;
+    margin: 0 0 2% 0;
+    padding: 0;
+}
+
+.liked {
+    cursor: pointer;
+    background: none;
+    border: none;
+    width: auto;
+    height: auto;
+    color: white;
+}
+
+.product-info img {
+    filter: invert(1);
+    width: 22%;
+    height: auto;
+}
+
+.chooseColor {
+    margin: 15% 0 6% 0;
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    gap: 5%;
+}
+
+.chooseColor button {
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 4px;
+    width: 1.3vw;
+    height: 1.3vw;
+    cursor: pointer;
+}
+
+.product-info h3 {
+    font-size: 90%;
+    font-weight: normal;
+    padding: 0;
+    margin: 0 0 10% 0;
+}
+
+.productSize {
+    border-radius: 10px;
+    width: 80%;
+    height: 2.5rem;
+    background-color: rgba(255, 255, 255, 0.2);
+    appearance: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    outline: none;
+    text-align: center;
+    font-size: 100%;
+    font-weight: 400;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-size: 7%;
+    background-position: 95% 50%;
+    background-image: url("../../IMG/icons8-вниз-90.png");
+    padding-left: 3%;
+    margin: 0 0 10% 0;
+}
+
+.addToBagBtn {
+    background-color: white;
+    border: none;
+    border-radius: 10px;
+    width: 80%;
+    height: 2.5rem;
+    font-size: 100%;
+    font-weight: normal;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.addToBagBtn:hover {
+    background-color: rgba(255, 255, 255, 0.8);
+}

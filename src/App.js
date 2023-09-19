@@ -8,6 +8,8 @@ import Wishlist from './Components/Wishlist/wishlist';
 import Bag from './Components/Bag/bag';
 import Account from './Components/Account/account';
 import BWBtn from './Components/BagWishlist/bwBtn';
+import Product from './Components/Product/Product';
+import Assortment from './Components/Assortment/Assortment';
 
 const App = () => {
   return (
@@ -22,6 +24,8 @@ const App = () => {
           <Route path="/bag" element={<Bag />}></Route>
           <Route path="/account" element={<Account />}></Route>
           <Route path="/bw" element={<BWBtn />}></Route>
+          <Route path="/product" element={<Product/>}></Route>
+          <Route path="/assortment" element={<Assortment/>}></Route>
         </Routes>
       </BrowserRouter>
     </div>

@@ -91,5 +91,34 @@
         "forgot": "Forgot password",
         "login": "Log in",
         "create": "Create account"
+    },
+    "account": {
+        "account": "account",
+        "my_account": "My account",
+        "personal": "Personal information",
+        "addresses": "Addresses",
+        "cards": "Registered Cards",
+        "preferences": "Preferences",
+        "profile": "Profile",
+        "orders": "Orders",
+        "wishlist": "Wishlist",
+        "log_out": "Log out",
+        "details": "Orders Details"
+    },
+    "bag": {
+        "summary": "order summary",
+        "subtotal": "Subtotal",
+        "shipping": "Shipping",
+        "total": "Total",
+        "continue": "Continue"
+    },
+    "bw": {
+        "bag": "Bag",
+        "wishlist": "Wishlist"
+    },
+    "card": {
+        "edit": "Edit",
+        "size": "Size:",
+        "colour": "Colour:"
     }
 }
