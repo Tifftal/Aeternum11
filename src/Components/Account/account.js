@@ -24,7 +24,7 @@ const Account = () => {
         <div className="account">
             <div className="side-menu">
                 <div className="top-menu">
-                    <h1>{t("account.account")}</h1>
+                    <h1 className="font-gramatika-bold">{t("account.account")}</h1>
                     <h2>Varvara Talankina</h2>
                     <div className="side-btn">
                         <a href="/account"><button><img src="../../IMG/icons8-home-96.png" alt="home" />{t("account.my_account")}</button></a>

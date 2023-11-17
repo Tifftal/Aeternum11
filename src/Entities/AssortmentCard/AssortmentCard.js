@@ -7,7 +7,7 @@ const AssortmentCard = ({ data }) => {
     return (
         <div>
             <div className="assortment-card">
-                <img src="../../IMG/test.jpeg" alt="test"/>
+                <img src="../../IMG/TEST.PNG" alt="test"/>
                 <div className="assortment-name">
                     <h1>{data.h1.content}</h1>
                     <button><img src="../../IMG/icons8-закладка-100.png" alt="icon-down"/></button>

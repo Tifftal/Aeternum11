@@ -1,0 +1,100 @@
+.container-2 {
+    width: 96%;
+    background-color: rgb(37, 37, 37);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    padding: 1% 2%;
+}
+
+.container-2 h1 {
+    text-transform: uppercase;
+    font-size: 120%;
+}
+
+.example-cont-2 {
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2%;
+}
+
+.card-cont-2 {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-cont-2 img {
+    width: 100%;
+    border-radius: 20px;
+}
+
+.card-cont-2 p {
+    text-transform: uppercase;
+    font-size: 110%;
+}
+
+.card-cont-2 button {
+    background: none;
+    border-radius: 5px;
+    height: 2rem;
+    border: none;
+    color: white;
+    font-size: 90%;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.card-cont-2 button:hover {
+    background-color: rgb(66, 66, 66);
+}
+
+.default-edit-cont-2 {
+    display: none;
+}
+
+.active-edit-cont-2 {
+    display: flex;
+    flex-direction: column;
+    margin-top: 2%;
+    width: 100%;
+}
+
+.active-edit-cont-2 form {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 5%;
+}
+
+.active-edit-cont-2 div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 1% 0;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.active-edit-cont-2 label {
+    font-size: 110%;
+    font-weight: 500;
+}
+
+.active-edit-cont-2 input {
+    display: flex;
+    margin: 1% 0;
+    background: none;
+    color: white;
+    font-size: 90%;
+    margin-top: 3%;
+    width: 90%;
+}
+
+.active-edit-cont-2 input[type=text] {
+    border-radius: 10px;
+    height: 1.5rem;
+    padding: 1% 2%;
+    border: 1px solid white;
+}

@@ -10,6 +10,8 @@ import Account from './Components/Account/account';
 import BWBtn from './Components/BagWishlist/bwBtn';
 import Product from './Components/Product/Product';
 import Assortment from './Components/Assortment/Assortment';
+import Filter from './Components/Filter/Filter';
+import AdminPage from './Components/Admin/Admin/AdminPage';
 
 const App = () => {
   return (
@@ -24,8 +26,10 @@ const App = () => {
           <Route path="/bag" element={<Bag />}></Route>
           <Route path="/account" element={<Account />}></Route>
           <Route path="/bw" element={<BWBtn />}></Route>
-          <Route path="/product" element={<Product/>}></Route>
-          <Route path="/assortment" element={<Assortment/>}></Route>
+          <Route path="/product" element={<Product />}></Route>
+          <Route path="/assortment" element={<Assortment />}></Route>
+          <Route path="/filter" element={<Filter />}></Route>
+          <Route path="/admin" element={<AdminPage />}></Route>
         </Routes>
       </BrowserRouter>
     </div>

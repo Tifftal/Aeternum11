@@ -1,0 +1,6 @@
+.adminPage {
+    margin-top: 8%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}

@@ -18,9 +18,7 @@ const First = () => {
                 <a className="BtnCatalog font-gramatika-bold" href="/assortment" ><button>{t("first.catalog")}</button></a>
             </div>
             <div className="image">
-                {/* <img src="../../IMG/giphy.gif"/> */}
                 <img src="../../IMG/Group 6.png" alt="Logo" />
-                {/* <img src="../../IMG/Group 16.png" alt="Logo"/> */}
             </div>
         </div>
     )

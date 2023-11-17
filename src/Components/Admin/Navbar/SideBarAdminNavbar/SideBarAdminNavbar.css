@@ -1,0 +1,28 @@
+.navbarSideBar {
+    display: flex;
+    flex-direction: row;
+    gap: 10%;
+    width: 100%;
+}
+
+.navbarSideBar button {
+    width: auto;
+    height: 2rem;
+    background: none;
+    border: none;
+    border-radius: 20px;
+    color: white;
+    font-size: 90%;
+    text-align: left;
+    padding: 0 10%;
+    width: auto;
+    white-space: nowrap;
+}
+
+.navbarSideBar button:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.navbarSideBar button.active {
+    background-color: rgb(37, 37, 37);
+}

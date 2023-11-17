@@ -1,0 +1,70 @@
+.womenAdmin {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 30px;
+    background-color: rgb(37, 37, 37);
+    border-radius: 20px;
+    padding: 10px 30px;
+    margin: 0;
+}
+
+.col-admin {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5%;
+}
+
+.col-admin h1 {
+    color: #CDCDCD;
+    text-align: center;
+    font-family: 'Manrope', sans-serif;
+    font-size: 90%;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin: 0;
+    margin-bottom: 10%;
+}
+
+.col-admin p {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    background: none;
+    border: none;
+    color: white;
+    font-family: 'Manrope', sans-serif;
+    font-size: 90%;
+    transition: .3s;
+    padding: 4px 8px;
+    border-radius: 7px;
+    white-space: nowrap;
+    margin: 7% 0;
+}
+
+.col-admin button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    color: white;
+    font-family: 'Manrope', sans-serif;
+    font-size: 18px;
+    transition: .3s;
+    border-radius: 7px;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    width: 20px;
+    height: 20px;
+    background-color: #472828;
+}
+
+.col-admin button:hover{
+    filter: brightness(1.5);
+}

@@ -1,0 +1,11 @@
+.allGenderAdmin {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 30px;
+    background-color: rgb(37, 37, 37);
+    border-radius: 20px;
+    padding: 10px 30px;
+    margin: 0;
+}
