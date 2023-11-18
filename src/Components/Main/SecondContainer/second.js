@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 
 import MenuCard from "../../../Entities/MenuCards/MenuCard";
 import { getData } from "./lib/data";
+import { Carousel } from "../../Carousel/Carousel";
 
 const Second = () => {
     const [t] = useTranslation("global");
@@ -12,10 +13,15 @@ const Second = () => {
     return (
         <div className="second">
             <div className="menu font-gramatika-bold">
-                {
-                    data.map(card => (
-                        <MenuCard data={card} />
+                {window.innerWidth > 775 ?
+                    (
+                        data.map(card => (
+                            <MenuCard data={card} />
+                        )
+                        )
                     )
+                    : (
+                        <Carousel items={data} />
                     )
                 }
             </div>

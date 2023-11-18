@@ -8,7 +8,8 @@ import Popup from "../Popup/Popup";
 const Navbar = () => {
     const [language, setLanguage] = useState("ru");
     const [t, i18n] = useTranslation("global");
-    
+    const [isMobile, setIsMobile] = useState(window.innerWidth < 800);
+
     const handleChangeLanguage = (e) => {
         const newLanguage = language === "en" ? "ru" : "en";
         const languageToShow = newLanguage === "ru" ? "en" : "ru"
@@ -17,6 +18,7 @@ const Navbar = () => {
     };
 
     const [isOpen, setIsOpen] = useState(false);
+    const [isOpenBurger, setIsOpenBurger] = useState(false);
 
     const HandleOpenNote = () => {
         setIsOpen(true)
@@ -26,6 +28,13 @@ const Navbar = () => {
         setIsOpen(false)
     };
 
+    const handleOpenBurger = () => {
+        setIsOpenBurger(true);
+    };
+
+    const handleCloseBurger = () => {
+        setIsOpenBurger(false);
+    };
 
     return (
         <div className="navbar">
@@ -49,18 +58,18 @@ const Navbar = () => {
                         <DropUn />
                     </div>
                 </div>
-                <a href="/about">
-                    <button className="ordinary">
-                        {t("navbar.about us")}
-                    </button>
-                </a>
                 <button className="ordinary">
                     {t("navbar.search")}
                 </button>
             </div>
+            { window.innerWidth > 768 ? (
             <div className="center font-gramatika-bold">
                 <a href="/"> Aeternum Eleven </a>
             </div>
+            ) : (
+                null
+            )
+            }
             <div className="right">
                 <button className="ordinary" onClick={HandleOpenNote}>
                     {t("navbar.account")}

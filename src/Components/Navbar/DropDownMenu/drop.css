@@ -50,3 +50,10 @@
     white-space: nowrap;
     margin: 7%;
 }
+
+@media screen and (max-width:768px) {
+    .menuDrop {
+        background-color: rgba(17, 17, 17, 0.8);
+        width: 97vw;
+    }
+}
