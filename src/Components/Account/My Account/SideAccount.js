@@ -1,22 +1,11 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import "./account.css";
+import "./SideAccount.css";
+// import MyAccount from "./My Account/myAccount";
+// import Personal from "./PersInf/personal";
 
-const Account = () => {
+const SideAccount = () => {
     const [t] = useTranslation("global");
-
-    const [clasProfile, setClasProfile] = useState('default');
-    const [clasOrder, setClasOrder] = useState('default');
-
-    const HandleDropMenuProfile = (e) => {
-        const NewClas = clasProfile === 'default' ? 'active' : 'default';
-        setClasProfile(NewClas)
-    };
-    const HandleDropMenuOrder = (e) => {
-        const NewClas = clasOrder === 'default' ? 'active' : 'default';
-        setClasOrder(NewClas)
-    };
-
 
     return (
         <div className="account">
@@ -57,4 +46,4 @@ const Account = () => {
     )
 };
 
-export default Account;
+export default SideAccount;
