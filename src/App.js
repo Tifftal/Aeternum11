@@ -2,7 +2,6 @@ import './App.css';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Main from './Components/Main/main';
 import Navbar from './Components/Navbar/navbar';
-import CreateAccount from './Components/Account/createAccount';
 import About from './Components/About Us/about';
 import Wishlist from './Components/Wishlist/wishlist';
 import Bag from './Components/Bag/bag';
@@ -12,6 +11,7 @@ import Assortment from './Components/Assortment/Assortment';
 import Filter from './Components/Filter/Filter';
 import AdminPage from './Components/Admin/Admin/AdminPage';
 import Account from './Components/AccountPanel/Account/Account';
+import CreateAccount from './Components/AccountPanel/CreateAccount/createAccount';
 
 const App = () => {
   return (
@@ -24,7 +24,6 @@ const App = () => {
           <Route path="/about" element={<About />}></Route>
           <Route path="/wishlist" element={<Wishlist />}></Route>
           <Route path="/bag" element={<Bag />}></Route>
-          {/* <Route path="/account" element={<Account />}></Route> */}
           <Route path='/account' element={<Account />}></Route>
           <Route path="/bw" element={<BWBtn />}></Route>
           <Route path="/product" element={<Product />}></Route>

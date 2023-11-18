@@ -1,32 +1,3 @@
-.defaultProfile .account-drop {
-    display: none;
-}
-
-.drop-btn {
-    background: none;
-}
-
-.account-drop {
-    display: flex;
-    flex-direction: column;
-}
-
-.account-drop a {
-    text-decoration: none;
-    margin-left: 10%;
-    text-align: left;
-    font-family: 'Manrope', serif;
-    font-size: 90%;
-    color: #c2c2c2;
-    font-weight: 500;
-    transition: .3s;
-    padding: 5%;
-}
-
-.account-drop a:hover {
-    color: white;
-}
-
 .accountSideBar {
     display: flex;
     flex-direction: column;
@@ -38,6 +9,40 @@
     filter: invert(1);
     width: 20px;
     height: 20px;
+}
+
+.accountSideBar h1,
+.accountSideBar h2 {
+    text-align: left;
+    margin: 5% 0;
+    padding: 0 10%;
+}
+
+.accountSideBar h1 {
+    text-transform: uppercase;
+    font-size: 90%;
+    letter-spacing: 0.5px;
+    font-weight: 700;
+}
+
+.accountSideBar h2 {
+    font-family: 'Prata', serif;
+    font-size: 130%;
+    font-weight: normal;
+    letter-spacing: 0.3px;
+}
+
+.defaultProfile .account-drop {
+    display: none;
+}
+
+.defaultOrder .account-drop {
+    display: none;
+}
+
+.account-drop {
+    display: flex;
+    flex-direction: column;
 }
 
 .accountSideBar button {
@@ -56,7 +61,7 @@
     height: 2.2rem;
 }
 
-.accountSideBar button:hover {
+.accountSideBar button.default:hover {
     background-color: rgba(255, 255, 255, 0.05);
 }
 
@@ -64,10 +69,24 @@
     background-color: rgb(37, 37, 37);
 }
 
-.accountSideBar button.active_drop {
-    background-color: none;
+.activeProfile .default {
+    background-color: rgba(255, 255, 255, 0.05);
 }
 
-.accountSideBar button.default_drop {
-    background-color: none;
+.activeOrder .default {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.account-drop button {
+    margin-left: 5%;
+    font-size: 90%;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.account-drop button:hover {
+    color: white;
+}
+
+.account-drop button.active_drop {
+    color: white;
 }

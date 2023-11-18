@@ -13,7 +13,7 @@ const Account = () => {
             <div style={{ margin: "0 0 0 30px", marginBottom: "3%", width: "18%" }}>
                 <SideBarAccount setTab={setTab} tab={tab} />
             </div>
-            <div style={{ margin: "0 30px", marginBottom: "3%", width: "82%", backgroundColor: "red" }}>
+            <div style={{ margin: "0 30px", marginBottom: "3%", width: "82%" }}>
                 <Tab tab={tab} />
             </div>
         </div>
