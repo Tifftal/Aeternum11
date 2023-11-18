@@ -70,3 +70,25 @@
 .image img:hover {
     transform: scale(1.02);
 }
+
+@media screen and (max-width: 768px) {
+    .text p {
+        font-family: 'Prata', serif;
+        font-size: 100%;
+        letter-spacing: 0.4px;
+        line-height: 20px;
+    }
+
+    .text {
+        display: flex;
+        text-align: left;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .BtnCatalog {
+        margin-top: 25%;
+        width: 100%;
+    }
+}

@@ -143,4 +143,16 @@
     cursor: pointer;
 }
 
-
+@media screen and (max-width: 768px) {
+    .wishlist {
+        padding-bottom: 30px;
+    }
+    .menu_wishlist {
+        display: flex;
+        flex-direction: column;
+    }
+    .sizeBtn {
+        padding-left: 0;
+        font-size: 110%;
+    }
+}

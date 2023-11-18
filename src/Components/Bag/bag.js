@@ -8,7 +8,6 @@ const Bag = () => {
 
     return (
         <div className="bag">
-            <div></div>
             <div className="sale">
                 <Card />
                 <Card />

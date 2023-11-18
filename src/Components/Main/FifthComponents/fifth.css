@@ -1,5 +1,5 @@
 .fifth {
-    height: 70vh;
+    /* height: 70vh; */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -120,4 +120,15 @@
     letter-spacing: 0.2px;
 }
 
-
+@media screen and (max-width: 768px) {
+    .footerMenu {
+        margin-top: 5%;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        margin-right: auto;
+        margin-left: auto;
+        justify-content: space-between;
+        align-items: center;
+    }
+}

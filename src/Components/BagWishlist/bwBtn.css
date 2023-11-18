@@ -36,3 +36,10 @@
     align-items: center;
     justify-content: center;
 }
+
+@media screen and (max-width: 768px) {
+    .floating-btn {
+        margin-top: 120px;
+        width: 200px;
+    }
+}
