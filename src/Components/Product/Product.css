@@ -3,13 +3,14 @@
     font-family: 'Manrope', serif;
     width: 90%;
     height: auto;
-    display: grid;
-    grid-template-columns: 25% 50% 25%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .scroll-panel {
     /* background-color: red; */
-    width: 100%;
+    width: 25%;
 }
 
 .product-photo {
@@ -17,7 +18,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
+    width: 50%;
     
 }
 
@@ -35,7 +36,7 @@
     justify-content: flex-start;
     align-items: center;
     margin: 0;
-    width: 100%;
+    width: 25%;
     padding: 5%;
 }
 
@@ -140,4 +141,29 @@
 
 .addToBagBtn:hover {
     background-color: rgba(255, 255, 255, 0.8);
+}
+
+@media screen and (max-width: 768px) {
+    .product {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin-top: 150px;
+        padding: 0 0 120px 0;
+    }
+    .scroll-panel {
+        display: none;
+    }
+    .product-photo {
+        width: 100%;
+    }
+    .product-info {
+        width: 75%;
+    }
+    .chooseColor button {
+        width: 15px;
+        height: 15px;
+    }
 }

@@ -3,16 +3,18 @@
     padding-top: 0%;
     width: 90%;
     height: auto;
-    display: grid;
-    grid-template-columns: 27% 36% 27%;
-    grid-gap: 5%;
+    display: flex;
+    flex-direction: row;
     overflow-y: hidden;
+    align-items: center;
+    justify-content: space-between;
+    padding: 100px 20px 0 20px;
+    margin: 0 auto 0 auto;
 }
 
 .sale {
-    padding-top: 10%;
     display: inline-block;
-    width: 100%;
+    width: 63%;
     height: 80vh;
     overflow-y: scroll;
     
@@ -26,9 +28,9 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    padding: 0;
+    padding: 0 0 0 20px;
     margin: 0;
-    width: 80%;
+    width: 27%;
 }
 
 .total h1 {
@@ -109,4 +111,34 @@
 
 .total button:hover {
     background-color: rgba(255, 255, 255, 0.7);
+}
+
+@media screen and (max-width: 768px) {
+    .empty {
+        display: none;
+    }
+    .bag {
+        display: flex;
+        flex-direction: column;
+        padding: 0 0 150px 0;
+    }
+    .total {
+        width: 90%;
+        justify-content: center;
+        align-items: center;
+        height: 70%;
+    }
+    .total h1 {
+        padding: 0%;
+        margin: 20px 0 0 0;
+        text-transform: uppercase;
+        font-size: 95%;
+        font-weight: 400;
+    }
+    .sale {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 }

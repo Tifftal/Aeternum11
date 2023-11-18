@@ -1,5 +1,7 @@
 .fourth {
-    height: 100vh;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .fourthInfo {
@@ -248,4 +250,37 @@
 
 .agree input[type="checkbox"]:hover {
     border: 1px solid rgba(255, 255, 255, 0.63);
+}
+
+@media screen and (max-width: 768px) {
+    .fourthInfo {
+        text-align: center;
+        font-family: 'Prata', serif;
+        line-height: 120%;
+        letter-spacing: 1px;
+        font-size: 100%;
+    }
+
+    .emailForm p {
+        margin-top: 10px;
+        /* padding: 1% 5%; */
+        color: #FF5656;
+        border-radius: 7px;
+        background-color: rgba(255, 86, 86, 0.14);
+    }
+
+    .emailForm {
+        position: relative;
+        width: 90%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .NewSt {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 80%
+    }
 }

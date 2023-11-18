@@ -1,5 +1,5 @@
 .assortment {
-    padding-top: 10%;
+    padding-top: 10px;
     font-family: 'Manrope', serif;
 }
 
@@ -132,4 +132,16 @@
     font-size: 90%;
     margin: 5% 0;
     padding: 0;
+}
+
+@media screen and (max-width: 768px) {
+    .assortment {
+        padding-top: 120px;
+        padding-bottom: 70px;
+    }
+
+    .goods {
+        display: flex;
+        flex-direction: column;
+    }
 }
