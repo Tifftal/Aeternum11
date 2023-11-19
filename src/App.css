@@ -6,3 +6,31 @@
   display: flex;
   flex-direction: column;
 }
+
+/* Carousel.css */
+@media screen and (max-width: 768px) {
+
+  .menu-card-container {
+    overflow: hidden;
+    width: 100%;
+    display: flex;
+  }
+
+  .menu-card-wrapper {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+  }
+
+  .menu-card {
+    flex: 0 0 100%;
+    align-items: center;
+  }
+
+  .btnPlaceholder {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+/* Add any additional styling as needed */
