@@ -120,7 +120,7 @@
 .filters {
     display: flex;
     flex-direction: column;
-    height: 80vh;
+    height: 70vh;
     width:100%;
     overflow-y: auto;
     overflow-x: hidden
@@ -129,24 +129,20 @@
 
 .default_filter,
 .active_filter {
-    width: 96%;
+    width: 89%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 1px solid white;
+    border: 1px solid rgba(255, 255, 255, 0.5);
     border-radius: 20px;
-    margin: 2% 0;
-    padding-top: 4%;
-    padding-bottom: 4%;
-    padding-left: 4%;
+    margin: 4% 0 2% 0;
+    padding: 2% 4%;
 }
 
 .default_filter button {
     width: 100%;
     background: none;
     border: none;
-    /* border: 1px solid white; */
-    /* background-color: red; */
     color: white;
     font-size: 100%;
     text-align: left;
@@ -157,23 +153,72 @@
     width: 100%;
     background: none;
     border: none;
-    /* border: 1px solid white; */
-    /* background-color: red; */
     color: white;
     font-size: 100%;
     text-align: left;
 }
 
-.default_filter .sort-drop {
+.default_filter .input-drop,
+.default_filter .size-drop,
+.default_filter .color-drop {
     display: none;
 }
 
-.sort-drop {
+.input-drop {
+    font-size: 85%;
     width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     justify-content: center;
-    /* background-color: gainsboro; */
-    margin-top: 2%;
+    padding-top: 2%;
+    margin: 3% 0;
+    border-top: 1px solid white;
+}
+
+.filters h2 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    text-transform: uppercase;
+    font-size: 90%;
+    margin: 0;
+    padding: 0;
+}
+
+.filters h2 img {
+    border: 1px solid white;
+    border-radius: 100%;
+    width: 15px;
+    height: 15px;
+    padding: 3px;
+}
+
+.size-drop {
+    font-size: 85%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-row-gap: 15px;
+    align-items: center;
+    justify-content: center;
+    padding-top: 2%;
+    margin: 3% 0 1% 0;
+    border-top: 1px solid white;
+    padding: 10px 0 0 0;
+}
+
+.color-drop {
+    font-size: 85%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-row-gap: 15px;
+    align-items: center;
+    justify-content: center;
+    padding-top: 2%;
+    margin: 3% 0 1% 0;
+    border-top: 1px solid white;
+    padding: 10px 0 0 0;
 }

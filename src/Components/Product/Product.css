@@ -6,11 +6,27 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    overflow-y: hidden;
 }
 
 .scroll-panel {
-    /* background-color: red; */
+    height: 80vh;
+    overflow-y: scroll;
     width: 25%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.scroll-panel img {
+    background-color: white;
+    border-radius: 20px;
+    width: 50%;
+    /* Фиксированная ширина для картинок в скролл-панели */
+    height: auto;
+    cursor: pointer;
+    margin-bottom: 5px;
+    /* Расстояние между картинками */
 }
 
 .product-photo {
@@ -19,7 +35,7 @@
     align-items: center;
     justify-content: center;
     width: 50%;
-    
+
 }
 
 .product-photo img {
@@ -153,15 +169,19 @@
         margin-top: 150px;
         padding: 0 0 120px 0;
     }
+
     .scroll-panel {
         display: none;
     }
+
     .product-photo {
         width: 100%;
     }
+
     .product-info {
         width: 75%;
     }
+
     .chooseColor button {
         width: 15px;
         height: 15px;

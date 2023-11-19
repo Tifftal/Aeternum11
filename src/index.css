@@ -38,4 +38,5 @@ code {
 .font-gramatika-bold {
   font-family: "GramatikaBold";
   letter-spacing: 0.5px;
+  text-transform: uppercase;
 }
