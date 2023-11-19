@@ -28,15 +28,15 @@ const Fifth = () => {
                     <p>+7 (123) 456 78 90</p>
                 </div>
             </div>
-            <div className="font-gramatika-bold">
-                <h2>
+            <div>
+                <h2 className="font-gramatika-bold">
                     Aeternum Eleven
                 </h2>
                 <h3>
                     {t("fifth.text")}
                 </h3>
             </div>
-            
+
 
 
         </div>

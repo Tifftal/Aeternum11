@@ -62,6 +62,7 @@
 .posterInfo-cont3 h1 {
     margin: 4%;
     padding: 0;
+    text-transform: none;
     font-family: 'Prata', serif;
     font-size: 100%;
     font-weight: normal;
@@ -71,6 +72,7 @@
 .posterInfo-cont3 p {
     margin: 0;
     padding: 0;
+    text-transform: none;
     font-family: 'Prata', serif;
     font-size: 80%;
     font-weight: normal;

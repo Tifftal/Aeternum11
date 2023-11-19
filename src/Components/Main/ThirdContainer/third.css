@@ -46,6 +46,7 @@
 .posterInfo h1 {
     margin: 4%;
     padding: 0;
+    text-transform: none;
     font-family: 'Prata', serif;
     font-size: 170%;
     font-weight: normal;
@@ -54,6 +55,7 @@
 .posterInfo p {
     margin: 0;
     padding: 0;
+    text-transform: none;
     font-family: 'Prata', serif;
     font-size: 110%;
     font-weight: normal;

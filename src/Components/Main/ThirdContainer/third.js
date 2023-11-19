@@ -13,7 +13,7 @@ const Third = () => {
                 <div className="posterInfo font-gramatika-bold">
                     <h2>{t("third.title1")}</h2>
                     <h1>{t("third.title2")}</h1>
-                    <p>{t("third.info")}</p>
+                    <p >{t("third.info")}</p>
                     <a href="/"><button>{t("third.btn")}</button></a>
                 </div>
             </div>
