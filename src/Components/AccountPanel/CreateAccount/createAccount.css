@@ -75,7 +75,7 @@
     justify-content: center;
 }
 
-.registration input {
+.registration input, .registration select {
     font-family: 'Manrope', serif;
     caret-color: white;
     padding: 0 5%;

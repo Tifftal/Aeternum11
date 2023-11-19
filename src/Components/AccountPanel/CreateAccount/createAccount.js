@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "./createAccount.css";
 import { useTranslation } from "react-i18next";
+import axios from "axios";
+import { URI } from "../../../api/config";
 
 const CreateAccount = () => {
     const [t] = useTranslation("global");
@@ -91,6 +93,30 @@ const CreateAccount = () => {
         };
 
         setErrors(newErrors);
+        axios.post(`${URI}/registration`,
+            {
+                email: email,
+                password: password,
+                confirmPassword: rpassword,
+                firstName: name,
+                lastName: surname,
+                gender: gender,
+                country: country,
+                state: state,
+                city: city,
+                phone: phone,
+                newsletter: "YES",
+                dob: birth,
+            }
+        )
+            .then(response => {
+                if (response.status === 200) {
+                    window.location.href = "/";
+                }
+            })
+            .catch(error => {
+                console.error(error);
+            })
     };
 
     return (
@@ -115,14 +141,18 @@ const CreateAccount = () => {
                     onChange={(e) => { handleChangeInput(e, "surname", setErrors) }}
                     id={errors.surname ? "error" : ""}
                 />
-                <input
-                    type="text"
-                    placeholder={t("create_account.gender")}
+                <select
                     onChange={(e) => { handleChangeInput(e, "gender", setErrors) }}
                     id={errors.gender ? "error" : ""}
-                />
+                    defaultValue="" // установите значение по умолчанию, если это необходимо
+                >
+                    <option value="" disabled hidden>{t("create_account.gender")}</option>
+                    <option value="MEN">MEN</option>
+                    <option value="WOMAN">WOMAN</option>
+                    <option value="NON-BINARY">NON-BINARY</option>
+                </select>
                 <input
-                    type="text"
+                    type="date"
                     placeholder={t("create_account.date")}
                     onChange={(e) => { handleChangeInput(e, "birth", setErrors) }}
                     id={errors.birth ? "error" : ""}

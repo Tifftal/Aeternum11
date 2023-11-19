@@ -1,14 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import './navbar.css';
 import { useTranslation } from "react-i18next";
 import DropW from "./DropDownMenu/dropWomen";
 import DropUn from "./DropDownMenu/dropUnisex";
 import Popup from "../Popup/Popup";
+import axios from "axios";
+import { URI } from "../../api/config";
 
 const Navbar = () => {
     const [language, setLanguage] = useState("ru");
     const [t, i18n] = useTranslation("global");
     const [isMobile, setIsMobile] = useState(window.innerWidth < 800);
+
+    useEffect(() => {
+        axios.get(`${URI}/category/${1}/goods`)
+        .then(response => {
+            console.log(response);
+        })
+        .catch(err => {
+            console.error(err);
+        })
+    })
 
     const handleChangeLanguage = (e) => {
         const newLanguage = language === "en" ? "ru" : "en";
@@ -18,7 +30,6 @@ const Navbar = () => {
     };
 
     const [isOpen, setIsOpen] = useState(false);
-    const [isOpenBurger, setIsOpenBurger] = useState(false);
 
     const HandleOpenNote = () => {
         setIsOpen(true)
@@ -27,15 +38,7 @@ const Navbar = () => {
     const HandleCloseNote = () => {
         setIsOpen(false)
     };
-
-    const handleOpenBurger = () => {
-        setIsOpenBurger(true);
-    };
-
-    const handleCloseBurger = () => {
-        setIsOpenBurger(false);
-    };
-
+    
     return (
         <div className="navbar">
             {isOpen && (

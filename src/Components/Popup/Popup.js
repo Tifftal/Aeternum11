@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import './Popup.css';
 import { useTranslation } from "react-i18next";
+import axios from 'axios';
+import { URI } from '../../api/config';
 
 const Popup = (props) => {
 
@@ -14,7 +16,7 @@ const Popup = (props) => {
 
     const handleChangeInput = (e, field, setError) => {
         const value = e.target.value;
-        // setError(value === "");
+        setError(value === "");
 
         switch (field) {
             case "email":
@@ -36,16 +38,31 @@ const Popup = (props) => {
             password: password === "",
         };
 
-        // setErrors(newErrors);
+        setErrors(newErrors);
+
+        axios.post(`${URI}/login`,
+            {
+                email: email,
+                password: password,
+            })
+            .then(response => {
+                if (response.status === 200) {
+                    window.localStorage.setItem('jwtToken', response.data.token);
+                    props.onClose();
+                }
+            })
+            .catch(error => {
+                console.error(error);
+            })
     }
 
     const [t] = useTranslation("global");
 
     return (
         <div className="modal">
-            <div
+            <form
                 className="modal-content"
-                // onSubmit={handleSubmitForm}
+                onSubmit={handleSubmitForm}
             >
                 <div className='header font-gramatika-bold'>
                     <h1>{t("popup.title")}</h1>
@@ -55,17 +72,17 @@ const Popup = (props) => {
                 <input
                     className='login-input'
                     type="email"
-                    // name="email"
+                    name="email"
                     placeholder={t("popup.input1")}
-                    // onChange={(e) => { handleChangeInput(e, "email", setErrors) }}
+                    onChange={(e) => { handleChangeInput(e, "email", setErrors) }}
                     id={errors.email ? "error" : ""}
                 />
                 <input
                     className='login-input'
                     type="password"
-                    // name="password"
+                    name="password"
                     placeholder={t("popup.input2")}
-                    // onChange={(e) => { handleChangeInput(e, "password", setErrors) }}
+                    onChange={(e) => { handleChangeInput(e, "password", setErrors) }}
                     id={errors.password ? "error" : ""}
                 />
                 <div className='forgot'>
@@ -75,9 +92,9 @@ const Popup = (props) => {
                     </div>
                     <button>{t("popup.forgot")}</button>
                 </div>
-                <a href='/account'><button className='but log font-gramatika-bold'>{t("popup.login")}</button></a>
+                <button className='but log font-gramatika-bold'>{t("popup.login")}</button>
                 <a href='/create_account' className='but create font-gramatika-bold'>{t("popup.create")}</a>
-            </div>
+            </form>
         </div>
     );
 }
