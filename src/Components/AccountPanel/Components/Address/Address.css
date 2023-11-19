@@ -1,0 +1,118 @@
+.address {
+    height: auto;
+    padding: 5% 4% 0 4%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.address h2 {
+    margin: 0;
+    padding: 0;
+    text-transform: uppercase;
+    font-size: 100%;
+    letter-spacing: 0.18px;
+    font-weight: 700;
+}
+
+.address h1 {
+    margin: 2% 0;
+    padding: 0;
+    font-family: 'Prata', serif;
+    font-size: 180%;
+    font-weight: normal;
+}
+
+.addedAddresses {
+    width: 40%;
+    margin: 0;
+    padding: 0;
+    margin-top: 2%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.addedAddresses h3 {
+    align-self: flex-start;
+    text-align: left;
+    margin: 3% 0 3% 2%;
+    padding: 0;
+    text-transform: uppercase;
+    font-size: 100%;
+    letter-spacing: 0.18px;
+    font-weight: 700;
+}
+
+.cardAddress {
+    width: 90%;
+    border: 1px solid white;
+    border-radius: 15px;
+    padding: 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-around;
+    gap: 10px;
+}
+
+.cardAddress h4 {
+    margin: 0;
+    padding: 0;
+    font-size: 110%;
+    font-weight: normal;
+}
+
+.addressInCard {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin: 5% 0;
+    gap: 8px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.addressInCard p {
+    margin: 0;
+    padding: 0;
+}
+
+.CardBtn {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.CardBtn button {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 90%;
+    padding: 0;
+    margin: 0;
+    transition: .3s;
+    cursor: pointer;
+}
+
+.CardBtn button:hover {
+    color: rgba(255, 255, 255);
+}
+
+.AddBtn {
+    border: none;
+    align-self: flex-start;
+    color: rgba(255, 255, 255, 0.9);
+    background-color: rgb(37, 37, 37);
+    margin: 10% 0 3% 2%;
+    font-size: 100%;
+    padding: 3% 5%;
+    border-radius: 10px;
+    transition: .3s;
+    cursor: pointer;
+}
+
+.AddBtn:hover {
+    background-color: rgb(61, 61, 61);
+}

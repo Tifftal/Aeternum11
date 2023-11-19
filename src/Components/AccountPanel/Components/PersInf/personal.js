@@ -6,7 +6,7 @@ const Personal = () => {
     const [t] = useTranslation("global");
     return (
         <div className="pers">
-            <h2>{t("create_account.title1")}</h2>
+            <h2 className="font-gramatika-bold">{t("create_account.title1")}</h2>
             <h1>Join Aeternum Eleven</h1>
 
             <div className="pers-data">
@@ -16,7 +16,7 @@ const Personal = () => {
                 <input type="text" placeholder={t("create_account.date")} />
                 <input type="text" placeholder={t("create_account.country")} />
                 <input type="text" placeholder={t("create_account.state")} />
-                <input type="text" placeholder={t("create_account.sity")} />
+                <input type="text" placeholder={t("create_account.city")} />
                 <input type="text" placeholder={t("create_account.phone")} />
             </div>            
             <h3>{t("create_account.*")}</h3>

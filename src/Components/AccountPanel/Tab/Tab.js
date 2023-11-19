@@ -1,5 +1,6 @@
 import React from "react";
 import Personal from "../Components/PersInf/personal";
+import Address from "../Components/Address/Address";
 
 const Tab = (props) => {
     switch (props.tab) {
@@ -17,7 +18,7 @@ const Tab = (props) => {
             );
         case "Addresses":
             return (
-                props.tab
+                <Address />
             );
         case "Preferences":
             return (
