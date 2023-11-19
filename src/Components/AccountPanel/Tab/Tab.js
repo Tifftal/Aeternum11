@@ -3,14 +3,6 @@ import Personal from "../Components/PersInf/personal";
 
 const Tab = (props) => {
     switch (props.tab) {
-        case "MyAccount":
-            return (
-                props.tab
-            );
-        case "Wishlist":
-            return (
-                props.tab
-            );
         case "Goods":
             return (
                 props.tab
@@ -37,7 +29,7 @@ const Tab = (props) => {
             );
         default:
             return (
-                props.tab
+                <Personal />
             );
     }
 }
