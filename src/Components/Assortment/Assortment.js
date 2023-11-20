@@ -3,19 +3,26 @@ import "./Assortment.css"
 import { useTranslation } from "react-i18next";
 import AssortmentCard from "../../Entities/AssortmentCard/AssortmentCard";
 import Filter from "../Filter/Filter";
-import { getData } from "../../Entities/AssortmentCard/data_assortment";
-import axios from "axios";
 import { URI } from "../../api/config";
+import api from "../../api/axiosConfig";
 
 const Assortment = () => {
     const [t] = useTranslation("global");
-    // const data = getData(t);
     const [data, setData] = useState([]);
+    const [category, setCategory] = useState({});
 
-    const [isOpen, setIsOpen] = useState(false);
+    // const [isOpen, setIsOpen] = useState(false);
 
     useEffect(() => {
-        axios.get(`${URI}/category/${1}/goods`)
+        api.get(`${URI}/categories/${1}`)
+            .then(response => {
+                console.log(response);
+                setCategory(response.data);
+            })
+            .catch(err => {
+                console.error(err);
+            })
+        api.get(`${URI}/category/${1}/goods`)
             .then(response => {
                 console.log(response);
                 setData(response.data.content);
@@ -25,28 +32,28 @@ const Assortment = () => {
             })
     }, [])
 
-    const HandleOpenNote = () => {
-        setIsOpen(true)
-    };
+    // const HandleOpenNote = () => {
+    //     setIsOpen(true)
+    // };
 
-    const HandleCloseNote = () => {
-        setIsOpen(false)
-    };
+    // const HandleCloseNote = () => {
+    //     setIsOpen(false)
+    // };
 
     return (
         <div className="assortment">
-            {isOpen && (
+            {/* {isOpen && (
                 <Filter onClose={HandleCloseNote} setIsOpen={setIsOpen} />
-            )}
+            )} */}
             <div className="categoryBtn font-gramatika-bold">
-                <a href="#">Women</a>
+                <a href="#">Женщины</a>
                 <p>/</p>
-                <a href="#">Ready-to-wear</a>
+                <a href="#">Одежда</a>
                 <p>/</p>
-                <a href="#">Tops</a>
+                <a href="#">{category.name}</a>
             </div>
-            <h1>Name scbjsbvsjcnv</h1>
-            <button className="refine" onClick={HandleOpenNote}>Refine</button>
+            <h1>{category.name}</h1>
+            {/* <button className="refine" onClick={HandleOpenNote}>Фильтры</button> */}
             <div className="goods">
                 {
                     data.map(card => (

@@ -60,8 +60,7 @@
 .goods {
     padding: 1% 7%;
     display: grid;
-    grid-template-columns: repeat(4, auto);
-    grid-template-rows: repeat(auto, auto);
+    grid-template-columns: repeat(4, 1fr);
     justify-content: center;
     margin-bottom: 5%;
 }

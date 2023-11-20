@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import "./Product.css";
 import { useTranslation } from "react-i18next";
 import { useParams } from 'react-router-dom';
-import axios from "axios";
 import { URI } from "../../api/config";
+import api from "../../api/axiosConfig";
 
 const Product = () => {
     const [t] = useTranslation("global");
@@ -26,13 +26,13 @@ const Product = () => {
     }
 
     useEffect(() => {
-        axios.get(`${URI}/good/${id}`)
+        api.get(`${URI}/good/${id}`)
             .then(response => {
                 console.log(response);
                 setData(response.data);
                 setColor(response.data.colors);
                 setSize(response.data.sizes);
-                axios.get(`${URI}/categories/${response.data.categoryIds[0].id}`)
+                api.get(`${URI}/categories/${response.data.categoryIds[0].id}`)
                     .then(response => {
                         console.log(response);
                         setCategory(response.data);

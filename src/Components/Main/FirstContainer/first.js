@@ -15,7 +15,7 @@ const First = () => {
                 <p>
                     {t("first.text2")}
                 </p>
-                <a className="BtnCatalog font-gramatika-bold" href="/assortment" ><button>{t("first.catalog")}</button></a>
+                <a className="BtnCatalog font-gramatika-bold" href="/catalog" ><button>{t("first.catalog")}</button></a>
             </div>
             <div className="image">
                 <img src="../../IMG/Group 69.png" alt="Logo" />

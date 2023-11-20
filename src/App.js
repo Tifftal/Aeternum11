@@ -13,6 +13,7 @@ import AdminPage from './Components/Admin/Admin/AdminPage';
 import Account from './Components/AccountPanel/Account/Account';
 import CreateAccount from './Components/AccountPanel/CreateAccount/createAccount';
 import { AuthProvider } from './Context/AuthContext';
+import Catalog from './Components/Catalog/Catalog';
 
 const App = () => {
   return (
@@ -32,6 +33,7 @@ const App = () => {
             <Route path="/assortment" element={<Assortment />}></Route>
             <Route path="/filter" element={<Filter />}></Route>
             <Route path="/admin" element={<AdminPage />}></Route>
+            <Route path="/catalog" element={<Catalog />}></Route>
           </Routes>
         </AuthProvider>
       </BrowserRouter>
