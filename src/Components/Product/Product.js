@@ -108,6 +108,8 @@ const Product = () => {
                     ))}
                 </select>
                 <button className="addToBagBtn font-gramatika-bold">Add to Bag</button>
+                <h5 className="compound">Состав: </h5>
+                <h5 className="compound">{data.compound}</h5>
                 {data && data.description && (
                     <ul className="description">
                         {data.description.split(',').map((item, index) => (
@@ -115,7 +117,6 @@ const Product = () => {
                         ))}
                     </ul>
                 )}
-
             </div>
         </div>
     );
