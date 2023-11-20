@@ -10,24 +10,33 @@ import api from "../../../api/axiosConfig";
 const Account = () => {
     const [t] = useTranslation("global");
     const [tab, setTab] = useState("");
+    const [user, setUser] = useState({});
 
     useEffect(() => {
-        api.get(`${URI}/user/me`)
+        api.get(`${URI}/user/me`,
+        {
+            headers: {
+                "Authorization": `Bearer ${window.localStorage.getItem("jwtToken")}`
+            }
+        })
         .then(response => {
-            console.log(response);
+            console.log(response.data)
+            if (response.status === 200) {
+                setUser(response.data);
+            }
         })
         .catch(error => {
             console.error(error);
         })
-    })
+    }, [])
 
     return (
         <div className="adminPage">
             <div style={{ margin: "0 0 0 30px", marginBottom: "3%", width: "18%" }}>
-                <SideBarAccount setTab={setTab} tab={tab} />
+                <SideBarAccount setTab={setTab} tab={tab} user={user}/>
             </div>
             <div style={{ margin: "0 30px", marginBottom: "3%", width: "82%" }}>
-                <Tab tab={tab} />
+                <Tab tab={tab}/>
             </div>
         </div>
     )

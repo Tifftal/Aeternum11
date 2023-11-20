@@ -7,6 +7,7 @@ import Popup from "../Popup/Popup";
 import axios from "axios";
 import { URI } from "../../api/config";
 import { useAuth } from "../../Context/AuthContext";
+import api from "../../api/axiosConfig";
 
 const Navbar = () => {
     const [language, setLanguage] = useState("ru");
@@ -14,7 +15,7 @@ const Navbar = () => {
     const { jwtToken } = useAuth();
 
     useEffect(() => {
-        axios.get(`${URI}/category/${1}/goods`)
+        api.get(`${URI}/category/${1}/goods`)
             .then(response => {
                 console.log(response);
             })

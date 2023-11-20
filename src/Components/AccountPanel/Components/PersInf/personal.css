@@ -74,7 +74,7 @@
     justify-content: center;
 }
 
-.pers-data input {
+.pers-data input, .pers-data select {
     font-family: 'Manrope', serif;
     caret-color: white;
     padding: 0 5%;
@@ -174,7 +174,7 @@
     margin-bottom: 15%;
 }
 
-.BtnAc button {
+.BtnAc {
     width: 100%;
     border: none;
     height: 5vh;
