@@ -12,17 +12,9 @@ const Tab = (props) => {
             return (
                 <Personal />
             );
-        case "Cards":
-            return (
-                props.tab
-            );
         case "Addresses":
             return (
                 <Address />
-            );
-        case "Preferences":
-            return (
-                props.tab
             );
         case "Order":
             return (

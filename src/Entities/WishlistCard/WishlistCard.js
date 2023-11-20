@@ -9,7 +9,7 @@ const WishlistCard = ({ data }) => {
             <div className="wishlist-card">
                 <img src="../../IMG/test.jpeg" alt="test"/>
                 <div className="nameOfCloth">
-                    <h1>{data.h1.content}</h1>
+                    <h1>{data.name}</h1>
                     <button><img src="../../IMG/icons8-закладка-100.png" alt="icon-down"/></button>
                 </div>
                 <p>₽ 4567</p>

@@ -29,7 +29,7 @@ const SideBarAccount = (props) => {
         <div className="accountSideBar">
             <div>
                 <h1 className="font-gramatika-bold">{t("account.account")}</h1>
-                <h2>Varvara Talankina</h2>
+                <h2>{props.user.firstName} {props.user.lastName}</h2>
                 <div className={clasProfile}>
                     <button className="default" onClick={HandleDropMenuProfile}><img src="../../IMG/icons8-user-96.png" alt="profile" />{t("account.profile")}</button>
                     <div className="account-drop">
@@ -44,18 +44,6 @@ const SideBarAccount = (props) => {
                             onClick={() => { props.setTab("Addresses") }}
                         >
                             {t("account.addresses")}
-                        </button>
-                        <button
-                            className={props.tab === "Cards" ? "active_drop" : "default_drop"}
-                            onClick={() => { props.setTab("Cards") }}
-                        >
-                            {t("account.cards")}
-                        </button>
-                        <button
-                            className={props.tab === "Preferences" ? "active_drop" : "default_drop"}
-                            onClick={() => { props.setTab("Preferences") }}
-                        >
-                            {t("account.preferences")}
                         </button>
                     </div>
                 </div>

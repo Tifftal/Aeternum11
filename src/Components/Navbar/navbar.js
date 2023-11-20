@@ -7,6 +7,7 @@ import Popup from "../Popup/Popup";
 import axios from "axios";
 import { URI } from "../../api/config";
 import { useAuth } from "../../Context/AuthContext";
+import api from "../../api/axiosConfig";
 
 const Navbar = () => {
     const [language, setLanguage] = useState("ru");

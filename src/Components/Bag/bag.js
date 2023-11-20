@@ -1,10 +1,38 @@
-import React, { useState, useTransition } from "react";
+import React, { useState, useEffect } from "react";
 import "./bag.css"
 import { useTranslation } from "react-i18next";
 import Card from "./card";
+import api from "../../api/axiosConfig";
+import { URI } from "../../api/config";
 
 const Bag = () => {
     const [t] = useTranslation("global");
+    const [bag, setBag] = useState([]);
+
+    useEffect(() => {
+        api.get(`${URI}/user/me`,
+        {
+            headers: {
+                "Authorization": `Bearer ${window.localStorage.getItem("jwtToken")}`
+            }
+        })
+        .then(response => {
+            const goods = [...response.data.bag];
+            goods.map(good => {
+                api.get(`${URI}/good/${good.goodId}`, {
+                    headers: {
+                        "Authorization": `Bearer ${window.localStorage.getItem("jwtToken")}`
+                    }
+                })
+                .then(response => {
+                    setBag(response.data);
+                })
+            })
+        })
+        .catch(error => {
+            console.error(error);
+        })
+    })
 
     return (
         <div className="bag">
