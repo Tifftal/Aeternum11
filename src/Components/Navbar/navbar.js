@@ -13,16 +13,6 @@ const Navbar = () => {
     const [t, i18n] = useTranslation("global");
     const { jwtToken } = useAuth();
 
-    useEffect(() => {
-        axios.get(`${URI}/category/${1}/goods`)
-            .then(response => {
-                console.log(response);
-            })
-            .catch(err => {
-                console.error(err);
-            })
-    })
-
     const handleChangeLanguage = (e) => {
         const newLanguage = language === "en" ? "ru" : "en";
         const languageToShow = newLanguage === "ru" ? "en" : "ru"
@@ -58,14 +48,14 @@ const Navbar = () => {
                         <DropW />
                     </div>
                 </div>
-                <div className="dropDown">
+                {/* <div className="dropDown">
                     <button className="dropDownBtn">
                         {t("navbar.all gender")}
                     </button>
                     <div className="content">
                         <DropUn />
                     </div>
-                </div>
+                </div> */}
                 <button className="ordinary">
                     {t("navbar.search")}
                 </button>

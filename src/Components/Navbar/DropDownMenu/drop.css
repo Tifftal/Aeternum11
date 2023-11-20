@@ -6,14 +6,22 @@
     flex-direction: row;
     align-items: flex-start;
     justify-content: flex-start;
+    /* padding: 2% 3%; */
+}
+
+.column {
+    padding: 1% 2% 1% 3%;
 }
 
 .col {
-    display: flex;
+    /* display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 0 2% 2% 2%;
+    align-items: flex-start;
+    justify-content: center; */
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: start;
+    grid-column-gap: 30px;
 }
 
 .col a {
@@ -26,15 +34,16 @@
     text-decoration: none;
 }
 
-.col h1 {
+.menuDrop h1 {
     color: #CDCDCD;
-    text-align: center;
+    align-self: flex-start;
+    text-align: left;
     font-family: 'Manrope', sans-serif;
     font-size: 90%;
     font-style: normal;
     font-weight: 600;
     line-height: normal;
-    margin: 30%;
+    padding: 4px 8px;
 }
 
 .col button {

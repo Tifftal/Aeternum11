@@ -40,6 +40,7 @@
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
+    gap: 3%;
 }
 
 .dropDownBtn,
@@ -52,6 +53,7 @@
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
+    gap: 3%;
 }
 
 .right button {
@@ -98,7 +100,7 @@
     align-self: center;
     display: none;
     position: absolute;
-    width: 92vw;
+    width: 98vw;
     height: 20vh;
     left: 0;
     background-color: none;

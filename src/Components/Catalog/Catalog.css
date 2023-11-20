@@ -16,7 +16,7 @@
     color: white;
     text-decoration: none;
     padding: 0;
-    margin: 0 0 3% 0;
+    margin: 0 0 2% 0;
     text-transform: uppercase;
     font-size: 100%;
     letter-spacing: 0.18px;
@@ -27,7 +27,7 @@
     color: white;
     text-decoration: none;
     padding: 0;
-    margin: 0 0 3% 0;
+    margin: 0 0 2% 0;
     text-transform: uppercase;
     font-size: 100%;
     letter-spacing: 0.18px;
@@ -62,7 +62,7 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     justify-content: center;
-    margin-bottom: 5%;
+    margin-bottom: 3%;
 }
 
 .goods a {
@@ -129,6 +129,44 @@
     font-size: 90%;
     margin: 5% 0;
     padding: 0;
+}
+
+
+.link-category {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-self: center;
+    justify-content: center;
+    gap: 1%;
+    margin: 0;
+    padding: 0;
+}
+
+.assortmentBtn {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.assortmentBtn button {
+    background: none;
+    border: none;
+    border-radius: 10px;
+    padding: 5px 10px;
+    color: white;
+    font-size: 90%;
+    transition: .3s;
+    background-color: rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+}
+
+.assortmentBtn button:hover {
+    background-color: rgba(128, 128, 128, 0.5);
 }
 
 @media screen and (max-width: 768px) {

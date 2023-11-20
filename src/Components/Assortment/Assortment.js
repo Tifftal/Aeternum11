@@ -5,16 +5,19 @@ import AssortmentCard from "../../Entities/AssortmentCard/AssortmentCard";
 import Filter from "../Filter/Filter";
 import { URI } from "../../api/config";
 import api from "../../api/axiosConfig";
+import { useParams } from 'react-router-dom';
 
 const Assortment = () => {
     const [t] = useTranslation("global");
     const [data, setData] = useState([]);
     const [category, setCategory] = useState({});
 
+    const { id } = useParams();
+
     // const [isOpen, setIsOpen] = useState(false);
 
     useEffect(() => {
-        api.get(`${URI}/categories/${1}`)
+        api.get(`${URI}/categories/${id}`)
             .then(response => {
                 console.log(response);
                 setCategory(response.data);
@@ -22,7 +25,7 @@ const Assortment = () => {
             .catch(err => {
                 console.error(err);
             })
-        api.get(`${URI}/category/${1}/goods`)
+        api.get(`${URI}/category/${id}/goods`)
             .then(response => {
                 console.log(response);
                 setData(response.data.content);
@@ -48,7 +51,7 @@ const Assortment = () => {
             <div className="categoryBtn font-gramatika-bold">
                 <a href="#">Женщины</a>
                 <p>/</p>
-                <a href="#">Одежда</a>
+                <a href="/catalog">Одежда</a>
                 <p>/</p>
                 <a href="#">{category.name}</a>
             </div>

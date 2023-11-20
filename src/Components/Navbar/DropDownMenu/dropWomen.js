@@ -1,33 +1,41 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import './drop.css';
 import { useTranslation } from "react-i18next";
+import api from "../../../api/axiosConfig";
+import { URI } from "../../../api/config";
+
 
 const DropW = () => {
-
     const [t] = useTranslation("global");
+    const [sections, setSectons] = useState([]);
+
+    useEffect(() => {
+        api.get(`${URI}/sections`)
+            .then(response => {
+                console.log(response);
+                setSectons(response.data)
+            })
+            .catch(err => {
+                console.error(err);
+            })
+    }, [])
 
     return (
         <div className="menuDrop">
-            <div className="col">
-                <h1>{t("drop.women.title1")}</h1>
-                <a href="/"><button >{t("drop.women.el")}</button></a>
-                <a href="/"><button >{t("drop.women.el")}</button></a>
-                <a href="/"><button >{t("drop.women.el")}</button></a>
-                <a href="/"><button >{t("drop.women.el")}</button></a>
-            </div>
-            <div className="col">
-                <h1>{t("drop.women.title2")}</h1>
-                <a href="/"><button >{t("drop.women.el")}</button></a>
-                <a href="/"><button >{t("drop.women.el")}</button></a>
-                <a href="/"><button >{t("drop.women.el")}</button></a>
-            </div>
-            <div className="col">
-                <h1>{t("drop.women.title3")}</h1>
-                <a href="/"><button >{t("drop.women.el")}</button></a>
-                <a href="/"><button >{t("drop.women.el")}</button></a>
-                <a href="/"><button >{t("drop.women.el")}</button></a>
-                <a href="/"><button >{t("drop.women.el")}</button></a>
-            </div>
+            {
+                sections.map(section => (
+                    <div className="column">
+                        <h1>{section.name}</h1>
+                        <div className="col">
+                            {
+                                section.categories.map(item => (
+                                    <a href={`/assortment/${item.id}`}><button >{item.name}</button></a>
+                                ))
+                            }
+                        </div>
+                    </div>
+                ))
+            }
         </div>
     )
 }
