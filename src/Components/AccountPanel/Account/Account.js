@@ -1,12 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Tab from "../Tab/Tab";
 import "./Account.css"
 import { useTranslation } from "react-i18next";
 import SideBarAccount from "../SideBarAccount/SideBarAccount";
+import axios from "axios";
+import { URI } from "../../../api/config";
+import api from "../../../api/axiosConfig";
 
 const Account = () => {
     const [t] = useTranslation("global");
     const [tab, setTab] = useState("");
+
+    useEffect(() => {
+        api.get(`${URI}/user/me`)
+        .then(response => {
+            console.log(response);
+        })
+        .catch(error => {
+            console.error(error);
+        })
+    })
 
     return (
         <div className="adminPage">

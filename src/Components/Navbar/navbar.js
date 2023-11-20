@@ -11,7 +11,7 @@ import { useAuth } from "../../Context/AuthContext";
 const Navbar = () => {
     const [language, setLanguage] = useState("ru");
     const [t, i18n] = useTranslation("global");
-    const { jwtToken, login, logout } = useAuth();
+    const { jwtToken } = useAuth();
 
     useEffect(() => {
         axios.get(`${URI}/category/${1}/goods`)
@@ -34,7 +34,7 @@ const Navbar = () => {
 
     const HandleOpenNote = () => {
         if (jwtToken) {
-            window.location.href="/account"
+            window.location.href = "/account"
         } else {
             setIsOpen(true)
         }
