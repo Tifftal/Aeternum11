@@ -9,46 +9,70 @@ const Bag = () => {
     const [t] = useTranslation("global");
     const [bag, setBag] = useState([]);
 
+    // useEffect(() => {
+    //     api.get(`${URI}/user/me`,
+    //         {
+    //             headers: {
+    //                 "Authorization": `Bearer ${window.localStorage.getItem("jwtToken")}`
+    //             }
+    //         })
+    //         .then(response => {
+    //             console.log(response);
+    //             const goods = [...response.data.bag];
+    //             let goodsInBag = [];
+    //             goods.map(good => {
+    //                 api.get(`${URI}/good/${good.goodId}`, {
+    //                     headers: {
+    //                         "Authorization": `Bearer ${window.localStorage.getItem("jwtToken")}`
+    //                     }
+    //                 })
+    //                     .then(response => {
+    //                         goodsInBag.push(response.data);
+    //                         setBag(goodsInBag);
+    //                         console.log(goodsInBag);
+    //                     })
+    //             })
+    //         })
+    //         .catch(error => {
+    //             console.error(error);
+    //         })
+    // }, [])
     useEffect(() => {
-        api.get(`${URI}/user/me`,
-        {
-            headers: {
-                "Authorization": `Bearer ${window.localStorage.getItem("jwtToken")}`
-            }
+        api.get(`${URI}/user/me`, {
+          headers: {
+            "Authorization": `Bearer ${window.localStorage.getItem("jwtToken")}`
+          }
         })
-        .then(response => {
+          .then(response => {
             const goods = [...response.data.bag];
-            goods.map(good => {
-                api.get(`${URI}/good/${good.goodId}`, {
-                    headers: {
-                        "Authorization": `Bearer ${window.localStorage.getItem("jwtToken")}`
-                    }
-                })
-                .then(response => {
-                    setBag(response.data);
-                })
-            })
-        })
-        .catch(error => {
+            const fetchGoodPromises = goods.map(good => {
+              return api.get(`${URI}/good/${good.goodId}`, {
+                headers: {
+                  "Authorization": `Bearer ${window.localStorage.getItem("jwtToken")}`
+                }
+              })
+                .then(response => response.data)
+            });
+      
+            return Promise.all(fetchGoodPromises);
+          })
+          .then(goodsInBag => {
+            setBag(goodsInBag);
+          })
+          .catch(error => {
             console.error(error);
-        })
-    })
+          });
+      }, []);
+      
 
     return (
         <div className="bag">
             <div className="sale">
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
+                {
+                    bag.map(good => (
+                        <Card good={good} goods={bag}/>
+                    ))
+                }
             </div>
             <div className="total">
                 <h1 className="font-gramatika-bold">{t("bag.summary")}</h1>
@@ -71,7 +95,7 @@ const Bag = () => {
                     </div>
                 </div>
                 <div className="promo">
-                    <input placeholder="Promo Code"/>
+                    <input placeholder="Promo Code" />
                 </div>
                 <button className="font-gramatika-bold">{t("bag.continue")}</button>
             </div>
