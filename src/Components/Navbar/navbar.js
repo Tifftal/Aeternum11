@@ -6,20 +6,21 @@ import DropUn from "./DropDownMenu/dropUnisex";
 import Popup from "../Popup/Popup";
 import axios from "axios";
 import { URI } from "../../api/config";
+import { useAuth } from "../../Context/AuthContext";
 
 const Navbar = () => {
     const [language, setLanguage] = useState("ru");
     const [t, i18n] = useTranslation("global");
-    const [isMobile, setIsMobile] = useState(window.innerWidth < 800);
+    const { jwtToken, login, logout } = useAuth();
 
     useEffect(() => {
         axios.get(`${URI}/category/${1}/goods`)
-        .then(response => {
-            console.log(response);
-        })
-        .catch(err => {
-            console.error(err);
-        })
+            .then(response => {
+                console.log(response);
+            })
+            .catch(err => {
+                console.error(err);
+            })
     })
 
     const handleChangeLanguage = (e) => {
@@ -32,13 +33,17 @@ const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
 
     const HandleOpenNote = () => {
-        setIsOpen(true)
+        if (jwtToken) {
+            window.location.href="/account"
+        } else {
+            setIsOpen(true)
+        }
     };
 
     const HandleCloseNote = () => {
         setIsOpen(false)
     };
-    
+
     return (
         <div className="navbar">
             {isOpen && (
@@ -65,10 +70,10 @@ const Navbar = () => {
                     {t("navbar.search")}
                 </button>
             </div>
-            { window.innerWidth > 768 ? (
-            <div className="center font-gramatika-bold">
-                <a href="/"> Aeternum Eleven </a>
-            </div>
+            {window.innerWidth > 768 ? (
+                <div className="center font-gramatika-bold">
+                    <a href="/"> Aeternum Eleven </a>
+                </div>
             ) : (
                 null
             )
@@ -77,16 +82,23 @@ const Navbar = () => {
                 <button className="ordinary" onClick={HandleOpenNote}>
                     {t("navbar.account")}
                 </button>
-                <a href="/bw">
-                    <button className="ordinary">
-                        {t("navbar.wishlist")}
-                    </button>
-                </a>
-                <a href="/bw">
-                    <button className="ordinary">
-                        {t("navbar.bag")}
-                    </button>
-                </a>
+                {jwtToken ? (
+                    <>
+                        <a href="/bw">
+                            <button className="ordinary">
+                                {t("navbar.wishlist")}
+                            </button>
+                        </a>
+                        <a href="/bw">
+                            <button className="ordinary">
+                                {t("navbar.bag")}
+                            </button>
+                        </a>
+                    </>
+                ) : (
+                    null
+                )
+                }
                 <button className="lang" onClick={() => handleChangeLanguage("ru")}>
                     {language.toUpperCase()}
                 </button>

@@ -3,9 +3,10 @@ import './Popup.css';
 import { useTranslation } from "react-i18next";
 import axios from 'axios';
 import { URI } from '../../api/config';
+import { useAuth } from '../../Context/AuthContext';
 
 const Popup = (props) => {
-
+    const { login } = useAuth();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -48,6 +49,7 @@ const Popup = (props) => {
             .then(response => {
                 if (response.status === 200) {
                     window.localStorage.setItem('jwtToken', response.data.token);
+                    login(response.data.token);
                     props.onClose();
                 }
             })
