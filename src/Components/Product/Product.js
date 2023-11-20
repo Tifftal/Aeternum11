@@ -1,14 +1,50 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Product.css";
 import { useTranslation } from "react-i18next";
+import { useParams } from 'react-router-dom';
+import axios from "axios";
+import { URI } from "../../api/config";
 
 const Product = () => {
     const [t] = useTranslation("global");
     const [selectedImage, setSelectedImage] = useState("../../IMG/test.jpeg");
+    const [selectedColor, setSelectedColor] = useState(null);
+
+    const [data, setData] = useState({});
+    const [category, setCategory] = useState({});
+    const [color, setColor] = useState([]);
+    const [size, setSize] = useState([]);
+
+    const { id } = useParams();
 
     const handleThumbnailClick = (image) => {
         setSelectedImage(image);
     };
+
+    const handleSetColor = (name) => {
+        setSelectedColor(name);
+    }
+
+    useEffect(() => {
+        axios.get(`${URI}/good/${id}`)
+            .then(response => {
+                console.log(response);
+                setData(response.data);
+                setColor(response.data.colors);
+                setSize(response.data.sizes);
+                axios.get(`${URI}/categories/${response.data.categoryIds[0].id}`)
+                    .then(response => {
+                        console.log(response);
+                        setCategory(response.data);
+                    })
+                    .catch(err => {
+                        console.error(err);
+                    })
+            })
+            .catch(err => {
+                console.error(err);
+            })
+    }, [id]);
 
     return (
         <div className="product">
@@ -46,28 +82,40 @@ const Product = () => {
                 <img src={selectedImage} alt="main-product" />
             </div>
             <div className="product-info">
-                <h2 className="font-gramatika-bold">Category</h2>
-                <h1>Name BXBjsbxsbk</h1>
+                <h2 className="font-gramatika-bold">{category.name}</h2>
+                <h1>{data.name}</h1>
                 <p>₽ 1500</p>
                 <button className="liked">
                     <img src="../../IMG/icons8-закладка-100.png" alt="icon-down" />
                 </button>
                 <div className="chooseColor">
-                    <button style={{ backgroundColor: "yellow" }}></button>
-                    <button style={{ backgroundColor: "green" }}></button>
-                    <button style={{ backgroundColor: "blue" }}></button>
-                    <button style={{ backgroundColor: "black" }}></button>
-                    <button style={{ backgroundColor: "brown" }}></button>
+                    {color.map((color, index) => (
+                        <div
+                            key={index}
+                            className="checkbox"
+                            style={{
+                                backgroundColor: `${color.code}`,
+                                border: `1px solid ${selectedColor === color.name ? 'dodgerblue' : '255, 255, 255, 0.5)'}`,
+                            }}
+                            onClick={() => handleSetColor(color.name)}
+                        ></div>
+                    ))}
                 </div>
-                <h3 className="color">Red</h3>
+                <h3 className="color">{selectedColor}</h3>
                 <select className="productSize">
-                    <option>26</option>
-                    <option>27</option>
-                    <option>28</option>
-                    <option>29</option>
-                    <option>30</option>
+                    {size.map((size, index) => (
+                        <option key={index}>{size.size}</option>
+                    ))}
                 </select>
                 <button className="addToBagBtn font-gramatika-bold">Add to Bag</button>
+                {data && data.description && (
+                    <ul className="description">
+                        {data.description.split(',').map((item, index) => (
+                            <li key={index}>{item.trim()}</li>
+                        ))}
+                    </ul>
+                )}
+
             </div>
         </div>
     );
