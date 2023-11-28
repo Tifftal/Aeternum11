@@ -7,55 +7,87 @@ import { URI } from "../../api/config";
 
 const Bag = () => {
     const [t] = useTranslation("global");
-    const [bag, setBag] = useState([]);
+    const [myBag, setMyBag] = useState([]);
+    const [cost, setCost] = useState(0);
+    const [address, setAddress] = useState('');
+    const [error, setError] = useState(false);
 
     useEffect(() => {
         api.get(`${URI}/user/me`,
-        {
-            headers: {
-                "Authorization": `Bearer ${window.localStorage.getItem("jwtToken")}`
-            }
-        })
-        .then(response => {
-            const goods = [...response.data.bag];
-            goods.map(good => {
-                api.get(`${URI}/good/${good.goodId}`, {
-                    headers: {
-                        "Authorization": `Bearer ${window.localStorage.getItem("jwtToken")}`
-                    }
-                })
-                .then(response => {
-                    setBag(response.data);
-                })
+            {
+                headers: {
+                    "Authorization": `Bearer ${window.localStorage.getItem("jwtToken")}`
+                }
             })
+            .then(response => {
+                setMyBag(response.data.bag);
+            })
+            .catch(error => {
+                console.error(error);
+            })
+    }, [])
+
+    useEffect(() => {
+        let summary = 0
+        myBag.map(bag => {
+            api.get(`${URI}/good/${bag.goodId}`, {
+                headers: {
+                    "Authorization": `Bearer ${window.localStorage.getItem("jwtToken")}`
+                }
+            })
+                .then(response => {
+                    summary += response.data.cost;
+                    setCost(summary);
+                })
+                .catch(error => {
+                    console.error(error);
+                })
         })
-        .catch(error => {
-            console.error(error);
-        })
-    })
+    }, [myBag])
+
+    const handleChangeAddress = (e) => {
+        const newAddress = e.target.value;
+        setAddress(newAddress);
+    }
+
+    const submitForm = (e) => {
+        e.preventDefault();
+        if (address === "") {
+            setError(true);
+        } else {
+            setError(false);
+            api.post(`${URI}/application`, {
+                data: {
+                    clientComment: address,
+                },
+                headers: {
+                    "Authorization": `Bearer ${window.localStorage.getItem("jwtToken")}`,
+                }
+            })
+                .then(response => {
+                    console.log(response);
+                })
+                .catch(error => {
+                    console.error(error);
+                })
+        }
+    }
 
     return (
         <div className="bag">
             <div className="sale">
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
+                {
+                    myBag.map(good => (
+                        <Card good={good} />
+                    ))
+                }
             </div>
             <div className="total">
                 <h1 className="font-gramatika-bold">{t("bag.summary")}</h1>
                 <div className="purchase">
                     <div>
                         <p>{t("bag.subtotal")}</p>
-                        <p>€2.650.00</p>
+                        <p>₽ {cost}</p>
                     </div>
                     <div>
                         <p>{t("bag.shipping")}</p>
@@ -67,13 +99,14 @@ const Bag = () => {
                     </div>
                     <div>
                         <p>{t("bag.total")}</p>
-                        <p>€2.650.00</p>
+                        <p>₽ {cost}</p>
                     </div>
                 </div>
                 <div className="promo">
-                    <input placeholder="Promo Code"/>
+                    <input placeholder="Address" onChange={(e) => handleChangeAddress(e)} />
                 </div>
-                <button className="font-gramatika-bold">{t("bag.continue")}</button>
+                {error ? <p style={{ color: "red" }} className="font-gramatika-bold">Укажите адрес</p> : null}
+                <button className="font-gramatika-bold" type="submit" onClick={submitForm}>{t("bag.continue")}</button>
             </div>
         </div>
     )

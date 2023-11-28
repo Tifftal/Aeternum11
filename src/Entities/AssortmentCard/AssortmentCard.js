@@ -10,7 +10,7 @@ const AssortmentCard = ({ data }) => {
                 <img src="../../IMG/TEST.PNG" alt="test"/>
                 <div className="assortment-name">
                     <h1>{data.name}</h1>
-                    <button><img src="../../IMG/icons8-закладка-100.png" alt="icon-down"/></button>
+                    {/* <button><img src="../../IMG/icons8-закладка-100.png" alt="icon-down"/></button> */}
                 </div>
                 <p>{data.cost} ₽</p>
             </div>

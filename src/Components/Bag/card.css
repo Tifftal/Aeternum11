@@ -22,8 +22,9 @@
 
 .content-sale {
     width: 90%;
-    display: grid;
-    grid-template-rows: 35% 40% 25%;
+    display: flex;
+    /* grid-template-rows: 35% 40% 25%; */
+    flex-direction: column;
     height: 100%;
     padding: 0.5rem;
 }
@@ -49,6 +50,7 @@
     justify-content: space-between;
     align-self: flex-start;
     margin: 0;
+    width: 100%;
     padding: 2% 1%;
 }
 
@@ -119,6 +121,16 @@
 
 .amountBtn button:hover {
     background-color: rgba(255, 255, 255, 0.2);
+}
+
+.price {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: left; */
+    text-align: left;
+    padding: 0 1%;
+    font-size: 90%;
+    height: 100%;
 }
 
 @media screen and (max-width: 768px) {

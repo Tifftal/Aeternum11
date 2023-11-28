@@ -39,12 +39,12 @@ const SideBarAccount = (props) => {
                         >
                             {t("account.personal")}
                         </button>
-                        <button
+                        {/* <button
                             className={props.tab === "Addresses" ? "active_drop" : "default_drop"}
                             onClick={() => { props.setTab("Addresses") }}
                         >
-                            {t("account.addresses")}
-                        </button>
+                            {/* {t("account.addresses")} */}
+                        
                     </div>
                 </div>
                 <div className={clasOrder}>
@@ -58,12 +58,12 @@ const SideBarAccount = (props) => {
                         </button>
                     </div>
                 </div>
-                <button
+                {/* <button
                     className="default"
                     onClick={HandleOpenWishlist}
                 >
                     <img src="../../IMG/icons8-закладка-100.png" alt="wishlist" />{t("account.wishlist")}
-                </button>
+                </button> */}
             </div>
             <div>
                 <button

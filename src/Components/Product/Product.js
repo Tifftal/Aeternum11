@@ -8,7 +8,10 @@ import api from "../../api/axiosConfig";
 const Product = () => {
     const [t] = useTranslation("global");
     const [selectedImage, setSelectedImage] = useState("../../IMG/test.jpeg");
-    const [selectedColor, setSelectedColor] = useState(null);
+    const [selectedColor, setSelectedColor] = useState('');
+    const [selectedSize, setSelectedSize] = useState('');
+    const [error, setError] = useState(false);
+
 
     const [data, setData] = useState({});
     const [category, setCategory] = useState({});
@@ -23,6 +26,38 @@ const Product = () => {
 
     const handleSetColor = (name) => {
         setSelectedColor(name);
+    }
+
+    const handleSizeChange = (event) => {
+        setSelectedSize(event.target.value);
+    }
+
+    const handleAddToBag = () => {
+        if (selectedColor === '') {
+            setError(true)
+        } else {
+            setError(false);
+            api.post(`${URI}/user/bag`, {
+                goodId: id,
+                amount: 1,
+                sizeId: selectedSize,
+            }, {
+                headers: {
+                    "Authorization": `Bearer ${window.localStorage.getItem("jwtToken")}`
+                }
+            })
+        }
+    }
+
+    const handleAddToWishlist = () => {
+        api.post(`${URI}/user/wishlist`, {
+            id: id,
+        }, {
+            headers: {
+                "Authorization": `Bearer ${window.localStorage.getItem("jwtToken")}`
+            }
+        })
+
     }
 
     useEffect(() => {
@@ -102,12 +137,19 @@ const Product = () => {
                     ))}
                 </div>
                 <h3 className="color">{selectedColor}</h3>
-                <select className="productSize">
+                <select className="productSize" value={selectedSize} onChange={handleSizeChange}>
                     {size.map((size, index) => (
-                        <option key={index}>{size.size}</option>
+                        <option key={index} value={size.id}>{size.size}</option>
                     ))}
                 </select>
-                <button className="addToBagBtn font-gramatika-bold">Add to Bag</button>
+                <button className="addToBagBtn font-gramatika-bold"
+                    onClick={handleAddToBag}
+                >Add to Bag</button>
+                {
+                    error ? (
+                        <p style={{ color: "red" }} className="font-gramatika-bold">Выберите цвет товара и размер</p>
+                    ) : null
+                }
                 <h5 className="compound">Состав: </h5>
                 <h5 className="compound">{data.compound}</h5>
                 {data && data.description && (
