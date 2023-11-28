@@ -3,6 +3,7 @@ import "./createAccount.css";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
 import { URI } from "../../../api/config";
+import api from "../../../api/axiosConfig";
 
 const CreateAccount = () => {
     const [t] = useTranslation("global");
@@ -18,6 +19,9 @@ const CreateAccount = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [rpassword, setRPassword] = useState("");
+    const [isSended, setSended] = useState(false);
+    const [code, setCode] = useState('');
+    const [codeError, setCodeError] = useState('');
 
     const [errors, setErrors] = useState({
         name: false,
@@ -30,6 +34,10 @@ const CreateAccount = () => {
         rpassword: false,
         matchPasswords: false,
     });
+
+    const handleChangeCode = (e) => {
+        setCode(e.target.value);
+    }
 
     const handleChangeInput = (e, field, setError) => {
         const value = e.target.value;
@@ -82,9 +90,6 @@ const CreateAccount = () => {
             surname: surname === "",
             gender: gender === "",
             birth: birth === Date.now(),
-            country: country === "",
-            state: state === "",
-            city: city === "",
             phone: phone === "",
             email: email === "",
             password: password === "",
@@ -93,30 +98,71 @@ const CreateAccount = () => {
         };
 
         setErrors(newErrors);
-        axios.post(`${URI}/registration`,
-            {
-                email: email,
-                password: password,
-                confirmPassword: rpassword,
-                firstName: name,
-                lastName: surname,
-                gender: gender,
-                country: country,
-                state: state,
-                city: city,
-                phone: phone,
-                newsletter: "YES",
-                dob: birth,
-            }
-        )
-            .then(response => {
-                if (response.status === 200) {
-                    window.location.href = "/";
+
+        if (!errors.name || !errors.surname || !errors.gender || !errors.birth || !errors.city || !errors.phone || !errors.email || !errors.password || !errors.password || !errors.rpassword || !errors.matchPasswords || !isSended) {
+            axios.post(`${URI}/registration`,
+                {
+                    email: email,
+                    password: password,
+                    confirmPassword: rpassword,
+                    firstName: name,
+                    lastName: surname,
+                    gender: gender,
+                    country: country,
+                    state: state,
+                    city: city,
+                    phone: phone,
+                    newsletter: "YES",
+                    dob: birth,
                 }
-            })
-            .catch(error => {
-                console.error(error);
-            })
+            )
+                .then(response => {
+                    if (response.status === 200) {
+                        axios.post(`${URI}/sendRegCode`,
+                            {
+                                email: email,
+                            })
+                            .then(response => {
+                                if (response.status === 200) {
+                                    setSended(true);
+                                }
+                            })
+                        setSended(true);
+                    }
+                })
+                .catch(error => {
+                    console.error(error);
+                })
+        }
+
+        if (isSended) {
+            axios.post(`${URI}/checkRegCode/${code}`,
+                {
+                    email: email,
+                    password: password,
+                    confirmPassword: rpassword,
+                    firstName: name,
+                    lastName: surname,
+                    gender: gender,
+                    country: country,
+                    state: state,
+                    city: city,
+                    phone: phone,
+                    newsletter: "YES",
+                    dob: birth,
+                })
+                .then(response => {
+                    if (response.status === 200) {
+                        window.location.href = "/"
+                    }
+                })
+                .catch(error => {
+                    if (error?.response?.data?.status === 404) {
+                        setCodeError(error?.response?.data?.message)
+                    }
+                    console.log(error)
+                })
+        }
     };
 
     return (
@@ -203,6 +249,25 @@ const CreateAccount = () => {
                 />
             </div>
             <h3>{t("create_account.*")}</h3>
+            {isSended ? (
+                <div className="code">
+                    <h3>Код был отправлен на электронную почту</h3>
+                    <input
+                        type="text"
+                        placeholder="Код для авторизации"
+                        required
+                        onChange={handleChangeCode}
+                    />
+                    { codeError !== '' ? (
+                        <h2 style={{marginBottom: "20px", color: "#FF5656"}}>{codeError}</h2>
+                    ) : (
+                        null
+                    )
+                    }
+                </div>
+            ) : (
+                null
+            )}
             <h4>{t("create_account.text2")}</h4>
             <div className="agreeAc">
                 <input

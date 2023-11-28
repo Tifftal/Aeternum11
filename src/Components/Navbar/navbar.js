@@ -57,9 +57,9 @@ const Navbar = () => {
                         <DropUn />
                     </div>
                 </div> */}
-                <button className="ordinary">
+                {/* <button className="ordinary">
                     {t("navbar.search")}
-                </button>
+                </button> */}
             </div>
             {window.innerWidth > 768 ? (
                 <div className="center font-gramatika-bold">

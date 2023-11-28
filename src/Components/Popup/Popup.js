@@ -9,6 +9,7 @@ const Popup = (props) => {
     const { login } = useAuth();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [authError, setAuthError] = useState("");
 
     const [errors, setErrors] = useState({
         email: false,
@@ -40,22 +41,26 @@ const Popup = (props) => {
         };
 
         setErrors(newErrors);
-
-        axios.post(`${URI}/login`,
-            {
-                email: email,
-                password: password,
-            })
-            .then(response => {
-                if (response.status === 200) {
-                    window.localStorage.setItem('jwtToken', response.data.token);
-                    login(response.data.token);
-                    props.onClose();
-                }
-            })
-            .catch(error => {
-                console.error(error);
-            })
+        if (!errors.email || !errors.password) {
+            axios.post(`${URI}/login`,
+                {
+                    email: email,
+                    password: password,
+                })
+                .then(response => {
+                    if (response.status === 200) {
+                        window.localStorage.setItem('jwtToken', response.data.token);
+                        console.log(response);
+                        login(response.data.token);
+                        props.onClose();
+                    }
+                })
+                .catch((error) => {
+                    if (error.response.status === 401) {
+                        setAuthError(error.response.data.message);
+                    }
+                })
+        }
     }
 
     const [t] = useTranslation("global");
@@ -87,6 +92,13 @@ const Popup = (props) => {
                     onChange={(e) => { handleChangeInput(e, "password", setErrors) }}
                     id={errors.password ? "error" : ""}
                 />
+                {
+                    authError !== "" ? (
+                        <p style={{margin: "0 0 20px 0", color: "red"}}>{authError}</p>
+                    ) : (
+                        null
+                    )
+                }
                 <div className='forgot'>
                     <div className='remember'>
                         <input type="checkbox" />

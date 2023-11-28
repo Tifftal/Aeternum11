@@ -10,8 +10,8 @@ const Product = () => {
     const [selectedImage, setSelectedImage] = useState("../../IMG/test.jpeg");
     const [selectedColor, setSelectedColor] = useState('');
     const [selectedSize, setSelectedSize] = useState('');
+    const [selectedColorSizes, setSelectedColorSizes] = useState([]);
     const [error, setError] = useState(false);
-
 
     const [data, setData] = useState({});
     const [category, setCategory] = useState({});
@@ -25,7 +25,10 @@ const Product = () => {
     };
 
     const handleSetColor = (name) => {
+        const selectedColorData = color.find(color => color.name === name);
+        setSelectedColorSizes(selectedColorData.sizes);
         setSelectedColor(name);
+        setSelectedSize('');
     }
 
     const handleSizeChange = (event) => {
@@ -33,8 +36,8 @@ const Product = () => {
     }
 
     const handleAddToBag = () => {
-        if (selectedColor === '') {
-            setError(true)
+        if (selectedColor === '' || selectedSize === '') {
+            setError(true);
         } else {
             setError(false);
             api.post(`${URI}/user/bag`, {
@@ -45,7 +48,7 @@ const Product = () => {
                 headers: {
                     "Authorization": `Bearer ${window.localStorage.getItem("jwtToken")}`
                 }
-            })
+            });
         }
     }
 
@@ -56,20 +59,17 @@ const Product = () => {
             headers: {
                 "Authorization": `Bearer ${window.localStorage.getItem("jwtToken")}`
             }
-        })
-
+        });
     }
 
     useEffect(() => {
         api.get(`${URI}/good/${id}`)
             .then(response => {
-                console.log(response);
                 setData(response.data);
                 setColor(response.data.colors);
                 setSize(response.data.sizes);
                 api.get(`${URI}/categories/${response.data.categoryIds[0].id}`)
                     .then(response => {
-                        console.log(response);
                         setCategory(response.data);
                     })
                     .catch(err => {
@@ -84,43 +84,23 @@ const Product = () => {
     return (
         <div className="product">
             <div className="scroll-panel">
-                {/* Фото в скролл-панели */}
-                <img
-                    src="../../IMG/TEST.png"
-                    alt="thumbnail"
-                    onClick={() => handleThumbnailClick("../../IMG/TEST.png")}
-                />
-                <img
-                    src="../../IMG/test.jpeg"
-                    alt="thumbnail"
-                    onClick={() => handleThumbnailClick("../../IMG/test.jpeg")}
-                />
-                <img
-                    src="../../IMG/TEST.png"
-                    alt="thumbnail"
-                    onClick={() => handleThumbnailClick("../../IMG/TEST.png")}
-                />
-                <img
-                    src="../../IMG/TEST.png"
-                    alt="thumbnail"
-                    onClick={() => handleThumbnailClick("../../IMG/TEST.png")}
-                />
-                <img
-                    src="../../IMG/test.jpeg"
-                    alt="thumbnail"
-                    onClick={() => handleThumbnailClick("../../IMG/test.jpeg")}
-                />
-                {/* ... добавьте другие фото по аналогии */}
+                {color.map((thumbnail, index) => (
+                    <img
+                        key={index}
+                        src={thumbnail.path}
+                        alt={`thumbnail-${index}`}
+                        onClick={() => handleThumbnailClick(thumbnail.path)}
+                    />
+                ))}
             </div>
             <div className="product-photo">
-                {/* Основное изображение */}
                 <img src={selectedImage} alt="main-product" />
             </div>
             <div className="product-info">
                 <h2 className="font-gramatika-bold">{category.name}</h2>
                 <h1>{data.name}</h1>
                 <p>{data.cost} ₽</p>
-                <button className="liked">
+                <button className="liked" onClick={handleAddToWishlist}>
                     <img src="../../IMG/icons8-закладка-100.png" alt="icon-down" />
                 </button>
                 <div className="chooseColor">
@@ -138,18 +118,19 @@ const Product = () => {
                 </div>
                 <h3 className="color">{selectedColor}</h3>
                 <select className="productSize" value={selectedSize} onChange={handleSizeChange}>
-                    {size.map((size, index) => (
-                        <option key={index} value={size.id}>{size.size}</option>
+                    <option value="" disabled hidden>
+                        Выберите размер
+                    </option>
+                    {selectedColorSizes.map((size, index) => (
+                        <option key={index} value={size.id} disabled={size.sizeStatus === 'OUT_OF_STOCK'}>
+                            {size.size} ({size.sizeStatus === "IN_STOCK" ? ("Есть в наличии") : ("Нет в наличии")})
+                        </option>
                     ))}
                 </select>
-                <button className="addToBagBtn font-gramatika-bold"
-                    onClick={handleAddToBag}
-                >Add to Bag</button>
-                {
-                    error ? (
-                        <p style={{ color: "red" }} className="font-gramatika-bold">Выберите цвет товара и размер</p>
-                    ) : null
-                }
+                <button className="addToBagBtn font-gramatika-bold" onClick={handleAddToBag}>
+                    Add to Bag
+                </button>
+                {error && <p style={{ color: "red" }} className="font-gramatika-bold">Выберите цвет товара и размер</p>}
                 <h5 className="compound">Состав: </h5>
                 <h5 className="compound">{data.compound}</h5>
                 {data && data.description && (
