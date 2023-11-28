@@ -4,7 +4,6 @@ import { useTranslation } from "react-i18next";
 import { URI } from "../../../api/config";
 import api from "../../../api/axiosConfig";
 import Popup from "./Popup/Popup";
-import PopupAddGood from "./Popup/PopupAddGood";
 
 const Goods = () => {
     const [t] = useTranslation("global");
