@@ -18,7 +18,7 @@ const Tab = (props) => {
             );
         case "Order":
             return (
-                props.tab
+                <Address />
             );
         default:
             return (

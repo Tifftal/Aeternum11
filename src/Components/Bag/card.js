@@ -1,28 +1,51 @@
-import React, { useState, useTransition } from "react";
+import React, { useState, useEffect } from "react";
 import "./card.css"
 import { useTranslation } from "react-i18next";
 import api from "../../api/axiosConfig";
 import { URI } from "../../api/config";
 
-const Card = ({ good, goods }) => {
+const Card = ({ good }) => {
     const [t] = useTranslation("global");
-    const handleDeleteCard = () => {
-        api.delete(`${URI}/user/bag`, {
-            goodId: good.id,
-        }, {
+    console.log("GOOD", good)
+    const [name, setName] = useState('');
+    const [size, setSize] = useState('');
+    const [color, setColor] = useState('');
+    const [cost, setCost] = useState(0);
+
+    useEffect(() => {
+        api.get(`${URI}/good/${good.goodId}`, {
             headers: {
                 "Authorization": `Bearer ${window.localStorage.getItem("jwtToken")}`
             }
         })
-            .then(() => {
-                const indexToRemove = goods.indexOf(good);
-                if (indexToRemove !== -1) {
-                    goods.splice(indexToRemove, 1);
-                }
+            .then((response) => {
+                const data = response.data;
+                console.log("DATA", data)
+                setCost(data.cost);
+                setName(data.name);
+                data.sizes.map((size, index) => {
+                    if (size.id === good.sizeId) {
+                        setSize(size.size);
+                    }
+                })
+            })
+    }, [])
 
+    const handleDeleteCard = (bagId) => {
+        console.log(bagId);
+        api.delete(`${URI}/user/bag`, {
+            data: {
+                id: bagId
+            },
+            headers: {
+                "Authorization": `Bearer ${window.localStorage.getItem("jwtToken")}`
+            }
+        })
+            .then(response => {
+                console.log(response);
             })
             .catch(error => {
-                console.error(error);
+                console.log(error);
             })
     }
 
@@ -33,11 +56,11 @@ const Card = ({ good, goods }) => {
             </div>
             <div className="content-sale">
                 <div className="title-sale">
-                    <h1>{good.name}</h1>
-                    <button onClick={handleDeleteCard}>Удалить</button>
+                    <h1>{name}</h1>
+                    <button onClick={() => { handleDeleteCard(good.id) }}>Удалить</button>
                 </div>
                 <div className="size-colour">
-                    <h2>{t("card.size")}</h2>
+                    <h2>{t("card.size")} {size}</h2>
                     <h2>{t("card.colour")}</h2>
                 </div>
                 <div className="price">
@@ -46,7 +69,7 @@ const Card = ({ good, goods }) => {
                                 <h4>1</h4>
                                 <button>+</button>
                             </div> */}
-                    <h3>Цена: ₽ 20.900</h3>
+                    <h3>Цена: ₽ {cost}</h3>
                 </div>
             </div>
         </div>

@@ -6,10 +6,10 @@ api.interceptors.response.use(
     (response) => response,
     (error) => {
         const { response } = error;
-        console.log(error);
+        console.log(response);
         if (response && response.status === 401) {
-            window.localStorage.removeItem("jwtToken");
-            window.location.href = "/"
+            // window.localStorage.removeItem("jwtToken");
+            // window.location.href = "/"
         }
     }
 );

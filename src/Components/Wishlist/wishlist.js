@@ -20,6 +20,7 @@ const Wishlist = () => {
         })
         .then(response => {
             const wishes = [...response.data.wishlist];
+            let goodsInBag = [];
             wishes.map(wish => {
                 api.get(`${URI}/good/${wish.id}`,
                 {
@@ -28,7 +29,8 @@ const Wishlist = () => {
                     }
                 })
                 .then(response => {
-                    setWishlist(response.data);
+                    goodsInBag.push(response.data);
+                    setWishlist(goodsInBag);
                 })
             })
             
