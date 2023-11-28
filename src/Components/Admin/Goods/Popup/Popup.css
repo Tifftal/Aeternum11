@@ -32,6 +32,7 @@
     justify-content: space-between;
 }
 
+
 .header-good {
     display: flex;
     flex-direction: row;
@@ -86,11 +87,13 @@
     filter: invert(1);
 }
 
-.flex-cont form {
+.form-edit {
     width: 60%;
+    display: flex;
+    flex-direction: column;
 }
 
-.good-input {
+.good-input-edit {
     font-family: 'Manrope', serif;
     caret-color: white;
     height: 2rem;
@@ -111,19 +114,19 @@
     width: 18vw;
 }
 
-.good-input::placeholder {
+.good-input-edit::placeholder {
     color: #ffffff;
     transition: .3s;
 }
 
-.good-input:focus,
-.good-input:hover {
+.good-input-edit:focus,
+.good-input-edit:hover {
     outline: none;
     border: white 1px solid;
 }
 
-.good-input:hover::placeholder,
-.good-input:focus::placeholder {
+.good-input-edit:hover::placeholder,
+.good-input-edit:focus::placeholder {
     color: white;
 }
 
@@ -151,7 +154,7 @@
     background-color: rgba(255, 255, 255, 0.8);
 }
 
-.form-group {
+.form-group-edit {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -159,7 +162,7 @@
     gap: 3%;
 }
 
-.form-group div {
+.form-group-edit div {
     width: 20vw;
     display: flex;
     flex-direction: row;
@@ -174,7 +177,7 @@
         justify-content: center;
     }
 
-    .good-input {
+    .good-input-edit {
         width: 85%;
         margin-left: auto;
         margin-right: auto;

@@ -21,20 +21,33 @@
     text-align: left;
     border: none;
     padding: 10px 15px;
-    vertical-align: top;
+    vertical-align: center;
 }
 
 .table tbody tr:hover {
     background-color: rgba(255, 255, 255, 0.1);
 }
 
-.table button {
+.edit {
     cursor: pointer;
     background: none;
     border: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    align-self: flex-start;
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    transition: .3s;
 }
 
-.table button img {
+.edit:hover {
+    filter: brightness(1.2);
+}
+
+.edit img {
     width: 20px;
     height: 20px;
 }
@@ -46,7 +59,6 @@
 }
 
 .AddBtnAdmin {
-    align-self: flex-start;
     background-color: #314728;
     white-space: nowrap;
     border: none;
@@ -61,4 +73,35 @@
 
 .AddBtnAdmin:hover {
     filter: brightness(1.2);
+}
+
+.table form {
+    width: 100%;
+}
+
+.table form select {
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    width: 100%;
+    background-color: gray;
+    color: white;
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    font-size: 90%;
+    cursor: pointer;
+}
+
+.editSize {
+    cursor: pointer;
+    width: 100%;
+    background-color: gray;
+    color: white;
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    font-size: 90%;
 }
