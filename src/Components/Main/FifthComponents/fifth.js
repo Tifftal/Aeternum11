@@ -7,20 +7,17 @@ const Fifth = () => {
 
     return (
         <div className="fifth">
-            <div className="footerMenu">
+            {/* <div className="footerMenu">
                 <div className="footerDr">
                     <button>
                         {t("fifth.follow us")}
                         <img src="../../IMG/icons8-вниз-100.png" alt="down" />
                     </button>
-                    {/* <div className="socials">
-                        fhhf
-                    </div> */}
                 </div>
 
                 <button>{t("fifth.follow us")}<img src="../../IMG/icons8-вниз-100.png" alt="down" /></button>
                 <button>{t("fifth.follow us")}<img src="../../IMG/icons8-вниз-100.png" alt="down" /></button>
-            </div>
+            </div> */}
             <div className="assistant font-gramatika-bold">
                 <h1>{t("fifth.assistant")}</h1>
                 <div className="phone">

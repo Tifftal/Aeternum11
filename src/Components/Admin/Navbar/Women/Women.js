@@ -1,29 +1,120 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import './Women.css';
 import { useTranslation } from "react-i18next";
+import api from "../../../../api/axiosConfig";
+import { URI } from "../../../../api/config";
 
 const Women = () => {
     const [t] = useTranslation("global");
+    const [sections, setSections] = useState([]);
+    const [newSectionName, setNewSectionName] = useState("");
+    const [newCategory, setNewCategory] = useState("");
+
+    const [catBtnsActive, setCatBtnsActive] = useState(Array(sections.length).fill(false));
+
+    useEffect(() => {
+        api.get(`${URI}/sections`)
+            .then(response => {
+                console.log(response);
+                setSections(response.data);
+                setCatBtnsActive(Array(response.data.length).fill(false));
+            })
+            .catch(err => {
+                console.error(err);
+            })
+    }, [])
+
+    const handleSaveSection = () => {
+        console.log("Сохранение секции:", newSectionName);
+        api.post(
+            `${URI}/sections`,
+            {
+                name: newSectionName,
+            },
+            {
+                headers: {
+                    Authorization: `Bearer ${window.localStorage.getItem("jwtToken")}`,
+                },
+            }
+        )
+            .then(response => {
+                console.log(response);
+                setSections(prevSections => [...prevSections, response.data]);
+            })
+            .catch(err => {
+                console.error(err);
+            })
+        setNewSectionName("");
+    };
+
+    const handleSaveCategory = (sectionId) => {
+        console.log("Сохранение категории:", newCategory);
+        api.post(
+            `${URI}/categories`,
+            {
+                name: newCategory,
+                sectionId: sectionId,
+            },
+            {
+                headers: {
+                    Authorization: `Bearer ${window.localStorage.getItem("jwtToken")}`,
+                },
+            }
+        )
+            .then(response => {
+                console.log(response);
+            })
+            .catch(err => {
+                console.error(err);
+            });
+        setNewCategory("");
+    };
+
+
+    const handleToggleClassBtn = (index) => {
+        const newCatBtnsActive = [...catBtnsActive];
+        newCatBtnsActive[index] = !newCatBtnsActive[index];
+        setCatBtnsActive(newCatBtnsActive);
+    }
 
     return (
         <div className="womenAdmin">
-            <div className="col-admin">
-                <h1>{t("drop.women.title1")}</h1>
-                <p>{t("drop.women.el")}<button>×</button></p>
-                <p>{t("drop.women.el")}<button>×</button></p>
-                <p>{t("drop.women.el")}<button>×</button></p>
-                <p>{t("drop.women.el")}<button>×</button></p>
-                <button style={{marginTop: 15, backgroundColor: "#314728"}}>+</button>
-            </div>
-            <div className="col-admin">
-                <h1>{t("drop.women.title2")}</h1>
-                <p>{t("drop.women.el")}<button>×</button></p>
-                <p>{t("drop.women.el")}<button>×</button></p>
-                <p>{t("drop.women.el")}<button>×</button></p>
-                <button style={{marginTop: 15, backgroundColor: "#314728"}}>+</button>
-            </div>
-            <div className="col-admin">
-            <button style={{marginTop: 15, backgroundColor: "#314728"}}>+</button>
+            {sections.map((section, index) => (
+                <div className="col-admin" key={index}>
+                    <h1>{section.name}</h1>
+                    {section.categories.map((item, catIndex) => (
+                        <div className="categoryItem" key={catIndex}>
+                            <p>{item.name}</p>
+                            <button>×</button>
+                        </div>
+                    ))}
+                    <button
+                        style={{ marginTop: 10, backgroundColor: "#314728", marginBottom: 5 }}
+                        onClick={() => handleToggleClassBtn(index)}
+                        className={catBtnsActive[index] ? "active AddCtg" : "AddCtg def"}
+                    >
+                        +
+                    </button>
+                    <div className={catBtnsActive[index] ? "active AddCtg" : "AddCtg def"}>
+                        <input
+                            id="name"
+                            placeholder="Название категории"
+                            value={newCategory}
+                            onChange={(e) => setNewCategory(e.target.value)}
+                        />
+                        <button onClick={() => handleSaveCategory(section.id)}>Сохранить</button>
+                    </div>
+                </div>
+            ))}
+            <div className="addNewSection">
+                <h1>Добавить новую секцию:</h1>
+                <input
+                    id="name"
+                    placeholder="Название секции"
+                    value={newSectionName}
+                    onChange={(e) => setNewSectionName(e.target.value)}
+                />
+                <button onClick={handleSaveSection}>Сохранить</button>
             </div>
         </div>
     )

@@ -12,7 +12,7 @@ const AssortmentCard = ({ data }) => {
                     <h1>{data.name}</h1>
                     <button><img src="../../IMG/icons8-закладка-100.png" alt="icon-down"/></button>
                 </div>
-                <p>₽ 4567</p>
+                <p>{data.cost} ₽</p>
             </div>
         </div>
     )

@@ -84,7 +84,7 @@ const Product = () => {
             <div className="product-info">
                 <h2 className="font-gramatika-bold">{category.name}</h2>
                 <h1>{data.name}</h1>
-                <p>₽ 1500</p>
+                <p>{data.cost} ₽</p>
                 <button className="liked">
                     <img src="../../IMG/icons8-закладка-100.png" alt="icon-down" />
                 </button>

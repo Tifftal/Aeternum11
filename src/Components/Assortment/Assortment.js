@@ -6,67 +6,42 @@ import Filter from "../Filter/Filter";
 import { URI } from "../../api/config";
 import api from "../../api/axiosConfig";
 import { useParams } from 'react-router-dom';
-
 const Assortment = () => {
     const [t] = useTranslation("global");
-    const [data, setData] = useState([]);
-    const [category, setCategory] = useState({});
+    const [data, setData] = useState(null);
 
     const { id } = useParams();
 
-    // const [isOpen, setIsOpen] = useState(false);
-
     useEffect(() => {
-        api.get(`${URI}/categories/${id}`)
-            .then(response => {
-                console.log(response);
-                setCategory(response.data);
-            })
-            .catch(err => {
-                console.error(err);
-            })
         api.get(`${URI}/category/${id}/goods`)
             .then(response => {
-                console.log(response);
-                setData(response.data.content);
+                console.log(response.data);
+                setData(response.data);
             })
             .catch(err => {
-                console.error(err);
-            })
-    }, [])
-
-    // const HandleOpenNote = () => {
-    //     setIsOpen(true)
-    // };
-
-    // const HandleCloseNote = () => {
-    //     setIsOpen(false)
-    // };
+                console.error("Error", err);
+            });
+    }, [id]);
 
     return (
         <div className="assortment">
-            {/* {isOpen && (
-                <Filter onClose={HandleCloseNote} setIsOpen={setIsOpen} />
-            )} */}
             <div className="categoryBtn font-gramatika-bold">
                 <a href="#">Женщины</a>
                 <p>/</p>
                 <a href="/catalog">Одежда</a>
                 <p>/</p>
-                <a href="#">{category.name}</a>
+                <a href="#">{data?.name}</a> 
             </div>
-            <h1>{category.name}</h1>
-            {/* <button className="refine" onClick={HandleOpenNote}>Фильтры</button> */}
+            <h1>{data?.name}</h1>
             <div className="goods">
-                {
-                    data.map(card => (
-                        <a href={`/product/${card.id}`}><AssortmentCard key={card.id} data={card} /></a>
-                    )
-                    )
-                }
+                {data?.goods?.content.map(card => (
+                    <a href={`/product/${card.id}`} key={card.id}>
+                        <AssortmentCard data={card} />
+                    </a>
+                ))}
             </div>
         </div>
-    )
+    );
 }
 
 export default Assortment;

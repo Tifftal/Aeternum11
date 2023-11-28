@@ -15,20 +15,22 @@ const Catalog = () => {
                 let categoriesId = [];
                 const sections = response.data;
                 sections.map(categories => {
+                    console.log(categories)
                     categoriesId = [...categories.categories]
                 })
+                console.log("CATEGORIES", categoriesId)
                 setCategories(categoriesId)
-                let goods = [];
-                categoriesId.map(category => {
-                    api.get(`${URI}/category/${category.id}/goods`)
-                        .then(response => {
-                            goods.push(response.data.content);
-                            setData(goods.flat())
-                        })
-                        .catch(error => {
-                            console.error(error);
-                        })
-                })
+            })
+            .catch(err => {
+                console.error(err);
+            });
+    }, []);
+
+    useEffect(() => {
+        api.get(`${URI}/goods`)
+            .then(response => {
+                console.log(response);
+                setData(response.data.content)
             })
             .catch(err => {
                 console.error(err);

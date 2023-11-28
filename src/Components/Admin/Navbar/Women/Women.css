@@ -13,37 +13,30 @@
 .col-admin {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
+    width: 150px;
     margin-top: 5%;
 }
 
-.col-admin h1 {
+.womenAdmin h1 {
     color: #CDCDCD;
-    text-align: center;
+    align-self: flex-start;
     font-family: 'Manrope', sans-serif;
     font-size: 90%;
     font-style: normal;
     font-weight: 600;
     line-height: normal;
     margin: 0;
-    margin-bottom: 10%;
+    margin-bottom: 5%;
 }
 
-.col-admin p {
+.categoryItem {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+    gap: 20px;
     align-items: center;
-    gap: 10px;
-    background: none;
-    border: none;
-    color: white;
-    font-family: 'Manrope', sans-serif;
-    font-size: 90%;
-    transition: .3s;
-    padding: 4px 8px;
-    border-radius: 7px;
-    white-space: nowrap;
-    margin: 7% 0;
+    width: 100%;
 }
 
 .col-admin button {
@@ -65,6 +58,87 @@
     background-color: #472828;
 }
 
-.col-admin button:hover{
+.col-admin button:hover {
     filter: brightness(1.5);
+}
+
+
+.addNewSection {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 200px;
+    margin-top: 5%;
+    margin-left: 60px;
+    /* background-color: red; */
+}
+
+.addNewSection input {
+    width: 178px;
+    border: 1px solid white;
+    border-radius: 10px;
+    height: 20px;
+    margin: 0;
+    padding: 5px 10px 7px 10px;
+    font-size: 90%;
+    background: none;
+    color: white;
+}
+
+.addNewSection button {
+    width: 100%;
+    margin-top: 5%;
+    height: 30px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border: none;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    font-size: 90%;
+    transition: .3s;
+}
+
+.addNewSection button:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+.def {
+    display: none;
+}
+
+.active {
+    display: block;
+}
+
+.AddCtg {
+    margin-top: 5%;
+}
+
+.AddCtg input {
+    width: 178px;
+    border: 1px solid white;
+    border-radius: 10px;
+    height: 20px;
+    margin: 0;
+    padding: 5px 10px 7px 10px;
+    font-size: 90%;
+    background: none;
+    color: white;
+}
+
+.AddCtg button {
+    width: 100%;
+    margin-top: 5%;
+    height: 30px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border: none;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    font-size: 90%;
+    transition: .3s;
+}
+
+.AddCtg button:hover {
+    background-color: rgba(255, 255, 255, 0.4);
 }

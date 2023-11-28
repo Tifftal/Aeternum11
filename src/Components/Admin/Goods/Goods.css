@@ -1,0 +1,64 @@
+.table {
+    width: 100%;
+    border: none;
+    margin-bottom: 20px;
+    font-size: 90%;
+
+}
+
+.table thead th {
+    font-weight: bold;
+    text-align: left;
+    border: none;
+    padding: 10px 15px;
+}
+
+.table tbody tr {
+    transition: .2s;
+}
+
+.table tbody td {
+    text-align: left;
+    border: none;
+    padding: 10px 15px;
+    vertical-align: top;
+}
+
+.table tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.table button {
+    cursor: pointer;
+    background: none;
+    border: none;
+}
+
+.table button img {
+    width: 20px;
+    height: 20px;
+}
+
+.AddGoodAdmin {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.AddBtnAdmin {
+    align-self: flex-start;
+    background-color: #314728;
+    white-space: nowrap;
+    border: none;
+    margin: 1% 5%;
+    font-size: 90%;
+    color: white;
+    padding: 1% 2%;
+    cursor: pointer;
+    border-radius: 15px;
+    transition: .3s;
+}
+
+.AddBtnAdmin:hover {
+    filter: brightness(1.2);
+}

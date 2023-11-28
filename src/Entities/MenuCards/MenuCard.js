@@ -7,20 +7,11 @@ const MenuCard = ({ data }) => {
 
   return (
     <div className="menu-card">
-      <svg
-        xmlns={data.svg.xmlns}
-        width={data.svg.width}
-        height={data.svg.height}
-        viewBox={data.svg.viewBox}
-        fill={data.svg.fill}
-      >
-        <path d={data.path.d} fill={data.path.fill} />
-      </svg>
       <a href={data.a.href} style={ window.innerWidth < 768 ? {
         padding: "20px 0 20px 0"
       } : {
         
-      }}>{data.a.content}</a>
+      }}><img src={data.img.src}/>{data.a.content}</a>
     </div>
   );
 };
