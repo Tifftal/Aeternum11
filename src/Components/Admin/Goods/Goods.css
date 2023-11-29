@@ -248,27 +248,47 @@
 .color-info {
     display: flex;
     flex-direction: row;
-    gap: 10%;
     align-items: flex-start;
     justify-content: space-between;
+    gap: 5%;
     width: 100%;
+    margin: 3% 0;
 }
 
 .color-info p {
     padding: 5px 10px;
     border-radius: 10px;
     font-size: 100%;
-    width: 180px;
+    width: 25%;
     border: 1px solid rgb(167, 167, 167);
     margin: 0;
+
 }
 
 .size-block {
-    background-color: blue;
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    background-color: green;
+    gap: 10px;
 }
 
 .input-size-div {
     display: flex;
     flex-direction: row;
     background-color: red;
+    justify-content: space-between;
+}
+
+.form-edit-popup-size {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-size {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
 }

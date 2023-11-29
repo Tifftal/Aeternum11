@@ -363,7 +363,7 @@ const Goods = () => {
                     setIsOpen={setIsOpenEditPopupSize}
                     selectedGood={selectedGood}
                 >
-                    <form className="form-edit-popup" onSubmit={(e) => e.preventDefault()}>
+                    <form className="form-edit-popup-size" onSubmit={(e) => e.preventDefault()}>
                         {selectedGood.colors.map((color, colorIndex) => (
                             <div key={colorIndex} className="color-div">
                                 <div className="color-info">
@@ -372,7 +372,7 @@ const Goods = () => {
                                         {Array.from({ length: inputGroupsSize[colorIndex] }).map((_, index) => (
                                             <div key={index}>
                                                 <div className="input-size-div">
-                                                    <div>
+                                                    <div className="input-size">
                                                         <label htmlFor={`size${index}`}>Цвет:</label>
                                                         <input
                                                             id={`size${index}`}
