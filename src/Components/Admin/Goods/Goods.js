@@ -17,11 +17,15 @@ const Goods = () => {
     });
     const [selectedGood, setSelectedGood] = useState(null);
     const [isOpen, setIsOpen] = useState(false);
-    const [isOpenEditPopup, setIsOpenEditPopup] = useState(false);
+    const [isOpenEditPopupSize, setIsOpenEditPopupSize] = useState(false);
+    const [isOpenEditPopupColor, setIsOpenEditPopupColor] = useState(false);
 
-    const [inputGroups, setInputGroups] = useState(1);
-    const [formData, setFormData] = useState([]);
+    const [inputGroupsColor, setInputGroupsColor] = useState(1);
+    const [inputGroupsSize, setInputGroupsSize] = useState([]);
+    const [sizeFormData, setSizeFormData] = useState([]);
     const [currentGoodId, setCurrentGoodId] = useState(null);
+    const [colorFormData, setColorFormData] = useState([]);
+
 
     const HandleOpenNote = (good) => {
         setSelectedGood(good);
@@ -32,17 +36,34 @@ const Goods = () => {
         setIsOpen(false);
     };
 
-    const HandleOpenEditPopup = (good) => {
-        setSelectedGood(good);
+    const HandleOpenEditPopupColor = (good) => {
+        setIsOpenEditPopupColor(true);
         setCurrentGoodId(good.id);
-        setIsOpenEditPopup(true);
-        setInputGroups(good.sizes.length); // Устанавливаем количество групп в соответствии с количеством размеров товара
-        setFormData(good.sizes); // Заполняем начальные значения формы размерами товара
+        setColorFormData(good.colors);
+        setInputGroupsColor(good.colors.length);
     };
 
-    const HandleCloseEditPopup = () => {
-        setIsOpenEditPopup(false);
-        setInputGroups(1);
+    const HandleCloseEditPopupColor = () => {
+        setIsOpenEditPopupColor(false);
+        setInputGroupsColor(1);
+        setCurrentGoodId(null);
+    };
+
+
+    const HandleOpenEditPopupSize = (good) => {
+        console.log(good)
+        setSelectedGood(good);
+        setIsOpenEditPopupSize(true);
+        const sizes = [];
+        good.colors.map((color) => {
+            sizes.push(color.sizes.length)
+        })
+        setInputGroupsSize(sizes)
+    };
+
+    const HandleCloseEditPopupSize = () => {
+        setIsOpenEditPopupSize(false);
+        setInputGroupsSize(1);
         setCurrentGoodId(null);
     };
 
@@ -203,50 +224,102 @@ const Goods = () => {
         )
             .then(response => {
                 console.log(response);
+                UpdateData();
             })
             .catch(err => {
                 console.error(err);
             });
-        UpdateData();
+
+
     }
 
-    const handleAddInput = (e) => {
-        e.preventDefault();
-        setInputGroups(prevGroups => prevGroups + 1);
+    // const handleAddInput = (e) => {
+    //     e.preventDefault();
+    //     setInputGroups(prevGroups => prevGroups + 1);
 
-        setFormData(prevData => [
-            ...prevData,
-            {
-                size: '0',
-                sizeStatus: 'IN_STOCK'
-            }
-        ]);
+    //     setFormData(prevData => [
+    //         ...prevData,
+    //         {
+    //             size: '0',
+    //             sizeStatus: 'IN_STOCK'
+    //         }
+    //     ]);
+    // };
+
+    const handleAddInputColor = (e) => {
+        e.preventDefault();
+        setInputGroupsColor(prevGroups => prevGroups + 1);
     };
 
-    const handleInputChange = (e, index, type) => {
-        const newData = [...formData];
+    const handleAddInputSize = (colorIndex) => {
+        const prev = inputGroupsSize;
+        prev[colorIndex] += 1;
+        setInputGroupsSize(prev);
+    };
+
+
+
+    // const handleSubmit = (e) => {
+    //     e.preventDefault();
+    //     console.log("Падает FormData:", formData)
+    //     const sizes = formData.map(data => ({
+    //         size: data.size.trim(), // Обрезаем пробелы
+    //         sizeStatus: String(data.sizeStatus), // Преобразование в строку
+    //     }));
+
+    //     console.log("Изменения для товара ID:", currentGoodId);
+    //     console.log('Submitted Data:', sizes);
+
+    //     api.put(
+    //         `${URI}/good/${currentGoodId}/sizes`,
+    //         { sizes: sizes },
+    //         {
+    //             headers: {
+    //                 Authorization: `Bearer ${window.localStorage.getItem("jwtToken")}`,
+    //             },
+    //         }
+    //     )
+    //         .then(response => {
+    //             console.log(response);
+    //         })
+    //         .catch(err => {
+    //             console.error(err);
+    //         });
+
+    //     UpdateData();
+    //     HandleCloseEditPopup();
+    // };
+
+
+    const handleInputChangeColor = (e, index, type) => {
+        const newData = [...colorFormData];
         newData[index] = {
             ...newData[index],
-            [type]: e.target.value,
+            [type]: e.target.value
         };
-        setFormData(newData);
+        setColorFormData(newData);
     };
 
-
-    const handleSubmit = (e) => {
+    const handleColorSubmit = (e) => {
         e.preventDefault();
-        console.log("Падает FormData:", formData)
-        const sizes = formData.map(data => ({
-            size: data.size.trim(), // Обрезаем пробелы
-            sizeStatus: String(data.sizeStatus), // Преобразование в строку
+
+        const colors = colorFormData.map(data => ({
+            name: data.name.trim(),
+            code: data.code.trim(),
+            sizes: [
+                {
+                    size: "0",
+                    sizeStatus: "IN_STOCK"
+                }
+            ]
         }));
 
         console.log("Изменения для товара ID:", currentGoodId);
-        console.log('Submitted Data:', sizes);
+        console.log('Submitted Data after parsing:', colors);
 
         api.put(
-            `${URI}/good/${currentGoodId}/sizes`,
-            { sizes: sizes },
+            `${URI}/good/${currentGoodId}/colors`,
+            { colors: colors },
             {
                 headers: {
                     Authorization: `Bearer ${window.localStorage.getItem("jwtToken")}`,
@@ -261,13 +334,10 @@ const Goods = () => {
             });
 
         UpdateData();
-        HandleCloseEditPopup();
+
+        setColorFormData([]);
+        HandleCloseEditPopupColor();
     };
-
-
-    // useEffect(() => {
-    //     console.log("formData:", formData);
-    // }, [formData]);
 
 
 
@@ -280,50 +350,94 @@ const Goods = () => {
                     setIsOpen={setIsOpen}
                     selectedGood={selectedGood}
                     onDataUpdate={() => {
-                        // Обновить данные после успешного редактирования
                         UpdateData();
                     }}
                 />
             )}
 
-            {isOpenEditPopup && (
+            {isOpenEditPopupSize && (
                 <EditPopup
-                    onClose={HandleCloseEditPopup}
-                    setIsOpen={setIsOpenEditPopup}
-                    selectedGood={selectedGood}
                     title="Редактировать размеры товара"
+                    width="50vw"
+                    onClose={HandleCloseEditPopupSize}
+                    setIsOpen={setIsOpenEditPopupSize}
+                    selectedGood={selectedGood}
                 >
-                    <form className="form-edit-popup">
-                        {Array.from({ length: inputGroups }).map((_, index) => (
-                            <div className='edit-group' key={index}>
-                                <div>
-                                    <label htmlFor={`size${index}`} className=''>Размер:</label>
-                                    <input
-                                        id={`size${index}`}
-                                        className='input-edit'
-                                        onChange={(e) => handleInputChange(e, index, 'size')}
-                                        value={formData[index]?.size || ''}  // Устанавливаем значение из состояния
-                                    />
-                                </div>
-                                <div>
-                                    <label htmlFor={`sizeStatus${index}`} className=''>Статус:</label>
-                                    <select
-                                        id={`sizeStatus${index}`}
-                                        onChange={(e) => {
-                                            console.log("Selected value:", e.target.value);
-                                            handleInputChange(e, index, 'sizeStatus');
-                                        }}
-                                        value={formData[index]?.sizeStatus !== undefined && formData[index]?.sizeStatus !== '' ? formData[index]?.sizeStatus : 'IN_STOCK'}
-                                    >
-                                        <option value="IN_STOCK">IN_STOCK</option>
-                                        <option value="OUT_OF_STOCK">OUT_OF_STOCK</option>
-                                    </select>
+                    <form className="form-edit-popup" onSubmit={(e) => e.preventDefault()}>
+                        {selectedGood.colors.map((color, colorIndex) => (
+                            <div key={colorIndex} className="color-div">
+                                <div className="color-info">
+                                    <p style={{ backgroundColor: color.code }}>{color.name}{inputGroupsSize[colorIndex]}</p>
+                                    <div className="size-block">
+                                        {Array.from({ length: inputGroupsSize[colorIndex] }).map((_, index) => (
+                                            <div key={index}>
+                                                <div className="input-size-div">
+                                                    <div>
+                                                        <label htmlFor={`size${index}`}>Цвет:</label>
+                                                        <input
+                                                            id={`size${index}`}
+                                                        />
+                                                    </div>
+                                                    <div>
+                                                        <label htmlFor={`sizeStatus${index}`}>Код цвета:</label>
+                                                        <input
+                                                            id={`sizeStatus${index}`}
+                                                        />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        ))}
+                                        <button className='addInputBtn' onClick={() => handleAddInputSize(colorIndex)}>+</button>
+                                    </div>
                                 </div>
                             </div>
                         ))}
-                        <button className='addInputBtn' onClick={handleAddInput}>+</button>
-                        <button className='goodBtn font-gramatika-bold' onClick={handleSubmit}>Сохранить</button>
+
+                        <button className='goodBtn font-gramatika-bold'>Сохранить</button>
                     </form>
+                </EditPopup>
+            )}
+
+
+            {isOpenEditPopupColor && (
+                <EditPopup
+                    onClose={HandleCloseEditPopupColor}
+                    setIsOpen={setIsOpenEditPopupColor}
+                    // selectedGood={selectedGood}
+                    title="Редактировать цвета товара"
+                    width="30vw"
+                >
+                    <form className="form-edit-popup">
+                        {Array.from({ length: inputGroupsColor }).map((_, index) => (
+                            <div key={index} className='edit-group-popup-color'>
+                                <div className='edit-group'>
+                                    <div className="edit-group-div">
+                                        <label htmlFor={`name${index}`} className=''>Цвет:</label>
+                                        <input
+                                            id={`name${index}`}
+                                            className='input-edit-color'
+                                            onChange={(e) => handleInputChangeColor(e, index, 'name')}
+                                            value={colorFormData[index]?.name || ''}  // Предзаполнение значением name
+                                        />
+                                    </div>
+                                    <div className="edit-group-div">
+                                        <label htmlFor={`code${index}`} className=''>Код цвета:</label>
+                                        <input
+                                            id={`code${index}`}
+                                            className='input-edit-color'
+                                            onChange={(e) => handleInputChangeColor(e, index, 'code')}
+                                            value={colorFormData[index]?.code || ''}  // Предзаполнение значением code
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+
+
+                        <button className='addInputBtn' onClick={handleAddInputColor}>+</button>
+                        <button className='goodBtn font-gramatika-bold' style={{ alignSelf: "flex-start" }} onClick={handleColorSubmit}>Сохранить</button>
+                    </form>
+
                 </EditPopup>
             )}
 
@@ -354,8 +468,8 @@ const Goods = () => {
                             <td style={{ width: "30%" }}>{good.name}</td>
                             <td style={{ width: "5%" }}>{good.cost} ₽</td>
                             <td style={{ width: "10%" }}>{good.state}</td>
-                            <td style={{ width: "15%" }}><button className="editSize">Изменить цвета</button></td>
-                            <td style={{ width: "15%" }}><button className="editSize" onClick={() => HandleOpenEditPopup(good)}>Изменить размеры</button></td>
+                            <td style={{ width: "15%" }}><button className="editSize" onClick={() => HandleOpenEditPopupColor(good)}>Изменить цвета</button></td>
+                            <td style={{ width: "15%" }}><button className="editSize" onClick={() => HandleOpenEditPopupSize(good)}>Изменить размеры</button></td>
                             <td style={{ width: "20%" }}>
                                 <form>
                                     <select onChange={(e) => handleCategoryChange(e, good.id)}>
@@ -377,13 +491,14 @@ const Goods = () => {
                     <table className="table">
                         <thead>
                             <tr>
-                                <th colSpan="6" style={{ backgroundColor: "rgba(217, 217, 217, 0.2)", textAlign: "center", fontSize: "100%" }}>{category.categoryName}</th>
+                                <th colSpan="7" style={{ backgroundColor: "rgba(217, 217, 217, 0.2)", textAlign: "center", fontSize: "100%" }}>{category.categoryName}</th>
                             </tr>
                             <tr>
                                 <th></th>
                                 <th>Название</th>
                                 <th>Цена</th>
                                 <th>Статус</th>
+                                <th>Цвета</th>
                                 <th>Размеры</th>
                                 <th></th>
                             </tr>
@@ -392,10 +507,11 @@ const Goods = () => {
                             {category.goodsByCategory.map(good => (
                                 <tr key={good.id}>
                                     <td style={{ width: "5%" }}><button onClick={() => HandleOpenNote(good)} className="edit"><img src="../../IMG/icons8-редактировать-144.png" alt="edit icon" /></button></td>
-                                    <td style={{ width: "50%" }}>{good.name}</td>
+                                    <td style={{ width: "40%" }}>{good.name}</td>
                                     <td style={{ width: "10%" }}>{good.cost} ₽</td>
-                                    <td style={{ width: "15%" }}>{good.state}</td>
-                                    <td style={{ width: "15%" }}><button className="editSize" onClick={() => HandleOpenEditPopup(good)}>Изменить размеры</button></td>
+                                    <td style={{ width: "10%" }}>{good.state}</td>
+                                    <td style={{ width: "15%" }}><button className="editSize" onClick={() => HandleOpenEditPopupColor(good)}>Изменить цвета</button></td>
+                                    <td style={{ width: "15%" }}><button className="editSize" onClick={() => HandleOpenEditPopupSize(good)}>Изменить размеры</button></td>
                                     <td style={{ width: "5%" }}><button onClick={() => handleDeleteGood(good.id)} style={{ backgroundColor: "#472828" }} className="edit"><img src="../../IMG/icons8-крестик-78.png" style={{ filter: "invert(1)" }} alt="delete icon" /></button></td>
                                 </tr>
                             ))}

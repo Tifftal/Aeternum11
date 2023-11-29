@@ -116,11 +116,19 @@
     display: flex;
     flex-direction: row;
     gap: 0;
-    width: 100%;
     justify-content: space-between;
+    align-items: flex-start;
 }
 
-.edit-group div {
+.edit-group-div {
+    display: flex;
+    flex-direction: row;
+    /* gap: 5%; */
+    /* width: 95%; */
+    align-items: center;
+}
+
+.edit-group-size {
     display: flex;
     flex-direction: row;
     gap: 5%;
@@ -150,9 +158,6 @@
 
 
 
-
-
-
 .addInputBtn {
     width: 30px;
     height: 30px;
@@ -168,4 +173,102 @@
 
 .addInputBtn:hover {
     filter: brightness(1.2);
+}
+
+
+.input-edit-color,
+.edit-group select {
+    height: 2rem;
+    appearance: none;
+    font-family: 'Manrope', serif;
+    caret-color: white;
+    background: none;
+    padding: 0 1vw;
+    border: #c2c2c2 1px solid;
+    border-radius: 7px;
+    margin: 1% 0 2% 0;
+    transition: .3s;
+    color: white;
+    font-size: 90%;
+    margin-top: 0.5rem;
+}
+
+.input-edit-color {
+    width: 6vw;
+}
+
+.size-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-edit-color-size,
+.edit-group select {
+    height: 2rem;
+    appearance: none;
+    font-family: 'Manrope', serif;
+    caret-color: white;
+    background: none;
+    padding: 0 1vw;
+    border: #c2c2c2 1px solid;
+    border-radius: 7px;
+    margin: 1% 0 2% 0;
+    transition: .3s;
+    color: white;
+    font-size: 90%;
+    margin-top: 0.5rem;
+}
+
+.input-edit-color-size {
+    width: 2vw;
+}
+
+.edit-group-popup-color {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    /* align-items: flex-start;
+    justify-content: flex-start; */
+}
+
+.edit-group-div label {
+    white-space: nowrap;
+    margin-right: 10px;
+}
+
+
+.color-div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.color-info {
+    display: flex;
+    flex-direction: row;
+    gap: 10%;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.color-info p {
+    padding: 5px 10px;
+    border-radius: 10px;
+    font-size: 100%;
+    width: 180px;
+    border: 1px solid rgb(167, 167, 167);
+    margin: 0;
+}
+
+.size-block {
+    background-color: blue;
+}
+
+.input-size-div {
+    display: flex;
+    flex-direction: row;
+    background-color: red;
 }

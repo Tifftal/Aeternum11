@@ -9,7 +9,7 @@ const Product = () => {
     const [t] = useTranslation("global");
     const [selectedImage, setSelectedImage] = useState("../../IMG/test.jpeg");
     const [selectedColor, setSelectedColor] = useState('');
-    const [selectedSize, setSelectedSize] = useState('');
+    const [selectedSize, setSelectedSize] = useState([]);
     const [selectedColorSizes, setSelectedColorSizes] = useState([]);
     const [error, setError] = useState(false);
 
@@ -65,21 +65,21 @@ const Product = () => {
     useEffect(() => {
         api.get(`${URI}/good/${id}`)
             .then(response => {
+                console.log(response)
                 setData(response.data);
                 setColor(response.data.colors);
                 setSize(response.data.sizes);
-                api.get(`${URI}/categories/${response.data.categoryIds[0].id}`)
-                    .then(response => {
-                        setCategory(response.data);
-                    })
-                    .catch(err => {
-                        console.error(err);
-                    })
+
+                // Используйте map для извлечения размеров и установки в selectedSize
+                const allSizes = response.data.sizes.map(size => size.size);
+                setSelectedSize(allSizes);
+                console.log(allSizes); 
             })
             .catch(err => {
                 console.error(err);
-            })
+            });
     }, [id]);
+
 
     return (
         <div className="product">
@@ -122,11 +122,12 @@ const Product = () => {
                         Выберите размер
                     </option>
                     {selectedColorSizes.map((size, index) => (
-                        <option key={index} value={size.id} disabled={size.sizeStatus === 'OUT_OF_STOCK'}>
+                        <option key={index} value={size.size} disabled={size.sizeStatus === 'OUT_OF_STOCK'}>
                             {size.size} ({size.sizeStatus === "IN_STOCK" ? ("Есть в наличии") : ("Нет в наличии")})
                         </option>
                     ))}
                 </select>
+
                 <button className="addToBagBtn font-gramatika-bold" onClick={handleAddToBag}>
                     Add to Bag
                 </button>
