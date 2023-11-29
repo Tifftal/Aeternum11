@@ -233,19 +233,6 @@ const Goods = () => {
 
     }
 
-    // const handleAddInput = (e) => {
-    //     e.preventDefault();
-    //     setInputGroups(prevGroups => prevGroups + 1);
-
-    //     setFormData(prevData => [
-    //         ...prevData,
-    //         {
-    //             size: '0',
-    //             sizeStatus: 'IN_STOCK'
-    //         }
-    //     ]);
-    // };
-
     const handleAddInputColor = (e) => {
         e.preventDefault();
         setInputGroupsColor(prevGroups => prevGroups + 1);
@@ -256,39 +243,6 @@ const Goods = () => {
         prev[colorIndex] += 1;
         setInputGroupsSize(prev);
     };
-
-
-
-    // const handleSubmit = (e) => {
-    //     e.preventDefault();
-    //     console.log("Падает FormData:", formData)
-    //     const sizes = formData.map(data => ({
-    //         size: data.size.trim(), // Обрезаем пробелы
-    //         sizeStatus: String(data.sizeStatus), // Преобразование в строку
-    //     }));
-
-    //     console.log("Изменения для товара ID:", currentGoodId);
-    //     console.log('Submitted Data:', sizes);
-
-    //     api.put(
-    //         `${URI}/good/${currentGoodId}/sizes`,
-    //         { sizes: sizes },
-    //         {
-    //             headers: {
-    //                 Authorization: `Bearer ${window.localStorage.getItem("jwtToken")}`,
-    //             },
-    //         }
-    //     )
-    //         .then(response => {
-    //             console.log(response);
-    //         })
-    //         .catch(err => {
-    //             console.error(err);
-    //         });
-
-    //     UpdateData();
-    //     HandleCloseEditPopup();
-    // };
 
 
     const handleInputChangeColor = (e, index, type) => {
@@ -339,6 +293,54 @@ const Goods = () => {
         HandleCloseEditPopupColor();
     };
 
+    const handleSizeSubmit = (e) => {
+        e.preventDefault();
+
+        const formData = [];
+        selectedGood.colors.forEach((color, colorIndex) => {
+            const colorData = {
+                name: color.name,
+                code: color.code,
+                sizes: [],
+            };
+
+            for (let index = 0; index < inputGroupsSize[colorIndex]; index++) {
+                const sizeValue = document.getElementById(`size${colorIndex}-${index}`).value;
+                const sizeStatusValue = document.getElementById(`sizeStatus${colorIndex}-${index}`).value;
+
+                colorData.sizes.push({
+                    size: sizeValue,
+                    sizeStatus: sizeStatusValue,
+                });
+            }
+
+            formData.push(colorData);
+        });
+
+        console.log(formData);
+
+        api.put(
+            `${URI}/good/${selectedGood.id}/colors`,
+            { colors: formData },
+            {
+                headers: {
+                    Authorization: `Bearer ${window.localStorage.getItem("jwtToken")}`,
+                },
+            }
+        )
+            .then(response => {
+                console.log(response);
+            })
+            .catch(err => {
+                console.error(err);
+            });
+
+        UpdateData();
+
+        setSizeFormData([]);
+        HandleCloseEditPopupSize();
+
+    };
 
 
 
@@ -373,15 +375,20 @@ const Goods = () => {
                                             <div key={index}>
                                                 <div className="input-size-div">
                                                     <div className="input-size">
-                                                        <label htmlFor={`size${index}`}>Размер:</label>
+                                                        <label htmlFor={`size${colorIndex}-${index}`}>Размер:</label>
                                                         <input
-                                                            id={`size${index}`}
+                                                            id={`size${colorIndex}-${index}`}
                                                             className='input-edit-size'
+                                                            defaultValue={color.sizes[index]?.size || ''}
                                                         />
                                                     </div>
                                                     <div className="input-size">
-                                                        <label htmlFor={`sizeStatus${index}`}>Статус размер:</label>
-                                                        <select id={`sizeStatus${index}`} class="input-edit-size-label">
+                                                        <label htmlFor={`sizeStatus${colorIndex}-${index}`}>Статус размер:</label>
+                                                        <select
+                                                            id={`sizeStatus${colorIndex}-${index}`}
+                                                            class="input-edit-size-label"
+                                                            defaultValue={color.sizes[index]?.sizeStatus || 'IN_STOCK'}
+                                                        >
                                                             <option>IN_STOCK</option>
                                                             <option>OUT_OF_STOCK</option>
                                                         </select>
@@ -395,7 +402,7 @@ const Goods = () => {
                             </div>
                         ))}
 
-                        <button className='goodBtn font-gramatika-bold'>Сохранить</button>
+                        <button className='goodBtn font-gramatika-bold' onClick={handleSizeSubmit}>Сохранить</button>
                     </form>
                 </EditPopup>
             )}
