@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import api from '../../../../api/axiosConfig';
 import { URI } from '../../../../api/config';
 
-const Popup = ({ onClose, setIsOpen, selectedGood, onDataUpdate }) => {
+const Popup = ({ onClose, setIsOpen, selectedGood, onDataUpdate, count, setCount }) => {
     const [t] = useTranslation('global');
     const [editedGood, setEditedGood] = useState({
         name: selectedGood.name,
@@ -47,6 +47,9 @@ const Popup = ({ onClose, setIsOpen, selectedGood, onDataUpdate }) => {
                 onClose();
                 // Обновить данные после успешного редактирования
                 onDataUpdate();
+                let newCount = count;
+                newCount++
+                setCount(newCount)
             })
             .catch(err => {
                 console.error(err);
@@ -134,7 +137,7 @@ const Popup = ({ onClose, setIsOpen, selectedGood, onDataUpdate }) => {
                                 <input
                                     id="backColorCode"
                                     className='good-input-edit'
-                                    style={{ width: '7.5vw'}}
+                                    style={{ width: '7.5vw' }}
                                     value={editedGood.backColor.code}
                                     onChange={(e) => handleInputChange(e, 'backColor.code')}
                                 />

@@ -157,8 +157,9 @@ const Goods = () => {
             });
         api.get(`${URI}/goods/free`)
             .then(response => {
-                const filteredGoods = response.data.context.filter(good => good.state !== "DELETED")
-                setFree(response.data.content)
+                console.log(response)
+                const filteredGoods = response.data.content.filter(good => good.state !== "DELETED")
+                setFree(filteredGoods)
             })
             .catch(err => {
                 console.error(err);
@@ -170,9 +171,6 @@ const Goods = () => {
     })
 
     const UpdateData = () => {
-        let newCount = count;
-        newCount++
-        setCount(newCount)
         api.get(`${URI}/sections`)
             .then(response => {
                 const categories = response.data.flatMap(section => section.categories.map(category => category.id));
@@ -201,15 +199,21 @@ const Goods = () => {
             .catch(err => {
                 console.error(err);
             });
+        // let newCount = count;
+        // newCount++
+        // setCount(newCount)
     };
 
     const handleDeleteGood = (id) => {
-        let newCount = count;
-        newCount++
-        setCount(newCount)
+        // let newCount = count;
+        // newCount++
+        // setCount(newCount)
         api.delete(`${URI}/good/${id}`)
             .then(response => {
                 console.log(response);
+                let newCount = count;
+                newCount++
+                setCount(newCount)
                 UpdateData();
             })
             .catch(err => {
@@ -243,14 +247,14 @@ const Goods = () => {
                 )
                 .then((response) => {
                     console.log(response);
+                    let newCount = count;
+                    newCount++
+                    setCount(newCount)
                 })
                 .catch((err) => {
                     console.error(err);
                 });
         }
-        let newCount = count;
-        newCount++
-        setCount(newCount)
         UpdateData();
     };
 
@@ -293,14 +297,14 @@ const Goods = () => {
         )
             .then(response => {
                 console.log(response);
+                let newCount = count;
+                newCount++
+                setCount(newCount)
                 UpdateData();
             })
             .catch(err => {
                 console.error(err);
             });
-        let newCount = count;
-        newCount++
-        setCount(newCount)
 
     }
 
@@ -323,6 +327,9 @@ const Goods = () => {
     };
 
     const handleAddInputSize = (colorIndex) => {
+        let newCount = count;
+        newCount ++;
+        setCount(newCount);
         const prev = inputGroupsSize;
         prev[colorIndex] += 1;
         setInputGroupsSize(prev);
@@ -366,13 +373,13 @@ const Goods = () => {
         )
             .then(response => {
                 console.log(response);
+                let newCount = count;
+                newCount++
+                setCount(newCount)
             })
             .catch(err => {
                 console.error(err);
             });
-        let newCount = count;
-        newCount++
-        setCount(newCount)
 
         UpdateData();
 
@@ -422,6 +429,9 @@ const Goods = () => {
                 console.error(err);
             });
 
+        let newCount = count;
+        newCount++
+        setCount(newCount)
         UpdateData();
 
         setSizeFormData([]);
@@ -439,6 +449,9 @@ const Goods = () => {
         )
             .then(response => {
                 console.log(response);
+                let newCount = count;
+                newCount++
+                setCount(newCount)
                 UpdateData();
             })
             .catch(err => {
@@ -455,6 +468,8 @@ const Goods = () => {
                     onClose={HandleCloseNote}
                     setIsOpen={setIsOpen}
                     selectedGood={selectedGood}
+                    count={count}
+                    setCount={setCount}
                     onDataUpdate={() => {
                         UpdateData();
                     }}
