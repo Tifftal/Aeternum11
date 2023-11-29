@@ -36,6 +36,7 @@ const CreateAccount = () => {
     });
 
     const handleChangeCode = (e) => {
+        console.log(e.target.value);
         setCode(e.target.value);
     }
 
@@ -135,7 +136,8 @@ const CreateAccount = () => {
                 })
         }
 
-        if (isSended) {
+        if (isSended && code) {
+            console.log(code)
             axios.post(`${URI}/checkRegCode/${code}`,
                 {
                     email: email,
@@ -258,8 +260,8 @@ const CreateAccount = () => {
                         required
                         onChange={handleChangeCode}
                     />
-                    { codeError !== '' ? (
-                        <h2 style={{marginBottom: "20px", color: "#FF5656"}}>{codeError}</h2>
+                    {codeError !== '' ? (
+                        <h2 style={{ marginBottom: "20px", color: "#FF5656" }}>{codeError}</h2>
                     ) : (
                         null
                     )
