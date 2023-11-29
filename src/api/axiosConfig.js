@@ -30,6 +30,6 @@ setInterval(() => {
                 console.error("Error resetting token:", error);
             });
     }
-}, 10000); // 5 minutes in milliseconds
+}, 5 * 60 * 1000); // 5 minutes in milliseconds
 
 export default api;
