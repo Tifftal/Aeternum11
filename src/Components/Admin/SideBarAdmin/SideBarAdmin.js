@@ -23,6 +23,12 @@ const SideBarAdmin = (props) => {
             >
                 <img src="../IMG/icons8-одежда-96.png" />Goods
             </button>
+            <button
+                className={props.tab === "Orders" ? "active" : ""}
+                onClick={() => { props.setTab("Orders") }}
+            >
+                <img src="../IMG/icons8-картонная-коробка-100.png" />Goods
+            </button>
         </div>
     )
 }
