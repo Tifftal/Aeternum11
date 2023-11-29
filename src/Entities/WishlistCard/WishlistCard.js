@@ -1,37 +1,35 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import api from "../../api/axiosConfig";
 import { URI } from "../../api/config";
 
-const WishlistCard = ({ data }) => {
-    const [t] = useTranslation("global");
-    const handleDeleteFromWishlist = () => {
-        api.delete(`${URI}/user/wishlist`, {
-            id: data.id,
-        }, {
-            headers: {
-                "Authorization": `Bearer ${window.localStorage.getItem("jwtToken")}`
-            }
+// ... (other imports)
 
-        })
-            .then(response => {
-                console.log(response.data);
-            })
-            .catch(error => {
-                console.error(error);
-            })
+const WishlistCard = ({ data, onRemove }) => {
+    const [t] = useTranslation("global");
+    const navigate = useNavigate();
+
+    const handleDeleteFromWishlist = (id) => {
+        onRemove(id); // Notify the parent component about the delete action
+    }
+
+    const redirectToItem = () => {
+        // ... (unchanged code)
+        navigate(`/product/${data.id}`); // Navigate to the specified product page
     }
 
     return (
         <div>
             <div className="wishlist-card">
-                <img src="../../IMG/test.jpeg" alt="test" />
+                <img src="../../IMG/test.jpeg" alt="test" onClick={redirectToItem} style={{cursor: "pointer"}} />
                 <div className="nameOfCloth">
-                    <Link to={`/product/${data.id}`} style={{ textDecoration: "none", color: "white" }}><h1>{data.name}</h1></Link>
+                    <Link to={`/product/${data.id}`} style={{ textDecoration: "none", color: "white" }}>
+                        <h1>{data.name}</h1>
+                    </Link>
                 </div>
                 <p>₽ {data.cost}</p>
-                <button className="removeBtn" onClick={handleDeleteFromWishlist}>Remove</button>
+                <button className="removeBtn" onClick={() => {handleDeleteFromWishlist(data.id)}}>Remove</button>
             </div>
         </div>
     )

@@ -17,8 +17,89 @@ const Personal = (props) => {
         city: '',
         phone: '',
         personal: false,
-        newsletter: ''
+        newsletter: '',
+        email: '',
     });
+    const [newPassword, setNewPassword] = useState("");
+    const [isSended, setSended] = useState(false);
+    const [code, setCode] = useState('');
+    const [error, setError] = useState('');
+
+    const handleChangeCode = (e) => {
+        setCode(e.target.value);
+    }
+
+    const handleChangePassword = (e) => {
+        setNewPassword(e.target.value);
+    }
+
+    const handleSubmitNewPassword = () => {
+        if (!isSended) {
+            api.post(`${URI}/password/change`, {
+                email: personal.email
+            },
+                {
+                    headers: {
+                        "Authorization": `Bearer ${window.localStorage.getItem("jwtToken")}`
+                    }
+                })
+                .then((response) => {
+                    if (response.status === 200) {
+                        api.post(`${URI}/sendPasCode`, {
+                            email: personal.email
+                        },
+                            {
+                                headers: {
+                                    "Authorization": `Bearer ${window.localStorage.getItem("jwtToken")}`
+                                }
+                            })
+                            .then(() => {
+                                setSended(true);;
+                            })
+                            .catch(error => {
+                                console.error(error);
+                            })
+                    }
+                })
+                .catch(error => {
+                    console.error(error);
+                })
+        }
+        if (isSended && code) {
+            console.log(personal.email);
+            api
+                .post(
+                    `${URI}/checkPasCode/${code}`,
+                    {
+                        email: personal.email,
+                        password: newPassword,
+                        confirmPassword: newPassword,
+                    },
+                    {
+                        headers: {
+                            Authorization: `Bearer ${window.localStorage.getItem("jwtToken")}`,
+                        },
+                    }
+                )
+                .then((response) => {
+                    if (response === undefined) {
+                        setError("Неверный код");
+                        return
+                    }
+                    if (response?.status === 200) {
+                        setSended(false);
+                        setError('');
+                    }
+                })
+                .catch((error) => {
+                    console.log(error);
+                    // if (error?.response?.data?.status === 404) {
+                    //     console.log(error);
+                    //     setError(error?.data?.message)
+                    // }
+                });
+        }
+    }
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -31,10 +112,10 @@ const Personal = (props) => {
     const handleCheckboxChange = (e) => {
         const { checked } = e.target;
         setPersonal(prevPersonal => ({
-          ...prevPersonal,
-          newsletter: checked ? 'YES' : 'NO',
+            ...prevPersonal,
+            newsletter: checked ? 'YES' : 'NO',
         }));
-      };
+    };
 
     const handleSubmitForm = (e) => {
         e.preventDefault();
@@ -144,11 +225,7 @@ const Personal = (props) => {
                 />
             </form>
             <h3>{t("create_account.*")}</h3>
-            <h4>{t("create_account.text2")}</h4>
-            <div className="agreeAc">
-                <input type="checkbox" />
-                <label>{t("create_account.check1")}</label>
-            </div>
+            {/* <h4>{t("create_account.text2")}</h4> */}
             <div className="agreeAc">
                 <input
                     type="checkbox"
@@ -157,7 +234,35 @@ const Personal = (props) => {
                 />
                 <label>{t("create_account.check2")}</label>
             </div>
-            <button className="BtnAc" onClick={handleSubmitForm}>Update your Information</button>
+            <button className="BtnAc" onClick={handleSubmitForm} style={{ margin: "0" }}>Update your Information</button>
+            <div className="pers-data" style={{ marginBottom: "50px" }}>
+                <input
+                    type="password"
+                    placeholder="Новый пароль"
+                    onChange={handleChangePassword}
+                />
+                {
+                    isSended ? (
+                        <input
+                            type="text"
+                            placeholder="Код подтверждения"
+                            onChange={handleChangeCode}
+                        />
+                    ) : (null)
+                }
+            </div>
+            { error !== '' ? (
+                        <h2 style={{marginBottom: "50px", color: "#FF5656"}}>{error}</h2>
+                    ) : (
+                        null
+                    )
+                    }
+            <button className="BtnAc" onClick={handleSubmitNewPassword} style={{ margin: "0 0 50px 0" }}>Обновить пароль</button>
+
+            <div className="agreeAc">
+                <input type="checkbox" />
+                <label>{t("create_account.check1")}</label>
+            </div>
         </div>
 
     )

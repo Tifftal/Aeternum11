@@ -23,7 +23,7 @@
 .create_account h3 {
     width: 75%;
     text-align: left;
-    margin: 2% 0 5% 0;
+    margin: 2% 0 2% 0;
     padding: 0;
     font-family: 'Manrope', sans-serif;
     font-size: 70%;
@@ -75,7 +75,7 @@
     justify-content: center;
 }
 
-.registration input, .registration select {
+.registration input, .registration select, .code input {
     font-family: 'Manrope', serif;
     caret-color: white;
     padding: 0 5%;
@@ -86,6 +86,22 @@
     transition: .3s;
     color: white;
     font-size: 90%;
+}
+
+.code {
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.code h3 {
+    text-align: center;
+}
+
+.code input {
+    margin-bottom: 5%;
 }
 
 .registration input::placeholder,
@@ -256,15 +272,15 @@
     color: #818181;
 }
 
-.label-input:focus ~ .registration label {
+.label-input:focus ~ .registration label, .code input {
     color: white;  
 }
 
-.label-input:hover ~ .registration label {
+.label-input:hover ~ .registration label, .code input {
     color: white;
 }
 .label-input:hover,
-.label-input:focus {
+.label-input:focus, .code input:hover, .code input:focus {
     border: 1px white solid;
 }
 

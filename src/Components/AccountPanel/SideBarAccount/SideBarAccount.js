@@ -69,7 +69,14 @@ const SideBarAccount = (props) => {
                 <button
                     className="default"
                 >
-                    <img src="../../IMG/icons8-выход-100.png" alt="wishlist" />Выход
+                    <img src="../../IMG/icons8-выход-100.png" alt="wishlist" 
+                        onClick={
+                            () => {
+                                localStorage.removeItem("jwtToken");
+                                window.location.href = "/"
+                            }
+                        }
+                    />Выход
                 </button>
             </div>
 
