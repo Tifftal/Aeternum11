@@ -9,6 +9,7 @@ import { unstable_renderSubtreeIntoContainer } from "react-dom";
 
 const Goods = () => {
     const [t] = useTranslation("global");
+    const [selectedImage, setSelectedImage] = useState(null);
     const [data, setData] = useState([]);
     const [free, setFree] = useState([]);
     const [categories, setCategories] = useState({
@@ -19,6 +20,8 @@ const Goods = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [isOpenEditPopupSize, setIsOpenEditPopupSize] = useState(false);
     const [isOpenEditPopupColor, setIsOpenEditPopupColor] = useState(false);
+    const [isOpenEditPopupImage, setIsOpenEditPopupImage] = useState(false);
+    const [count, setCount] = useState(0);
 
     const [inputGroupsColor, setInputGroupsColor] = useState(1);
     const [inputGroupsSize, setInputGroupsSize] = useState([]);
@@ -36,6 +39,40 @@ const Goods = () => {
         setIsOpen(false);
     };
 
+    const handleImageChange = (e) => {
+        setSelectedImage(e.target.files[0]);
+    }
+
+    const handleImageUpload = async () => {
+        if (!selectedImage) {
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append('file', selectedImage);
+        formData.append('position', 1);
+        let newCount = count;
+        newCount++
+        setCount(newCount)
+
+        api.post(`${URI}/good/${currentGoodId}/photo`, formData, {
+            headers: {
+                Authorization: `Bearer ${window.localStorage.getItem("jwtToken")}`,
+                'Content-Type': 'multipart/form-data',
+            },
+        })
+            .then(() => {
+                console.log("Image uploaded successfully")
+            })
+            .catch(error => {
+                console.error("Error uploading image: ", error);
+            })
+    }
+
+    const handleImageDelete = async () => {
+
+    }
+
     const HandleOpenEditPopupColor = (good) => {
         setIsOpenEditPopupColor(true);
         setCurrentGoodId(good.id);
@@ -43,12 +80,22 @@ const Goods = () => {
         setInputGroupsColor(good.colors.length);
     };
 
+    const HandleOpenEditPopupImages = (good) => {
+        console.log(good);
+        setIsOpenEditPopupImage(true);
+        setCurrentGoodId(good.id);
+    }
+
+    const HandleCloseEditPopupImage = () => {
+        setIsOpenEditPopupImage(false);
+        setCurrentGoodId(null);
+    }
+
     const HandleCloseEditPopupColor = () => {
         setIsOpenEditPopupColor(false);
         setInputGroupsColor(1);
         setCurrentGoodId(null);
     };
-
 
     const HandleOpenEditPopupSize = (good) => {
         console.log(good)
@@ -110,14 +157,22 @@ const Goods = () => {
             });
         api.get(`${URI}/goods/free`)
             .then(response => {
+                const filteredGoods = response.data.context.filter(good => good.state !== "DELETED")
                 setFree(response.data.content)
             })
             .catch(err => {
                 console.error(err);
             });
-    }, []);
+    }, [count]);
+
+    useEffect(() => {
+
+    })
 
     const UpdateData = () => {
+        let newCount = count;
+        newCount++
+        setCount(newCount)
         api.get(`${URI}/sections`)
             .then(response => {
                 const categories = response.data.flatMap(section => section.categories.map(category => category.id));
@@ -149,6 +204,9 @@ const Goods = () => {
     };
 
     const handleDeleteGood = (id) => {
+        let newCount = count;
+        newCount++
+        setCount(newCount)
         api.delete(`${URI}/good/${id}`)
             .then(response => {
                 console.log(response);
@@ -190,6 +248,9 @@ const Goods = () => {
                     console.error(err);
                 });
         }
+        let newCount = count;
+        newCount++
+        setCount(newCount)
         UpdateData();
     };
 
@@ -237,7 +298,24 @@ const Goods = () => {
             .catch(err => {
                 console.error(err);
             });
+        let newCount = count;
+        newCount++
+        setCount(newCount)
+
     }
+
+    // const handleAddInput = (e) => {
+    //     e.preventDefault();
+    //     setInputGroups(prevGroups => prevGroups + 1);
+
+    //     setFormData(prevData => [
+    //         ...prevData,
+    //         {
+    //             size: '0',
+    //             sizeStatus: 'IN_STOCK'
+    //         }
+    //     ]);
+    // };
 
     const handleAddInputColor = (e) => {
         e.preventDefault();
@@ -292,6 +370,9 @@ const Goods = () => {
             .catch(err => {
                 console.error(err);
             });
+        let newCount = count;
+        newCount++
+        setCount(newCount)
 
         UpdateData();
 
@@ -430,6 +511,27 @@ const Goods = () => {
                 </EditPopup>
             )}
 
+            {isOpenEditPopupImage && (
+                <EditPopup
+                    title="Редактировать закрепленные изображения"
+                    width="50vw"
+                    onClose={HandleCloseEditPopupImage}
+                    setIsOpen={setIsOpenEditPopupImage}
+                    selectedGood={selectedGood}
+                >
+                    <form className="form-edit-popup-size" onSubmit={(e) => e.preventDefault()}>
+                        {/* Input for uploading images */}
+                        <input
+                            type="file"
+                            accept="image/*"
+                            onChange={handleImageChange}
+                        />
+
+                        <button className='goodBtn font-gramatika-bold' onClick={handleImageUpload}>Сохранить</button>
+                    </form>
+                </EditPopup>
+            )}
+
 
             {isOpenEditPopupColor && (
                 <EditPopup
@@ -480,12 +582,13 @@ const Goods = () => {
             <table className="table">
                 <thead>
                     <tr>
-                        <th colSpan="8" style={{ backgroundColor: "rgba(217, 217, 217, 0.2)", textAlign: "center", fontSize: "100%" }}>Товары без категории</th>
+                        <th colSpan="9" style={{ backgroundColor: "rgba(217, 217, 217, 0.2)", textAlign: "center", fontSize: "100%" }}>Товары без категории</th>
                     </tr>
                     <tr>
                         <th></th>
                         <th>Название</th>
                         <th>Цена</th>
+                        <th>Изображение</th>
                         <th>Статус</th>
                         <th>Цвета</th>
                         <th>Размеры</th>
@@ -497,8 +600,9 @@ const Goods = () => {
                     {free.map(good => (
                         <tr key={good.id}>
                             <td style={{ width: "5%" }}><button onClick={() => HandleOpenNote(good)} className="edit"><img src="../../IMG/icons8-редактировать-144.png" alt="edit icon" /></button></td>
-                            <td style={{ width: "30%" }}>{good.name}</td>
+                            <td style={{ width: "20%" }}>{good.name}</td>
                             <td style={{ width: "5%" }}> {good.cost} ₽</td>
+                            <td style={{ width: "10%" }}><button className="editSize" onClick={() => HandleOpenEditPopupImages(good)}>Изменить изображения</button></td>
                             <td style={{ width: "10%" }}>
                                 {good.state === "DRAFT" ? (
                                     <div>
@@ -542,6 +646,7 @@ const Goods = () => {
                                 <th></th>
                                 <th>Название</th>
                                 <th>Цена</th>
+                                <th>Изображение</th>
                                 <th>Статус</th>
                                 <th>Цвета</th>
                                 <th>Размеры</th>
@@ -554,6 +659,7 @@ const Goods = () => {
                                     <td style={{ width: "5%" }}><button onClick={() => HandleOpenNote(good)} className="edit"><img src="../../IMG/icons8-редактировать-144.png" alt="edit icon" /></button></td>
                                     <td style={{ width: "40%" }}>{good.name}</td>
                                     <td style={{ width: "10%" }}>{good.cost} ₽</td>
+                                    <td style={{ width: "10%" }}><button className="editSize" onClick={() => HandleOpenEditPopupImages}>Изменить изображения</button></td>
                                     <td style={{ width: "10%" }}>{good.state}</td>
                                     <td style={{ width: "15%" }}><button className="editSize" onClick={() => HandleOpenEditPopupColor(good)}>Изменить цвета</button></td>
                                     <td style={{ width: "15%" }}><button className="editSize" onClick={() => HandleOpenEditPopupSize(good)}>Изменить размеры</button></td>
