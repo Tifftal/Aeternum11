@@ -53,7 +53,6 @@ const Bag = () => {
     };
 
     const handleDeleteCard = (bagId) => {
-        // Update the state by removing the deleted item
         setMyBag((prevBag) => prevBag.filter((item) => item.id !== bagId));
     };
 
@@ -79,6 +78,7 @@ const Bag = () => {
                 )
                 .then((response) => {
                     console.log(response);
+                    setMyBag([])
                 })
                 .catch((error) => {
                     console.error(error);

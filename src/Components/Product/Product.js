@@ -9,7 +9,7 @@ const Product = () => {
     const [t] = useTranslation("global");
     const [selectedImage, setSelectedImage] = useState("../../IMG/test.jpeg");
     const [selectedColor, setSelectedColor] = useState('');
-    const [selectedSize, setSelectedSize] = useState([]);
+    const [selectedSize, setSelectedSize] = useState('');
     const [selectedColorSizes, setSelectedColorSizes] = useState([]);
     const [error, setError] = useState(false);
 
@@ -28,27 +28,40 @@ const Product = () => {
         const selectedColorData = color.find(color => color.name === name);
         setSelectedColorSizes(selectedColorData.sizes);
         setSelectedColor(name);
+        // Clear selected size when changing color
         setSelectedSize('');
     }
 
     const handleSizeChange = (event) => {
+        console.log(event.target.value);
         setSelectedSize(event.target.value);
     }
 
     const handleAddToBag = () => {
+        console.log("COLOR", color)
+        const choosenColor = color.filter(color => color.name === selectedColor)
+        console.log(choosenColor);
+        console.log(selectedSize)
+        const choosenId = choosenColor[0].sizes.filter(size => size.size === selectedSize)
         if (selectedColor === '' || selectedSize === '') {
             setError(true);
         } else {
             setError(false);
-            api.post(`${URI}/user/bag`, {
-                goodId: id,
-                amount: 1,
-                sizeId: selectedSize,
-            }, {
-                headers: {
-                    "Authorization": `Bearer ${window.localStorage.getItem("jwtToken")}`
-                }
-            });
+            if (id && choosenId[0]?.id) {
+                api.post(`${URI}/user/bag`, {
+                    goodId: id,
+                    amount: 1,
+                    sizeId: choosenId[0].id,
+                    // color: selectedColor, // Add the selected color
+                }, {
+                    headers: {
+                        "Authorization": `Bearer ${window.localStorage.getItem("jwtToken")}`
+                    }
+                })
+                    .catch(error => {
+                        console.error(error);
+                    })
+            }
         }
     }
 
@@ -69,11 +82,11 @@ const Product = () => {
                 setData(response.data);
                 setColor(response.data.colors);
                 setSize(response.data.sizes);
-
-                // Используйте map для извлечения размеров и установки в selectedSize
+                console.log("SIZES", response.data.colors)
+                // Use map to extract sizes and set them in selectedSize
                 const allSizes = response.data.sizes.map(size => size.size);
                 setSelectedSize(allSizes);
-                console.log(allSizes); 
+                console.log(allSizes);
             })
             .catch(err => {
                 console.error(err);
@@ -97,7 +110,7 @@ const Product = () => {
                 <img src={selectedImage} alt="main-product" />
             </div>
             <div className="product-info">
-                <h2 className="font-gramatika-bold">{category.name}</h2>
+                {/* <h2 className="font-gramatika-bold">{category.name}</h2> */}
                 <h1>{data.name}</h1>
                 <p>{data.cost} ₽</p>
                 <button className="liked" onClick={handleAddToWishlist}>
