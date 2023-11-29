@@ -367,22 +367,24 @@ const Goods = () => {
                         {selectedGood.colors.map((color, colorIndex) => (
                             <div key={colorIndex} className="color-div">
                                 <div className="color-info">
-                                    <p style={{ backgroundColor: color.code }}>{color.name}{inputGroupsSize[colorIndex]}</p>
+                                    <p style={{ backgroundColor: color.code }}>{color.name}</p>
                                     <div className="size-block">
                                         {Array.from({ length: inputGroupsSize[colorIndex] }).map((_, index) => (
                                             <div key={index}>
                                                 <div className="input-size-div">
                                                     <div className="input-size">
-                                                        <label htmlFor={`size${index}`}>Цвет:</label>
+                                                        <label htmlFor={`size${index}`}>Размер:</label>
                                                         <input
                                                             id={`size${index}`}
+                                                            className='input-edit-size'
                                                         />
                                                     </div>
-                                                    <div>
-                                                        <label htmlFor={`sizeStatus${index}`}>Код цвета:</label>
-                                                        <input
-                                                            id={`sizeStatus${index}`}
-                                                        />
+                                                    <div className="input-size">
+                                                        <label htmlFor={`sizeStatus${index}`}>Статус размер:</label>
+                                                        <select id={`sizeStatus${index}`} class="input-edit-size-label">
+                                                            <option>IN_STOCK</option>
+                                                            <option>OUT_OF_STOCK</option>
+                                                        </select>
                                                     </div>
                                                 </div>
                                             </div>
