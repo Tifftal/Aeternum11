@@ -159,32 +159,40 @@ const Goods = () => {
             });
     };
 
-    const handleCategoryChange = (e, good_id) => {
+    const handleCategoryChange = (e, good_id, goodState) => {
+        if (goodState !== "ACTIVE") {
+            alert("Товар не активен. Невозможно изменить категорию.");
+            return;
+        }
+
         const selectedCategoryId = e.target.value;
-        const selectedCategory = categories.find(category => category.id === parseInt(selectedCategoryId));
+        const selectedCategory = categories.find((category) => category.id === parseInt(selectedCategoryId));
 
         if (selectedCategory) {
-            api.put(`${URI}/good/${good_id}/categories`,
-                [
+            api
+                .put(
+                    `${URI}/good/${good_id}/categories`,
+                    [
+                        {
+                            id: selectedCategoryId,
+                        },
+                    ],
                     {
-                        id: selectedCategoryId
+                        headers: {
+                            Authorization: `Bearer ${window.localStorage.getItem("jwtToken")}`,
+                        },
                     }
-                ],
-                {
-                    headers: {
-                        Authorization: `Bearer ${window.localStorage.getItem("jwtToken")}`,
-                    },
-                }
-            )
-                .then(response => {
+                )
+                .then((response) => {
                     console.log(response);
                 })
-                .catch(err => {
+                .catch((err) => {
                     console.error(err);
                 });
         }
         UpdateData();
     };
+
 
     const AddGood = () => {
         api.post(`${URI}/good`,
@@ -505,10 +513,14 @@ const Goods = () => {
                             <td style={{ width: "15%" }}><button className="editSize" onClick={() => HandleOpenEditPopupSize(good)}>Изменить размеры</button></td>
                             <td style={{ width: "20%" }}>
                                 <form>
-                                    <select onChange={(e) => handleCategoryChange(e, good.id)}>
-                                        <option disabled selected value="">Выберите категорию</option>
-                                        {categories.map(category => (
-                                            <option key={category.id} value={category.id}>{category.name}</option>
+                                    <select onChange={(e) => handleCategoryChange(e, good.id, good.state)}>
+                                        <option disabled selected value="">
+                                            Выберите категорию
+                                        </option>
+                                        {categories.map((category) => (
+                                            <option key={category.id} value={category.id}>
+                                                {category.name}
+                                            </option>
                                         ))}
                                     </select>
                                 </form>
