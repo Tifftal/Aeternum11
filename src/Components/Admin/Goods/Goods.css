@@ -310,3 +310,19 @@
 .input-edit-size {
     width: 4vw;
 }
+
+.activate {
+    background: none;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(72, 65, 0);
+    color: white;
+    font-size: 80%;
+    margin-top: 7%;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.activate:hover {
+    filter: brightness(1.5);
+}

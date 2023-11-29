@@ -229,8 +229,6 @@ const Goods = () => {
             .catch(err => {
                 console.error(err);
             });
-
-
     }
 
     const handleAddInputColor = (e) => {
@@ -341,6 +339,23 @@ const Goods = () => {
         HandleCloseEditPopupSize();
 
     };
+
+    const handleActivate = (id) => {
+        api.post(`${URI}/good/${id}/activate`,
+            {
+                headers: {
+                    Authorization: `Bearer ${window.localStorage.getItem("jwtToken")}`,
+                },
+            }
+        )
+            .then(response => {
+                console.log(response);
+                UpdateData();
+            })
+            .catch(err => {
+                console.error(err);
+            });
+    }
 
 
 
@@ -478,12 +493,12 @@ const Goods = () => {
                             <td style={{ width: "5%" }}> {good.cost} ₽</td>
                             <td style={{ width: "10%" }}>
                                 {good.state === "DRAFT" ? (
-                                    <React.Fragment>
+                                    <div>
                                         DRAFT
-                                        <button>Активировать</button>
-                                    </React.Fragment>
+                                        <button className="activate" onClick={() => handleActivate(good.id)}>Активировать</button>
+                                    </div>
                                 ) : (
-                                    `${good.state} ₽`
+                                    `${good.state}`
                                 )}
                             </td>
                             <td style={{ width: "15%" }}><button className="editSize" onClick={() => HandleOpenEditPopupColor(good)}>Изменить цвета</button></td>
