@@ -115,7 +115,7 @@ const Goods = () => {
             .catch(err => {
                 console.error(err);
             });
-    }, [data]);
+    }, []);
 
     const UpdateData = () => {
         api.get(`${URI}/sections`)
@@ -475,8 +475,17 @@ const Goods = () => {
                         <tr key={good.id}>
                             <td style={{ width: "5%" }}><button onClick={() => HandleOpenNote(good)} className="edit"><img src="../../IMG/icons8-редактировать-144.png" alt="edit icon" /></button></td>
                             <td style={{ width: "30%" }}>{good.name}</td>
-                            <td style={{ width: "5%" }}>{good.cost} ₽</td>
-                            <td style={{ width: "10%" }}>{good.state}</td>
+                            <td style={{ width: "5%" }}> {good.cost} ₽</td>
+                            <td style={{ width: "10%" }}>
+                                {good.state === "DRAFT" ? (
+                                    <React.Fragment>
+                                        DRAFT
+                                        <button>Активировать</button>
+                                    </React.Fragment>
+                                ) : (
+                                    `${good.state} ₽`
+                                )}
+                            </td>
                             <td style={{ width: "15%" }}><button className="editSize" onClick={() => HandleOpenEditPopupColor(good)}>Изменить цвета</button></td>
                             <td style={{ width: "15%" }}><button className="editSize" onClick={() => HandleOpenEditPopupSize(good)}>Изменить размеры</button></td>
                             <td style={{ width: "20%" }}>
