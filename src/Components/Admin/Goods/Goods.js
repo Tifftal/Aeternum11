@@ -423,15 +423,15 @@ const Goods = () => {
             }
         )
             .then(response => {
+                let newCount = count;
+                newCount++
+                setCount(newCount)
                 console.log(response);
             })
             .catch(err => {
                 console.error(err);
             });
 
-        let newCount = count;
-        newCount++
-        setCount(newCount)
         UpdateData();
 
         setSizeFormData([]);
@@ -629,7 +629,7 @@ const Goods = () => {
                                 )}
                             </td>
                             <td style={{ width: "15%" }}><button className="editSize" onClick={() => HandleOpenEditPopupColor(good)}>Изменить цвета</button></td>
-                            <td style={{ width: "15%" }}><button className="editSize" onClick={() => HandleOpenEditPopupSize(good)}>Изменить размеры</button></td>
+                            <td style={{ width: "10%" }}><button className="editSize" onClick={() => HandleOpenEditPopupSize(good)}>Изменить размеры</button></td>
                             <td style={{ width: "20%" }}>
                                 <form>
                                     <select onChange={(e) => handleCategoryChange(e, good.id, good.state)}>
