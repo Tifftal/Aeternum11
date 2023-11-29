@@ -4,6 +4,8 @@ import { useTranslation } from "react-i18next";
 import { URI } from "../../../api/config";
 import api from "../../../api/axiosConfig";
 import Popup from "./Popup/Popup";
+import EditPopup from "./Popup/EditPopup";
+import { unstable_renderSubtreeIntoContainer } from "react-dom";
 
 const Goods = () => {
     const [t] = useTranslation("global");
@@ -15,7 +17,11 @@ const Goods = () => {
     });
     const [selectedGood, setSelectedGood] = useState(null);
     const [isOpen, setIsOpen] = useState(false);
-    const [isOpenAddPopup, setIsOpenAddPopup] = useState(false);
+    const [isOpenEditPopup, setIsOpenEditPopup] = useState(false);
+
+    const [inputGroups, setInputGroups] = useState(1);
+    const [formData, setFormData] = useState([]);
+    const [currentGoodId, setCurrentGoodId] = useState(null);
 
     const HandleOpenNote = (good) => {
         setSelectedGood(good);
@@ -26,13 +32,19 @@ const Goods = () => {
         setIsOpen(false);
     };
 
-    // const HandleOpenAddPopup = () => {
-    //     setIsOpenAddPopup(true);
-    // };
+    const HandleOpenEditPopup = (good) => {
+        setSelectedGood(good);
+        setCurrentGoodId(good.id);
+        setIsOpenEditPopup(true);
+        setInputGroups(good.sizes.length); // Устанавливаем количество групп в соответствии с количеством размеров товара
+        setFormData(good.sizes); // Заполняем начальные значения формы размерами товара
+    };
 
-    // const HandleCloseAddPopup = () => {
-    //     setIsOpenAddPopup(false);
-    // };
+    const HandleCloseEditPopup = () => {
+        setIsOpenEditPopup(false);
+        setInputGroups(1);
+        setCurrentGoodId(null);
+    };
 
     useEffect(() => {
         api.get(`${URI}/sections`)
@@ -77,7 +89,6 @@ const Goods = () => {
             });
         api.get(`${URI}/goods/free`)
             .then(response => {
-                // console.log(response.data.content);
                 setFree(response.data.content)
             })
             .catch(err => {
@@ -120,7 +131,6 @@ const Goods = () => {
         api.delete(`${URI}/good/${id}`)
             .then(response => {
                 console.log(response);
-                // После успешного удаления, вызываем функцию UpdateData
                 UpdateData();
             })
             .catch(err => {
@@ -133,10 +143,6 @@ const Goods = () => {
         const selectedCategory = categories.find(category => category.id === parseInt(selectedCategoryId));
 
         if (selectedCategory) {
-            console.log("Selected Category ID:", selectedCategory.id);
-            console.log("Selected Category Name:", selectedCategory.name);
-            console.log("Selected Good ID:", good_id);
-
             api.put(`${URI}/good/${good_id}/categories`,
                 [
                     {
@@ -201,8 +207,70 @@ const Goods = () => {
             .catch(err => {
                 console.error(err);
             });
-            UpdateData();
+        UpdateData();
     }
+
+    const handleAddInput = (e) => {
+        e.preventDefault();
+        setInputGroups(prevGroups => prevGroups + 1);
+
+        setFormData(prevData => [
+            ...prevData,
+            {
+                size: '0',
+                sizeStatus: 'IN_STOCK'
+            }
+        ]);
+    };
+
+    const handleInputChange = (e, index, type) => {
+        const newData = [...formData];
+        newData[index] = {
+            ...newData[index],
+            [type]: e.target.value,
+        };
+        setFormData(newData);
+    };
+
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log("Падает FormData:", formData)
+        const sizes = formData.map(data => ({
+            size: data.size.trim(), // Обрезаем пробелы
+            sizeStatus: String(data.sizeStatus), // Преобразование в строку
+        }));
+
+        console.log("Изменения для товара ID:", currentGoodId);
+        console.log('Submitted Data:', sizes);
+
+        api.put(
+            `${URI}/good/${currentGoodId}/sizes`,
+            { sizes: sizes },
+            {
+                headers: {
+                    Authorization: `Bearer ${window.localStorage.getItem("jwtToken")}`,
+                },
+            }
+        )
+            .then(response => {
+                console.log(response);
+            })
+            .catch(err => {
+                console.error(err);
+            });
+
+        UpdateData();
+        HandleCloseEditPopup();
+    };
+
+
+    // useEffect(() => {
+    //     console.log("formData:", formData);
+    // }, [formData]);
+
+
+
 
     return (
         <div className="goodsAdmin">
@@ -213,42 +281,55 @@ const Goods = () => {
                     selectedGood={selectedGood}
                     onDataUpdate={() => {
                         // Обновить данные после успешного редактирования
-                        api.get(`${URI}/sections`)
-                            .then(response => {
-                                const categories = response.data.flatMap(section => section.categories.map(category => category.id));
-
-                                const requests = categories.map(category => (
-                                    api.get(`${URI}/category/${category}/goods`)
-                                        .then(response => ({
-                                            categoryName: response.data.name,
-                                            goodsByCategory: response.data.goods.content,
-                                        }))
-                                        .catch(err => {
-                                            console.error(err);
-                                            return null;
-                                        })
-                                ));
-
-                                Promise.all(requests)
-                                    .then(categoryGoodsArray => {
-                                        const validCategoryGoods = categoryGoodsArray.filter(categoryGoods => categoryGoods !== null);
-                                        setData(validCategoryGoods);
-                                    })
-                                    .catch(err => {
-                                        console.error(err);
-                                    });
-                            })
-                            .catch(err => {
-                                console.error(err);
-                            });
+                        UpdateData();
                     }}
                 />
+            )}
+
+            {isOpenEditPopup && (
+                <EditPopup
+                    onClose={HandleCloseEditPopup}
+                    setIsOpen={setIsOpenEditPopup}
+                    selectedGood={selectedGood}
+                    title="Редактировать размеры товара"
+                >
+                    <form className="form-edit-popup">
+                        {Array.from({ length: inputGroups }).map((_, index) => (
+                            <div className='edit-group' key={index}>
+                                <div>
+                                    <label htmlFor={`size${index}`} className=''>Размер:</label>
+                                    <input
+                                        id={`size${index}`}
+                                        className='input-edit'
+                                        onChange={(e) => handleInputChange(e, index, 'size')}
+                                        value={formData[index]?.size || ''}  // Устанавливаем значение из состояния
+                                    />
+                                </div>
+                                <div>
+                                    <label htmlFor={`sizeStatus${index}`} className=''>Статус:</label>
+                                    <select
+                                        id={`sizeStatus${index}`}
+                                        onChange={(e) => {
+                                            console.log("Selected value:", e.target.value);
+                                            handleInputChange(e, index, 'sizeStatus');
+                                        }}
+                                        value={formData[index]?.sizeStatus !== undefined && formData[index]?.sizeStatus !== '' ? formData[index]?.sizeStatus : 'IN_STOCK'}
+                                    >
+                                        <option value="IN_STOCK">IN_STOCK</option>
+                                        <option value="OUT_OF_STOCK">OUT_OF_STOCK</option>
+                                    </select>
+                                </div>
+                            </div>
+                        ))}
+                        <button className='addInputBtn' onClick={handleAddInput}>+</button>
+                        <button className='goodBtn font-gramatika-bold' onClick={handleSubmit}>Сохранить</button>
+                    </form>
+                </EditPopup>
             )}
 
             <div className="AddGoodAdmin">
                 <button className="AddBtnAdmin" onClick={AddGood}>Добавить товар</button>
             </div>
-
 
             <table className="table">
                 <thead>
@@ -269,12 +350,12 @@ const Goods = () => {
                 <tbody>
                     {free.map(good => (
                         <tr key={good.id}>
-                            <td style={{ width: "5%" }}><button onClick={() => HandleOpenNote(good)} className="edit"><img src="../../IMG/icons8-редактировать-144.png" /></button></td>
+                            <td style={{ width: "5%" }}><button onClick={() => HandleOpenNote(good)} className="edit"><img src="../../IMG/icons8-редактировать-144.png" alt="edit icon" /></button></td>
                             <td style={{ width: "30%" }}>{good.name}</td>
                             <td style={{ width: "5%" }}>{good.cost} ₽</td>
                             <td style={{ width: "10%" }}>{good.state}</td>
                             <td style={{ width: "15%" }}><button className="editSize">Изменить цвета</button></td>
-                            <td style={{ width: "15%" }}><button className="editSize">Изменить размеры</button></td>
+                            <td style={{ width: "15%" }}><button className="editSize" onClick={() => HandleOpenEditPopup(good)}>Изменить размеры</button></td>
                             <td style={{ width: "20%" }}>
                                 <form>
                                     <select onChange={(e) => handleCategoryChange(e, good.id)}>
@@ -285,7 +366,7 @@ const Goods = () => {
                                     </select>
                                 </form>
                             </td>
-                            <td style={{ width: "5%" }}><button onClick={() => handleDeleteGood(good.id)} className="edit" style={{ backgroundColor: "#472828" }}><img src="../../IMG/icons8-крестик-78.png" style={{ filter: "invert(1)" }} /></button></td>
+                            <td style={{ width: "5%" }}><button onClick={() => handleDeleteGood(good.id)} className="edit" style={{ backgroundColor: "#472828" }}><img src="../../IMG/icons8-крестик-78.png" style={{ filter: "invert(1)" }} alt="delete icon" /></button></td>
                         </tr>
                     ))}
                 </tbody>
@@ -296,24 +377,26 @@ const Goods = () => {
                     <table className="table">
                         <thead>
                             <tr>
-                                <th colSpan="5" style={{ backgroundColor: "rgba(217, 217, 217, 0.2)", textAlign: "center", fontSize: "100%" }}>{category.categoryName}</th>
+                                <th colSpan="6" style={{ backgroundColor: "rgba(217, 217, 217, 0.2)", textAlign: "center", fontSize: "100%" }}>{category.categoryName}</th>
                             </tr>
                             <tr>
                                 <th></th>
                                 <th>Название</th>
                                 <th>Цена</th>
                                 <th>Статус</th>
+                                <th>Размеры</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
                             {category.goodsByCategory.map(good => (
                                 <tr key={good.id}>
-                                    <td style={{ width: "5%" }}><button onClick={() => HandleOpenNote(good)} className="edit"><img src="../../IMG/icons8-редактировать-144.png" /></button></td>
-                                    <td style={{ width: "60%" }}>{good.name}</td>
-                                    <td style={{ width: "15%" }}>{good.cost} ₽</td>
+                                    <td style={{ width: "5%" }}><button onClick={() => HandleOpenNote(good)} className="edit"><img src="../../IMG/icons8-редактировать-144.png" alt="edit icon" /></button></td>
+                                    <td style={{ width: "50%" }}>{good.name}</td>
+                                    <td style={{ width: "10%" }}>{good.cost} ₽</td>
                                     <td style={{ width: "15%" }}>{good.state}</td>
-                                    <td style={{ width: "5%" }}><button onClick={() => handleDeleteGood(good.id)} style={{ backgroundColor: "#472828" }} className="edit"><img src="../../IMG/icons8-крестик-78.png" style={{ filter: "invert(1)" }} /></button></td>
+                                    <td style={{ width: "15%" }}><button className="editSize" onClick={() => HandleOpenEditPopup(good)}>Изменить размеры</button></td>
+                                    <td style={{ width: "5%" }}><button onClick={() => handleDeleteGood(good.id)} style={{ backgroundColor: "#472828" }} className="edit"><img src="../../IMG/icons8-крестик-78.png" style={{ filter: "invert(1)" }} alt="delete icon" /></button></td>
                                 </tr>
                             ))}
                         </tbody>
