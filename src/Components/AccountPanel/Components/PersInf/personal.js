@@ -168,14 +168,14 @@ const Personal = (props) => {
                 <input
                     type="text"
                     placeholder={t("create_account.first_name")}
-                    value={personal.firstName}
+                    value={personal.firstName || ''}
                     name="firstName"
                     onChange={handleChange}
                 />
                 <input
                     type="text"
                     placeholder={t("create_account.last_name")}
-                    value={personal.lastName}
+                    value={personal.lastName || ''}
                     name="lastName"
                     onChange={handleChange}
                 />
@@ -189,37 +189,37 @@ const Personal = (props) => {
                     <option value="WOMAN">WOMAN</option>
                 </select>
                 <input
-                    type="text"
+                    type="date"
                     placeholder={t("create_account.date")}
-                    value={personal.date}
+                    value={personal.date || ''}
                     name="date"
                     onChange={handleChange}
                 />
                 <input
                     type="text"
                     placeholder={t("create_account.country")}
-                    value={personal.country}
+                    value={personal.country || ''}
                     name="country"
                     onChange={handleChange}
                 />
                 <input
                     type="text"
                     placeholder={t("create_account.state")}
-                    value={personal.state}
+                    value={personal.state || ''}
                     name="state"
                     onChange={handleChange}
                 />
                 <input
                     type="text"
                     placeholder={t("create_account.city")}
-                    value={personal.city}
+                    value={personal.city || ''}
                     name="city"
                     onChange={handleChange}
                 />
                 <input
                     type="text"
                     placeholder={t("create_account.phone")}
-                    value={personal.phone}
+                    value={personal.phone || ''}
                     name="phone"
                     onChange={handleChange}
                 />

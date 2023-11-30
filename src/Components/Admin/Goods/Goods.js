@@ -5,7 +5,6 @@ import { URI } from "../../../api/config";
 import api from "../../../api/axiosConfig";
 import Popup from "./Popup/Popup";
 import EditPopup from "./Popup/EditPopup";
-import { unstable_renderSubtreeIntoContainer } from "react-dom";
 
 const Goods = () => {
     const [t] = useTranslation("global");

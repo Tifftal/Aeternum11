@@ -23,13 +23,13 @@ const DropW = () => {
     return (
         <div className="menuDrop">
             {
-                sections.map(section => (
-                    <div className="column">
+                sections.map((section, idx) => (
+                    <div key={idx} className="column">
                         <h1>{section.name}</h1>
                         <div className="col">
                             {
-                                section.categories.map(item => (
-                                    <a href={`/assortment/${item.id}`}><button >{item.name}</button></a>
+                                section.categories.map((item, idx) => (
+                                    <a key={idx} href={`/assortment/${item.id}`}><button >{item.name}</button></a>
                                 ))
                             }
                         </div>
