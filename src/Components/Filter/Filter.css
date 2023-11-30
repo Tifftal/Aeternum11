@@ -80,7 +80,7 @@
     filter: invert(1);
 }
 
-.btn {
+.btnFilter {
     display: flex;
     margin: 5% 0;
     border: none;

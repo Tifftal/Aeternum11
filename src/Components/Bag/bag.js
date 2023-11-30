@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "./bag.css";
 import { useTranslation } from "react-i18next";
-import Card from "./card";
 import api from "../../api/axiosConfig";
 import { URI } from "../../api/config";
+import CardBag from "./card";
 
 const Bag = () => {
     const [t] = useTranslation("global");
@@ -90,7 +90,7 @@ const Bag = () => {
         <div className="bag">
             <div className="sale">
                 {myBag.map((good) => (
-                    <Card key={good.id} good={good} onDelete={handleDeleteCard} />
+                    <CardBag key={good.id} good={good} onDelete={handleDeleteCard} />
                 ))}
             </div>
             <div className="total">

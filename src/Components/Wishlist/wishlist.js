@@ -69,7 +69,7 @@ const Wishlist = () => {
 
     return (
         <div className="wishlist">
-            <div className="menu_wishlist font-gramatika-bold">
+            <div className="menu_wishlist">
                 {wishlist?.map(wish => (
                     <WishlistCard key={wish.id} data={wish} onRemove={handleRemoveFromWishlist} />
                 ))}

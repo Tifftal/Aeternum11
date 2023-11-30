@@ -1,158 +1,120 @@
+.btn,
+.btn.btn-ptimary, 
+.card-header, 
+.card-body ,
+.card-title.h5, 
+.card-text 
+ {
+    padding: 0;
+    margin: 0;
+}
+
+
 .sale-card {
-    display: flex;
-    flex-direction: row;
-    background-color: rgba(255, 255, 255, 0.20);
     margin: 5% 0;
-    border-radius: 20px;
-    align-items: flex-start;
-    padding: 0.5rem;
-    max-height: 220px;
-    /* Установите максимальную высоту */
-    overflow: hidden;
-    /* Скрыть содержимое, выходящее за пределы */
 }
 
-.photo-sale {
-    width: 20%;
-    max-height: 100%;
-    /* Установите максимальную высоту */
-    overflow: hidden;
-    /* Скрыть содержимое, выходящее за пределы */
+.card-det {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-radius: 10px;
+    height: 25vh;
+    background-color: rgba(255, 255, 255, 0.15);
+    padding: 0;
+    margin: 0;
 }
 
-.photo-sale img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    /* Обеспечивает корректное заполнение контейнера */
+.card-header,
+.header-det {
+    padding: 0;
+    margin: 0;
+    height: 23vh;
+    margin-left: 1vh;
+}
+
+.header-det img {
+    padding: 0;
+    margin: 0;
+    width: auto;
     background-color: white;
+    height: 23vh;
     border-radius: 10px;
 }
 
-.content-sale {
-    width: 80%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    padding: 0.5rem 1rem;
-    margin-left: 2%;
-    background-color: yellow;
-    height: 100%;
-}
-
-.title-sale {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    align-self: flex-start;
-    margin: 0;
+.det,
+.card-body {
     width: 100%;
-    font-size: 100%;
-    background-color: red;
-    height: 100%;
-}
-
-/* ... остальные стили ... */
-
-
-.title-sale h1,
-.title-sale button {
-    margin: 0;
-    padding: 0;
-    font-size: 100%;
-    background: none;
-    border: none;
-}
-
-.title-sale button {
-    color: rgba(255, 255, 255, 0.5);
-    cursor: pointer;
-    transition: .3s;
-}
-
-.title-sale button:hover {
-    color: white;
-}
-
-.size-colour {
+    margin: 0 5vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: flex-start;
-    background-color: blue;
+    height: 23vh;
 }
 
-.size-colour h2 {
+
+
+.card-title.h5 {
     font-size: 100%;
-    font-family: 'Manrope', serif;
-    font-weight: normal;
     margin: 0;
     padding: 0;
-}
-
-/* 
-.amount {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    font-size: 90%;
-    padding: 0 1% 0 0;
+    width: 100%;
+    padding: 10px 0;
 }
 
-.amount h3,
-.amount h4,
-.amount button {
-    margin: 0;
+.card-text {
     padding: 0;
+    margin: 0;
+}
+
+.text-card-bag {
+    text-align: left;
     font-size: 90%;
+    padding: 1% 0;
 }
-.amountBtn {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    background-color: rgba(255, 255, 255, 0.5);
-    border-radius: 10px;
-    width: 25%;
-    height: 90%;
-    padding: 0;
-    margin: 0;
-}
-.amountBtn button {
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    height: 100%;
-    width: 40%;
-    border-radius: 10px;
-    color: white;
-    font-size: 120%;
-    text-align: center;
+
+
+
+.deleteBtn {
     background: none;
-    padding: 0;
-    margin: 0;
+    font-size: 100%;
+    color: rgb(183, 183, 183);
+    border: none;
     transition: .3s;
 }
 
-.amountBtn button:hover {
+.deleteBtn:hover {
+    color: white;
+}
+
+.amountBtn {
+    padding: 0;
+    margin: 0;
+    align-self: flex-start;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    background: none;
+    border: none;
+    color: white;
+    transition: .3s;
+    font-size: 100%;
+}
+
+.plus {
+    border-radius: 0 5px 5px 0 ;
+}
+
+.minus {
+    border-radius: 5px 0 0 5px;
+}
+
+
+.amountBtn:hover {
     background-color: rgba(255, 255, 255, 0.2);
 }
-
-.price {
-    display: flex;
-    flex-direction: column;
-    text-align: left;
-    padding: 0 1%;
-    font-size: 90%;
-    height: 100%;
-}
-
-@media screen and (max-width: 768px) {
-    .sale-card {
-        width: 90%;
-    }
-} */

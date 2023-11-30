@@ -1,12 +1,11 @@
-// Card.js
-
 import React, { useState, useEffect } from "react";
 import "./card.css";
 import { useTranslation } from "react-i18next";
 import api from "../../api/axiosConfig";
 import { URI } from "../../api/config";
+import { Button, Card } from 'react-bootstrap';
 
-const Card = ({ good, onDelete }) => {
+const CardBag = ({ good, onDelete }) => {
   const [t] = useTranslation("global");
   const [name, setName] = useState("");
   const [size, setSize] = useState("");
@@ -62,24 +61,37 @@ const Card = ({ good, onDelete }) => {
 
   return (
     <div className="sale-card">
-      <div className="photo-sale">
-        <img src="../../IMG/TEST.png" alt="Product" />
-      </div>
-      <div className="content-sale">
-        <div className="title-sale">
-          <h1 className="font-gramatika-bold">{name}</h1>
-          <button onClick={() => handleDeleteCard(good.id)}>Удалить</button>
-        </div>
-        <div className="size-colour">
-          <h2>{t("card.size")} {size}</h2>
-          <h2>{t("card.colour")} {color}</h2>
-        </div>
-        <div className="price">
-          <h3>Цена: {cost} ₽ </h3>
-        </div>
-      </div>
+      <Card className='card-det'>
+        <Card.Header className='header-det'>
+          <img src='../IMG/TEST.png' />
+        </Card.Header>
+        <Card.Body className='det'>
+          <div style={{ width: "100%" }}>
+            <Card.Title className="font-gramatika-bold">
+              {name}
+              <Button className="deleteBtn">Удалить</Button>
+            </Card.Title>
+            <Card.Text className="text-card-bag">
+              Размер: {size}
+            </Card.Text>
+            <Card.Text className="text-card-bag">
+              Цвет: {color}
+            </Card.Text>
+          </div>
+          <div style={{ display: "flex", flexDirection: "column", justifyContent: "flex-start", marginBottom: "1%" }}>
+            <Card.Text className="text-card-bag">
+              Цена: {cost} ₽
+            </Card.Text>
+            <div style={{display:'flex', flexDirection:"row", alignItems: "center", gap: "15px", backgroundColor: "gray", width: "fit-content", padding: 0, borderRadius: "5px", margin: 0, height: "30px", marginTop: "10%"}}>
+              <button className="amountBtn minus">-</button>
+              {amount}
+              <button className="amountBtn plus">+</button>
+            </div>
+          </div>
+        </Card.Body>
+      </Card>
     </div>
   );
 };
 
-export default Card;
+export default CardBag;

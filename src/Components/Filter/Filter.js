@@ -124,8 +124,8 @@ const Filter = (props) => {
                     </div>
                 </div>
                 <div>
-                    <a href='/account'><button className='btn show font-gramatika-bold'>Show result</button></a>
-                    <a href='/create_account' className='btn clear font-gramatika-bold'>Clear all</a>
+                    <a href='/account'><button className='btnFilter show font-gramatika-bold'>Show result</button></a>
+                    <a href='/create_account' className='btnFilter clear font-gramatika-bold'>Clear all</a>
                 </div>
             </div>
         </div>
