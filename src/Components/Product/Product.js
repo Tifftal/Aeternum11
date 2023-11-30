@@ -4,10 +4,11 @@ import { useTranslation } from "react-i18next";
 import { useParams } from 'react-router-dom';
 import { URI } from "../../api/config";
 import api from "../../api/axiosConfig";
+import LoadingText from "../Loader/Loader";
 
 const Product = () => {
     const [t] = useTranslation("global");
-    const [selectedImage, setSelectedImage] = useState("../../IMG/test.jpeg");
+    const [selectedImage, setSelectedImage] = useState(null);
     const [selectedColor, setSelectedColor] = useState('');
     const [selectedSize, setSelectedSize] = useState('');
     const [selectedColorSizes, setSelectedColorSizes] = useState([]);
@@ -17,6 +18,7 @@ const Product = () => {
     const [category, setCategory] = useState({});
     const [color, setColor] = useState([]);
     const [size, setSize] = useState([]);
+    const [photos, setPhotosById] = useState([]);
 
     const { id } = useParams();
 
@@ -77,16 +79,47 @@ const Product = () => {
 
     useEffect(() => {
         api.get(`${URI}/good/${id}`)
-            .then(response => {
+            .then(async response => {
                 console.log(response)
                 setData(response.data);
                 setColor(response.data.colors);
                 setSize(response.data.sizes);
                 console.log("SIZES", response.data.colors)
-                // Use map to extract sizes and set them in selectedSize
                 const allSizes = response.data.sizes.map(size => size.size);
                 setSelectedSize(allSizes);
                 console.log(allSizes);
+                const good = response.data;
+                const photos = [];
+                const fetchPhoto = async (photo) => {
+                    try {
+                        const response = await api.get(`${URI}/photo/${photo.id}`, {
+                            responseType: 'arraybuffer',
+                        });
+                        const blob = new Blob([response.data], { type: 'image/jpeg' });
+                        const imageUrl = URL.createObjectURL(blob);
+
+                        photos.push({
+                            position: photo.position,
+                            id: photo.id,
+                            image: imageUrl,
+                        })
+                    }
+                    catch (error) {
+                        console.error(error);
+                    }
+                };
+
+                const fetchPromises = good.photos.map(fetchPhoto);
+
+                await Promise.all(fetchPromises)
+
+                setPhotosById(photos);
+                try {
+                    const selected = photos.sort((a, b) => a.position - b.position)
+                    setSelectedImage(photos[0].image);
+                } catch (error) {
+                    console.error(error);
+                }
             })
             .catch(err => {
                 console.error(err);
@@ -97,17 +130,23 @@ const Product = () => {
     return (
         <div className="product">
             <div className="scroll-panel">
-                {color.map((thumbnail, index) => (
-                    <img
-                        key={index}
-                        src={thumbnail.path}
-                        alt={`thumbnail-${index}`}
-                        onClick={() => handleThumbnailClick(thumbnail.path)}
-                    />
-                ))}
+                {photos.sort((a, b) => a.position - b.position)
+                    .map((photo) => (
+                        <img
+                            onClick={() => { setSelectedImage(photo.image) }}
+                            src={`${photo.image}`}
+                            alt={`Image ${photo.id}`}
+                        />
+                    ))
+                }
             </div>
             <div className="product-photo">
-                <img src={selectedImage} alt="main-product" />
+                {selectedImage === null ? (
+                    <LoadingText />
+                ): (
+                        <img src = { selectedImage } alt = "main-product" />
+                )
+                }
             </div>
             <div className="product-info">
                 {/* <h2 className="font-gramatika-bold">{category.name}</h2> */}
