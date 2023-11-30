@@ -21,6 +21,7 @@ const Goods = () => {
     const [isOpenEditPopupSize, setIsOpenEditPopupSize] = useState(false);
     const [isOpenEditPopupColor, setIsOpenEditPopupColor] = useState(false);
     const [isOpenEditPopupImage, setIsOpenEditPopupImage] = useState(false);
+    const [photosById, setPhotosById] = useState([]);
     const [count, setCount] = useState(0);
 
     const [inputGroupsColor, setInputGroupsColor] = useState(1);
@@ -28,7 +29,7 @@ const Goods = () => {
     const [sizeFormData, setSizeFormData] = useState([]);
     const [currentGoodId, setCurrentGoodId] = useState(null);
     const [colorFormData, setColorFormData] = useState([]);
-
+    const [position, setPosition] = useState(0);
 
     const HandleOpenNote = (good) => {
         setSelectedGood(good);
@@ -43,35 +44,97 @@ const Goods = () => {
         setSelectedImage(e.target.files[0]);
     }
 
+    const fetchPhotos = async (goodId) => {
+        const photos = [];
+
+        try {
+            const response = await api.get(`${URI}/good/${goodId}`);
+            const good = response.data;
+            console.log(good);
+            // Assuming you are using async/await, make the function async
+            const fetchPhoto = async (photo) => {
+                try {
+                    const response = await api.get(`${URI}/photo/${photo.id}`, {
+                        responseType: 'arraybuffer', // Important: set responseType to arraybuffer
+                    });
+                    console.log(response);
+                    const blob = new Blob([response.data], { type: 'image/jpeg' }); // Adjust type based on your file type
+                    const imageUrl = URL.createObjectURL(blob);
+
+                    photos.push({
+                        position: photo.position,
+                        id: photo.id,
+                        image: imageUrl,
+                    });
+                } catch (error) {
+                    console.error(error);
+                }
+            };
+
+            // Map through each photo and fetch the image
+            const fetchPromises = good.photos.map(fetchPhoto);
+
+            // Wait for all fetches to complete before updating state
+            await Promise.all(fetchPromises);
+
+            setPhotosById(photos);
+            let newCount = count;
+            newCount++;
+            setCount(newCount);
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+
     const handleImageUpload = async () => {
         if (!selectedImage) {
             return;
         }
 
+        if (position === 0) {
+            return;
+        }
+
         const formData = new FormData();
         formData.append('file', selectedImage);
-        formData.append('position', 1);
-        let newCount = count;
-        newCount++
-        setCount(newCount)
+        formData.append('position', position);
 
-        api.post(`${URI}/good/${currentGoodId}/photo`, formData, {
+        try {
+            await api.post(`${URI}/good/${currentGoodId}/photo`, formData, {
+                headers: {
+                    Authorization: `Bearer ${window.localStorage.getItem("jwtToken")}`,
+                    'Content-Type': 'multipart/form-data',
+                },
+            });
+
+            // Fetch photos after uploading the new image
+            await fetchPhotos(currentGoodId);
+        } catch (error) {
+            console.error("Error uploading image: ", error);
+        }
+
+        let newCount = count;
+        newCount++;
+        setCount(newCount);
+    };
+
+    const handleDeleteImage = (photoId) => {
+        api.delete(`${URI}/photo/${photoId}`, {
             headers: {
                 Authorization: `Bearer ${window.localStorage.getItem("jwtToken")}`,
-                'Content-Type': 'multipart/form-data',
-            },
+            }
         })
-            .then(() => {
-                console.log("Image uploaded successfully")
+            .then(response => {
+                console.log(response);
+                // Update local state by removing the deleted photo
+                setPhotosById(prevPhotos => prevPhotos.filter(photo => photo.id !== photoId));
             })
             .catch(error => {
-                console.error("Error uploading image: ", error);
-            })
-    }
+                console.error(error);
+            });
+    };
 
-    const handleImageDelete = async () => {
-
-    }
 
     const HandleOpenEditPopupColor = (good) => {
         setIsOpenEditPopupColor(true);
@@ -80,11 +143,16 @@ const Goods = () => {
         setInputGroupsColor(good.colors.length);
     };
 
-    const HandleOpenEditPopupImages = (good) => {
+    const HandleOpenEditPopupImages = async (good) => {
         console.log(good);
+
+        // Fetch photos when opening the edit popup
         setIsOpenEditPopupImage(true);
         setCurrentGoodId(good.id);
-    }
+        await fetchPhotos(good.id);
+
+    };
+
 
     const HandleCloseEditPopupImage = () => {
         setIsOpenEditPopupImage(false);
@@ -328,7 +396,7 @@ const Goods = () => {
 
     const handleAddInputSize = (colorIndex) => {
         let newCount = count;
-        newCount ++;
+        newCount++;
         setCount(newCount);
         const prev = inputGroupsSize;
         prev[colorIndex] += 1;
@@ -344,6 +412,10 @@ const Goods = () => {
         };
         setColorFormData(newData);
     };
+
+    const handleChangePosition = (e) => {
+        setPosition(e.target.value);
+    }
 
     const handleColorSubmit = (e) => {
         e.preventDefault();
@@ -535,13 +607,39 @@ const Goods = () => {
                     selectedGood={selectedGood}
                 >
                     <form className="form-edit-popup-size" onSubmit={(e) => e.preventDefault()}>
-                        {/* Input for uploading images */}
-                        <input
-                            type="file"
-                            accept="image/*"
-                            onChange={handleImageChange}
-                        />
-
+                        <div style={{ display: "flex", flexDirection: "row" }}>
+                            <input
+                                type="file"
+                                accept="image/*"
+                                onChange={handleImageChange}
+                            />
+                            <input
+                                type="text"
+                                placeholder="каким отображать?"
+                                onChange={handleChangePosition}
+                                required
+                            />
+                        </div>
+                        <div className="existing-images" style={{ overflowX: 'auto', whiteSpace: 'nowrap', height: "420px" }}>
+                            <h3>Фотографии</h3>
+                            <div style={{ display: 'flex', alignItems: "center", justifyContent: "" }}>
+                                {photosById
+                                    .sort((a, b) => a.position - b.position) // Sort by position in ascending order
+                                    .map((photo) => (
+                                        <div key={photo.id} style={{ marginRight: '10px' }}>
+                                            <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
+                                                <img
+                                                    src={`${photo.image}`}
+                                                    alt={`Image ${photo.id}`}
+                                                    style={{ maxWidth: '175px', maxHeight: 'auto' }}
+                                                />
+                                            </div>
+                                            <h3>{photo.position}</h3>
+                                            <button onClick={() => { handleDeleteImage(photo.id) }}>Удалить</button>
+                                        </div>
+                                    ))}
+                            </div>
+                        </div>
                         <button className='goodBtn font-gramatika-bold' onClick={handleImageUpload}>Сохранить</button>
                     </form>
                 </EditPopup>
@@ -674,7 +772,7 @@ const Goods = () => {
                                     <td style={{ width: "5%" }}><button onClick={() => HandleOpenNote(good)} className="edit"><img src="../../IMG/icons8-редактировать-144.png" alt="edit icon" /></button></td>
                                     <td style={{ width: "40%" }}>{good.name}</td>
                                     <td style={{ width: "10%" }}>{good.cost} ₽</td>
-                                    <td style={{ width: "10%" }}><button className="editSize" onClick={() => HandleOpenEditPopupImages}>Изменить изображения</button></td>
+                                    <td style={{ width: "10%" }}><button className="editSize" onClick={() => HandleOpenEditPopupImages(good)}>Изменить изображения</button></td>
                                     <td style={{ width: "10%" }}>{good.state}</td>
                                     <td style={{ width: "15%" }}><button className="editSize" onClick={() => HandleOpenEditPopupColor(good)}>Изменить цвета</button></td>
                                     <td style={{ width: "15%" }}><button className="editSize" onClick={() => HandleOpenEditPopupSize(good)}>Изменить размеры</button></td>
