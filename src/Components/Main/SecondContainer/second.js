@@ -15,8 +15,8 @@ const Second = () => {
             <div className="menu font-gramatika-bold">
                 {window.innerWidth > 775 ?
                     (
-                        data.map(card => (
-                            <MenuCard data={card} />
+                        data.map((card, idx) => (
+                            <MenuCard key={idx} data={card} />
                         )
                         )
                     )

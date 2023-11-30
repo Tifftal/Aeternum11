@@ -46,15 +46,15 @@ const Catalog = () => {
             </div>
             <div className="link-category">
                 {
-                    categories.map(category => (
-                        <a href={`/assortment/${category.id}`} className="assortmentBtn"><button>{category.name}</button></a>
+                    categories.map((category, idx) => (
+                        <a key={idx} href={`/assortment/${category.id}`} className="assortmentBtn"><button>{category.name}</button></a>
                     ))
                 }
             </div>
             <div className="goods">
                 {
-                    data.map(card => (
-                        <a href={`/product/${card.id}`}><AssortmentCard key={card.id} data={card} /></a>
+                    data.map((card, idx) => (
+                        <a href={`/product/${card.id}`} key={idx}><AssortmentCard key={idx} data={card} /></a>
                     )
                     )
                 }

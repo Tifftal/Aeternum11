@@ -118,8 +118,8 @@ const Product = () => {
                 try {
                     const selected = photos.sort((a, b) => a.position - b.position)
                     setSelectedImage(photos[0].image);
-                } catch (error) {
-                    console.error(error);
+                } catch {
+                    // console.error(error);
                 }
             })
             .catch(err => {
