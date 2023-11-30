@@ -655,7 +655,7 @@ const Goods = () => {
                     <table className="table">
                         <thead>
                             <tr>
-                                <th colSpan="7" style={{ backgroundColor: "rgba(217, 217, 217, 0.2)", textAlign: "center", fontSize: "100%" }}>{category.categoryName}</th>
+                                <th colSpan="8" style={{ backgroundColor: "rgba(217, 217, 217, 0.2)", textAlign: "center", fontSize: "100%" }}>{category.categoryName}</th>
                             </tr>
                             <tr>
                                 <th></th>

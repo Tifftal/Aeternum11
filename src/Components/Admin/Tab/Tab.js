@@ -2,6 +2,7 @@ import React from "react";
 import MainPageAdmin from "../MainPage/MainPage";
 import AdminNavbar from "../Navbar/Navbar";
 import Goods from "../Goods/Goods";
+import Orders from "../Orders/Orders";
 
 const Tab = (props) => {
     switch (props.tab) {
@@ -16,6 +17,10 @@ const Tab = (props) => {
         case "Goods":
             return (
                 <Goods />
+            );
+        case "Orders":
+            return (
+                <Orders />
             );
         default:
             return (
