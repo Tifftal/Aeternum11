@@ -8,6 +8,7 @@ const Orders = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [selectedOrder, setSelectedOrder] = useState(null);
     const [data, setData] = useState([]);
+    const [query, setQuery] = useState('');
 
     const handleOpenNote = (order) => {
         setIsOpen(true);
@@ -41,14 +42,13 @@ const Orders = () => {
         const hours = date.getHours();
         const minutes = date.getMinutes();
 
-        // Добавим нуль, если минуты меньше 10
         const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
 
         return `${day} ${months[month]} ${year} ${hours}:${formattedMinutes}`;
     };
 
     useEffect(() => {
-        api.get(`${URI}/application/admin`, {
+        api.get(`${URI}/application/admin?status=${query}`, {
             headers: {
                 Authorization: `Bearer ${window.localStorage.getItem("jwtToken")}`,
             },
@@ -57,7 +57,6 @@ const Orders = () => {
                 console.log(response.data.content)
                 const data = response.data.content;
 
-                // Создаем массив промисов для всех асинхронных запросов
                 const promises = data.map(order => {
                     return api.get(`${URI}/user/${order.userId}`, {
                         headers: {
@@ -66,15 +65,13 @@ const Orders = () => {
                     });
                 });
 
-                // Выполняем все запросы одновременно
                 const usersData = await Promise.all(promises);
                 console.log(usersData)
 
-                // Обновляем состояние с данными
                 setData(data.map((order, index) => {
                     return {
                         ...order,
-                        userData: usersData[index].data, // Добавляем информацию о пользователе в объект заказа
+                        userData: usersData[index].data, 
                     };
                 }));
             })
@@ -82,6 +79,10 @@ const Orders = () => {
                 console.error(err);
             });
     }, []);
+
+    const handleCheckboxChange = (e) => {
+        setQuery(e.target.value)
+    }
 
     return (
         <div className="orders">
@@ -105,6 +106,17 @@ const Orders = () => {
                         </div>
                     ))
                 }
+            </div>
+            <div className="order-cards">
+                <form>
+                    <input
+                        type="checkbox"
+                        id="FREE"
+                        value="FREE"
+                        onChange={handleCheckboxChange}
+                    />
+                    <label htmlFor="FREE">FREE</label>
+                </form>
             </div>
         </div>
     )
