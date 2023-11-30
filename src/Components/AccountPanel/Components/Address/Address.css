@@ -14,6 +14,83 @@
     font-weight: normal;
 }
 
-.order-card {
-    
+.order-cards-self {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 85%;
+    margin-top: 5%;
+}
+
+.cardOrderSelf {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 10px 20px;
+    border-radius: 20px;
+    min-height: 10vh;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    transition: .2s;
+}
+
+.cardOrderSelf:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.cardOrderSelf h2,
+.cardOrderSelf h3,
+.cardOrderSelf p {
+    margin: 0;
+    padding: 0;
+    font-weight: normal;
+}
+
+.cardOrderSelf h2 {
+    margin: 2% 0;
+    font-size: 100%;
+}
+
+.cardOrderSelf h3 {
+    margin-bottom: 1%;
+    font-size: 100%;
+}
+
+.cardOrderSelf p {
+    margin: 2% 0;
+}
+
+
+.goods-in-order-self {
+    width: 100%;
+    border: none;
+    margin-bottom: 10px;
+    margin-top: 1%;
+    border-collapse: separate;
+}
+
+.goods-in-order-self thead tr {
+    border-radius: 20px;
+}
+
+.goods-in-order-self thead th {
+    font-weight: bold;
+    text-align: left;
+    border: none;
+    padding: 10px 15px;
+    background: rgba(255, 255, 255, 0.302);
+    font-size: 14px;
+}
+
+.goods-in-order-self tbody td {
+    text-align: left;
+    padding: 10px 15px;
+}
+
+.goods-in-order-self tbody tr {
+    transition: .3s;
+    cursor: pointer;
+}
+
+.goods-in-order-self tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.1);
 }
