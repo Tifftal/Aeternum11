@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import './Orders.css'
+import React, { useState, useEffect } from "react";
+import './Orders.css';
 import OrderDetail from "./OrderDetails/OrderDetails";
 import { URI } from "../../../api/config";
 import api from "../../../api/axiosConfig";
@@ -9,6 +9,49 @@ const Orders = () => {
     const [selectedOrder, setSelectedOrder] = useState(null);
     const [data, setData] = useState([]);
     const [query, setQuery] = useState('');
+    const [selectedStatus, setSelectedStatus] = useState("");
+
+    const status = ["FREE", "DENIED", "ACCESSED"]
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await api.get(`${URI}/application/admin`, {
+                    headers: {
+                        Authorization: `Bearer ${window.localStorage.getItem("jwtToken")}`,
+                    },
+                });
+
+                console.log("Orders Response:", response.data.content);
+
+                const data = response.data.content;
+
+                const promises = data.map(order => {
+                    return api.get(`${URI}/user/${order.userId}`, {
+                        headers: {
+                            Authorization: `Bearer ${window.localStorage.getItem("jwtToken")}`,
+                        },
+                    });
+                });
+
+                const usersData = await Promise.all(promises);
+                console.log("Users Data:", usersData);
+
+                setData(
+                    data.map((order, index) => {
+                        return {
+                            ...order,
+                            userData: usersData[index].data,
+                        };
+                    })
+                );
+            } catch (err) {
+                console.error(err);
+            }
+        };
+
+        fetchData();
+    }, []); // Пустой массив зависимостей указывает на то, что эффект должен выполняться только при монтировании компонента
 
     const handleOpenNote = (order) => {
         setIsOpen(true);
@@ -47,42 +90,67 @@ const Orders = () => {
         return `${day} ${months[month]} ${year} ${hours}:${formattedMinutes}`;
     };
 
-    useEffect(() => {
-        api.get(`${URI}/application/admin?status=${query}`, {
-            headers: {
-                Authorization: `Bearer ${window.localStorage.getItem("jwtToken")}`,
-            },
-        })
-            .then(async response => {
-                console.log(response.data.content)
-                const data = response.data.content;
-
-                const promises = data.map(order => {
-                    return api.get(`${URI}/user/${order.userId}`, {
-                        headers: {
-                            Authorization: `Bearer ${window.localStorage.getItem("jwtToken")}`,
-                        },
-                    });
-                });
-
-                const usersData = await Promise.all(promises);
-                console.log(usersData)
-
-                setData(data.map((order, index) => {
-                    return {
-                        ...order,
-                        userData: usersData[index].data, 
-                    };
-                }));
-            })
-            .catch(err => {
-                console.error(err);
-            });
-    }, []);
 
     const handleCheckboxChange = (e) => {
-        setQuery(e.target.value)
-    }
+        const value = e.target.value;
+        setSelectedStatus((prev) => (prev === value ? "" : value));
+    };
+
+    const filteredData = data.filter((order) => {
+        if (selectedStatus.length > 0) {
+            return order.status === selectedStatus;
+        }
+        return true; // Если фильтр не установлен, отображаем все заказы
+    });
+
+    const getStatusColor = (status) => {
+        switch (status) {
+            case "FREE":
+                return "RoyalBlue";
+            case "DENIED":
+                return "FireBrick";
+            case "ACCESSED":
+                return "OliveDrab";
+            default:
+                return "gray"; // Цвет по умолчанию или любой другой цвет
+        }
+    };
+
+    const handleOrderUpdate = async () => {
+        try {
+            const response = await api.get(`${URI}/application/admin`, {
+                headers: {
+                    Authorization: `Bearer ${window.localStorage.getItem("jwtToken")}`,
+                },
+            });
+
+            console.log("Orders Response:", response.data.content);
+
+            const data = response.data.content;
+
+            const promises = data.map((order) => {
+                return api.get(`${URI}/user/${order.userId}`, {
+                    headers: {
+                        Authorization: `Bearer ${window.localStorage.getItem("jwtToken")}`,
+                    },
+                });
+            });
+
+            const usersData = await Promise.all(promises);
+            console.log("Users Data:", usersData);
+
+            setData(
+                data.map((order, index) => {
+                    return {
+                        ...order,
+                        userData: usersData[index].data,
+                    };
+                })
+            );
+        } catch (err) {
+            console.error(err);
+        }
+    };
 
     return (
         <div className="orders">
@@ -93,33 +161,42 @@ const Orders = () => {
                     width="50vw"
                     order={selectedOrder}
                     formatTime={formatTime}
+                    onOrderUpdate={handleOrderUpdate}
                 />
             )}
             <div className="order-cards">
-                {
-                    data.map(order => (
-                        <div className="cardOrder" onClick={() => handleOpenNote(order)} key={order.id}>
-                            <h2 className="font-gramatika-bold">Заказ №{order.id}  <b style={{ color: "dodgerblue", marginLeft: "10px" }}>{order.status}</b></h2>
-                            <h3> <b>Дата заказа:</b>  {formatTime(order.time)}</h3>
-                            <p>ФИО: {order.userId && order.userData && `${order.userData.firstName} ${order.userData.lastName}`}</p>
-                            <p>Адрес:</p>
+                {filteredData.map((order) => (
+                    <div className="cardOrder" onClick={() => handleOpenNote(order)} key={order.id}>
+                        <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center", width: "100%" }}>
+                            <h2 className="font-gramatika-bold">Заказ №{order.id}   <b style={{ color: getStatusColor(order.status), marginLeft: "10px" }}>{order.status}</b></h2>
+                            <p style={{ color: "gray" }}>{order.adminComment}</p>
                         </div>
-                    ))
-                }
+                        <h3> <b>Дата заказа:</b>  {formatTime(order.time)}</h3>
+                        <p>ФИО: {order.userId && order.userData && `${order.userData.firstName} ${order.userData.lastName}`}</p>
+                        <p>Адрес:</p>
+                    </div>
+                ))}
             </div>
-            <div className="order-cards">
-                <form>
-                    <input
-                        type="checkbox"
-                        id="FREE"
-                        value="FREE"
-                        onChange={handleCheckboxChange}
-                    />
-                    <label htmlFor="FREE">FREE</label>
-                </form>
-            </div>
+            <form className="order-filter">
+                {status.map((status) => (
+                    <div key={status} style={{ marginBottom: "5px" }}>
+                        <input
+                            type="radio"
+                            id={status}
+                            value={status}
+                            checked={selectedStatus === status}
+                            onChange={handleCheckboxChange}
+                            style={{ marginRight: "7px", transform: "scale(1.2)" }}
+                        />
+                        <label htmlFor={status}>{status}</label>
+                    </div>
+                ))}
+                <button className='filterBtn' type="button" onClick={() => setSelectedStatus('')}>
+                    Сбросить
+                </button>
+            </form>
         </div>
-    )
-}
+    );
+};
 
 export default Orders;

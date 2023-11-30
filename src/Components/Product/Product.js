@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { useParams } from 'react-router-dom';
 import { URI } from "../../api/config";
 import api from "../../api/axiosConfig";
+import { toBeChecked } from "@testing-library/jest-dom/dist/matchers";
 
 const Product = () => {
     const [t] = useTranslation("global");
@@ -85,7 +86,8 @@ const Product = () => {
                 console.log("SIZES", response.data.colors)
                 // Use map to extract sizes and set them in selectedSize
                 const allSizes = response.data.sizes.map(size => size.size);
-                setSelectedSize(allSizes);
+                setSelectedColorSizes(response.data.colors[0].sizes);
+                setSelectedColor(response.data.colors[0].name);
                 console.log(allSizes);
             })
             .catch(err => {

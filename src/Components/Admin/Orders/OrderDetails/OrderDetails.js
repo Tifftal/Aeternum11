@@ -4,12 +4,11 @@ import { useTranslation } from 'react-i18next';
 import api from '../../../../api/axiosConfig';
 import { URI } from '../../../../api/config';
 
-const OrderDetail = ({ onClose, width, order, formatTime }) => {
+const OrderDetail = ({ onClose, width, order, formatTime, onOrderUpdate }) => {
     const [t] = useTranslation('global');
     const [goodsData, setGoodsData] = useState([]);
 
     useEffect(() => {
-        // Функция для загрузки данных о товарах по id
         const fetchGoodsData = async () => {
             const promises = order.items.map(good => {
                 return api.get(`${URI}/good/${good.id}`)
@@ -27,6 +26,41 @@ const OrderDetail = ({ onClose, width, order, formatTime }) => {
         fetchGoodsData();
     }, [order.items]);
 
+    const getStatusColor = (status) => {
+        switch (status) {
+            case "FREE":
+                return "RoyalBlue";
+            case "DENIED":
+                return "FireBrick";
+            case "ACCESSED":
+                return "OliveDrab";
+            default:
+                return "gray"; // Цвет по умолчанию или любой другой цвет
+        }
+    };
+
+    const ChangeStatus = (comment, status) => {
+        api.put(`${URI}/application/${order.id}`,
+            {
+                adminComment: comment,
+                status: status
+            },
+            {
+                headers: {
+                    Authorization: `Bearer ${window.localStorage.getItem("jwtToken")}`,
+                },
+            }
+        )
+            .then(response => {
+                console.log(response);
+                onClose();
+                onOrderUpdate();
+            })
+            .catch(err => {
+                console.error(err);
+            });
+    }
+
 
     return (
         <div className="modal">
@@ -36,8 +70,40 @@ const OrderDetail = ({ onClose, width, order, formatTime }) => {
                     <button className='close' onClick={onClose}><img src='../../IMG/icons8-крестик-78.png' alt='close' /></button>
                 </div>
                 <div className='order-info'>
-                    <h2 className="font-gramatika-bold">Заказ №{order.id}  <b style={{ color: "dodgerblue", marginLeft: "10px" }}>{order.status}</b></h2>
+                    <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center", width: "100%" }}>
+                        <h2 className="font-gramatika-bold">Заказ №{order.id}  <b style={{ color: getStatusColor(order.status), marginLeft: "10px", backgroundColor: "white", padding: "2px 6px", borderRadius: "3px" }}>{order.status}</b></h2>
+                        <p style={{ color: "WhiteSmoke", display: "flex", flexDirection: "row", alignItems: "center" }}>Комментарий админа: {order.adminComment}</p>
+                    </div>
                     <h3> <b>Дата заказа:</b>  {formatTime(order.time)}</h3>
+                    {order.status === "FREE" &&
+                        <div className='statusBtn'>
+                            <button
+                                style={{ backgroundColor: "FireBrick" }}
+                                onClick={() => {
+                                    const reason = window.prompt("Комментарий админа:");
+                                    if (reason) {
+                                        console.log("Коммент админа:", reason);
+                                        ChangeStatus(reason, "DENIED");
+                                    } else {
+                                        console.log("Отклонение отменено");
+                                    }
+                                }}
+                            >
+                                Отклонить</button>
+                            <button
+                                style={{ backgroundColor: "OliveDrab" }}
+                                onClick={() => {
+                                    const reason = window.prompt("Комментарий админа:");
+                                    if (reason) {
+                                        console.log("Коммент админа:", reason);
+                                        ChangeStatus(reason, "ACCESSED");
+                                    } else {
+                                        console.log("Подтверждение отменено");
+                                    }
+                                }}
+                            >
+                                Подтвердить</button>
+                        </div>}
                     <p>ФИО: {order.userId && order.userData && `${order.userData.firstName} ${order.userData.lastName}`}</p>
                     <p>Телефон: {order.userId && order.userData && `${order.userData.phone}`}</p>
                     <div className='address-in-order'>
@@ -58,10 +124,7 @@ const OrderDetail = ({ onClose, width, order, formatTime }) => {
                         </thead>
                         <tbody>
                             {order.items.map((good, index) => {
-                                console.log(goodsData[index])
                                 const goodData = goodsData[index] || {}; // Данные о товаре по умолчанию пустые
-
-                               console.log(goodData)
 
                                 return (
                                     <tr key={index}>

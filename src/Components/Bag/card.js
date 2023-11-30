@@ -10,7 +10,9 @@ const Card = ({ good, onDelete }) => {
   const [t] = useTranslation("global");
   const [name, setName] = useState("");
   const [size, setSize] = useState("");
+  const [color, setColor] = useState("");
   const [cost, setCost] = useState(0);
+  const [amount, setAmount] = useState(0);
 
   useEffect(() => {
     api
@@ -21,13 +23,21 @@ const Card = ({ good, onDelete }) => {
       })
       .then((response) => {
         const data = response.data;
+        console.log(data);
+        console.log(good);
         setCost(data.cost);
         setName(data.name);
-        data.sizes.map((size, index) => {
-          if (size.id === good.sizeId) {
-            setSize(size.size);
-          }
-        });
+        setAmount(good.amount);
+        api.get(`${URI}/size/${good.sizeId}`, {
+          headers: {
+            Authorization: `Bearer ${window.localStorage.getItem("jwtToken")}`,
+          },
+        })
+          .then((response) => {
+            console.log(response.data)
+            setSize(response.data.size)
+            setColor(response.data.color.name)
+          })
       });
   }, []);
 
@@ -53,19 +63,19 @@ const Card = ({ good, onDelete }) => {
   return (
     <div className="sale-card">
       <div className="photo-sale">
-        <img src="../../IMG/timothy-dykes-xhuaL95bQ8Q-unsplash.jpg" alt="Product" />
+        <img src="../../IMG/TEST.png" alt="Product" />
       </div>
       <div className="content-sale">
         <div className="title-sale">
-          <h1>{name}</h1>
+          <h1 className="font-gramatika-bold">{name}</h1>
           <button onClick={() => handleDeleteCard(good.id)}>Удалить</button>
         </div>
         <div className="size-colour">
           <h2>{t("card.size")} {size}</h2>
-          <h2>{t("card.colour")}</h2>
+          <h2>{t("card.colour")} {color}</h2>
         </div>
         <div className="price">
-          <h3>Цена: ₽ {cost}</h3>
+          <h3>Цена: {cost} ₽ </h3>
         </div>
       </div>
     </div>
