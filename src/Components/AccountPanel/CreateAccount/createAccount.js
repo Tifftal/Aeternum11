@@ -100,7 +100,7 @@ const CreateAccount = () => {
 
         setErrors(newErrors);
 
-        if (!errors.name || !errors.surname || !errors.gender || !errors.birth || !errors.city || !errors.phone || !errors.email || !errors.password || !errors.password || !errors.rpassword || !errors.matchPasswords || !isSended) {
+        if (!errors.name && !errors.surname && !errors.gender && !errors.birth && !errors.city && !errors.phone && !errors.email && !errors.password && !errors.password && !errors.rpassword && !errors.matchPasswords && !isSended) {
             axios.post(`${URI}/registration`,
                 {
                     email: email,
@@ -128,7 +128,9 @@ const CreateAccount = () => {
                                     setSended(true);
                                 }
                             })
-                        setSended(true);
+                            .catch(error => {
+                                console.error(error);
+                            })
                     }
                 })
                 .catch(error => {
@@ -285,8 +287,12 @@ const CreateAccount = () => {
                 />
                 <label>Подписаться на новости</label>
             </div>
+            {!isSended ? (
+                <span className="BtnAc"><button type="submit" className="font-gramatika-bold">Создать аккаунт</button></span>
+            ) : (
+                <span className="BtnAc"><button type="submit" className="font-gramatika-bold">Отправить код</button></span>
+            )}
 
-            <span className="BtnAc"><button type="submit" className="font-gramatika-bold">Создать аккаунт</button></span>
         </form>
     )
 }
