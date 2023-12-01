@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import "./Product.css";
 import { useParams } from 'react-router-dom';
-import { URI } from "../../api/config";
+import { Minio, URI } from "../../api/config";
 import api from "../../api/axiosConfig";
 import LoadingText from "../Loader/Loader";
+import Alert from "../Alert/Alert";
 
 const Product = () => {
     const [selectedImage, setSelectedImage] = useState(null);
@@ -11,6 +12,8 @@ const Product = () => {
     const [selectedSize, setSelectedSize] = useState('');
     const [selectedColorSizes, setSelectedColorSizes] = useState([]);
     const [error, setError] = useState(false);
+    const [showAlert, setShowAlert] = useState(false);
+    const [showAlertWishlist, setShowAlertWishlist] = useState(false);
 
     const [data, setData] = useState({});
     // eslint-disable-next-line
@@ -55,6 +58,9 @@ const Product = () => {
                         "Authorization": `Bearer ${window.localStorage.getItem("jwtToken")}`
                     }
                 })
+                    .then(() => {
+                        setShowAlert(true);
+                    })
                     .catch(error => {
                         console.error(error);
                     })
@@ -69,7 +75,11 @@ const Product = () => {
             headers: {
                 "Authorization": `Bearer ${window.localStorage.getItem("jwtToken")}`
             }
-        });
+        })
+            .then(() => {
+                setShowAlertWishlist(true);
+            })
+            .catch(error => console.error(error))
     }
 
     useEffect(() => {
@@ -88,11 +98,8 @@ const Product = () => {
                 const photos = [];
                 const fetchPhoto = async (photo) => {
                     try {
-                        const response = await api.get(`${URI}/photo/${photo.id}`, {
-                            responseType: 'arraybuffer',
-                        });
-                        const blob = new Blob([response.data], { type: 'image/jpeg' });
-                        const imageUrl = URL.createObjectURL(blob);
+
+                        const imageUrl = `${Minio}/${photo.path}`
 
                         photos.push({
                             position: photo.position,
@@ -127,19 +134,19 @@ const Product = () => {
     return (
         <div className="product">
             {window.innerWidth > 768 ? (
-            <div className="scroll-panel">
-                {photos.sort((a, b) => a.position - b.position)
-                    .map((photo) => (
-                        // eslint-disable-next-line
-                        <img
-                            onClick={() => { setSelectedImage(photo.image) }}
-                            src={`${photo.image}`}
-                            alt={`Image ${photo.id}`}
-                        />
-                    ))
-                }
-            </div>
-            ) : ( null )}
+                <div className="scroll-panel">
+                    {photos.sort((a, b) => a.position - b.position)
+                        .map((photo) => (
+                            // eslint-disable-next-line
+                            <img
+                                onClick={() => { setSelectedImage(photo.image) }}
+                                src={`${photo.image}`}
+                                alt={`Image ${photo.id}`}
+                            />
+                        ))
+                    }
+                </div>
+            ) : (null)}
             <div className="product-photo">
                 {selectedImage === null ? (
                     <LoadingText />
@@ -149,18 +156,18 @@ const Product = () => {
                 }
             </div>
             {window.innerWidth <= 768 ? (
-            <div className="scroll-panel">
-                {photos.sort((a, b) => a.position - b.position)
-                    .map((photo) => (
-                        // eslint-disable-next-line
-                        <img
-                            onClick={() => { setSelectedImage(photo.image) }}
-                            src={`${photo.image}`}
-                            alt={`Image ${photo.id}`}
-                        />
-                    ))
-                }
-            </div>
+                <div className="scroll-panel">
+                    {photos.sort((a, b) => a.position - b.position)
+                        .map((photo) => (
+                            // eslint-disable-next-line
+                            <img
+                                onClick={() => { setSelectedImage(photo.image) }}
+                                src={`${photo.image}`}
+                                alt={`Image ${photo.id}`}
+                            />
+                        ))
+                    }
+                </div>
             ) : (null)}
             <div className="product-info">
                 {/* <h2 className="font-gramatika-bold">{category.name}</h2> */}
@@ -212,6 +219,8 @@ const Product = () => {
                 <h5 className="compound" style={{ marginBottom: "20px" }}>{data.recommendations}</h5>
                 <h5 className="compound">{data.onModel}</h5>
             </div>
+            {showAlert && <Alert message="Товар добавлен в корзину!" />}
+            {showAlertWishlist && <Alert message="Товар добавлен в вишлист!" />}
         </div>
     );
 };

@@ -1,39 +1,41 @@
 import React, { useEffect, useState } from "react";
-import { URI } from "../../api/config";
+import { Minio, URI } from "../../api/config";
 import api from "../../api/axiosConfig";
 
 const AssortmentCard = ({ data }) => {
     const [photo, setPhoto] = useState('')
     //eslint-disable-next-line
-    useEffect(async() => {
-        try {
-            const response = await api.get(`${URI}/good/${data.id}`);
-            const good = response.data;
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await api.get(`${URI}/good/${data.id}`);
+                const good = response.data;
 
-            const fetchPhoto = async (photo) => {
-                try {
-                    const response = await api.get(`${URI}/photo/${photo.id}`, {
-                        responseType: 'arraybuffer', // Important: set responseType to arraybuffer
-                    });
+                const fetchPhoto = (photo) => {
+                    try {
+                        // Assuming that photo.path contains the correct path to the image
+                        const imageURL = `${Minio}/${photo.path}`;
+                        
+                        // Set the imageURL to the state
+                        setPhoto(imageURL);
+                    } catch (error) {
+                        console.error(error);
+                    }
+                };
 
-                    const blob = new Blob([response.data], {type: 'image/jpeg'})
-                    const imageURL = URL.createObjectURL(blob);
-                    setPhoto(imageURL);
-                }
-                catch (error) {
-                    console.error(error);
-                }
+                // Sort the photos and get the first photo
+                const sortedPhotos = good.photos.sort((a, b) => a.position - b.position);
+                const firstPhoto = sortedPhotos[0];
+
+                // Fetch the photo
+                await fetchPhoto(firstPhoto);
+            } catch (error) {
+                console.error(error);
             }
-            
-            const photo = good.photos.sort((a, b) => a.position - b.position)
-            const firstPhoto = photo[0]
-            await fetchPhoto(firstPhoto)
-        }
-        catch(error) {
-            console.error(error);
-        }
-    //eslint-disable-next-line
-    },[])
+        };
+
+        fetchData();
+    }, [data.id]);
 
     return (
         <div>
