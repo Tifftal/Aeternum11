@@ -51,8 +51,8 @@ const BWBtn = () => {
         WishBtn: 'actBtn',
     });
 
-    const HandleFloatBtn = (e) => {
-        if (classes.BagBtn === 'defBtn' && classes.WishBtn === 'actBtn') {
+    const HandleFloatBtn = (isOpen = true) => {
+        if (!isOpen) {
             setClasses({
                 BagBtn: 'actBtn',
                 WishBtn: 'defBtn',
@@ -60,7 +60,7 @@ const BWBtn = () => {
             window.localStorage.setItem("bw", "bag")
             HandleOpenBag()
             HandleCloseWishlist()
-        } else {
+        } else if (isOpen) {
             setClasses({
                 BagBtn: 'defBtn',
                 WishBtn: 'actBtn',
@@ -75,8 +75,8 @@ const BWBtn = () => {
         <div className="bwBtn">
 
             <div className="floating-btn">
-                <button onClick={HandleFloatBtn} className={classes.BagBtn}>Корзина</button>
-                <button onClick={HandleFloatBtn} className={classes.WishBtn}>Вишлист</button>
+                <button onClick={() => {HandleFloatBtn(false)}} className={classes.BagBtn}>Корзина</button>
+                <button onClick={() => {HandleFloatBtn(true)}} className={classes.WishBtn}>Вишлист</button>
             </div>
             {isOpenBag && (
                 <Bag onClose={HandleCloseBag} setIsOpen={setIsOpenBag} />

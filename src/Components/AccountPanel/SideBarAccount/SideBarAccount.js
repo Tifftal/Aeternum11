@@ -37,9 +37,10 @@ const SideBarAccount = (props) => {
                 <h1 className="font-gramatika-bold">аккаунт</h1>
                 <h2>{props.user.firstName} {props.user.lastName}</h2>
                 <div className={clasProfile}>
-                    <button className="default" onClick={HandleDropMenuProfile}><img src="../../IMG/icons8-user-96.png" alt="profile" />Профиль</button>
+                    <button className="default" style={{cursor: "pointer"}} onClick={HandleDropMenuProfile}><img src="../../IMG/icons8-user-96.png" alt="profile" />Профиль</button>
                     <div className="account-drop">
                         <button
+                        style={{cursor: "pointer"}}
                             className={props.tab === "Personal" ? "active_drop" : "default_drop"}
                             onClick={() => { props.setTab("Personal") }}
                         >
@@ -54,9 +55,10 @@ const SideBarAccount = (props) => {
                     </div>
                 </div>
                 <div className={clasOrder}>
-                    <button className="default" onClick={HandleDropMenuOrder}><img src="../../IMG/icons8-картонная-коробка-100.png" alt="orders" />Заказы</button>
+                    <button className="default" style={{cursor: "pointer"}} onClick={HandleDropMenuOrder}><img src="../../IMG/icons8-картонная-коробка-100.png" alt="orders" />Заказы</button>
                     <div className="account-drop">
                         <button
+                        style={{cursor: "pointer"}}
                             className={props.tab === "Order" ? "active_drop" : "default_drop"}
                             onClick={() => { props.setTab("Order") }}
                         >

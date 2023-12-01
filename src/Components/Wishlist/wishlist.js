@@ -7,7 +7,7 @@ import { URI } from "../../api/config";
 // ... (other imports)
 
 const Wishlist = () => {
-    const [wishlist, setWishlist] = useState();
+    const [wishlist, setWishlist] = useState([]);
 
     useEffect(() => {
         api.get(`${URI}/user/me`, {
@@ -17,7 +17,7 @@ const Wishlist = () => {
         })
             .then(response => {
                 const wishes = [...response.data.wishlist];
-                
+
                 let goodsInBag = [];
                 // eslint-disable-next-line
                 wishes.map(wish => {
@@ -28,7 +28,7 @@ const Wishlist = () => {
                     })
                         .then(response => {
                             goodsInBag.push(response.data);
-                
+
                             setWishlist(goodsInBag);
                         })
                         .catch(error => {
@@ -44,7 +44,7 @@ const Wishlist = () => {
     const handleRemoveFromWishlist = (wishId) => {
         // Update the state by removing the deleted item
         setWishlist((prevWishlist) => prevWishlist.filter((wish) => wish.id !== wishId));
-        
+
 
         // Send API request to remove from the server (optional)
         api
@@ -57,7 +57,7 @@ const Wishlist = () => {
                 },
             })
             .then(() => {
-                
+
             })
             .catch((error) => {
                 console.error(error);
@@ -67,11 +67,18 @@ const Wishlist = () => {
 
     return (
         <div className="wishlist">
+        {wishlist.length === 0 ? (
+            <div className="empty-bag">
+                <p>Ваша корзина пуста</p>
+                <a href="/catalog"><button className="font-gramatika-bold">Перейти в каталог</button></a>
+            </div>
+        ) : (
             <div className="menu_wishlist">
                 {wishlist?.map(wish => (
                     <WishlistCard key={wish.id} data={wish} onRemove={handleRemoveFromWishlist} />
                 ))}
             </div>
+        )}
         </div>
     )
 }

@@ -172,6 +172,7 @@ const Orders = () => {
                         </div>
                         <h3> <b>Дата заказа:</b>  {formatTime(order.time)}</h3>
                         <p>ФИО: {order.userId && order.userData && `${order.userData.firstName} ${order.userData.lastName}`}</p>
+                        
                         <p>Адрес: {order.userId && order.userData && `${order.clientComment}`}</p>
                     </div>
                 ))}

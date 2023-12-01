@@ -4,7 +4,7 @@ import api from "../../api/axiosConfig";
 import { Minio, URI } from "../../api/config";
 import { Button, Card } from 'react-bootstrap';
 
-const CardBag = ({ good, onDelete, onUpdateTotalAdd, onUpdateTotalRemove }) => {
+const CardBag = ({ good, onDelete, onUpdateTotalAdd, onUpdateTotalRemove, myBag }) => {
   const [name, setName] = useState("");
   const [size, setSize] = useState("");
   const [color, setColor] = useState("");
@@ -80,7 +80,6 @@ const CardBag = ({ good, onDelete, onUpdateTotalAdd, onUpdateTotalRemove }) => {
         },
       })
       .then(() => {
-
         onDelete(bagId); // Notify the parent component about the delete action
       })
       .catch((error) => {
@@ -170,7 +169,7 @@ const CardBag = ({ good, onDelete, onUpdateTotalAdd, onUpdateTotalRemove }) => {
             <div style={{ width: "100%" }}>
               <Card.Title className="font-gramatika-bold">
                 {name}
-                <Button className="deleteBtn" onClick={() => { handleDeleteCard(sizeId) }}>Удалить</Button>
+                <Button className="deleteBtn" type="submit" onClick={() => { handleDeleteCard(sizeId) }}>Удалить</Button>
               </Card.Title>
               <Card.Text style={{ marginTop: "10px" }} className="text-card-bag">
                 Размер: {size}
