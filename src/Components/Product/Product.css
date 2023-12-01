@@ -201,7 +201,7 @@
         height: auto;
         /* justify-content: center; */
         overflow-x: scroll;
-        margin-top: 10px;
+        margin-top: 20px;
         gap: 10px;
         margin-left: auto;
         margin-right: auto;
@@ -220,9 +220,25 @@
         width: 75%;
     }
 
-    .chooseColor button {
-        width: 15px;
-        height: 15px;
+    .product-info p{
+        margin-bottom: 30px;
+        font-size: 18px;
+    }
+    
+
+
+    .chooseColor {
+        margin: 40px 0;
+    }
+
+    .chooseColor div {
+        width: 25px;
+        height: 25px;
+    }
+
+    .addToBagBtn {
+        color: black;
+        background-color: white;
     }
 }
 

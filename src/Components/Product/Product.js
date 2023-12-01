@@ -238,21 +238,6 @@ const Product = () => {
                     ))}
                 </div>
                 <h3 className="color">{selectedColor}</h3>
-                {/* <div class="__select" data-state="">
-                    <div class="__select__title" data-default="">Выбрать размер</div>
-                    <div class="__select__content">
-                        <input id="singleSelect0" class="__select__input" type="radio" name="singleSelect" checked />
-                        <label for="singleSelect0" class="__select__label">Option 0</label>
-                        <input id="singleSelect1" class="__select__input" type="radio" name="singleSelect" />
-                        <label for="singleSelect1" class="__select__label">Option 1</label>
-                        <input id="singleSelect2" class="__select__input" type="radio" name="singleSelect" disabled />
-                        <label for="singleSelect2" class="__select__label">Option 2 (disabled)</label>
-                        <input id="singleSelect3" class="__select__input" type="radio" name="singleSelect" />
-                        <label for="singleSelect3" class="__select__label">Option 3</label>
-                        <input id="singleSelect4" class="__select__input" type="radio" name="singleSelect" />
-                        <label for="singleSelect4" class="__select__label">Option 4</label>
-                    </div>
-                </div> */}
                 <select className="productSize" value={selectedSize} onChange={handleSizeChange}>
                     <option value="" disabled hidden>
                         Выберите размер
