@@ -7,7 +7,6 @@ const First = () => {
 
     return (
         <div className="first">
-
             <div className="text">
                 <p>
                     Aeternum Eleven – экологически сознательный бренд доступной роскоши.

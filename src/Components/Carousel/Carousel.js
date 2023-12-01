@@ -53,13 +53,12 @@ export const Carousel = ({ items }) => {
                 height: "40px",
                 width: "40px",
                 borderRadius: "10px",
-                backgroundColor: "rgba(255,255,255,0.26)",
                 border: "none",
                 color: "white",
                 fontSize: "1.25rem"
             }}
         >
-          «
+          &lt;
         </button>
         <button className="next" onClick={showNextSlide}
             style={{
@@ -69,13 +68,12 @@ export const Carousel = ({ items }) => {
                 height: "40px",
                 width: "40px",
                 borderRadius: "10px",
-                backgroundColor: "rgba(255,255,255,0.26)",
                 border: "none",
                 color: "white",
                 fontSize: "1.25rem"
             }}
         >
-          »
+          &gt;
         </button>
       </div>
     </div>
