@@ -1,8 +1,7 @@
-import { t } from "i18next";
-import React, { useState } from "react";
+
+import React, { useState, useEffect } from "react";
 import Bag from "../Bag/bag";
-import DropUn from "../Navbar/DropDownMenu/dropUnisex";
-import DropW from "../Navbar/DropDownMenu/dropWomen";
+
 import Wishlist from "../Wishlist/wishlist";
 import './bwBtn.css';
 import { useTranslation } from "react-i18next";
@@ -13,6 +12,24 @@ const BWBtn = () => {
     const [isOpenBag, setIsOpenBag] = useState(false);
     const [isOpenWishlist, setIsOpenWishlist] = useState(true);
 
+    useEffect(() => {
+        if (window.localStorage.getItem("bw") === "bag") {
+            setIsOpenBag(true);
+            setIsOpenWishlist(false);
+            setClasses({
+                BagBtn: 'actBtn',
+                WishBtn: 'defBtn',
+            })
+        } else {
+            setIsOpenBag(false);
+            setIsOpenWishlist(true);
+            setClasses({
+                WishBtn: 'actBtn',
+                BagBtn: 'defBtn',
+            })
+        }
+    }, [])
+    
     const HandleOpenBag = () => {
         setIsOpenBag(true)
     };
@@ -40,6 +57,7 @@ const BWBtn = () => {
                 BagBtn: 'actBtn',
                 WishBtn: 'defBtn',
             })
+            window.localStorage.setItem("bw", "bag")
             HandleOpenBag()
             HandleCloseWishlist()
         } else {
@@ -47,6 +65,7 @@ const BWBtn = () => {
                 BagBtn: 'defBtn',
                 WishBtn: 'actBtn',
             })
+            window.localStorage.setItem("bw", "wishlist")
             HandleCloseBag()
             HandleOpenWishlist()
         }

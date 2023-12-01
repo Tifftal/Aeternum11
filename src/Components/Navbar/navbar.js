@@ -65,12 +65,12 @@ const Navbar = () => {
                 {jwtToken ? (
                     <>
                         <a href="/bw">
-                            <button className="ordinary">
+                            <button className="ordinary" onClick={() => {window.localStorage.setItem("bw", "wishlist")}}>
                                 Вишлист
                             </button>
                         </a>
                         <a href="/bw">
-                            <button className="ordinary">
+                            <button className="ordinary" onClick={() => {window.localStorage.setItem("bw", "bag")}}>
                                 Корзина
                             </button>
                         </a>
