@@ -7,11 +7,11 @@ const MenuCard = ({ data }) => {
 
   return (
     <div className="menu-card">
-      <a href={data.a.href} style={ window.innerWidth < 768 ? {
+      <a href={data.a.href} style={window.innerWidth < 768 ? {
         padding: "20px 0 20px 0"
       } : {
-        
-      }}><img src={data.img.src}/>{data.a.content}</a>
+
+      }}><img src={data.img.src} style={{ backgroundColor: "white" }} />{data.a.content}</a>
     </div>
   );
 };

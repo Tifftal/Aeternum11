@@ -23,7 +23,7 @@ const Goods = () => {
 
     const [inputGroupsColor, setInputGroupsColor] = useState(1);
     const [inputGroupsSize, setInputGroupsSize] = useState([]);
-    
+
     const [currentGoodId, setCurrentGoodId] = useState(null);
     const [colorFormData, setColorFormData] = useState([]);
     const [position, setPosition] = useState(0);
@@ -47,14 +47,14 @@ const Goods = () => {
         try {
             const response = await api.get(`${URI}/good/${goodId}`);
             const good = response.data;
-            
+
             // Assuming you are using async/await, make the function async
             const fetchPhoto = async (photo) => {
                 try {
                     const response = await api.get(`${URI}/photo/${photo.id}`, {
                         responseType: 'arraybuffer', // Important: set responseType to arraybuffer
                     });
-                    
+
                     const blob = new Blob([response.data], { type: 'image/jpeg' }); // Adjust type based on your file type
                     const imageUrl = URL.createObjectURL(blob);
 
@@ -123,7 +123,7 @@ const Goods = () => {
             }
         })
             .then(response => {
-                
+
                 // Update local state by removing the deleted photo
                 setPhotosById(prevPhotos => prevPhotos.filter(photo => photo.id !== photoId));
             })
@@ -309,7 +309,7 @@ const Goods = () => {
                     }
                 )
                 .then(() => {
-                    
+
                     let newCount = count;
                     newCount++
                     setCount(newCount)
@@ -416,7 +416,7 @@ const Goods = () => {
             ]
         }));
 
-        
+
 
         api.put(
             `${URI}/good/${currentGoodId}/colors`,
@@ -428,7 +428,7 @@ const Goods = () => {
             }
         )
             .then(() => {
-                
+
                 let newCount = count;
                 newCount++
                 setCount(newCount)
@@ -487,7 +487,7 @@ const Goods = () => {
 
         UpdateData();
 
-        
+
         HandleCloseEditPopupSize();
 
     };
@@ -541,7 +541,9 @@ const Goods = () => {
                         {selectedGood.colors.map((color, colorIndex) => (
                             <div key={colorIndex} className="color-div">
                                 <div className="color-info">
-                                    <p style={{ backgroundColor: color.code }}>{color.name}</p>
+                                    <p style={{ backgroundColor: color.code, color: color.code === 'white' ? 'black' : 'inherit' }}>
+                                        {color.name}
+                                    </p>
                                     <div className="size-block">
                                         {Array.from({ length: inputGroupsSize[colorIndex] }).map((_, index) => (
                                             <div key={index}>
@@ -555,7 +557,7 @@ const Goods = () => {
                                                         />
                                                     </div>
                                                     <div className="input-size">
-                                                        <label htmlFor={`sizeStatus${colorIndex}-${index}`}>Статус размер:</label>
+                                                        <label htmlFor={`sizeStatus${colorIndex}-${index}`}>Статус размера:</label>
                                                         <select
                                                             id={`sizeStatus${colorIndex}-${index}`}
                                                             className="input-edit-size-label"

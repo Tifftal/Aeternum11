@@ -11,8 +11,7 @@
 }
 
 .menu img {
-    width: 90%;
-    height: auto;
+    width: 230px;
     margin: 0 5%;
     transition: .3s;
     cursor: pointer;
@@ -24,14 +23,14 @@
     transform: scale(0.96);
 }
 
-.menu div {
+.menu-card {
     display: flex;
     flex-direction: column;
-    /* width: 20%; */
+    width: 260px;
     /* align-items: center; */
 }
 
-.menu div a {
+.menu-card a {
     padding: 10% 0 0 0;
     color: white;
     text-decoration: none;

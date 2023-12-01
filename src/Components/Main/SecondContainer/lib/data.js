@@ -1,7 +1,7 @@
 export const getData = (t) => [
     {
         "img": {
-            "src": "../../IMG/TEST.jpeg",
+            "src": "../../IMG/BB15421.PNG",
         },
         "a": {
             "href": "/assortment/1",
@@ -10,7 +10,7 @@ export const getData = (t) => [
     },
     {
         "img": {
-            "src": "../../IMG/TEST.jpeg",
+            "src": "../../IMG/BB15750.PNG",
         },
         "a": {
             "href": "/assortment/4",
@@ -19,7 +19,7 @@ export const getData = (t) => [
     },
     {
         "img": {
-            "src": "../../IMG/TEST.jpeg",
+            "src": "../../IMG/BB16017.PNG",
         },
         "a": {
             "href": "/assortment/7",
@@ -28,7 +28,7 @@ export const getData = (t) => [
     },
     {
         "img": {
-            "src": "../../IMG/TEST.jpeg",
+            "src": "../../IMG/BB15584.PNG",
         },
         "a": {
             "href": "/assortment/9",
@@ -37,7 +37,7 @@ export const getData = (t) => [
     },
     {
         "img": {
-            "src": "../../IMG/TEST.jpeg",
+            "src": "../../IMG/BB15820.PNG",
         },
         "a": {
             "href": "/assortment/5",
