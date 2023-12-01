@@ -25,7 +25,7 @@ const Fifth = () => {
                     <p>+7 (123) 456 78 90</p>
                 </div>
             </div>
-            <div>
+            <div className="ae">
                 <h2 className="font-gramatika-bold">
                     Aeternum Eleven
                 </h2>

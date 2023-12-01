@@ -91,20 +91,36 @@
 }
 
 @media screen and (max-width: 768px) {
+    .poster {
+        width: 350px;
+        height: 350px;
+    }
     .posterInfo a {
         width: 90%;
     }
 
+    .posterInfo h2{
+        font-size: 11px;
+    }
+
+    .posterInfo h1 {
+        font-size: 15px;
+    }
+
+    .posterInfo p {
+        font-size: 12px;
+    }
+
     .posterInfo button {
-        width: 100%;
-        height: 8vh;
+        width: 80%;
+        height: 5vh;
         background: none;
         border: 1px solid white;
         border-radius: 10px;
         cursor: pointer;
         color: white;
         text-transform: uppercase;
-        font-size: 100%;
+        font-size: 11px;
         padding: 0;
         transition: .3s;
         font-weight: 700;
