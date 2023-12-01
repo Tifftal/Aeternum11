@@ -9,10 +9,10 @@ const Goods = () => {
     const [selectedImage, setSelectedImage] = useState(null);
     const [data, setData] = useState([]);
     const [free, setFree] = useState([]);
-    const [categories, setCategories] = useState({
+    const [categories, setCategories] = useState([{
         id: 0,
         name: ""
-    });
+    }]);
     const [selectedGood, setSelectedGood] = useState(null);
     const [isOpen, setIsOpen] = useState(false);
     const [isOpenEditPopupSize, setIsOpenEditPopupSize] = useState(false);
@@ -122,7 +122,7 @@ const Goods = () => {
                 Authorization: `Bearer ${window.localStorage.getItem("jwtToken")}`,
             }
         })
-            .then(response => {
+            .then(() => {
 
                 // Update local state by removing the deleted photo
                 setPhotosById(prevPhotos => prevPhotos.filter(photo => photo.id !== photoId));
@@ -272,7 +272,14 @@ const Goods = () => {
         // let newCount = count;
         // newCount++
         // setCount(newCount)
-        api.delete(`${URI}/good/${id}`)
+        api.delete(`${URI}/good/${id}`, {
+            headers: {
+                Authorization: `Bearer ${window.localStorage.getItem("jwtToken")}`,
+            }
+        },
+            {
+
+            })
             .then(response => {
                 let newCount = count;
                 newCount++
