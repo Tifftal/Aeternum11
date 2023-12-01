@@ -91,6 +91,9 @@
 }
 
 @media screen and (max-width: 768px) {
+    .third {
+        margin-top: 50px;
+    }
     .poster {
         width: 350px;
         height: 350px;
