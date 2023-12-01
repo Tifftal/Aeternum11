@@ -11,10 +11,10 @@ const Third = () => {
                 <div className="posterImg">
                 </div>
                 <div className="posterInfo font-gramatika-bold">
-                    <h2>{t("third.title1")}</h2>
-                    <h1>{t("third.title2")}</h1>
-                    <p >{t("third.info")}</p>
-                    <a href="/"><button>{t("third.btn")}</button></a>
+                    <h2>рекомендуем</h2>
+                    <h1>Lorem ipsum dolor</h1>
+                    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                    <a href="/"><button>узнать больше</button></a>
                 </div>
             </div>
         </div>

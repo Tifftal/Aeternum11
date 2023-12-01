@@ -43,23 +43,12 @@ const Navbar = () => {
             <div className="left">
                 <div className="dropDown">
                     <button className="dropDownBtn">
-                        {t("navbar.women")}
+                        Женщины
                     </button>
                     <div className="content">
                         <DropW />
                     </div>
                 </div>
-                {/* <div className="dropDown">
-                    <button className="dropDownBtn">
-                        {t("navbar.all gender")}
-                    </button>
-                    <div className="content">
-                        <DropUn />
-                    </div>
-                </div> */}
-                {/* <button className="ordinary">
-                    {t("navbar.search")}
-                </button> */}
             </div>
             {window.innerWidth > 768 ? (
                 <div className="center font-gramatika-bold">
@@ -71,18 +60,18 @@ const Navbar = () => {
             }
             <div className="right">
                 <button className="ordinary" onClick={HandleOpenNote}>
-                    {t("navbar.account")}
+                    Аккаунт
                 </button>
                 {jwtToken ? (
                     <>
                         <a href="/bw">
                             <button className="ordinary">
-                                {t("navbar.wishlist")}
+                                Вишлист
                             </button>
                         </a>
                         <a href="/bw">
                             <button className="ordinary">
-                                {t("navbar.bag")}
+                                Корзина
                             </button>
                         </a>
                     </>
@@ -90,9 +79,9 @@ const Navbar = () => {
                     null
                 )
                 }
-                <button className="lang" onClick={() => handleChangeLanguage("ru")}>
+                {/* <button className="lang" onClick={() => handleChangeLanguage("ru")}>
                     {language.toUpperCase()}
-                </button>
+                </button> */}
             </div>
         </div>
     )

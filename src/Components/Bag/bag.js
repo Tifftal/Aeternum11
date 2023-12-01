@@ -94,27 +94,27 @@ const Bag = () => {
                 ))}
             </div>
             <div className="total">
-                <h1 className="font-gramatika-bold">{t("bag.summary")}</h1>
+                <h1 className="font-gramatika-bold">заказ</h1>
                 <div className="purchase">
                     <div>
-                        <p>{t("bag.subtotal")}</p>
-                        <p>₽ {cost}</p>
+                        <p>Цена</p>
+                        <p>{cost} ₽ </p>
                     </div>
                     <div>
-                        <p>{t("bag.shipping")}</p>
+                        <p>Доставка</p>
                         <p>Free</p>
                     </div>
                     <div>
-                        <p>Est. Sales Tax</p>
+                        <p>Налоговый сбор</p>
                         <p>Included</p>
                     </div>
                     <div>
-                        <p>{t("bag.total")}</p>
-                        <p>₽ {cost}</p>
+                        <p>Всего</p>
+                        <p>{cost} ₽ </p>
                     </div>
                 </div>
                 <div className="promo">
-                    <input placeholder="Address" onChange={(e) => handleChangeAddress(e)} />
+                    <input placeholder="Адрес" onChange={(e) => handleChangeAddress(e)} />
                 </div>
                 {error ? (
                     <p style={{ color: "red" }} className="font-gramatika-bold">
@@ -122,7 +122,7 @@ const Bag = () => {
                     </p>
                 ) : null}
                 <button className="font-gramatika-bold" type="submit" onClick={submitForm}>
-                    {t("bag.continue")}
+                    Продолжить
                 </button>
             </div>
         </div>

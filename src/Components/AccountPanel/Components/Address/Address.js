@@ -8,6 +8,7 @@ const Address = () => {
     const [t] = useTranslation("global");
     const [content, setContent] = useState([]);
     const [user, setUser] = useState();
+    const [goods, setGoods] = useState([]);
 
     const formatTime = (timeString) => {
         const months = [
@@ -45,7 +46,8 @@ const Address = () => {
         })
             .then(response => {
                 setContent(response.data.content);
-                console.log(response.data.content);
+                const orders = response.data.content;
+                console.log(orders);
 
                 api.get(`${URI}/user/me`, {
                     headers: {
@@ -54,11 +56,38 @@ const Address = () => {
                 })
                     .then(response => {
                         console.log(response.data);
-                        setUser(response.data)
+                        setUser(response.data);
                     })
+                    .catch(error => {
+                        console.error(error);
+                    });
 
+                const goodsPromises = orders.flatMap(order =>
+                    order.items.map(item =>
+                        api.get(`${URI}/good/${item.goodId}`, {
+                            headers: {
+                                "Authorization": `Bearer ${window.localStorage.getItem("jwtToken")}`
+                            }
+                        })
+                            .then(response => response.data.name)
+                            .catch(error => {
+                                console.error(error);
+                                return null;
+                            })
+                    )
+                );
+
+                Promise.all(goodsPromises)
+                    .then(goods => setGoods(goods))
+                    .catch(error => {
+                        console.error(error);
+                        setGoods([]);
+                    });
             })
-    }, [])
+            .catch(error => {
+                console.error(error);
+            });
+    }, []);
 
     const getStatusColor = (status) => {
         switch (status) {
@@ -77,42 +106,37 @@ const Address = () => {
         <div className="address">
             <h1 className="font-gramatika-bold">Ваши заказы</h1>
             <div className="order-cards-self">
-                {
-                    content.map(order => (
-
-                        <div className="cardOrderSelf" key={order.id}>
-                            <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center", width: "100%" }}>
-                                <h2 className="font-gramatika-bold">Заказ №{order.id}   <b style={{ color: getStatusColor(order.status), marginLeft: "10px" }}>{order.status}</b></h2>
-                            </div>
-                            <h3> <b>Дата заказа:</b>  {formatTime(order.time)}</h3>
-                            <table className='goods-in-order-self'>
-                                <thead>
-                                    <tr>
-                                        <th style={{ width: "45%" }}>Название</th>
-                                        <th style={{ width: "20%" }}>Цвет</th>
-                                        <th style={{ width: "20%" }}>Размер</th>
-                                        <th style={{ width: "15%" }}>Кол-во</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-
-                                    <tr>
-                                        <td style={{ width: "45%" }}>name</td>
-                                        <td style={{ width: "20%" }}>color</td>
-                                        <td style={{ width: "20%" }}>size</td>
-                                        <td style={{ width: "15%" }}>amount</td>
-                                    </tr>
-
-                                </tbody>
-                            </table>
+                {content.map((order, index) => (
+                    <div className="cardOrderSelf" key={order.id}>
+                        <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center", width: "100%" }}>
+                            <h2 className="font-gramatika-bold">Заказ №{order.id}   <b style={{ color: getStatusColor(order.status), marginLeft: "10px" }}>{order.status}</b></h2>
                         </div>
-
-                    ))
-                }
-
+                        <h3> <b>Дата заказа:</b>  {formatTime(order.time)}</h3>
+                        <table className='goods-in-order-self'>
+                            <thead>
+                                <tr>
+                                    <th style={{ width: "45%" }}>Название</th>
+                                    <th style={{ width: "20%" }}>Цвет</th>
+                                    <th style={{ width: "20%" }}>Размер</th>
+                                    <th style={{ width: "15%" }}>Кол-во</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {order.items.map((good, itemIndex) => (
+                                    <tr key={itemIndex}>
+                                        <td style={{ width: "45%" }}>{goods[itemIndex] || "Недоступно"}</td>
+                                        <td style={{ width: "20%" }}>{good.colorName}</td>
+                                        <td style={{ width: "20%" }}>{good.size}</td>
+                                        <td style={{ width: "15%" }}>{good.amount}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                ))}
             </div>
-
         </div>
-    )
-}
+    );
+};
+
 export default Address;

@@ -161,20 +161,20 @@ const Personal = (props) => {
 
     return (
         <div className="pers">
-            <h2 className="font-gramatika-bold">{t("create_account.title1")}</h2>
-            <h1>Join Aeternum Eleven</h1>
+            <h2 className="font-gramatika-bold">Профиль</h2>
+            <h1>Присоединяйтесь к Aeternum Eleven</h1>
 
             <form className="pers-data">
                 <input
                     type="text"
-                    placeholder={t("create_account.first_name")}
+                    placeholder="Имя"
                     value={personal.firstName || ''}
                     name="firstName"
                     onChange={handleChange}
                 />
                 <input
                     type="text"
-                    placeholder={t("create_account.last_name")}
+                    placeholder="Фамилия"
                     value={personal.lastName || ''}
                     name="lastName"
                     onChange={handleChange}
@@ -184,47 +184,47 @@ const Personal = (props) => {
                     name="gender"
                     onChange={handleChange}
                 >
-                    <option value="MEN">MEN</option>
-                    <option value="NON-BINARY">NON-BINARY</option>
-                    <option value="WOMAN">WOMAN</option>
+                    <option value="MEN">Мужчина</option>
+                    <option value="NON-BINARY">Не узакывать</option>
+                    <option value="WOMAN">Женщина</option>
                 </select>
                 <input
                     type="date"
-                    placeholder={t("create_account.date")}
+                    placeholder="Дата рождения"
                     value={personal.date || ''}
                     name="date"
                     onChange={handleChange}
                 />
                 <input
                     type="text"
-                    placeholder={t("create_account.country")}
+                    placeholder="Страна"
                     value={personal.country || ''}
                     name="country"
                     onChange={handleChange}
                 />
                 <input
                     type="text"
-                    placeholder={t("create_account.state")}
+                    placeholder="Регион"
                     value={personal.state || ''}
                     name="state"
                     onChange={handleChange}
                 />
                 <input
                     type="text"
-                    placeholder={t("create_account.city")}
+                    placeholder="Город"
                     value={personal.city || ''}
                     name="city"
                     onChange={handleChange}
                 />
                 <input
                     type="text"
-                    placeholder={t("create_account.phone")}
+                    placeholder="Номер телефона"
                     value={personal.phone || ''}
                     name="phone"
                     onChange={handleChange}
                 />
             </form>
-            <h3>{t("create_account.*")}</h3>
+            <h3>* Обязательные поля</h3>
             {/* <h4>{t("create_account.text2")}</h4> */}
             <div className="agreeAc">
                 <input
@@ -232,9 +232,9 @@ const Personal = (props) => {
                     checked={personal.newsletter === 'YES'}
                     onChange={handleCheckboxChange}
                 />
-                <label>{t("create_account.check2")}</label>
+                <label>Хочу получать уведомления</label>
             </div>
-            <button className="BtnAc" onClick={handleSubmitForm} style={{ margin: "0" }}>Update your Information</button>
+            <button className="BtnAc" onClick={handleSubmitForm} style={{ margin: "0" }}>Обновить данные</button>
             <div className="pers-data" style={{ marginBottom: "50px" }}>
                 <input
                     type="password"

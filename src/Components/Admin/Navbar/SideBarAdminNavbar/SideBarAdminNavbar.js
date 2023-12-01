@@ -9,7 +9,7 @@ const SideBarAdminNavbar = (props) => {
                 className="activeNavBtn"
                 onClick={() => { props.setTabNavbar("Women") }}
             >
-                Women
+                Женщины
             </button>
             {/* <button
                 className={props.tabNavbar === "All Gender" ? "active" : ""}

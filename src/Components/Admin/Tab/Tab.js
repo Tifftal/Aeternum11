@@ -24,7 +24,7 @@ const Tab = (props) => {
             );
         default:
             return (
-                <MainPageAdmin />
+                <Goods />
             );
     }
 }

@@ -56,8 +56,8 @@ const BWBtn = () => {
         <div className="bwBtn">
 
             <div className="floating-btn">
-                <button onClick={HandleFloatBtn} className={classes.BagBtn}>{t("bw.bag")}</button>
-                <button onClick={HandleFloatBtn} className={classes.WishBtn}>{t("bw.wishlist")}</button>
+                <button onClick={HandleFloatBtn} className={classes.BagBtn}>Корзина</button>
+                <button onClick={HandleFloatBtn} className={classes.WishBtn}>Вишлист</button>
             </div>
             {isOpenBag && (
                 <Bag onClose={HandleCloseBag} setIsOpen={setIsOpenBag} />

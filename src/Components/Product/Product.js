@@ -182,7 +182,7 @@ const Product = () => {
                 </select>
 
                 <button className="addToBagBtn font-gramatika-bold" onClick={handleAddToBag}>
-                    Add to Bag
+                    Добавить в корзину
                 </button>
                 {error && <p style={{ color: "red" }} className="font-gramatika-bold">Выберите цвет товара и размер</p>}
                 <h5 className="compound">Состав: </h5>

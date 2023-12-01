@@ -172,20 +172,20 @@ const CreateAccount = () => {
             className="create_account"
             onSubmit={handleSubmitForm}
         >
-            <h2>{t("create_account.title1")}</h2>
-            <h1>{t("create_account.title2")}</h1>
+            <h2>Профиль</h2>
+            <h1>Создать аккаунт</h1>
             <p>{t("create_account.text1")}</p>
 
             <div className="registration">
                 <input
                     type="text"
-                    placeholder={t("create_account.first_name")}
+                    placeholder="Имя *"
                     onChange={(e) => { handleChangeInput(e, "name", setErrors) }}
                     id={errors.name ? "error" : ""}
                 />
                 <input
                     type="text"
-                    placeholder={t("create_account.last_name")}
+                    placeholder="Фамилия  *"
                     onChange={(e) => { handleChangeInput(e, "surname", setErrors) }}
                     id={errors.surname ? "error" : ""}
                 />
@@ -194,38 +194,38 @@ const CreateAccount = () => {
                     id={errors.gender ? "error" : ""}
                     defaultValue="" // установите значение по умолчанию, если это необходимо
                 >
-                    <option value="" disabled hidden>{t("create_account.gender")}</option>
-                    <option value="MEN">MEN</option>
-                    <option value="WOMAN">WOMAN</option>
-                    <option value="NON-BINARY">NON-BINARY</option>
+                    <option value="" disabled hidden>Пол</option>
+                    <option value="MEN">Мужской</option>
+                    <option value="WOMAN">Женский</option>
+                    <option value="NON-BINARY">Не указано</option>
                 </select>
                 <input
                     type="date"
-                    placeholder={t("create_account.date")}
+                    placeholder="Дата рождения"
                     onChange={(e) => { handleChangeInput(e, "birth", setErrors) }}
                     id={errors.birth ? "error" : ""}
                 />
                 <input
                     id="country"
                     type="text"
-                    placeholder={t("create_account.country")}
+                    placeholder="Страна"
                     onChange={(e) => { handleChangeInput(e, "country", setErrors) }}
                 />
                 <input
                     id="state"
                     type="text"
-                    placeholder={t("create_account.state")}
+                    placeholder="Регион"
                     onChange={(e) => { handleChangeInput(e, "state", setErrors) }}
                 />
                 <input
                     id="city"
                     type="text"
-                    placeholder={t("create_account.city")}
+                    placeholder="Город"
                     onChange={(e) => { handleChangeInput(e, "city", setErrors) }}
                 />
                 <input
                     type="text"
-                    placeholder={t("create_account.phone")}
+                    placeholder="Номер телефона *"
                     onChange={(e) => { handleChangeInput(e, "phone", setErrors) }}
                     id={errors.phone ? "error" : ""}
                 />
@@ -233,24 +233,24 @@ const CreateAccount = () => {
             <div className="reg">
                 <input
                     type="text"
-                    placeholder={t("create_account.email")}
+                    placeholder="Электронная почта *"
                     onChange={(e) => { handleChangeInput(e, "email", setErrors) }}
                     id={errors.email ? "error" : ""}
                 />
                 <input
                     type="password"
-                    placeholder={t("create_account.password")}
+                    placeholder="Пароль *"
                     onChange={(e) => { handleChangeInput(e, "password", setErrors) }}
                     id={errors.password || errors.matchPasswords ? "error" : ""}
                 />
                 <input
                     type="password"
-                    placeholder={t("create_account.confirm")}
+                    placeholder="Подтвердите пароль *"
                     onChange={(e) => { handleChangeInput(e, "rpassword", setErrors) }}
                     id={errors.rpassword || errors.matchPasswords ? "error" : ""}
                 />
             </div>
-            <h3>{t("create_account.*")}</h3>
+            <h3>* Обязательные поля</h3>
             {isSended ? (
                 <div className="code">
                     <h3>Код был отправлен на электронную почту</h3>
@@ -281,10 +281,10 @@ const CreateAccount = () => {
                 <input
                     type="checkbox"
                 />
-                <label>{t("create_account.check2")}</label>
+                <label>Подписаться на новости</label>
             </div>
 
-            <span className="BtnAc"><button type="submit">{t("create_account.create")}</button></span>
+            <span className="BtnAc"><button type="submit" className="font-gramatika-bold">Создать аккаунт</button></span>
         </form>
     )
 }

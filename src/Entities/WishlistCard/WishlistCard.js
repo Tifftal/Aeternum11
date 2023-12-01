@@ -29,7 +29,7 @@ const WishlistCard = ({ data, onRemove }) => {
                     </Link>
                 </div>
                 <p>{data.cost} ₽ </p>
-                <button className="removeBtn" onClick={() => {handleDeleteFromWishlist(data.id)}}>Remove</button>
+                <button className="removeBtn" onClick={() => {handleDeleteFromWishlist(data.id)}}>Удалить</button>
             </div>
         </div>
     )

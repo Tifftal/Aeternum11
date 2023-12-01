@@ -19,7 +19,7 @@ const Fifth = () => {
                 <button>{t("fifth.follow us")}<img src="../../IMG/icons8-вниз-100.png" alt="down" /></button>
             </div> */}
             <div className="assistant font-gramatika-bold">
-                <h1>{t("fifth.assistant")}</h1>
+                <h1>Нужна помощь?</h1>
                 <div className="phone">
                     <img src="../../IMG/icons8-телефон-100.png" alt="phone" />
                     <p>+7 (123) 456 78 90</p>

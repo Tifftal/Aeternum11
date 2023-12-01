@@ -28,16 +28,16 @@ const SideBarAccount = (props) => {
     return (
         <div className="accountSideBar">
             <div>
-                <h1 className="font-gramatika-bold">{t("account.account")}</h1>
+                <h1 className="font-gramatika-bold">аккаунт</h1>
                 <h2>{props.user.firstName} {props.user.lastName}</h2>
                 <div className={clasProfile}>
-                    <button className="default" onClick={HandleDropMenuProfile}><img src="../../IMG/icons8-user-96.png" alt="profile" />{t("account.profile")}</button>
+                    <button className="default" onClick={HandleDropMenuProfile}><img src="../../IMG/icons8-user-96.png" alt="profile" />Профиль</button>
                     <div className="account-drop">
                         <button
                             className={props.tab === "Personal" ? "active_drop" : "default_drop"}
                             onClick={() => { props.setTab("Personal") }}
                         >
-                            {t("account.personal")}
+                            Персональные данные
                         </button>
                         {/* <button
                             className={props.tab === "Addresses" ? "active_drop" : "default_drop"}
@@ -48,13 +48,13 @@ const SideBarAccount = (props) => {
                     </div>
                 </div>
                 <div className={clasOrder}>
-                    <button className="default" onClick={HandleDropMenuOrder}><img src="../../IMG/icons8-картонная-коробка-100.png" alt="orders" />{t("account.orders")}</button>
+                    <button className="default" onClick={HandleDropMenuOrder}><img src="../../IMG/icons8-картонная-коробка-100.png" alt="orders" />Заказы</button>
                     <div className="account-drop">
                         <button
                             className={props.tab === "Order" ? "active_drop" : "default_drop"}
                             onClick={() => { props.setTab("Order") }}
                         >
-                            {t("account.details")}
+                            Детали заказов
                         </button>
                     </div>
                 </div>
