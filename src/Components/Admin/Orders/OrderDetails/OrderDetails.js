@@ -8,13 +8,14 @@ const OrderDetail = ({ onClose, width, order, formatTime, onOrderUpdate }) => {
 
     useEffect(() => {
         const fetchGoodsData = async () => {
-            const promises = order.items.map(good => {
-                return api.get(`${URI}/good/${good.id}`)
-                    .then(response => response.data)
-                    .catch(error => {
-                        console.error(error);
-                        return null;
-                    });
+            const promises = order.items.map(async good => {
+                try {
+                    const response = await api.get(`${URI}/good/${good.goodId}`);
+                    return response.data;
+                } catch (error) {
+                    console.error(error);
+                    return null;
+                }
             });
 
             const goodsData = await Promise.all(promises);
@@ -50,7 +51,7 @@ const OrderDetail = ({ onClose, width, order, formatTime, onOrderUpdate }) => {
             }
         )
             .then(() => {
-                
+
                 onClose();
                 onOrderUpdate();
             })
@@ -80,7 +81,7 @@ const OrderDetail = ({ onClose, width, order, formatTime, onOrderUpdate }) => {
                                 onClick={() => {
                                     const reason = window.prompt("Комментарий админа:");
                                     if (reason) {
-                                       
+
                                         ChangeStatus(reason, "DENIED");
                                     } else {
                                         console.log("Отклонение отменено");
@@ -93,7 +94,7 @@ const OrderDetail = ({ onClose, width, order, formatTime, onOrderUpdate }) => {
                                 onClick={() => {
                                     const reason = window.prompt("Комментарий админа:");
                                     if (reason) {
-                                        
+
                                         ChangeStatus(reason, "ACCESSED");
                                     } else {
                                         console.log("Подтверждение отменено");
@@ -105,11 +106,11 @@ const OrderDetail = ({ onClose, width, order, formatTime, onOrderUpdate }) => {
                     <p>ФИО: {order.userId && order.userData && `${order.userData.firstName} ${order.userData.lastName}`}</p>
                     <p>Телефон: {order.userId && order.userData && `${order.userData.phone}`}</p>
                     <div className='address-in-order'>
-                        <p>Страна: {order.userId && order.userData && `${order.userData.country}`}</p>
-                        <p>Регион: {order.userId && order.userData && `${order.userData.state}`}</p>
-                        <p>Город:</p>
+                        <p>Город: {order.userId && order.userData && `${order.userData.country}`}</p>
+                        <p>Улица: {order.userId && order.userData && `${order.userData.state}`}</p>
+                        <p>Дом и квартира: {order.userId && order.userData && `${order.userData.city}`}</p>
                     </div>
-                    <p>Адрес заказа:</p>
+                    <p>Адрес заказа: {order.clientComment}</p>
 
                     <table className='goods-in-order'>
                         <thead>
@@ -123,6 +124,7 @@ const OrderDetail = ({ onClose, width, order, formatTime, onOrderUpdate }) => {
                         <tbody>
                             {order.items.map((good, index) => {
                                 const goodData = goodsData[index] || {}; // Данные о товаре по умолчанию пустые
+                                // console.log(goodData)
 
                                 return (
                                     <tr key={index}>

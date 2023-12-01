@@ -124,6 +124,7 @@ const Personal = (props) => {
             gender: personal.gender,
             country: personal.country,
             state: personal.state,
+            city: personal.city,
             phone: personal.phone,
             newsletter: personal.newsletter,
             dob: personal.date,
@@ -132,7 +133,8 @@ const Personal = (props) => {
                 "Authorization": `Bearer ${window.localStorage.getItem("jwtToken")}`
             }
         })
-            .then(() => {
+            .then((response) => {
+                console.log(response)
                 
             })
             .catch(error => {

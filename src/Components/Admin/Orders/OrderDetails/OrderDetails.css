@@ -66,6 +66,9 @@
 .address-in-order p {
     display: flex;
     flex-direction: row;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 20px;
 }
 
 
