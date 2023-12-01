@@ -101,3 +101,89 @@
 .account-drop button.active_drop {
     color: white;
 }
+
+.adminPage .div1 {
+    margin: 0 0 0 30px;
+    margin-bottom: 3%;
+    width: 18%;
+}
+
+.adminPage .div2 {
+    margin: 0 30px;
+    margin-bottom: 3%;
+    width: 82%;
+}
+
+@media screen and (max-width: 768px) {
+    .adminPage {
+        display: flex;
+        flex-direction: row;
+        margin-top: 120px;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .accountSideBar {
+        display: none;
+        border-right: none;
+    }
+
+    .div1 {
+        /* width: 20%; */
+        margin: 0 0 0 0;
+        border-right: none;
+        display: none;
+    }
+
+    .div2 {
+        display: flex;
+        width: 100%;
+    }
+
+    .pers {
+        width: 100%;
+        padding: 0 0 0 0;
+    }
+    .adminPage .div2 {
+        width: 100%;
+        margin: 0 0 0 0;
+    }
+    .adminPage .div1 {
+        /* width: 20%; */
+        margin: 0 0 0 0;
+        padding-left: 10px;
+    }
+    /* .adminPage .div1 {
+        width: 100%;
+        margin: 0 0 0 0;
+    }
+
+
+
+    .accountSideBar {
+        padding: 0 0 0 0;
+        width: 20%;
+        display: flex;
+        flex-direction: row;
+        height: auto;
+    }
+
+    .accountSideBar div {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .div1 {
+        height: 20%;
+    }   
+
+    .pers {
+        width: 100%;
+        padding: 0 0 0 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    } */
+}

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import './SideBarAccount.css';
 import { useTranslation } from "react-i18next";
 import { useNavigate } from 'react-router-dom';
@@ -23,7 +23,13 @@ const SideBarAccount = (props) => {
         setClasProfile(NewClas)
     };
 
-
+    useEffect(() => {
+        if (window.localStorage.getItem("account") === "account") {
+            props.setTab("Personal");
+        } else {
+            props.setTab("Order")
+        }
+    }, [])
 
     return (
         <div className="accountSideBar">
@@ -44,7 +50,7 @@ const SideBarAccount = (props) => {
                             onClick={() => { props.setTab("Addresses") }}
                         >
                             {/* {t("account.addresses")} */}
-                        
+
                     </div>
                 </div>
                 <div className={clasOrder}>
@@ -68,14 +74,14 @@ const SideBarAccount = (props) => {
             <div>
                 <button
                     className="default"
-                >
-                    <img src="../../IMG/icons8-выход-100.png" alt="wishlist" 
-                        onClick={
-                            () => {
-                                localStorage.removeItem("jwtToken");
-                                window.location.href = "/"
-                            }
+                    onClick={
+                        () => {
+                            localStorage.removeItem("jwtToken");
+                            window.location.href = "/"
                         }
+                    }
+                >
+                    <img src="../../IMG/icons8-выход-100.png" alt="wishlist"
                     />Выход
                 </button>
             </div>

@@ -25,6 +25,7 @@ const Navbar = () => {
 
     const HandleOpenNote = () => {
         if (jwtToken) {
+            window.localStorage.setItem("account", "account")
             window.location.href = "/account"
         } else {
             setIsOpen(true)
@@ -59,20 +60,29 @@ const Navbar = () => {
             )
             }
             <div className="right">
-                <button className="ordinary" onClick={HandleOpenNote}>
-                    Аккаунт
-                </button>
+                {jwtToken ? (
+                    <button className="ordinary" onClick={HandleOpenNote}>
+                        Профиль
+                    </button>
+                ) : (
+                    <button className="ordinary" onClick={HandleOpenNote}>
+                        Войти
+                    </button>
+                )}
                 {jwtToken ? (
                     <>
                         <a href="/bw">
-                            <button className="ordinary" onClick={() => {window.localStorage.setItem("bw", "wishlist")}}>
+                            <button className="ordinary" onClick={() => { window.localStorage.setItem("bw", "wishlist") }}>
                                 Вишлист
                             </button>
                         </a>
                         <a href="/bw">
-                            <button className="ordinary" onClick={() => {window.localStorage.setItem("bw", "bag")}}>
+                            <button className="ordinary" onClick={() => { window.localStorage.setItem("bw", "bag") }}>
                                 Корзина
                             </button>
+                        </a>
+                        <a href="/account">
+                            <button className="ordinary" onClick={() => {window.localStorage.setItem("account", "orders")}}>Заказы</button>
                         </a>
                     </>
                 ) : (

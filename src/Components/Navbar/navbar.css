@@ -124,17 +124,25 @@
         padding: 0% 0%;
         margin: 0 0 0 0;
         width: 100%;
+        border-radius: 0px;
         height: 7%;
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         align-items: center;
-        justify-content: center;
-        border-radius: 30px;
+        justify-content: space-between;
         background-color: rgba(17, 17, 17, 0.01);
         backdrop-filter: blur(50px);
     }
 
     .left {
+        padding-left: 10px;
+    }
+
+    .right {
+        padding-right: 10px;
+    }
+
+    /* .left {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -146,7 +154,7 @@
         flex-direction: row;
         justify-content: space-between;
         width: 70%;
-    }
+    } */
 
     .center a {
         display: none;
