@@ -117,10 +117,11 @@ const Popup = (props) => {
     const [t] = useTranslation("global");
 
     return (
-        <div className="modal">
+        <div className="modal" style={{backgroundColor: "rgba(0,0,0,0.1)"}}>
             <form
                 className="modal-content"
                 onSubmit={handleSubmitForm}
+                style={{backgroundColor: "rgba(0,0,0,0.4)"}}
             >
                 <div className='header font-gramatika-bold'>
                     <h1>Войти в аккаунт</h1>
@@ -190,7 +191,7 @@ const Popup = (props) => {
                         <button className='but log font-gramatika-bold' type="button" onClick={handleRefreshPassword}>Обновить пароль</button>
                     )
                 }
-                <a href='/create_account' className='but create font-gramatika-bold'>Зарегестрироваться</a>
+                <a href='/create_account' className='but create font-gramatika-bold'>Зарегистрироваться</a>
             </form>
         </div>
     );
