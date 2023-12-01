@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./card.css";
 import api from "../../api/axiosConfig";
-import { URI } from "../../api/config";
+import { Minio, URI } from "../../api/config";
 import { Button, Card } from 'react-bootstrap';
 
 const CardBag = ({ good, onDelete, onUpdateTotalAdd, onUpdateTotalRemove }) => {
@@ -45,18 +45,22 @@ const CardBag = ({ good, onDelete, onUpdateTotalAdd, onUpdateTotalRemove }) => {
 
     const fetchPhoto = (photo) => {
       try {
-        api.get(`${URI}/photo/${photo.id}`, {
-          responseType: 'arraybuffer', // Important: set responseType to arraybuffer
-        }).then(
-          (response) => {
-            const blob = new Blob([response.data], { type: 'image/jpeg' })
-            const imageURL = URL.createObjectURL(blob);
-            setPhoto(imageURL);
-          }
-        )
-          .catch(error => {
-            console.error(error)
-          })
+        // api.get(`${URI}/photo/${photo.id}`, {
+        //   responseType: 'arraybuffer', // Important: set responseType to arraybuffer
+        // }).then(
+        //   (response) => {
+        //     const blob = new Blob([response.data], { type: 'image/jpeg' })
+        //     const imageURL = URL.createObjectURL(blob);
+        //     setPhoto(imageURL);
+        //   }
+        // )
+        //   .catch(error => {
+        //     console.error(error)
+        //   })
+
+        
+        const imageUrl = `${Minio}/${photo.path}`
+        setPhoto(imageUrl)
       }
       catch (error) {
         console.error(error);

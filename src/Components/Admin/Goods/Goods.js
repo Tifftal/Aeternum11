@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from "react";
 import './Goods.css';
-import { URI } from "../../../api/config";
+import { Minio, URI } from "../../../api/config";
 import api from "../../../api/axiosConfig";
 import Popup from "./Popup/Popup";
 import EditPopup from "./Popup/EditPopup";
+import Resizer from 'react-image-file-resizer';
 
 const Goods = () => {
     const [selectedImage, setSelectedImage] = useState(null);
     const [data, setData] = useState([]);
     const [free, setFree] = useState([]);
-    const [categories, setCategories] = useState({
+    const [categories, setCategories] = useState([{
         id: 0,
         name: ""
-    });
+    }]);
     const [selectedGood, setSelectedGood] = useState(null);
     const [isOpen, setIsOpen] = useState(false);
     const [isOpenEditPopupSize, setIsOpenEditPopupSize] = useState(false);
@@ -38,8 +39,36 @@ const Goods = () => {
     };
 
     const handleImageChange = (e) => {
-        setSelectedImage(e.target.files[0]);
-    }
+        const selectedFile = e.target.files[0];
+
+        if (!selectedFile) {
+            return;
+        }
+
+        try {
+            // Resize the selected image before setting it
+            Resizer.imageFileResizer(
+                selectedFile,
+                1500,  // new width (in pixels)
+                1500,  // new height (in pixels)
+                'PNG', // format (JPEG, PNG, WEBP, BMP)
+                80, // quality (0 to 100)
+                0, // rotation (0 - no rotation)
+                (uri) => {
+                    // uri is the resized image in base64 format
+                    const resizedImage = new File([uri], selectedFile.name, {
+                        type: 'image/jpeg', // or the appropriate format
+                        lastModified: Date.now(),
+                    });
+
+                    setSelectedImage(resizedImage);
+                },
+                'blob' // format of the returned image (base64 or blob)
+            );
+        } catch (error) {
+            console.error("Error resizing image: ", error);
+        }
+    };
 
     const fetchPhotos = async (goodId) => {
         const photos = [];
@@ -51,12 +80,12 @@ const Goods = () => {
             // Assuming you are using async/await, make the function async
             const fetchPhoto = async (photo) => {
                 try {
-                    const response = await api.get(`${URI}/photo/${photo.id}`, {
-                        responseType: 'arraybuffer', // Important: set responseType to arraybuffer
-                    });
+                    // const response = await api.get(`${Minio}/${photo.path}`, {
+                    //     responseType: 'arraybuffer', // Important: set responseType to arraybuffer
+                    //     });
 
-                    const blob = new Blob([response.data], { type: 'image/jpeg' }); // Adjust type based on your file type
-                    const imageUrl = URL.createObjectURL(blob);
+                    
+                    const imageUrl = `${Minio}/${photo.path}`
 
                     photos.push({
                         position: photo.position,
@@ -122,7 +151,7 @@ const Goods = () => {
                 Authorization: `Bearer ${window.localStorage.getItem("jwtToken")}`,
             }
         })
-            .then(response => {
+            .then(() => {
 
                 // Update local state by removing the deleted photo
                 setPhotosById(prevPhotos => prevPhotos.filter(photo => photo.id !== photoId));
@@ -272,7 +301,14 @@ const Goods = () => {
         // let newCount = count;
         // newCount++
         // setCount(newCount)
-        api.delete(`${URI}/good/${id}`)
+        api.delete(`${URI}/good/${id}`, {
+            headers: {
+                Authorization: `Bearer ${window.localStorage.getItem("jwtToken")}`,
+            }
+        },
+            {
+
+            })
             .then(response => {
                 let newCount = count;
                 newCount++

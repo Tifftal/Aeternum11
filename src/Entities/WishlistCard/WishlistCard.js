@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import { Link, useNavigate } from "react-router-dom";
 import api from "../../api/axiosConfig";
-import { URI } from "../../api/config";
+import { Minio, URI } from "../../api/config";
 
 // ... (other imports)
 
@@ -28,16 +28,13 @@ const WishlistCard = ({ data, onRemove }) => {
     
                 const fetchPhoto = async (photo) => {
                     try {
-                        const response = await api.get(`${URI}/photo/${photo.id}`, {
-                            responseType: 'arraybuffer',
-                        });
+                        const imageUrl = `${Minio}/${photo.path}`
     
-                        const blob = new Blob([response.data], {type: 'image/jpeg'})
-                        const imageURL = URL.createObjectURL(blob);
+                        
     
                         // Check if the component is still mounted before updating the state
                         if (isMounted) {
-                            setPhoto(imageURL);
+                            setPhoto(imageUrl);
                         }
                     }
                     catch (error) {
