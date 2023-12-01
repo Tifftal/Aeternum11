@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "./bag.css";
-import { useTranslation } from "react-i18next";
 import api from "../../api/axiosConfig";
 import { URI } from "../../api/config";
 import CardBag from "./card";
 
 const Bag = () => {
-    const [t] = useTranslation("global");
     const [myBag, setMyBag] = useState([]);
     const [cost, setCost] = useState(0);
     const [address, setAddress] = useState("");
@@ -21,7 +19,7 @@ const Bag = () => {
             })
             .then((response) => {
                 setMyBag(response.data.bag);
-                console.log(response.data.bag)
+                
             })
             .catch((error) => {
                 console.error(error);
@@ -77,7 +75,7 @@ const Bag = () => {
                     }
                 )
                 .then((response) => {
-                    console.log(response);
+                    
                     setMyBag([])
                 })
                 .catch((error) => {

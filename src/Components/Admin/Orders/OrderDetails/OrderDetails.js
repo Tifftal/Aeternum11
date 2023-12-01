@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import './OrderDetails.css';
-import { useTranslation } from 'react-i18next';
 import api from '../../../../api/axiosConfig';
 import { URI } from '../../../../api/config';
 
 const OrderDetail = ({ onClose, width, order, formatTime, onOrderUpdate }) => {
-    const [t] = useTranslation('global');
     const [goodsData, setGoodsData] = useState([]);
 
     useEffect(() => {
@@ -51,8 +49,8 @@ const OrderDetail = ({ onClose, width, order, formatTime, onOrderUpdate }) => {
                 },
             }
         )
-            .then(response => {
-                console.log(response);
+            .then(() => {
+                
                 onClose();
                 onOrderUpdate();
             })
@@ -82,7 +80,7 @@ const OrderDetail = ({ onClose, width, order, formatTime, onOrderUpdate }) => {
                                 onClick={() => {
                                     const reason = window.prompt("Комментарий админа:");
                                     if (reason) {
-                                        console.log("Коммент админа:", reason);
+                                       
                                         ChangeStatus(reason, "DENIED");
                                     } else {
                                         console.log("Отклонение отменено");
@@ -95,7 +93,7 @@ const OrderDetail = ({ onClose, width, order, formatTime, onOrderUpdate }) => {
                                 onClick={() => {
                                     const reason = window.prompt("Комментарий админа:");
                                     if (reason) {
-                                        console.log("Коммент админа:", reason);
+                                        
                                         ChangeStatus(reason, "ACCESSED");
                                     } else {
                                         console.log("Подтверждение отменено");

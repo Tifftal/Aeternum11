@@ -3,7 +3,6 @@ import "./createAccount.css";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
 import { URI } from "../../../api/config";
-import api from "../../../api/axiosConfig";
 
 const CreateAccount = () => {
     const [t] = useTranslation("global");
@@ -37,7 +36,6 @@ const CreateAccount = () => {
     });
 
     const handleChangeCode = (e) => {
-        console.log(e.target.value);
         setCode(e.target.value);
     }
 
@@ -139,7 +137,6 @@ const CreateAccount = () => {
         }
 
         if (isSended && code) {
-            console.log(code)
             axios.post(`${URI}/checkRegCode/${code}`,
                 {
                     email: email,
@@ -164,7 +161,7 @@ const CreateAccount = () => {
                     if (error?.response?.data?.status === 404) {
                         setCodeError(error?.response?.data?.message)
                     }
-                    console.log(error)
+                    console.error(error);
                 })
         }
     };

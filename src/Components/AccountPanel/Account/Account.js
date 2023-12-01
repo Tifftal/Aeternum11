@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from "react";
 import Tab from "../Tab/Tab";
 import "./Account.css"
-import { useTranslation } from "react-i18next";
 import SideBarAccount from "../SideBarAccount/SideBarAccount";
-import axios from "axios";
 import { URI } from "../../../api/config";
 import api from "../../../api/axiosConfig";
 
 const Account = () => {
-    const [t] = useTranslation("global");
     const [tab, setTab] = useState("");
     const [user, setUser] = useState({});
 
@@ -20,7 +17,6 @@ const Account = () => {
             }
         })
         .then(response => {
-            console.log(response.data)
             if (response.status === 200) {
                 setUser(response.data);
             }

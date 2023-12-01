@@ -1,26 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import './navbar.css';
-import { useTranslation } from "react-i18next";
 import DropW from "./DropDownMenu/dropWomen";
-import DropUn from "./DropDownMenu/dropUnisex";
+
 import Popup from "../Popup/Popup";
-import axios from "axios";
-import { URI } from "../../api/config";
+
 import { useAuth } from "../../Context/AuthContext";
-import api from "../../api/axiosConfig";
 
 const Navbar = () => {
-    const [language, setLanguage] = useState("ru");
-    const [t, i18n] = useTranslation("global");
     const { jwtToken } = useAuth();
-
-    const handleChangeLanguage = (e) => {
-        const newLanguage = language === "en" ? "ru" : "en";
-        const languageToShow = newLanguage === "ru" ? "en" : "ru"
-        setLanguage(newLanguage)
-        i18n.changeLanguage(languageToShow);
-    };
-
     const [isOpen, setIsOpen] = useState(false);
 
     const HandleOpenNote = () => {
@@ -71,18 +58,21 @@ const Navbar = () => {
                 )}
                 {jwtToken ? (
                     <>
-                        <a href="/bw">
-                            <button className="ordinary" onClick={() => { window.localStorage.setItem("bw", "wishlist") }}>
-                                Вишлист
-                            </button>
-                        </a>
+                        {window.innerWidth > 768 ? (
+                            <a href="/bw">
+                                <button className="ordinary" onClick={() => { window.localStorage.setItem("bw", "wishlist") }}>
+                                    Вишлист
+                                </button>
+                            </a>
+                        ): (null)
+                        }
                         <a href="/bw">
                             <button className="ordinary" onClick={() => { window.localStorage.setItem("bw", "bag") }}>
                                 Корзина
                             </button>
                         </a>
                         <a href="/account">
-                            <button className="ordinary" onClick={() => {window.localStorage.setItem("account", "orders")}}>Заказы</button>
+                            <button className="ordinary" onClick={() => { window.localStorage.setItem("account", "orders") }}>Заказы</button>
                         </a>
                     </>
                 ) : (

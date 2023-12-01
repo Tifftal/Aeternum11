@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from "react";
 import './Address.css';
-import { useTranslation } from "react-i18next";
 import api from "../../../../api/axiosConfig";
 import { URI } from "../../../../api/config";
 
 const Address = () => {
-    const [t] = useTranslation("global");
     const [content, setContent] = useState([]);
-    const [user, setUser] = useState();
     const [goods, setGoods] = useState([]);
 
     const formatTime = (timeString) => {
@@ -47,16 +44,14 @@ const Address = () => {
             .then(response => {
                 setContent(response.data.content);
                 const orders = response.data.content;
-                console.log(orders);
 
                 api.get(`${URI}/user/me`, {
                     headers: {
                         "Authorization": `Bearer ${window.localStorage.getItem("jwtToken")}`
                     }
                 })
-                    .then(response => {
-                        console.log(response.data);
-                        setUser(response.data);
+                    .then(() => {
+                        
                     })
                     .catch(error => {
                         console.error(error);

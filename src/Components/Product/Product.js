@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./Product.css";
-import { useTranslation } from "react-i18next";
 import { useParams } from 'react-router-dom';
 import { URI } from "../../api/config";
 import api from "../../api/axiosConfig";
 import LoadingText from "../Loader/Loader";
 
 const Product = () => {
-    const [t] = useTranslation("global");
     const [selectedImage, setSelectedImage] = useState(null);
     const [selectedColor, setSelectedColor] = useState('');
     const [selectedSize, setSelectedSize] = useState('');
@@ -15,16 +13,13 @@ const Product = () => {
     const [error, setError] = useState(false);
 
     const [data, setData] = useState({});
-    const [category, setCategory] = useState({});
+    // eslint-disable-next-line
     const [color, setColor] = useState([]);
+    // eslint-disable-next-line
     const [size, setSize] = useState([]);
     const [photos, setPhotosById] = useState([]);
 
     const { id } = useParams();
-
-    const handleThumbnailClick = (image) => {
-        setSelectedImage(image);
-    };
 
     const handleSetColor = (name) => {
         const selectedColorData = color.find(color => color.name === name);
@@ -35,15 +30,15 @@ const Product = () => {
     }
 
     const handleSizeChange = (event) => {
-        console.log(event.target.value);
+
         setSelectedSize(event.target.value);
     }
 
     const handleAddToBag = () => {
-        console.log("COLOR", color)
+
         const choosenColor = color.filter(color => color.name === selectedColor)
-        console.log(choosenColor);
-        console.log(selectedSize)
+
+
         const choosenId = choosenColor[0].sizes.filter(size => size.size === selectedSize)
         if (selectedColor === '' || selectedSize === '') {
             setError(true);
@@ -80,15 +75,15 @@ const Product = () => {
     useEffect(() => {
         api.get(`${URI}/good/${id}`)
             .then(async response => {
-                console.log(response)
+
                 setData(response.data);
                 setColor(response.data.colors);
                 setSize(response.data.sizes);
-                console.log("SIZES", response.data.colors)
-                const allSizes = response.data.sizes.map(size => size.size);
+
+
                 setSelectedColorSizes(response.data.colors[0].sizes);
                 setSelectedColor(response.data.colors[0].name);
-                console.log(allSizes);
+
                 const good = response.data;
                 const photos = [];
                 const fetchPhoto = async (photo) => {
@@ -116,8 +111,9 @@ const Product = () => {
 
                 setPhotosById(photos);
                 try {
+                    // eslint-disable-next-line
                     const selected = photos.sort((a, b) => a.position - b.position)
-                    setSelectedImage(photos[0].image);
+                    setSelectedImage(selected[0].image);
                 } catch {
                     // console.error(error);
                 }
@@ -130,9 +126,11 @@ const Product = () => {
 
     return (
         <div className="product">
+            {window.innerWidth > 768 ? (
             <div className="scroll-panel">
                 {photos.sort((a, b) => a.position - b.position)
                     .map((photo) => (
+                        // eslint-disable-next-line
                         <img
                             onClick={() => { setSelectedImage(photo.image) }}
                             src={`${photo.image}`}
@@ -141,6 +139,7 @@ const Product = () => {
                     ))
                 }
             </div>
+            ) : ( null )}
             <div className="product-photo">
                 {selectedImage === null ? (
                     <LoadingText />
@@ -149,6 +148,20 @@ const Product = () => {
                 )
                 }
             </div>
+            {window.innerWidth <= 768 ? (
+            <div className="scroll-panel">
+                {photos.sort((a, b) => a.position - b.position)
+                    .map((photo) => (
+                        // eslint-disable-next-line
+                        <img
+                            onClick={() => { setSelectedImage(photo.image) }}
+                            src={`${photo.image}`}
+                            alt={`Image ${photo.id}`}
+                        />
+                    ))
+                }
+            </div>
+            ) : (null)}
             <div className="product-info">
                 {/* <h2 className="font-gramatika-bold">{category.name}</h2> */}
                 <h1>{data.name}</h1>

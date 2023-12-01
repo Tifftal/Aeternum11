@@ -1,20 +1,17 @@
+/* eslint-disable-next-line */
 .carousel-container {
-    overflow: hidden;
-    position: relative;
-    width: 100%;
-  }
-  
-  .carousel-wrapper {
-    display: flex;
-    overflow: hidden;
-  }
-  
-  .slides {
-    display: flex;
-    justify-content: start;
-    transition: transform 0.5s ease-in-out;
-  }
-  
-  
-  /* Add any additional styling as needed */
-  
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+/* eslint-disable-next-line */
+.carousel-wrapper {
+  display: flex;
+  overflow: hidden;
+}
+/* eslint-disable-next-line */
+.slides {
+  display: flex;
+  justify-content: flex-start;
+  transition: transform 0.5s ease-in-out;
+}

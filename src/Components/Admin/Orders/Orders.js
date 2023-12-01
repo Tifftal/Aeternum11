@@ -8,7 +8,6 @@ const Orders = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [selectedOrder, setSelectedOrder] = useState(null);
     const [data, setData] = useState([]);
-    const [query, setQuery] = useState('');
     const [selectedStatus, setSelectedStatus] = useState("");
 
     const status = ["FREE", "DENIED", "ACCESSED"]
@@ -22,7 +21,7 @@ const Orders = () => {
                     },
                 });
 
-                console.log("Orders Response:", response.data.content);
+                
 
                 const data = response.data.content;
 
@@ -35,7 +34,7 @@ const Orders = () => {
                 });
 
                 const usersData = await Promise.all(promises);
-                console.log("Users Data:", usersData);
+                
 
                 setData(
                     data.map((order, index) => {
@@ -124,7 +123,7 @@ const Orders = () => {
                 },
             });
 
-            console.log("Orders Response:", response.data.content);
+            
 
             const data = response.data.content;
 
@@ -137,7 +136,7 @@ const Orders = () => {
             });
 
             const usersData = await Promise.all(promises);
-            console.log("Users Data:", usersData);
+            
 
             setData(
                 data.map((order, index) => {

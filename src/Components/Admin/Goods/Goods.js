@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
 import './Goods.css';
-import { useTranslation } from "react-i18next";
 import { URI } from "../../../api/config";
 import api from "../../../api/axiosConfig";
 import Popup from "./Popup/Popup";
 import EditPopup from "./Popup/EditPopup";
 
 const Goods = () => {
-    const [t] = useTranslation("global");
     const [selectedImage, setSelectedImage] = useState(null);
     const [data, setData] = useState([]);
     const [free, setFree] = useState([]);
@@ -25,7 +23,7 @@ const Goods = () => {
 
     const [inputGroupsColor, setInputGroupsColor] = useState(1);
     const [inputGroupsSize, setInputGroupsSize] = useState([]);
-    const [sizeFormData, setSizeFormData] = useState([]);
+    
     const [currentGoodId, setCurrentGoodId] = useState(null);
     const [colorFormData, setColorFormData] = useState([]);
     const [position, setPosition] = useState(0);
@@ -49,14 +47,14 @@ const Goods = () => {
         try {
             const response = await api.get(`${URI}/good/${goodId}`);
             const good = response.data;
-            console.log(good);
+            
             // Assuming you are using async/await, make the function async
             const fetchPhoto = async (photo) => {
                 try {
                     const response = await api.get(`${URI}/photo/${photo.id}`, {
                         responseType: 'arraybuffer', // Important: set responseType to arraybuffer
                     });
-                    console.log(response);
+                    
                     const blob = new Blob([response.data], { type: 'image/jpeg' }); // Adjust type based on your file type
                     const imageUrl = URL.createObjectURL(blob);
 
@@ -125,7 +123,7 @@ const Goods = () => {
             }
         })
             .then(response => {
-                console.log(response);
+                
                 // Update local state by removing the deleted photo
                 setPhotosById(prevPhotos => prevPhotos.filter(photo => photo.id !== photoId));
             })
@@ -144,7 +142,7 @@ const Goods = () => {
 
     const HandleOpenEditPopupImages = async (good) => {
         setPhotosById([])
-        console.log(good);
+
 
         // Fetch photos when opening the edit popup
         setIsOpenEditPopupImage(true);
@@ -166,11 +164,10 @@ const Goods = () => {
     };
 
     const HandleOpenEditPopupSize = (good) => {
-        console.log(good)
         setSelectedGood(good);
         setIsOpenEditPopupSize(true);
         const sizes = [];
-        good.colors.map((color) => {
+        good.colors.forEach((color) => {
             sizes.push(color.sizes.length)
         })
         setInputGroupsSize(sizes)
@@ -225,7 +222,6 @@ const Goods = () => {
             });
         api.get(`${URI}/goods/free`)
             .then(response => {
-                console.log(response)
                 const filteredGoods = response.data.content.filter(good => good.state !== "DELETED")
                 setFree(filteredGoods)
             })
@@ -278,7 +274,6 @@ const Goods = () => {
         // setCount(newCount)
         api.delete(`${URI}/good/${id}`)
             .then(response => {
-                console.log(response);
                 let newCount = count;
                 newCount++
                 setCount(newCount)
@@ -313,8 +308,8 @@ const Goods = () => {
                         },
                     }
                 )
-                .then((response) => {
-                    console.log(response);
+                .then(() => {
+                    
                     let newCount = count;
                     newCount++
                     setCount(newCount)
@@ -367,7 +362,7 @@ const Goods = () => {
             }
         )
             .then(response => {
-                console.log(response);
+
                 let newCount = count;
                 newCount++
                 setCount(newCount)
@@ -421,8 +416,7 @@ const Goods = () => {
             ]
         }));
 
-        console.log("Изменения для товара ID:", currentGoodId);
-        console.log('Submitted Data after parsing:', colors);
+        
 
         api.put(
             `${URI}/good/${currentGoodId}/colors`,
@@ -433,8 +427,8 @@ const Goods = () => {
                 },
             }
         )
-            .then(response => {
-                console.log(response);
+            .then(() => {
+                
                 let newCount = count;
                 newCount++
                 setCount(newCount)
@@ -473,8 +467,6 @@ const Goods = () => {
             formData.push(colorData);
         });
 
-        console.log(formData);
-
         api.put(
             `${URI}/good/${selectedGood.id}/colors`,
             { colors: formData },
@@ -488,7 +480,6 @@ const Goods = () => {
                 let newCount = count;
                 newCount++
                 setCount(newCount)
-                console.log(response);
             })
             .catch(err => {
                 console.error(err);
@@ -496,7 +487,7 @@ const Goods = () => {
 
         UpdateData();
 
-        setSizeFormData([]);
+        
         HandleCloseEditPopupSize();
 
     };
@@ -509,8 +500,7 @@ const Goods = () => {
                 },
             }
         )
-            .then(response => {
-                console.log(response);
+            .then(() => {
                 let newCount = count;
                 newCount++
                 setCount(newCount)
@@ -621,7 +611,7 @@ const Goods = () => {
                                             <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
                                                 <img
                                                     src={`${photo.image}`}
-                                                    alt={`Image ${photo.id}`}
+                                                    alt={`${photo.id}`}
                                                     style={{ maxWidth: '175px', maxHeight: 'auto' }}
                                                 />
                                             </div>

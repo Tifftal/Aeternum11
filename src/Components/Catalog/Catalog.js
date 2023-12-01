@@ -11,11 +11,12 @@ const Catalog = () => {
     useEffect(() => {
         api.get(`${URI}/sections`)
             .then(response => {
-                console.log(response);
+                
                 let categoriesId = [];
                 const sections = response.data;
+                // eslint-disable-next-line
                 sections.map(categories => {
-                    console.log(categories)
+                
                     categoriesId = [...categories.categories]
                 })
                 console.log("CATEGORIES", categoriesId)
@@ -29,7 +30,7 @@ const Catalog = () => {
     useEffect(() => {
         api.get(`${URI}/goods`)
             .then(response => {
-                console.log(response);
+                
                 setData(response.data.content)
             })
             .catch(err => {
@@ -40,8 +41,13 @@ const Catalog = () => {
     return (
         <div className="assortment">
             <div className="categoryBtn font-gramatika-bold">
+            {/* eslint-disable-next-line */}
+                <a href="/">Главная</a>
+                <p>/</p>
+                {/* eslint-disable-next-line */}
                 <a href="#">Женщины</a>
                 <p>/</p>
+                {/* eslint-disable-next-line */}
                 <a href="#">Одежда</a>
             </div>
             <div className="link-category">

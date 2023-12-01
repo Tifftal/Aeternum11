@@ -179,4 +179,13 @@
         display: flex;
         flex-direction: column;
     }
+
+    .link-category {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+        gap: 5px;
+        /* Расстояние между элементами */
+        justify-content: center;
+        /* Центрирование элементов */
+    }
 }

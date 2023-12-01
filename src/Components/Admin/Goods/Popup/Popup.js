@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import './Popup.css';
-import { useTranslation } from 'react-i18next';
 import api from '../../../../api/axiosConfig';
 import { URI } from '../../../../api/config';
 
 const Popup = ({ onClose, setIsOpen, selectedGood, onDataUpdate, count, setCount, width }) => {
-    const [t] = useTranslation('global');
     const [editedGood, setEditedGood] = useState({
         name: selectedGood.name,
         cost: selectedGood.cost,
@@ -22,7 +20,6 @@ const Popup = ({ onClose, setIsOpen, selectedGood, onDataUpdate, count, setCount
 
     const handleEditGood = (e) => {
         e.preventDefault();
-        console.log("Сохранение товара:", editedGood);
 
         const updatedGood = {
             name: editedGood.name,
@@ -47,8 +44,7 @@ const Popup = ({ onClose, setIsOpen, selectedGood, onDataUpdate, count, setCount
                 },
             }
         )
-            .then(response => {
-                console.log(response);
+            .then(() => {
                 // Закрыть модальное окно
                 onClose();
                 // Обновить данные после успешного редактирования

@@ -1,5 +1,4 @@
-import React from "react";
-import { useTranslation } from "react-i18next";
+import React, {useEffect, useState} from "react";
 import { Link, useNavigate } from "react-router-dom";
 import api from "../../api/axiosConfig";
 import { URI } from "../../api/config";
@@ -7,7 +6,7 @@ import { URI } from "../../api/config";
 // ... (other imports)
 
 const WishlistCard = ({ data, onRemove }) => {
-    const [t] = useTranslation("global");
+    const [photo, setPhoto] = useState('')
     const navigate = useNavigate();
 
     const handleDeleteFromWishlist = (id) => {
@@ -19,17 +18,68 @@ const WishlistCard = ({ data, onRemove }) => {
         navigate(`/product/${data.id}`); // Navigate to the specified product page
     }
 
+    useEffect(() => {
+        let isMounted = true; // Add a variable to track the component's mount state
+    
+        const fetchData = async () => {
+            try {
+                const response = await api.get(`${URI}/good/${data.id}`);
+                const good = response.data;
+    
+                const fetchPhoto = async (photo) => {
+                    try {
+                        const response = await api.get(`${URI}/photo/${photo.id}`, {
+                            responseType: 'arraybuffer',
+                        });
+    
+                        const blob = new Blob([response.data], {type: 'image/jpeg'})
+                        const imageURL = URL.createObjectURL(blob);
+    
+                        // Check if the component is still mounted before updating the state
+                        if (isMounted) {
+                            setPhoto(imageURL);
+                        }
+                    }
+                    catch (error) {
+                        console.error(error);
+                    }
+                }
+    
+                const photo = good.photos.sort((a, b) => a.position - b.position)
+                const firstPhoto = photo[0]
+    
+                // Check if the component is still mounted before calling fetchPhoto
+                if (isMounted && firstPhoto) {
+                    await fetchPhoto(firstPhoto)
+                }
+            }
+            catch(error) {
+                console.error(error);
+            }
+        };
+    
+        fetchData();
+    
+        // Cleanup function to update the isMounted variable when the component is unmounted
+        return () => {
+            isMounted = false;
+        };
+    
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [data.id]); // Include dependencies in the dependency array
+    
+
     return (
         <div>
             <div className="wishlist-card">
-                <img src="../../IMG/test.jpeg" alt="test" onClick={redirectToItem} style={{cursor: "pointer"}} />
+                <img src={photo || "../../../IMG/carlos-torres-MHNjEBeLTgw-unsplash.jpg"} alt="test" onClick={redirectToItem} style={{ cursor: "pointer" }} />
                 <div className="nameOfCloth">
                     <Link to={`/product/${data.id}`} style={{ textDecoration: "none", color: "white" }}>
                         <h1 className="wish-card-name">{data.name}</h1>
                     </Link>
                 </div>
                 <p>{data.cost} ₽ </p>
-                <button className="removeBtn" onClick={() => {handleDeleteFromWishlist(data.id)}}>Удалить</button>
+                <button className="removeBtn" onClick={() => { handleDeleteFromWishlist(data.id) }}>Удалить</button>
             </div>
         </div>
     )

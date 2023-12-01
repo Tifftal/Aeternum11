@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
 import './Women.css';
-import { useTranslation } from "react-i18next";
 import api from "../../../../api/axiosConfig";
 import { URI } from "../../../../api/config";
 
 const Women = () => {
-    const [t] = useTranslation("global");
     const [sections, setSections] = useState([]);
     const [newSectionName, setNewSectionName] = useState("");
     const [newCategory, setNewCategory] = useState("");
@@ -15,7 +13,7 @@ const Women = () => {
     useEffect(() => {
         api.get(`${URI}/sections`)
             .then(response => {
-                console.log(response);
+                
                 setSections(response.data);
                 setCatBtnsActive(Array(response.data.length).fill(false));
             })
@@ -25,7 +23,7 @@ const Women = () => {
     }, [])
 
     const handleSaveSection = () => {
-        console.log("Сохранение секции:", newSectionName);
+        
         api.post(
             `${URI}/sections`,
             {
@@ -38,7 +36,7 @@ const Women = () => {
             }
         )
             .then(response => {
-                console.log(response);
+                
                 setSections(prevSections => [...prevSections, response.data]);
             })
             .catch(err => {
@@ -48,7 +46,7 @@ const Women = () => {
     };
 
     const handleSaveCategory = (sectionId) => {
-        console.log("Сохранение категории:", newCategory);
+        
         api.post(
             `${URI}/categories`,
             {
@@ -61,8 +59,8 @@ const Women = () => {
                 },
             }
         )
-            .then(response => {
-                console.log(response);
+            .then(() => {
+                
             })
             .catch(err => {
                 console.error(err);

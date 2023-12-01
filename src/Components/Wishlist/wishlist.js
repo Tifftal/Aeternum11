@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "./wishlist.css"
-import { useTranslation } from "react-i18next";
-import { getData } from "./lib/data_wishlist";
 import WishlistCard from "../../Entities/WishlistCard/WishlistCard";
 import api from "../../api/axiosConfig";
 import { URI } from "../../api/config";
@@ -9,7 +7,6 @@ import { URI } from "../../api/config";
 // ... (other imports)
 
 const Wishlist = () => {
-    const [t] = useTranslation("global");
     const [wishlist, setWishlist] = useState();
 
     useEffect(() => {
@@ -20,8 +17,9 @@ const Wishlist = () => {
         })
             .then(response => {
                 const wishes = [...response.data.wishlist];
-                console.log(response.data);
+                
                 let goodsInBag = [];
+                // eslint-disable-next-line
                 wishes.map(wish => {
                     api.get(`${URI}/good/${wish.id}`, {
                         headers: {
@@ -30,11 +28,11 @@ const Wishlist = () => {
                     })
                         .then(response => {
                             goodsInBag.push(response.data);
-                            console.log(response.data)
+                
                             setWishlist(goodsInBag);
                         })
                         .catch(error => {
-                            console.log(error);
+                            console.error(error);
                         })
                 })
             })
@@ -46,7 +44,7 @@ const Wishlist = () => {
     const handleRemoveFromWishlist = (wishId) => {
         // Update the state by removing the deleted item
         setWishlist((prevWishlist) => prevWishlist.filter((wish) => wish.id !== wishId));
-        console.log(wishId);
+        
 
         // Send API request to remove from the server (optional)
         api
@@ -58,8 +56,8 @@ const Wishlist = () => {
                     Authorization: `Bearer ${window.localStorage.getItem("jwtToken")}`,
                 },
             })
-            .then((response) => {
-                console.log(response);
+            .then(() => {
+                
             })
             .catch((error) => {
                 console.error(error);

@@ -124,21 +124,20 @@
     }
     .total {
         width: 90%;
-        align-items: center;
         margin: 0 0 0 0;
         padding: 0 0 0 0;
     }
-    .total h1 {
+    /* .total h1 {
         padding: 0%;
         margin: 0 0 0 0;
         text-transform: uppercase;
         font-size: 95%;
         font-weight: 400;
-    }
+    } */
     .sale {
         width: 100%;
         display: flex;
         flex-direction: column;
-        align-items: center;
+        /* align-items: center; */
     }
 }

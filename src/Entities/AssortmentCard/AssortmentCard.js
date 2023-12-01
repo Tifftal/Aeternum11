@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
 import { URI } from "../../api/config";
 import api from "../../api/axiosConfig";
 
 const AssortmentCard = ({ data }) => {
-    const [t] = useTranslation("global");
     const [photo, setPhoto] = useState('')
+    //eslint-disable-next-line
     useEffect(async() => {
         try {
             const response = await api.get(`${URI}/good/${data.id}`);
@@ -33,6 +32,7 @@ const AssortmentCard = ({ data }) => {
         catch(error) {
             console.error(error);
         }
+    //eslint-disable-next-line
     },[])
 
     return (

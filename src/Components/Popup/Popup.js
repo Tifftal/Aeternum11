@@ -50,7 +50,7 @@ const Popup = (props) => {
                 .then(response => {
                     if (response.status === 200) {
                         window.localStorage.setItem('jwtToken', response.data.token);
-                        console.log(response);
+                        
                         login(response.data.token);
                         props.onClose();
                     }

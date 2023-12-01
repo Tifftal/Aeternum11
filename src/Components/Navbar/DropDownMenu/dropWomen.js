@@ -1,18 +1,16 @@
 import React, { useEffect, useState } from "react";
 import './drop.css';
-import { useTranslation } from "react-i18next";
 import api from "../../../api/axiosConfig";
 import { URI } from "../../../api/config";
 
 
 const DropW = () => {
-    const [t] = useTranslation("global");
     const [sections, setSectons] = useState([]);
 
     useEffect(() => {
         api.get(`${URI}/sections`)
             .then(response => {
-                console.log(response);
+                
                 setSectons(response.data)
             })
             .catch(err => {

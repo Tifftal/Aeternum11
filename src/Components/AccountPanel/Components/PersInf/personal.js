@@ -66,7 +66,6 @@ const Personal = (props) => {
                 })
         }
         if (isSended && code) {
-            console.log(personal.email);
             api
                 .post(
                     `${URI}/checkPasCode/${code}`,
@@ -92,11 +91,11 @@ const Personal = (props) => {
                     }
                 })
                 .catch((error) => {
-                    console.log(error);
-                    // if (error?.response?.data?.status === 404) {
-                    //     console.log(error);
-                    //     setError(error?.data?.message)
-                    // }
+                    
+                    if (error?.response?.data?.status === 404) {
+                    
+                        setError(error?.data?.message)
+                    }
                 });
         }
     }
@@ -133,8 +132,8 @@ const Personal = (props) => {
                 "Authorization": `Bearer ${window.localStorage.getItem("jwtToken")}`
             }
         })
-            .then(response => {
-                console.log(response);
+            .then(() => {
+                
             })
             .catch(error => {
                 console.error(error);

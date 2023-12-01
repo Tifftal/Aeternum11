@@ -43,10 +43,6 @@
     gap: 3%;
 }
 
-.dropDownBtn,
-.ordinary {
-    /* margin-right: 15px; */
-}
 
 .right {
     width: 35%;
@@ -56,9 +52,6 @@
     gap: 3%;
 }
 
-.right button {
-    /* margin-left: 15px; */
-}
 
 .right a {
     color: white;
