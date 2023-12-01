@@ -100,7 +100,7 @@ const CreateAccount = () => {
 
         setErrors(newErrors);
 
-        if (!errors.name && !errors.surname && !errors.gender && !errors.birth && !errors.city && !errors.phone && !errors.email && !errors.password && !errors.password && !errors.rpassword && !errors.matchPasswords && !isSended) {
+        if (!errors.name && !errors.surname && !errors.gender && !errors.birth && !errors.city && !errors.phone && !errors.email && !errors.password && !errors.password && !errors.rpassword && !errors.matchPasswords && !isSended && password.length > 6) {
             axios.post(`${URI}/registration`,
                 {
                     email: email,
@@ -138,7 +138,7 @@ const CreateAccount = () => {
                 })
         }
 
-        if (isSended && code) {
+        if (isSended && code && password > 6) {
             axios.post(`${URI}/checkRegCode/${code}`,
                 {
                     email: email,

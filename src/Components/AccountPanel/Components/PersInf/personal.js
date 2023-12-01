@@ -65,7 +65,7 @@ const Personal = (props) => {
                     console.error(error);
                 })
         }
-        if (isSended && code) {
+        if (isSended && code && newPassword.length > 6) {
             api
                 .post(
                     `${URI}/checkPasCode/${code}`,
