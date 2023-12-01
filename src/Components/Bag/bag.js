@@ -66,9 +66,9 @@ const Bag = () => {
                 .post(
                     `${URI}/application`,
                     {
-                        data: {
-                            clientComment: address,
-                        },
+
+                        clientComment: address,
+
                     },
                     {
                         headers: {
