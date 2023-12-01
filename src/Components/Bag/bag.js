@@ -126,10 +126,10 @@ const Bag = () => {
                         <p>Доставка</p>
                         <p>Free</p>
                     </div>
-                    <div>
+                    {/* <div>
                         <p>Налоговый сбор</p>
                         <p>Included</p>
-                    </div>
+                    </div> */}
                     <div>
                         <p>Всего</p>
                         <p>{cost} ₽ </p>
