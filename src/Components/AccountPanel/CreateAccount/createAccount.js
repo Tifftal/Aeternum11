@@ -294,12 +294,12 @@ const CreateAccount = () => {
             ) : (
                 null
             )}
-            <h4>{t("create_account.text2")}</h4>
+            {/* <h4>{t("create_account.text2")}</h4> */}
             <div className="agreeAc">
                 <input
                     type="checkbox"
                 />
-                <label>{t("create_account.check1")}</label>
+                <label>Создавая аккаунт вы принимаете пользовательское соглашение об обработке персональных данных</label>
             </div>
             <div className="agreeAc">
                 <input

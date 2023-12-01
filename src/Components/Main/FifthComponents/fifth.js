@@ -22,7 +22,7 @@ const Fifth = () => {
                 <h1>Нужна помощь?</h1>
                 <div className="phone">
                     <img src="../../IMG/icons8-телефон-100.png" alt="phone" />
-                    <p>+7 (123) 456 78 90</p>
+                    <p>+7 (926) 786 63 08</p>
                 </div>
             </div>
             <div className="ae">

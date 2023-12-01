@@ -18,6 +18,7 @@ export const Carousel = ({ items }) => {
         style={{
             display: "flex",
             alignItems: "center",
+            flexDirection: "column"
         }}
     >
       <div className="carousel-wrapper">
