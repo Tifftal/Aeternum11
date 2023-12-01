@@ -43,7 +43,7 @@ const Navbar = () => {
                     <a href="/"> Aeternum Eleven </a>
                 </div>
             ) : (
-                null
+                <img src="../../IMG/Group 6.png"/>
             )
             }
             <div className="right">
