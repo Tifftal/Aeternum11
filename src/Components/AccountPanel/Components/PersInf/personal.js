@@ -261,10 +261,7 @@ const Personal = (props) => {
             }
             <button className="BtnAc" onClick={handleSubmitNewPassword} style={{ margin: "0 0 50px 0" }}>Обновить пароль</button>
 
-            <div className="agreeAc">
-                <input type="checkbox" />
-                <label>{t("create_account.check1")}</label>
-            </div>
+            
         </div>
 
     )

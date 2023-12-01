@@ -114,7 +114,13 @@ const Address = () => {
         <div className="address">
             <h1 className="font-gramatika-bold">Ваши заказы</h1>
             <div className="order-cards-self">
-                {content.map((order, index) => (
+            {content.length === 0 ? (
+                
+            <div className="empty-bag">
+                <p>Ваша корзина пуста</p>
+                <a href="/catalog"><button className="font-gramatika-bold">Перейти в каталог</button></a>
+            </div>
+            ) : (content.map((order, index) => (
                     <div className="cardOrderSelf" key={order.id}>
                         <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center", width: "100%" }}>
                             <h2 className="font-gramatika-bold">Заказ №{order.id}   <b style={{ color: getStatusColor(order.status), marginLeft: "10px" }}>{getStatusName(order.status)}</b></h2>
@@ -141,7 +147,8 @@ const Address = () => {
                             </tbody>
                         </table>
                     </div>
-                ))}
+            )))
+            }
             </div>
         </div>
     );
