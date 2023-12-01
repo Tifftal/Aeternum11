@@ -180,13 +180,14 @@ const Personal = (props) => {
                     onChange={handleChange}
                 />
                 <select
+                    className="select-pers-info"
                     value={personal.gender}
                     name="gender"
                     onChange={handleChange}
                 >
-                    <option value="MEN">Мужчина</option>
-                    <option value="NON-BINARY">Не узакывать</option>
-                    <option value="WOMAN">Женщина</option>
+                    <option value="MEN">Мужской</option>
+                    <option value="NON-BINARY">Не узакано</option>
+                    <option value="WOMAN">Женский</option>
                 </select>
                 <input
                     type="date"
@@ -251,12 +252,12 @@ const Personal = (props) => {
                     ) : (null)
                 }
             </div>
-            { error !== '' ? (
-                        <h2 style={{marginBottom: "50px", color: "#FF5656"}}>{error}</h2>
-                    ) : (
-                        null
-                    )
-                    }
+            {error !== '' ? (
+                <h2 style={{ marginBottom: "50px", color: "#FF5656" }}>{error}</h2>
+            ) : (
+                null
+            )
+            }
             <button className="BtnAc" onClick={handleSubmitNewPassword} style={{ margin: "0 0 50px 0" }}>Обновить пароль</button>
 
             <div className="agreeAc">

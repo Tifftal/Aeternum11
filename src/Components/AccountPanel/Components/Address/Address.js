@@ -102,6 +102,19 @@ const Address = () => {
         }
     };
 
+    const getStatusName = (name) => {
+        switch (name) {
+            case "FREE":
+                return "В обработке";
+            case "DENIED":
+                return "Отменен";
+            case "ACCESSED":
+                return "Завершён";
+            default:
+                return "gray"; // Цвет по умолчанию или любой другой цвет
+        }
+    };
+
     return (
         <div className="address">
             <h1 className="font-gramatika-bold">Ваши заказы</h1>
@@ -109,7 +122,7 @@ const Address = () => {
                 {content.map((order, index) => (
                     <div className="cardOrderSelf" key={order.id}>
                         <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center", width: "100%" }}>
-                            <h2 className="font-gramatika-bold">Заказ №{order.id}   <b style={{ color: getStatusColor(order.status), marginLeft: "10px" }}>{order.status}</b></h2>
+                            <h2 className="font-gramatika-bold">Заказ №{order.id}   <b style={{ color: getStatusColor(order.status), marginLeft: "10px" }}>{getStatusName(order.status)}</b></h2>
                         </div>
                         <h3> <b>Дата заказа:</b>  {formatTime(order.time)}</h3>
                         <table className='goods-in-order-self'>

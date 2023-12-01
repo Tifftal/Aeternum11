@@ -144,8 +144,8 @@ const Product = () => {
             <div className="product-photo">
                 {selectedImage === null ? (
                     <LoadingText />
-                ): (
-                        <img src = { selectedImage } alt = "main-product" />
+                ) : (
+                    <img src={selectedImage} alt="main-product" />
                 )
                 }
             </div>
@@ -185,8 +185,6 @@ const Product = () => {
                     Добавить в корзину
                 </button>
                 {error && <p style={{ color: "red" }} className="font-gramatika-bold">Выберите цвет товара и размер</p>}
-                <h5 className="compound">Состав: </h5>
-                <h5 className="compound">{data.compound}</h5>
                 {data && data.description && (
                     <ul className="description">
                         {data.description.split(',').map((item, index) => (
@@ -194,6 +192,12 @@ const Product = () => {
                         ))}
                     </ul>
                 )}
+                <h5 className="compound" style={{ marginBottom: "20px" }}> Артикул: {data.vendorCode}</h5>
+                <h5 className="compound" style={{ color: "gray" }}>Состав: </h5>
+                <h5 className="compound" style={{ marginBottom: "20px" }}>{data.compound}</h5>
+                <h5 className="compound" style={{ color: "gray" }}>Рекомендации по уходу: </h5>
+                <h5 className="compound" style={{ marginBottom: "20px" }}>{data.recommendations}</h5>
+                <h5 className="compound">{data.onModel}</h5>
             </div>
         </div>
     );

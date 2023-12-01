@@ -14,7 +14,7 @@
 .modal-content-admin {
     background-color: rgba(255, 255, 255, 0.4);
     padding: 2vw;
-    width: 50vw;
+    /* width: 50vw; */
     border-radius: 20px;
     backdrop-filter: blur(10px);
     display: flex;
@@ -88,7 +88,7 @@
 }
 
 .form-edit {
-    width: 60%;
+    width: 100%;
     display: flex;
     flex-direction: column;
 }

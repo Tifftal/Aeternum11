@@ -75,7 +75,9 @@
     justify-content: center;
 }
 
-.registration input, .registration select, .code input {
+.registration input,
+.registration select,
+.code input {
     font-family: 'Manrope', serif;
     caret-color: white;
     padding: 0 5%;
@@ -267,24 +269,48 @@
     padding: 0 2%;
     transition: .2s;
     font-family: 'Manrope', serif;
-    color: #818181;
+    color: #ffffff;
 }
 
-.label-input:focus ~ .registration label, .code input {
-    color: white;  
-}
-
-.label-input:hover ~ .registration label, .code input {
+.label-input:focus~.registration label,
+.code input {
     color: white;
 }
+
+.label-input:hover~.registration label,
+.code input {
+    color: white;
+}
+
 .label-input:hover,
-.label-input:focus, .code input:hover, .code input:focus {
+.label-input:focus,
+.code input:hover,
+.code input:focus {
     border: 1px white solid;
 }
 
 .email:focus {
     outline: none;
 }
+
+.select-create-account {
+    height: 2rem;
+    appearance: none;
+    font-family: 'Manrope', serif;
+    caret-color: white;
+    background: none;
+    padding: 0 1vw;
+    border: #c2c2c2 1px solid;
+    border-radius: 7px;
+    transition: .3s;
+    color: white;
+    font-size: 90%;
+}
+
+.select-create-account.default {
+    color: gray;
+  }
+
 
 @media screen and (max-width: 768px) {
     .create_account {

@@ -74,7 +74,8 @@
     justify-content: center;
 }
 
-.pers-data input, .pers-data select {
+.pers-data input,
+.pers-data select {
     font-family: 'Manrope', serif;
     caret-color: white;
     padding: 0 5%;
@@ -87,7 +88,7 @@
     font-size: 90%;
 }
 
-.pers-data input::placeholder{
+.pers-data input::placeholder {
     font-size: 90%;
     color: #818181;
     transition: .3s;
@@ -225,13 +226,14 @@
     color: #818181;
 }
 
-.label-input:focus ~ .pers-data label {
-    color: white;  
-}
-
-.label-input:hover ~ .pers-data label {
+.label-input:focus~.pers-data label {
     color: white;
 }
+
+.label-input:hover~.pers-data label {
+    color: white;
+}
+
 .label-input:hover,
 .label-input:focus {
     border: 1px white solid;
@@ -239,4 +241,22 @@
 
 .email:focus {
     outline: none;
+}
+
+.select-pers-info {
+    height: 2rem;
+    appearance: none;
+    font-family: 'Manrope', serif;
+    caret-color: white;
+    background: none;
+    padding: 0 1vw;
+    border: #c2c2c2 1px solid;
+    border-radius: 7px;
+    transition: .3s;
+    color: white;
+    font-size: 90%;
+}
+
+.select-pers-info:hover {
+    border: white 1px solid;
 }

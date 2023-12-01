@@ -334,6 +334,9 @@ const Goods = () => {
                 description: 'Описание',
                 compound: 'Состав',
                 cost: 0,
+                onModel: 'S',
+                vendorCode: '000000',
+                recommendations: 'Рекомендации по уходу',
                 backColor: {
                     name: 'Чёрный',
                     code: 'black',
@@ -375,19 +378,6 @@ const Goods = () => {
             });
 
     }
-
-    // const handleAddInput = (e) => {
-    //     e.preventDefault();
-    //     setInputGroups(prevGroups => prevGroups + 1);
-
-    //     setFormData(prevData => [
-    //         ...prevData,
-    //         {
-    //             size: '0',
-    //             sizeStatus: 'IN_STOCK'
-    //         }
-    //     ]);
-    // };
 
     const handleAddInputColor = (e) => {
         e.preventDefault();
@@ -545,6 +535,7 @@ const Goods = () => {
                     onDataUpdate={() => {
                         UpdateData();
                     }}
+                    width="35vw"
                 />
             )}
 
@@ -577,7 +568,7 @@ const Goods = () => {
                                                         <label htmlFor={`sizeStatus${colorIndex}-${index}`}>Статус размер:</label>
                                                         <select
                                                             id={`sizeStatus${colorIndex}-${index}`}
-                                                            class="input-edit-size-label"
+                                                            className="input-edit-size-label"
                                                             defaultValue={color.sizes[index]?.sizeStatus || 'IN_STOCK'}
                                                         >
                                                             <option>IN_STOCK</option>

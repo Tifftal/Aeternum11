@@ -7,6 +7,7 @@ import api from "../../../api/axiosConfig";
 
 const CreateAccount = () => {
     const [t] = useTranslation("global");
+    const [selectedGender, setSelectedGender] = useState('def-sel');
 
     const [name, setName] = useState("");
     const [surname, setSurname] = useState("");
@@ -42,6 +43,7 @@ const CreateAccount = () => {
 
     const handleChangeInput = (e, field, setError) => {
         const value = e.target.value;
+        setSelectedGender("selected");
         setError(value === "");
 
         switch (field) {
@@ -190,15 +192,18 @@ const CreateAccount = () => {
                     id={errors.surname ? "error" : ""}
                 />
                 <select
+                    className={`select-create-account ${selectedGender === 'def-sel' ? 'default' : ''}`}
                     onChange={(e) => { handleChangeInput(e, "gender", setErrors) }}
-                    id={errors.gender ? "error" : ""}
-                    defaultValue="" // установите значение по умолчанию, если это необходимо
+                    defaultValue=""
                 >
-                    <option value="" disabled hidden>Пол</option>
+                    <option value="" disabled hidden style={{ color: "gray" }}>
+                        Пол
+                    </option>
                     <option value="MEN">Мужской</option>
                     <option value="WOMAN">Женский</option>
                     <option value="NON-BINARY">Не указано</option>
                 </select>
+
                 <input
                     type="date"
                     placeholder="Дата рождения"

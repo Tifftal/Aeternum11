@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import api from '../../../../api/axiosConfig';
 import { URI } from '../../../../api/config';
 
-const Popup = ({ onClose, setIsOpen, selectedGood, onDataUpdate, count, setCount }) => {
+const Popup = ({ onClose, setIsOpen, selectedGood, onDataUpdate, count, setCount, width }) => {
     const [t] = useTranslation('global');
     const [editedGood, setEditedGood] = useState({
         name: selectedGood.name,
@@ -14,7 +14,10 @@ const Popup = ({ onClose, setIsOpen, selectedGood, onDataUpdate, count, setCount
         backColor: {
             name: selectedGood.backColor.name,
             code: selectedGood.backColor.code,
-        }
+        },
+        onModel: selectedGood.onModel,
+        vendorCode: selectedGood.vendorCode,
+        recommendations: selectedGood.recommendations,
     });
 
     const handleEditGood = (e) => {
@@ -29,7 +32,10 @@ const Popup = ({ onClose, setIsOpen, selectedGood, onDataUpdate, count, setCount
             backColor: {
                 name: editedGood.backColor.name,
                 code: editedGood.backColor.code,
-            }
+            },
+            onModel: editedGood.onModel,
+            vendorCode: editedGood.vendorCode,
+            recommendations: editedGood.recommendations,
         };
 
         api.put(
@@ -76,13 +82,12 @@ const Popup = ({ onClose, setIsOpen, selectedGood, onDataUpdate, count, setCount
 
     return (
         <div className="modal">
-            <div className="modal-content-admin">
+            <div className="modal-content-admin" style={{width: width}}>
                 <div className='header-good font-gramatika-bold'>
                     <h1>Редактировать товар</h1>
                     <button className='close' onClick={onClose}><img src='../../IMG/icons8-крестик-78.png' alt='close' /></button>
                 </div>
                 <div className='flex-cont'>
-                    <div>Тут фото</div>
                     <form className='form-edit'>
                         <div className='form-group-edit'>
                             <label htmlFor="name" className='label'>Название:</label>
@@ -142,6 +147,36 @@ const Popup = ({ onClose, setIsOpen, selectedGood, onDataUpdate, count, setCount
                                     onChange={(e) => handleInputChange(e, 'backColor.code')}
                                 />
                             </div>
+                        </div>
+
+                        <div className='form-group-edit'>
+                            <label htmlFor="vendorCode" className='label'>Артикул:</label>
+                            <input
+                                id="vendorCode"
+                                className='good-input-edit'
+                                value={editedGood.vendorCode}
+                                onChange={(e) => handleInputChange(e, 'vendorCode')}
+                            />
+                        </div>
+
+                        <div className='form-group-edit'>
+                            <label htmlFor="recommendations" className='label'>Рекомендации по уходу:</label>
+                            <input
+                                id="recommendations"
+                                className='good-input-edit'
+                                value={editedGood.recommendations}
+                                onChange={(e) => handleInputChange(e, 'recommendations')}
+                            />
+                        </div>
+
+                        <div className='form-group-edit'>
+                            <label htmlFor="onModel" className='label'>На модели размер:</label>
+                            <input
+                                id="onModel"
+                                className='good-input-edit'
+                                value={editedGood.onModel}
+                                onChange={(e) => handleInputChange(e, 'onModel')}
+                            />
                         </div>
 
                         <button className='goodBtn font-gramatika-bold' onClick={handleEditGood}>Сохранить</button>
