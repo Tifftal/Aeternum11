@@ -117,11 +117,10 @@ const Popup = (props) => {
     const [t] = useTranslation("global");
 
     return (
-        <div className="modal" style={{backgroundColor: "rgba(0,0,0,0.1)"}}>
+        <div className="modal" style={{backgroundColor: "rgba(0,0,0,0.5)"}}>
             <form
                 className="modal-content"
                 onSubmit={handleSubmitForm}
-                style={{backgroundColor: "rgba(0,0,0,0.4)"}}
             >
                 <div className='header font-gramatika-bold'>
                     <h1>Войти в аккаунт</h1>
