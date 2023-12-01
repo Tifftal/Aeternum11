@@ -143,6 +143,7 @@ const Goods = () => {
     };
 
     const HandleOpenEditPopupImages = async (good) => {
+        setPhotosById([])
         console.log(good);
 
         // Fetch photos when opening the edit popup
