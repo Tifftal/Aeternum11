@@ -22,6 +22,7 @@ const CreateAccount = () => {
     const [isSended, setSended] = useState(false);
     const [code, setCode] = useState('');
     const [codeError, setCodeError] = useState('');
+    const [passwordErr, setPasswordErr] = useState('');
 
     const [errors, setErrors] = useState({
         name: false,
@@ -98,9 +99,21 @@ const CreateAccount = () => {
             matchPasswords: password !== rpassword,
         };
 
+        if (password.length <= 6) {
+            setPasswordErr("Пароль должен быть больше 6 символов")
+        } else {
+            setPasswordErr("");
+        }
+
+        if (password !== rpassword) {
+            setPasswordErr("Пароли не совпадают")
+        } else {
+            setPasswordErr("")
+        }
+
         setErrors(newErrors);
 
-        if (!errors.name && !errors.surname && !errors.gender && !errors.birth && !errors.city && !errors.phone && !errors.email && !errors.password && !errors.password && !errors.rpassword && !errors.matchPasswords && !isSended && password.length > 6) {
+        if (!errors.name && !errors.surname && !errors.gender && !errors.birth && !errors.city && !errors.phone && !errors.email && !errors.password && !errors.password && !errors.rpassword && !errors.matchPasswords && !isSended && password.length >= 6) {
             axios.post(`${URI}/registration`,
                 {
                     email: email,
@@ -256,6 +269,12 @@ const CreateAccount = () => {
                 />
             </div>
             <h3>* Обязательные поля</h3>
+            {passwordErr.length ? (
+                <p style={{ margin: "0 0 0 0", color: "#FF5656"}}>{passwordErr}</p>
+            ) : (
+                null
+            )
+            }
             {isSended ? (
                 <div className="code">
                     <h3>Код был отправлен на электронную почту</h3>
