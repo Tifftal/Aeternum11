@@ -130,6 +130,54 @@ const Product = () => {
             });
     }, [id]);
 
+    useEffect(() => {
+        // This useEffect runs after the component is mounted
+        const selectSingle = document.querySelector('.__select');
+        const selectSingle_title = selectSingle.querySelector('.__select__title');
+        const selectSingle_labels = selectSingle.querySelectorAll('.__select__label');
+
+        // Toggle menu
+        const handleToggleMenu = () => {
+            if ('active' === selectSingle.getAttribute('data-state')) {
+                selectSingle.setAttribute('data-state', '');
+            } else {
+                selectSingle.setAttribute('data-state', 'active');
+            }
+        };
+
+        selectSingle_title.addEventListener('click', handleToggleMenu);
+
+        // Close when click to option
+        const handleOptionClick = (evt) => {
+            selectSingle_title.textContent = evt.target.textContent;
+            selectSingle.setAttribute('data-state', '');
+        };
+
+        for (let i = 0; i < selectSingle_labels.length; i++) {
+            selectSingle_labels[i].addEventListener('click', handleOptionClick);
+        }
+
+        // Reset title
+        const reset = document.querySelector('.reset');
+        if (reset) {
+            const handleResetClick = () => {
+                selectSingle_title.textContent = selectSingle_title.getAttribute('data-default');
+            };
+            reset.addEventListener('click', handleResetClick);
+
+            // Cleanup event listeners when the component is unmounted
+            return () => {
+                selectSingle_title.removeEventListener('click', handleToggleMenu);
+                for (let i = 0; i < selectSingle_labels.length; i++) {
+                    selectSingle_labels[i].removeEventListener('click', handleOptionClick);
+                }
+                reset.removeEventListener('click', handleResetClick);
+            };
+        }
+    }, []);
+
+
+
 
     return (
         <div className="product">
@@ -190,7 +238,22 @@ const Product = () => {
                     ))}
                 </div>
                 <h3 className="color">{selectedColor}</h3>
-                <select className="productSize" value={selectedSize} onChange={handleSizeChange}>
+                <div class="__select" data-state="">
+                    <div class="__select__title" data-default="">Выбрать размер</div>
+                    <div class="__select__content">
+                        <input id="singleSelect0" class="__select__input" type="radio" name="singleSelect" checked />
+                        <label for="singleSelect0" class="__select__label">Option 0</label>
+                        <input id="singleSelect1" class="__select__input" type="radio" name="singleSelect" />
+                        <label for="singleSelect1" class="__select__label">Option 1</label>
+                        <input id="singleSelect2" class="__select__input" type="radio" name="singleSelect" disabled />
+                        <label for="singleSelect2" class="__select__label">Option 2 (disabled)</label>
+                        <input id="singleSelect3" class="__select__input" type="radio" name="singleSelect" />
+                        <label for="singleSelect3" class="__select__label">Option 3</label>
+                        <input id="singleSelect4" class="__select__input" type="radio" name="singleSelect" />
+                        <label for="singleSelect4" class="__select__label">Option 4</label>
+                    </div>
+                </div>
+                {/* <select className="productSize" value={selectedSize} onChange={handleSizeChange}>
                     <option value="" disabled hidden>
                         Выберите размер
                     </option>
@@ -199,7 +262,7 @@ const Product = () => {
                             {size.size} ({size.sizeStatus === "IN_STOCK" ? ("Есть в наличии") : ("Нет в наличии")})
                         </option>
                     ))}
-                </select>
+                </select> */}
 
                 <button className="addToBagBtn font-gramatika-bold" onClick={handleAddToBag}>
                     Добавить в корзину
