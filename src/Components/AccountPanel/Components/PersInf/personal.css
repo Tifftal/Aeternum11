@@ -74,8 +74,7 @@
     justify-content: center;
 }
 
-.pers-data input,
-.pers-data select {
+.pers-data input {
     font-family: 'Manrope', serif;
     caret-color: white;
     padding: 0 5%;
@@ -246,7 +245,7 @@
 .select-pers-info {
     height: 2rem;
     font-family: 'Manrope', serif;
-    caret-color: white;
+    /* caret-color: white; */
     background: none;
     padding: 0 1vw;
     border: #c2c2c2 1px solid;

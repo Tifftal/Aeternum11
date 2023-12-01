@@ -43,7 +43,7 @@ const Navbar = () => {
                     <a href="/"> Aeternum Eleven </a>
                 </div>
             ) : (
-                <img src="../../IMG/Group 6.png"/>
+                <img style={{width: "20px"}} src="../../IMG/Group 6.png"/>
             )
             }
             <div className="right">
