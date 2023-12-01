@@ -105,6 +105,7 @@ const OrderDetail = ({ onClose, width, order, formatTime, onOrderUpdate }) => {
                         </div>}
                     <p>ФИО: {order.userId && order.userData && `${order.userData.firstName} ${order.userData.lastName}`}</p>
                     <p>Телефон: {order.userId && order.userData && `${order.userData.phone}`}</p>
+                    <p>Почта: {order.userId && order.userData && `${order.userData.email}`}</p>
                     <div className='address-in-order'>
                         <p>Город: {order.userId && order.userData && `${order.userData.country}`}</p>
                         <p>Улица: {order.userId && order.userData && `${order.userData.state}`}</p>

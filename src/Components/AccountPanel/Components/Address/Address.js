@@ -112,7 +112,9 @@ const Address = () => {
 
     return (
         <div className="address">
+        <div style={{marginLeft: "auto", marginRight:"auto"}}>
             <h1 className="font-gramatika-bold">Ваши заказы</h1>
+        </div>
             <div className="order-cards-self">
             {content.length === 0 ? (
                 

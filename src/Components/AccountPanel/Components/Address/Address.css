@@ -103,6 +103,12 @@
         flex-direction: column;
         justify-content: flex-start;
         align-items: flex-start;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .address h1 {
+        text-align: center;
     }
 
     .cardOrderSelf {
@@ -114,6 +120,11 @@
         align-items: flex-start;
         transition: .2s;
         border-radius: 10px;
-        width: 100vw;
+        width: 80vw;
+        overflow-x: auto;
+    }
+    
+    .goods-in-order-self {
+        width: fit-content
     }
 }
