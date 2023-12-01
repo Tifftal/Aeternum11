@@ -4,7 +4,7 @@ import api from "../../api/axiosConfig";
 import { URI } from "../../api/config";
 import { Button, Card } from 'react-bootstrap';
 
-const CardBag = ({ good, onDelete }) => {
+const CardBag = ({ good, onDelete, onUpdateTotalAdd, onUpdateTotalRemove }) => {
   const [name, setName] = useState("");
   const [size, setSize] = useState("");
   const [color, setColor] = useState("");
@@ -54,9 +54,9 @@ const CardBag = ({ good, onDelete }) => {
             setPhoto(imageURL);
           }
         )
-        .catch(error => {
-          console.error(error)
-        })
+          .catch(error => {
+            console.error(error)
+          })
       }
       catch (error) {
         console.error(error);
@@ -85,56 +85,73 @@ const CardBag = ({ good, onDelete }) => {
   };
 
   const handleAddToBag = () => {
-    api.post(`${URI}/user/bag`, {
-      goodId: good.goodId,
-      amount: amount + 1,
-      sizeId: good.sizeId,
-    }, {
-      headers: {
-        "Authorization": `Bearer ${window.localStorage.getItem("jwtToken")}`
+    api.post(
+      `${URI}/user/bag`,
+      {
+        goodId: good.goodId,
+        amount: amount + 1,
+        sizeId: good.sizeId,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${window.localStorage.getItem("jwtToken")}`,
+        },
       }
-    })
+    )
       .then(() => {
         const newAmount = amount + 1;
         setAmount(newAmount);
+        api
+          .get(`${URI}/good/${good.goodId}`, {
+            headers: {
+              Authorization: `Bearer ${window.localStorage.getItem("jwtToken")}`,
+            },
+          })
+          .then((response) => {
+            const data = response.data;
+            onUpdateTotalAdd(data.cost);
+          });
       })
-      .catch(error => {
-        console.error(error)
-      })
+      .catch((error) => {
+        console.error(error);
+      });
   }
-
-  //   api.post(`${URI}/user/bag`, {
-  //     goodId: id,
-  //     amount: 1,
-  //     sizeId: choosenId[0].id,
-  //     // color: selectedColor, // Add the selected color
-  // }, {
-  //     headers: {
-  //         "Authorization": `Bearer ${window.localStorage.getItem("jwtToken")}`
-  //     }
-  // })
 
   const handleRemoveFromBag = () => {
     if (amount <= 1) {
-      handleDeleteCard(sizeId)
+      handleDeleteCard(sizeId);
     } else {
-      api.post(`${URI}/user/bag`, {
-        goodId: good.goodId,
-        amount: amount - 1,
-        sizeId: good.sizeId,
-      }, {
-        headers: {
-          "Authorization": `Bearer ${window.localStorage.getItem("jwtToken")}`
+      api.post(
+        `${URI}/user/bag`,
+        {
+          goodId: good.goodId,
+          amount: amount - 1,
+          sizeId: good.sizeId,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${window.localStorage.getItem("jwtToken")}`,
+          },
         }
-      })
+      )
         .then(() => {
-
           const newAmount = amount - 1;
           setAmount(newAmount);
+          api
+            .get(`${URI}/good/${good.goodId}`, {
+              headers: {
+                Authorization: `Bearer ${window.localStorage.getItem("jwtToken")}`,
+              },
+            })
+            .then((response) => {
+              const data = response.data;
+              console.log(data.cost, newAmount)
+              onUpdateTotalRemove(data.cost);
+            });
         })
-        .catch(error => {
-          console.error(error)
-        })
+        .catch((error) => {
+          console.error(error);
+        });
     }
   }
 
@@ -142,32 +159,33 @@ const CardBag = ({ good, onDelete }) => {
     <div className="sale-card" style={{}}>
       <Card className='card-det'>
         <Card.Header className='header-det'>
-          {/* eslint-disable-next-line */}
           <img src={photo || "../../../IMG/carlos-torres-MHNjEBeLTgw-unsplash.jpg"} />
         </Card.Header>
-        <Card.Body className='det' style={{ width: "90%", flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
-          <div style={{ display: "flex", flexDirection: "column", justifyContent: "flex-start", marginBottom: "1%", width: "100%", padding: "10px 0 10px 0" }}>
+        <Card.Body className='det' style={{ width: "90%", flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
+          <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", marginBottom: "1%", width: "100%", padding: "10px 0 10px 0", height: "100%" }}>
             <div style={{ width: "100%" }}>
               <Card.Title className="font-gramatika-bold">
                 {name}
+                <Button className="deleteBtn" onClick={() => { handleDeleteCard(sizeId) }}>Удалить</Button>
               </Card.Title>
-              <Card.Text className="text-card-bag">
+              <Card.Text style={{ marginTop: "10px" }} className="text-card-bag">
                 Размер: {size}
               </Card.Text>
               <Card.Text className="text-card-bag">
                 Цвет: {color}
               </Card.Text>
             </div>
-            <Card.Text className="text-card-bag">
-              Цена: {cost} ₽
-            </Card.Text>
-            <div style={{ display: 'flex', flexDirection: "row", alignItems: "center", gap: "10px", backgroundColor: "gray", width: "fit-content", padding: 0, borderRadius: "5px", margin: 0, height: "30px", marginTop: "5%" }}>
-              <button className="amountBtn minus" onClick={handleRemoveFromBag}>-</button>
-              {amount}
-              <button className="amountBtn plus" onClick={handleAddToBag}>+</button>
+            <div style={{ display: "flex", flexDirection: "column", width: "100%", alignSelf: "flex-end" }}>
+              <Card.Text className="text-card-bag">
+                Цена: {cost} ₽
+              </Card.Text>
+              <div style={{ display: 'flex', flexDirection: "row", alignItems: "center", gap: "10px", backgroundColor: "gray", width: "fit-content", padding: 0, borderRadius: "5px", margin: 0, height: "30px", marginTop: "5px" }}>
+                <button className="amountBtn minus" onClick={handleRemoveFromBag}>-</button>
+                {amount}
+                <button className="amountBtn plus" onClick={handleAddToBag}>+</button>
+              </div>
             </div>
           </div>
-          <Button className="deleteBtn" onClick={() => { handleDeleteCard(sizeId) }}>Удалить</Button>
         </Card.Body>
       </Card>
     </div>

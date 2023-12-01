@@ -17,11 +17,12 @@
     width: 63%;
     height: 80vh;
     overflow-y: scroll;
-    
+
 }
+
 .sale::-webkit-scrollbar {
     width: 0;
-  }
+}
 
 .total {
     display: flex;
@@ -113,20 +114,59 @@
     background-color: rgba(255, 255, 255, 0.7);
 }
 
+.empty-bag {
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    justify-content: center;
+}
+
+.empty-bag p {
+    font-family: 'Prata', serif;
+    font-size: 25px;
+}
+
+.empty-bag a {
+    text-decoration: none;
+}
+
+.empty-bag button {
+    padding: 15px 50px;
+    margin: 5px 0;
+    border-radius: 15px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: rgb(255, 255, 255);
+    border: none;
+    text-transform: uppercase;
+    font-size: 100%;
+    letter-spacing: 0.18px;
+    font-weight: 600;
+    transition: .3s;
+    cursor: pointer;
+}
+
+.empty-bag button:hover{
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
 @media screen and (max-width: 768px) {
     .empty {
         display: none;
     }
+
     .bag {
         display: flex;
         flex-direction: column;
         padding: 0 0 150px 0;
     }
+
     .total {
         width: 90%;
         margin: 0 0 0 0;
         padding: 0 0 0 0;
     }
+
     /* .total h1 {
         padding: 0%;
         margin: 0 0 0 0;

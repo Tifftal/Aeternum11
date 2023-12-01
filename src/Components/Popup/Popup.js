@@ -72,15 +72,15 @@ const Popup = (props) => {
                 onSubmit={handleSubmitForm}
             >
                 <div className='header font-gramatika-bold'>
-                    <h1>{t("popup.title")}</h1>
+                    <h1>Войти в аккаунт</h1>
                     <button className='close' onClick={props.onClose}><img src='../../IMG/icons8-крестик-78.png' alt='close' /></button>
                 </div>
-                <p>{t("popup.text")}</p>
+                <p>Получайте удовольствие от эксклюзивных товаров</p>
                 <input
                     className='login-input'
                     type="email"
                     name="email"
-                    placeholder={t("popup.input1")}
+                    placeholder="Адрес электронной почты"
                     onChange={(e) => { handleChangeInput(e, "email", setErrors) }}
                     id={errors.email ? "error" : ""}
                 />
@@ -88,7 +88,7 @@ const Popup = (props) => {
                     className='login-input'
                     type="password"
                     name="password"
-                    placeholder={t("popup.input2")}
+                    placeholder="Пароль"
                     onChange={(e) => { handleChangeInput(e, "password", setErrors) }}
                     id={errors.password ? "error" : ""}
                 />
@@ -102,12 +102,12 @@ const Popup = (props) => {
                 <div className='forgot'>
                     <div className='remember'>
                         <input type="checkbox" />
-                        <label>{t("popup.remember")}</label>
+                        <label>Запомнить меня</label>
                     </div>
-                    <button>{t("popup.forgot")}</button>
+                    <button>Не помню пароль</button>
                 </div>
-                <button className='but log font-gramatika-bold'>{t("popup.login")}</button>
-                <a href='/create_account' className='but create font-gramatika-bold'>{t("popup.create")}</a>
+                <button className='but log font-gramatika-bold'>Войти</button>
+                <a href='/create_account' className='but create font-gramatika-bold'>Зарегестрироваться</a>
             </form>
         </div>
     );

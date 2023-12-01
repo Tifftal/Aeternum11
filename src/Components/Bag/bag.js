@@ -19,7 +19,7 @@ const Bag = () => {
             })
             .then((response) => {
                 setMyBag(response.data.bag);
-                
+
             })
             .catch((error) => {
                 console.error(error);
@@ -44,6 +44,15 @@ const Bag = () => {
                 });
         });
     }, [myBag]);
+
+    const onUpdateTotalAdd = (cost) => {
+        setCost((prevCost) => prevCost + cost);
+    };
+
+    const onUpdateTotalRemove = (cost) => {
+        setCost((prevCost) => prevCost - cost);
+    };
+
 
     const handleChangeAddress = (e) => {
         const newAddress = e.target.value;
@@ -75,7 +84,7 @@ const Bag = () => {
                     }
                 )
                 .then((response) => {
-                    
+
                     setMyBag([])
                 })
                 .catch((error) => {
@@ -88,9 +97,22 @@ const Bag = () => {
         <div className="bag">
 
             <div className="sale">
-                {myBag.map((good) => (
-                    <CardBag key={good.id} good={good} onDelete={handleDeleteCard} />
-                ))}
+                {myBag.length === 0 ? (
+                    <div className="empty-bag">
+                        <p>Ваша корзина пуста</p>
+                        <a href="/catalog"><button className="font-gramatika-bold">Перейти в каталог</button></a>
+                    </div>
+                ) : (
+                    myBag.map((good) => (
+                        <CardBag
+                            key={good.id}
+                            good={good}
+                            onDelete={handleDeleteCard}
+                            onUpdateTotalAdd={onUpdateTotalAdd}
+                            onUpdateTotalRemove={onUpdateTotalRemove}
+                        />
+                    ))
+                )}
             </div>
 
             <div className="total">

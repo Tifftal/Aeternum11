@@ -198,7 +198,7 @@ const CreateAccount = () => {
                     </option>
                     <option value="MEN">Мужской</option>
                     <option value="WOMAN">Женский</option>
-                    <option value="NON-BINARY">Не указано</option>
+                    <option value="NON_BINARY">Не указано</option>
                 </select>
 
                 <input
