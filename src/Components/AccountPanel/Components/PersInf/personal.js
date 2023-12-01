@@ -244,7 +244,7 @@ const Personal = (props) => {
                     onChange={handleChangePassword}
                 />
                 {
-                    isSended ? (
+                    isSended && newPassword.length > 6 ? (
                         <input
                             type="text"
                             placeholder="Код подтверждения"
