@@ -11,7 +11,7 @@ const Personal = (props) => {
         firstName: 'John',
         lastName: 'Doe',
         gender: '',
-        date: '', // Замените пустые строки на дефолтные значения, если необходимо
+        dob: '', // Замените пустые строки на дефолтные значения, если необходимо
         country: '',
         state: '',
         city: '',
@@ -127,7 +127,7 @@ const Personal = (props) => {
             city: personal.city,
             phone: personal.phone,
             newsletter: personal.newsletter,
-            dob: personal.date,
+            dob: personal.dob,
         }, {
             headers: {
                 "Authorization": `Bearer ${window.localStorage.getItem("jwtToken")}`
@@ -193,8 +193,8 @@ const Personal = (props) => {
                 <input
                     type="date"
                     placeholder="Дата рождения"
-                    value={personal.date || ''}
-                    name="date"
+                    value={personal.dob || ''}
+                    name="dob"
                     onChange={handleChange}
                 />
                 <input
