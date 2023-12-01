@@ -69,7 +69,7 @@ const Wishlist = () => {
         <div className="wishlist">
         {wishlist.length === 0 ? (
             <div className="empty-bag">
-                <p>Ваша корзина пуста</p>
+                <p>Ваш вишлист пуста</p>
                 <a href="/catalog"><button className="font-gramatika-bold">Перейти в каталог</button></a>
             </div>
         ) : (
