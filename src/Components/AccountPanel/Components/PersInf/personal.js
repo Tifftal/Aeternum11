@@ -180,7 +180,7 @@ const Personal = (props) => {
                     name="lastName"
                     onChange={handleChange}
                 />
-                {/* <select
+                <select
                     className="select-pers-info"
                     value={personal.gender}
                     name="gender"
@@ -189,22 +189,7 @@ const Personal = (props) => {
                     <option value="MEN">Мужской</option>
                     <option value="NON-BINARY">Не узакано</option>
                     <option value="WOMAN">Женский</option>
-                </select> */}
-                <div class="__select" data-state="">
-                    <div class="__select__title" data-default="">Ваш пол</div>
-                    <div class="__select__content">
-                        <input id="singleSelect0" class="__select__input" type="radio" name="singleSelect" checked />
-                        <label for="singleSelect0" class="__select__label">Option 0</label>
-                        <input id="singleSelect1" class="__select__input" type="radio" name="singleSelect" />
-                        <label for="singleSelect1" class="__select__label">Option 1</label>
-                        <input id="singleSelect2" class="__select__input" type="radio" name="singleSelect" disabled />
-                        <label for="singleSelect2" class="__select__label">Option 2 (disabled)</label>
-                        <input id="singleSelect3" class="__select__input" type="radio" name="singleSelect" />
-                        <label for="singleSelect3" class="__select__label">Option 3</label>
-                        <input id="singleSelect4" class="__select__input" type="radio" name="singleSelect" />
-                        <label for="singleSelect4" class="__select__label">Option 4</label>
-                    </div>
-                </div>
+                </select>
                 <input
                     type="date"
                     placeholder="Дата рождения"
