@@ -117,7 +117,7 @@ const Address = () => {
             {content.length === 0 ? (
                 
             <div className="empty-bag">
-                <p>Ваша корзина пуста</p>
+                <p>Ваши заказы пусты</p>
                 <a href="/catalog"><button className="font-gramatika-bold">Перейти в каталог</button></a>
             </div>
             ) : (content.map((order, index) => (
