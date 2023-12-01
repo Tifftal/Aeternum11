@@ -212,19 +212,19 @@ const CreateAccount = () => {
                 <input
                     id="country"
                     type="text"
-                    placeholder="Страна"
+                    placeholder="Город"
                     onChange={(e) => { handleChangeInput(e, "country", setErrors) }}
                 />
                 <input
                     id="state"
                     type="text"
-                    placeholder="Регион"
+                    placeholder="Улица"
                     onChange={(e) => { handleChangeInput(e, "state", setErrors) }}
                 />
                 <input
                     id="city"
                     type="text"
-                    placeholder="Город"
+                    placeholder="Дом и квартира"
                     onChange={(e) => { handleChangeInput(e, "city", setErrors) }}
                 />
                 <input

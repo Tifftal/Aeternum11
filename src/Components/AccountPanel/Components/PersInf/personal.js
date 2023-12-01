@@ -197,21 +197,21 @@ const Personal = (props) => {
                 />
                 <input
                     type="text"
-                    placeholder="Страна"
+                    placeholder="Город"
                     value={personal.country || ''}
                     name="country"
                     onChange={handleChange}
                 />
                 <input
                     type="text"
-                    placeholder="Регион"
+                    placeholder="Улица"
                     value={personal.state || ''}
                     name="state"
                     onChange={handleChange}
                 />
                 <input
                     type="text"
-                    placeholder="Город"
+                    placeholder="Дом и квартира"
                     value={personal.city || ''}
                     name="city"
                     onChange={handleChange}
