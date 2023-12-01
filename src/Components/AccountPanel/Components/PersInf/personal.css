@@ -246,7 +246,7 @@
     height: 2rem;
     font-family: 'Manrope', serif;
     /* caret-color: white; */
-    background: none;
+    background: white;
     padding: 0 1vw;
     border: #c2c2c2 1px solid;
     border-radius: 7px;

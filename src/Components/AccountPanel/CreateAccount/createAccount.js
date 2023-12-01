@@ -175,7 +175,7 @@ const CreateAccount = () => {
         >
             <h2>Профиль</h2>
             <h1>Создать аккаунт</h1>
-            <p>{t("create_account.text1")}</p>
+            {/* <p>{t("create_account.text1")}</p> */}
 
             <div className="registration">
                 <input
@@ -191,6 +191,7 @@ const CreateAccount = () => {
                     id={errors.surname ? "error" : ""}
                 />
                 <select
+                    style={{background: "white", color: "black"}}
                     className={`select-create-account ${selectedGender === 'def-sel' ? 'default' : ''}`}
                     onChange={(e) => { handleChangeInput(e, "gender", setErrors) }}
                     defaultValue=""
