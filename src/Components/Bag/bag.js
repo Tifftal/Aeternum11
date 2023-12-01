@@ -66,9 +66,9 @@ const Bag = () => {
                 .post(
                     `${URI}/application`,
                     {
-                        data: {
-                            clientComment: address,
-                        },
+
+                        clientComment: address,
+
                     },
                     {
                         headers: {
@@ -88,11 +88,13 @@ const Bag = () => {
 
     return (
         <div className="bag">
+
             <div className="sale">
                 {myBag.map((good) => (
                     <CardBag key={good.id} good={good} onDelete={handleDeleteCard} />
                 ))}
             </div>
+
             <div className="total">
                 <h1 className="font-gramatika-bold">заказ</h1>
                 <div className="purchase">

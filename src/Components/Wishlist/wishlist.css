@@ -156,7 +156,7 @@
 
 @media screen and (max-width: 768px) {
     .wishlist {
-        padding-top: 120px;
+        /* padding-top: 120px; */
     }
 
     .menu_wishlist {

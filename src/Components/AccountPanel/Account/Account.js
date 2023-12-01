@@ -32,10 +32,10 @@ const Account = () => {
 
     return (
         <div className="adminPage">
-            <div style={{ margin: "0 0 0 30px", marginBottom: "3%", width: "18%" }}>
+            <div className="div1">
                 <SideBarAccount setTab={setTab} tab={tab} user={user}/>
             </div>
-            <div style={{ margin: "0 30px", marginBottom: "3%", width: "82%" }}>
+            <div className="div2">
                 <Tab tab={tab}/>
             </div>
         </div>
