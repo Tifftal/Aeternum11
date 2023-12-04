@@ -53,7 +53,7 @@ const Catalog = () => {
             <div className="link-category">
                 {
                     categories.map((category, idx) => (
-                        <a key={idx} href={`/assortment/${category.id}`} className="assortmentBtn"><button>{category.name}</button></a>
+                        <a key={idx} href={`/assortment/${category.id}`} className="assortmentBtn"><button className="font-gramatika-reg">{category.name}</button></a>
                     ))
                 }
             </div>

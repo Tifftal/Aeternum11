@@ -45,7 +45,6 @@
 .pers h1 {
     margin: 2% 0;
     padding: 0;
-    font-family: 'Prata', serif;
     font-size: 180%;
     font-weight: normal;
 }
@@ -75,23 +74,24 @@
 }
 
 .pers-data input {
-    font-family: 'Manrope', serif;
-    caret-color: white;
+    /* font-family: 'Manrope', serif; */
+    caret-color: rgb(0, 0, 0);
     padding: 0 5%;
     height: 45px;
     background: none;
     border: #818181 1px solid;
-    border-radius: 15px;
+    border-radius: 5px;
     transition: .3s;
-    color: white;
+    color: rgb(0, 0, 0);
     font-size: 90%;
+    background-color: white;
 }
 
 .pers-data input::placeholder {
     font-size: 90%;
-    color: #818181;
+    color: #3c3c3c;
     transition: .3s;
-    font-family: 'Manrope', serif;
+    /* font-family: 'Manrope', serif; */
 }
 
 .pers-data input:hover,
@@ -101,22 +101,12 @@
 
 .pers-data input:hover::placeholder,
 .pers-data input:focus::placeholder {
-    color: white;
+    color: rgb(0, 0, 0);
 }
 
 .pers-data input:focus {
     outline: none;
 }
-
-/* .pers-data input:focus {
-    border: #FF5656 1px solid;
-    box-shadow: 0px 0px 10px 3px rgba(107, 0, 0, 0.5);
-}
-
-.pers-data input:focus::placeholder {
-    color: #FF5656;
-} */
-
 
 .agreeAc {
     width: 75%;
@@ -249,10 +239,11 @@
     background: white;
     padding: 0 1vw;
     border: #c2c2c2 1px solid;
-    border-radius: 7px;
     transition: .3s;
     /* color: white; */
     font-size: 90%;
+    padding: 0 5%;
+    height: 45px;
 }
 
 

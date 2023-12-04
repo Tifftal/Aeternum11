@@ -163,7 +163,7 @@ const Personal = (props) => {
     return (
         <div className="pers">
             <h2 className="font-gramatika-bold">Профиль</h2>
-            <h1>Присоединяйтесь к Aeternum Eleven</h1>
+            <h1 className="font-gramatika-reg">Персональные данные</h1>
 
             <form className="pers-data">
                 <input

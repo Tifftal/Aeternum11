@@ -99,7 +99,7 @@ const Bag = () => {
             <div className="sale">
                 {myBag.length === 0 ? (
                     <div className="empty-bag">
-                        <p>Ваша корзина пуста</p>
+                        <p className="font-gramatika-reg">Ваша корзина пуста</p>
                         <a href="/catalog"><button className="font-gramatika-bold">Перейти в каталог</button></a>
                     </div>
                 ) : (
@@ -116,8 +116,8 @@ const Bag = () => {
             </div>
 
             <div className="total">
-                <h1 className="font-gramatika-bold">заказ</h1>
-                <div className="purchase">
+                <h1 className="font-gramatika-bold">оформление заказа</h1>
+                <div className="purchase font-gramatika-reg">
                     <div>
                         <p>Цена</p>
                         <p>{cost} ₽ </p>
@@ -126,10 +126,10 @@ const Bag = () => {
                         <p>Доставка</p>
                         <p>Free</p>
                     </div>
-                    <div>
+                    {/* <div>
                         <p>Налоговый сбор</p>
                         <p>Included</p>
-                    </div>
+                    </div> */}
                     <div>
                         <p>Всего</p>
                         <p>{cost} ₽ </p>

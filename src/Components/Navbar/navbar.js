@@ -30,7 +30,7 @@ const Navbar = () => {
             )}
             <div className="left">
                 <div className="dropDown">
-                    <button className="dropDownBtn">
+                    <button className="dropDownBtn font-gramatika-reg">
                         Женщины
                     </button>
                     <div className="content">
@@ -48,11 +48,11 @@ const Navbar = () => {
             }
             <div className="right">
                 {jwtToken ? (
-                    <button className="ordinary" onClick={HandleOpenNote}>
+                    <button className="ordinary font-gramatika-reg" onClick={HandleOpenNote}>
                         Профиль
                     </button>
                 ) : (
-                    <button className="ordinary" onClick={HandleOpenNote}>
+                    <button className="ordinary font-gramatika-reg" onClick={HandleOpenNote}>
                         Войти
                     </button>
                 )}
@@ -60,19 +60,19 @@ const Navbar = () => {
                     <>
                         {window.innerWidth > 768 ? (
                             <a href="/bw">
-                                <button className="ordinary" onClick={() => { window.localStorage.setItem("bw", "wishlist") }}>
+                                <button className="ordinary font-gramatika-reg" onClick={() => { window.localStorage.setItem("bw", "wishlist") }}>
                                     Вишлист
                                 </button>
                             </a>
                         ): (null)
                         }
                         <a href="/bw">
-                            <button className="ordinary" onClick={() => { window.localStorage.setItem("bw", "bag") }}>
+                            <button className="ordinary font-gramatika-reg" onClick={() => { window.localStorage.setItem("bw", "bag") }}>
                                 Корзина
                             </button>
                         </a>
                         <a href="/account">
-                            <button className="ordinary" onClick={() => { window.localStorage.setItem("account", "orders") }}>Заказы</button>
+                            <button className="ordinary font-gramatika-reg" onClick={() => { window.localStorage.setItem("account", "orders") }}>Заказы</button>
                         </a>
                     </>
                 ) : (

@@ -12,9 +12,9 @@ const Third = () => {
                 </div>
                 <div className="posterInfo font-gramatika-bold">
                     <h2>рекомендуем</h2>
-                    <h1>Lorem ipsum dolor</h1>
-                    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-                    <a href="/"><button>узнать больше</button></a>
+                    <h1 className="font-gramatika-bold">Lorem ipsum dolor</h1>
+                    <p className="font-gramatika-reg">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                    <a href="/"><button className="font-gramatika-bold">узнать больше</button></a>
                 </div>
             </div>
         </div>

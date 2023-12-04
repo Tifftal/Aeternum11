@@ -35,13 +35,13 @@ const SideBarAccount = (props) => {
         <div className="accountSideBar">
             <div>
                 <h1 className="font-gramatika-bold">аккаунт</h1>
-                <h2>{props.user.firstName} {props.user.lastName}</h2>
+                <h2 className="font-gramatika-reg">{props.user.firstName} {props.user.lastName}</h2>
                 <div className={clasProfile}>
-                    <button className="default" style={{cursor: "pointer"}} onClick={HandleDropMenuProfile}><img src="../../IMG/icons8-user-96.png" alt="profile" />Профиль</button>
+                    <button className="default font-gramatika-reg" style={{cursor: "pointer"}} onClick={HandleDropMenuProfile}><img src="../../IMG/icons8-user-96.png" alt="profile" />Профиль</button>
                     <div className="account-drop">
                         <button
                         style={{cursor: "pointer"}}
-                            className={props.tab === "Personal" ? "active_drop" : "default_drop"}
+                            className={props.tab === "Personal" ? "active_drop font-gramatika-reg" : "default_drop font-gramatika-reg"}
                             onClick={() => { props.setTab("Personal") }}
                         >
                             Персональные данные
@@ -55,11 +55,11 @@ const SideBarAccount = (props) => {
                     </div>
                 </div>
                 <div className={clasOrder}>
-                    <button className="default" style={{cursor: "pointer"}} onClick={HandleDropMenuOrder}><img src="../../IMG/icons8-картонная-коробка-100.png" alt="orders" />Заказы</button>
+                    <button className="default font-gramatika-reg" style={{cursor: "pointer"}} onClick={HandleDropMenuOrder}><img src="../../IMG/icons8-картонная-коробка-100.png" alt="orders" />Заказы</button>
                     <div className="account-drop">
                         <button
                         style={{cursor: "pointer"}}
-                            className={props.tab === "Order" ? "active_drop" : "default_drop"}
+                            className={props.tab === "Order" ? "active_drop font-gramatika-reg" : "default_drop font-gramatika-reg"}
                             onClick={() => { props.setTab("Order") }}
                         >
                             Детали заказов
@@ -75,7 +75,7 @@ const SideBarAccount = (props) => {
             </div>
             <div>
                 <button
-                    className="default"
+                    className="default font-gramatika-reg"
                     onClick={
                         () => {
                             localStorage.removeItem("jwtToken");

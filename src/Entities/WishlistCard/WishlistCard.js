@@ -72,11 +72,11 @@ const WishlistCard = ({ data, onRemove }) => {
                 <img src={photo || "../../../IMG/carlos-torres-MHNjEBeLTgw-unsplash.jpg"} alt="test" onClick={redirectToItem} style={{ cursor: "pointer", backgroundColor: "white" }} />
                 <div className="nameOfCloth">
                     <Link to={`/product/${data.id}`} style={{ textDecoration: "none", color: "white" }}>
-                        <h1 className="wish-card-name">{data.name}</h1>
+                        <h1 className="wish-card-name font-gramatika-reg">{data.name}</h1>
                     </Link>
                 </div>
-                <p>{data.cost} ₽ </p>
-                <button className="removeBtn" onClick={() => { handleDeleteFromWishlist(data.id) }}>Удалить</button>
+                <p className="font-gramatika-reg">{data.cost} ₽ </p>
+                <button className="removeBtn font-gramatika-reg" onClick={() => { handleDeleteFromWishlist(data.id) }}>Удалить</button>
             </div>
         </div>
     )

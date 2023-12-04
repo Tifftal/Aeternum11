@@ -17,15 +17,15 @@ const BWBtn = () => {
             setIsOpenBag(true);
             setIsOpenWishlist(false);
             setClasses({
-                BagBtn: 'actBtn',
-                WishBtn: 'defBtn',
+                BagBtn: 'actBtn font-gramatika-reg',
+                WishBtn: 'defBtn font-gramatika-reg',
             })
         } else {
             setIsOpenBag(false);
             setIsOpenWishlist(true);
             setClasses({
-                WishBtn: 'actBtn',
-                BagBtn: 'defBtn',
+                WishBtn: 'actBtn font-gramatika-reg',
+                BagBtn: 'defBtn font-gramatika-reg',
             })
         }
     }, [])
@@ -47,23 +47,23 @@ const BWBtn = () => {
     };
 
     const [classes, setClasses] = useState({
-        BagBtn: 'defBtn',
-        WishBtn: 'actBtn',
+        BagBtn: 'defBtn font-gramatika-reg',
+        WishBtn: 'actBtn font-gramatika-reg',
     });
 
     const HandleFloatBtn = (isOpen = true) => {
         if (!isOpen) {
             setClasses({
-                BagBtn: 'actBtn',
-                WishBtn: 'defBtn',
+                BagBtn: 'actBtn font-gramatika-reg',
+                WishBtn: 'defBtn font-gramatika-reg',
             })
             window.localStorage.setItem("bw", "bag")
             HandleOpenBag()
             HandleCloseWishlist()
         } else if (isOpen) {
             setClasses({
-                BagBtn: 'defBtn',
-                WishBtn: 'actBtn',
+                BagBtn: 'defBtn font-gramatika-reg',
+                WishBtn: 'actBtn font-gramatika-reg',
             })
             window.localStorage.setItem("bw", "wishlist")
             HandleCloseBag()

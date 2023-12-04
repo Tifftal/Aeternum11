@@ -126,7 +126,7 @@ const Popup = (props) => {
                     <h1>Войти в аккаунт</h1>
                     <button className='close' onClick={props.onClose}><img src='../../IMG/icons8-крестик-78.png' alt='close' /></button>
                 </div>
-                <p>Получайте удовольствие от эксклюзивных товаров</p>
+                <p className='font-gramatika-reg'>Получайте удовольствие от эксклюзивных товаров</p>
                 {!forgotPassword ?
                     (
                         <>

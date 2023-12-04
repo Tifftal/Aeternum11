@@ -23,11 +23,11 @@ const DropW = () => {
             {
                 sections.map((section, idx) => (
                     <div key={idx} className="column">
-                        <h1>{section.name}</h1>
+                        <h1 className="font-gramatika-reg">{section.name}</h1>
                         <div className="col">
                             {
                                 section.categories.map((item, idx) => (
-                                    <a key={idx} href={`/assortment/${item.id}`}><button >{item.name}</button></a>
+                                    <a key={idx} href={`/assortment/${item.id}`}><button className="font-gramatika-reg">{item.name}</button></a>
                                 ))
                             }
                         </div>

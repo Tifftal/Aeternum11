@@ -204,7 +204,7 @@ const CreateAccount = () => {
                     id={errors.surname ? "error" : ""}
                 />
                 <select
-                    style={{background: "white", color: "black"}}
+                    style={{ background: "white", color: "black" }}
                     className={`select-create-account ${selectedGender === 'def-sel' ? 'default' : ''}`}
                     onChange={(e) => { handleChangeInput(e, "gender", setErrors) }}
                     defaultValue=""
@@ -219,10 +219,12 @@ const CreateAccount = () => {
 
                 <input
                     type="date"
-                    placeholder="Дата рождения"
                     onChange={(e) => { handleChangeInput(e, "birth", setErrors) }}
                     id={errors.birth ? "error" : ""}
+                    placeholder="Дата рождения"
                 />
+
+
                 <input
                     id="country"
                     type="text"
@@ -270,7 +272,7 @@ const CreateAccount = () => {
             </div>
             <h3>* Обязательные поля</h3>
             {passwordErr.length ? (
-                <p style={{ margin: "0 0 0 0", color: "#FF5656"}}>{passwordErr}</p>
+                <p style={{ margin: "0 0 0 0", color: "#FF5656" }}>{passwordErr}</p>
             ) : (
                 null
             )

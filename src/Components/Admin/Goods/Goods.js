@@ -298,9 +298,6 @@ const Goods = () => {
     };
 
     const handleDeleteGood = (id) => {
-        // let newCount = count;
-        // newCount++
-        // setCount(newCount)
         api.delete(`${URI}/good/${id}`, {
             headers: {
                 Authorization: `Bearer ${window.localStorage.getItem("jwtToken")}`,
@@ -529,7 +526,9 @@ const Goods = () => {
     };
 
     const handleActivate = (id) => {
-        api.post(`${URI}/good/${id}/activate`,
+        api.post(
+            `${URI}/good/${id}/activate`,
+            {},  // Пустой объект для представления тела запроса
             {
                 headers: {
                     Authorization: `Bearer ${window.localStorage.getItem("jwtToken")}`,
@@ -538,14 +537,15 @@ const Goods = () => {
         )
             .then(() => {
                 let newCount = count;
-                newCount++
-                setCount(newCount)
+                newCount++;
+                setCount(newCount);
                 UpdateData();
             })
-            .catch(err => {
+            .catch((err) => {
                 console.error(err);
             });
-    }
+    };
+    
 
 
 

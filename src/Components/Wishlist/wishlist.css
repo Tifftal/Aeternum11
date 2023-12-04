@@ -2,7 +2,6 @@
     padding-top: 4%;
     width: 100%;
     height: auto;
-    font-family: 'Manrope', serif;
 }
 
 
@@ -61,7 +60,6 @@
 }
 
 .wishlist-card p {
-    font-family: 'Manrope', serif;
     font-size: 90%;
     margin: 5% 0;
     padding: 0;
@@ -97,7 +95,6 @@
 }
 
 .wish-card-name {
-    font-family: 'Prata', serif;
     font-weight: normal;
     font-size: 80%;
 }

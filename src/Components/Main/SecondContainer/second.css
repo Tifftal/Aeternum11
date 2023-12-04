@@ -42,7 +42,6 @@
 
 .second h1 {
     text-align: center;
-    font-family: 'Prata', serif;
     font-size: 110%;
     letter-spacing: 0.4px;
     line-height: 35px;
@@ -56,7 +55,6 @@
     }
     .second h1 {
         text-align: center;
-        font-family: 'Prata', serif;
         font-size: 14px;
         letter-spacing: 0.4px;
         line-height: 23px;

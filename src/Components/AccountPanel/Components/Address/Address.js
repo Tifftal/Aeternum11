@@ -51,7 +51,7 @@ const Address = () => {
                     }
                 })
                     .then(() => {
-                        
+
                     })
                     .catch(error => {
                         console.error(error);
@@ -112,45 +112,62 @@ const Address = () => {
 
     return (
         <div className="address">
-        <div style={{marginLeft: "auto", marginRight:"auto"}}>
-            <h1 className="font-gramatika-bold">Ваши заказы</h1>
-        </div>
-            <div className="order-cards-self">
-            {content.length === 0 ? (
-                
-            <div className="empty-bag">
-                <p>Ваши заказы пусты</p>
-                <a href="/catalog"><button className="font-gramatika-bold">Перейти в каталог</button></a>
+            <div style={{ marginLeft: "auto", marginRight: "auto" }}>
+                <h1 className="font-gramatika-bold">Ваши заказы</h1>
             </div>
-            ) : (content.map((order, index) => (
+            <div className="order-cards-self">
+                {content.length === 0 ? (
+
+                    <div className="empty-bag">
+                        <p>Ваши заказы пусты</p>
+                        <a href="/catalog"><button className="font-gramatika-bold">Перейти в каталог</button></a>
+                    </div>
+                ) : (content.map((order, index) => (
                     <div className="cardOrderSelf" key={order.id}>
                         <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center", width: "100%" }}>
                             <h2 className="font-gramatika-bold">Заказ №{order.id}   <b style={{ color: getStatusColor(order.status), marginLeft: "10px" }}>{getStatusName(order.status)}</b></h2>
                         </div>
-                        <h3> <b>Дата заказа:</b>  {formatTime(order.time)}</h3>
-                        <table className='goods-in-order-self'>
+                        <h3 className="font-gramatika-reg"> <b>Дата заказа:</b>  {formatTime(order.time)}</h3>
+                        {window.innerWidth >= 768 ? (  // Проверка ширины экрана
+                            <table className='goods-in-order-self'>
+                                <thead>
+                                    <tr className="font-gramatika-reg">
+                                        <th style={{ width: "45%" }}>Название</th>
+                                        <th style={{ width: "20%" }}>Цвет</th>
+                                        <th style={{ width: "20%" }}>Размер</th>
+                                        <th style={{ width: "15%" }}>Кол-во</th>
+                                    </tr>
+                                </thead>
+                                <tbody className="font-gramatika-reg">
+                                    {order.items.map((good, itemIndex) => (
+                                        <tr key={itemIndex}>
+                                            <td style={{ width: "45%" }}>{goods[itemIndex] || "Недоступно"}</td>
+                                            <td style={{ width: "20%" }}>{good.colorName}</td>
+                                            <td style={{ width: "20%" }}>{good.size}</td>
+                                            <td style={{ width: "15%" }}>{good.amount}</td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        ) : <table className='goods-in-order-self'>
                             <thead>
-                                <tr>
+                                <tr className="font-gramatika-reg">
                                     <th style={{ width: "45%" }}>Название</th>
-                                    <th style={{ width: "20%" }}>Цвет</th>
                                     <th style={{ width: "20%" }}>Размер</th>
-                                    <th style={{ width: "15%" }}>Кол-во</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody className="font-gramatika-reg">
                                 {order.items.map((good, itemIndex) => (
                                     <tr key={itemIndex}>
                                         <td style={{ width: "45%" }}>{goods[itemIndex] || "Недоступно"}</td>
-                                        <td style={{ width: "20%" }}>{good.colorName}</td>
                                         <td style={{ width: "20%" }}>{good.size}</td>
-                                        <td style={{ width: "15%" }}>{good.amount}</td>
                                     </tr>
                                 ))}
                             </tbody>
-                        </table>
+                        </table>}
                     </div>
-            )))
-            }
+                )))
+                }
             </div>
         </div>
     );

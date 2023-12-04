@@ -1,6 +1,5 @@
 .product {
     padding: 8% 5% 0 5%;
-    font-family: 'Manrope', serif;
     width: 90%;
     height: auto;
     display: flex;
@@ -59,9 +58,10 @@
 .product-info h1 {
     padding: 0 0 10% 0;
     margin: 0%;
-    font-family: 'Prata', serif;
-    font-size: 160%;
+    font-size: 170%;
     font-weight: normal;
+    text-transform: none;
+    line-height: 30px;
 }
 
 .product-info h2 {
@@ -165,9 +165,10 @@
     margin: 0;
     padding: 0;
     font-weight: normal;
-    font-size: 80%;
+    font-size: 90%;
     text-align: left;
     width: 100%;
+    line-height: 20px;
 }
 
 .description {
@@ -175,9 +176,7 @@
     padding: 1em;
     padding-top: 2%;
     font-weight: normal;
-    font-size: 90%;
-    font-family: 'Prata', serif;
-    letter-spacing: 1px;
+    font-size: 100%;
     line-height: 25px;
 }
 
@@ -220,11 +219,11 @@
         width: 75%;
     }
 
-    .product-info p{
+    .product-info p {
         margin-bottom: 30px;
         font-size: 18px;
     }
-    
+
 
 
     .chooseColor {
@@ -274,7 +273,7 @@
 .__select__title {
     display: flex;
     align-items: center;
-    
+
     padding: 8px 16px;
     border-radius: 10px;
     /* width: 230px;
@@ -355,7 +354,7 @@
 }
 
 .__select__label {
-    
+
     display: flex;
     align-items: center;
     height: 40px;

@@ -29,7 +29,7 @@ const Fifth = () => {
                 <h2 className="font-gramatika-bold">
                     Aeternum Eleven
                 </h2>
-                <h3>
+                <h3 className="font-gramatika-reg">
                     {t("fifth.text")}
                 </h3>
             </div>

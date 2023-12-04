@@ -79,15 +79,16 @@
 .registration select,
 .code input {
     font-family: 'Manrope', serif;
-    caret-color: white;
+    caret-color: rgb(0, 0, 0);
     padding: 0 5%;
     height: 45px;
     background: none;
     border: #818181 1px solid;
     border-radius: 15px;
     transition: .3s;
-    color: white;
+    color: rgb(0, 0, 0);
     font-size: 90%;
+    background-color: white;
 }
 
 .code {
@@ -106,10 +107,18 @@
     margin-bottom: 5%;
 }
 
+.registration input[type="date"]::placeholder {
+    color: black !important; 
+}
+
+.registration input[type="date"]::-webkit-datetime-edit-text {
+    color: black !important;
+}
+
 .registration input::placeholder,
 .reg input::placeholder {
     font-size: 90%;
-    color: #818181;
+    color: #000000;
     transition: .3s;
     font-family: 'Manrope', serif;
 }
@@ -125,7 +134,7 @@
 .registration input:focus::placeholder,
 .reg input:hover::placeholder,
 .reg input:focus::placeholder {
-    color: white;
+    color: rgb(0, 0, 0);
 }
 
 .registration input:focus,
@@ -155,15 +164,16 @@
 .reg input {
     width: 94%;
     font-family: 'Manrope', serif;
-    caret-color: white;
+    caret-color: rgb(0, 0, 0);
     padding: 0 3%;
     height: 45px;
     background: none;
     border: #818181 1px solid;
     border-radius: 15px;
     transition: .3s;
-    color: white;
+    color: rgb(0, 0, 0);
     font-size: 90%;
+    background-color: white;
 }
 
 
@@ -274,12 +284,12 @@
 
 .label-input:focus~.registration label,
 .code input {
-    color: white;
+    color: rgb(0, 0, 0);
 }
 
 .label-input:hover~.registration label,
 .code input {
-    color: white;
+    color: rgb(0, 0, 0);
 }
 
 .label-input:hover,

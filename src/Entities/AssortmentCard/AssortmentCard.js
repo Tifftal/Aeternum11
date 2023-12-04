@@ -42,10 +42,10 @@ const AssortmentCard = ({ data }) => {
             <div className="assortment-card">
                 <img src={photo || "../../../IMG/carlos-torres-MHNjEBeLTgw-unsplash.jpg"} alt="test"/>
                 <div className="assortment-name">
-                    <h1>{data.name}</h1>
+                    <h1 className="font-gramatika-reg">{data.name}</h1>
                     {/* <button><img src="../../IMG/icons8-закладка-100.png" alt="icon-down"/></button> */}
                 </div>
-                <p>{data.cost} ₽</p>
+                <p className="font-gramatika-reg">{data.cost} ₽</p>
             </div>
         </div>
     )

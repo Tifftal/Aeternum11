@@ -112,8 +112,7 @@
     padding: 2% 35%;
     color: #FFF;
     text-align: center;
-    font-family: 'Prata', sans-serif;
-    font-size: 80%;
+    font-size: 90%;
     font-style: normal;
     font-weight: 400;
     line-height: 150%;
@@ -180,5 +179,6 @@
         width: 50%;
         text-align: center;
         margin-top: 15px;
+        font-size: 13px;
     }
 }

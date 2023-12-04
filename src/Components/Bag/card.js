@@ -169,23 +169,23 @@ const CardBag = ({ good, onDelete, onUpdateTotalAdd, onUpdateTotalRemove, myBag 
             <div style={{ width: "100%" }}>
               <Card.Title className="font-gramatika-bold">
                 {name}
-                <Button className="deleteBtn" type="submit" onClick={() => { handleDeleteCard(sizeId) }}>Удалить</Button>
+                <Button className="deleteBtn font-gramatika-reg" type="submit" onClick={() => { handleDeleteCard(sizeId) }}>Удалить</Button>
               </Card.Title>
-              <Card.Text style={{ marginTop: "10px" }} className="text-card-bag">
+              <Card.Text style={{ marginTop: "10px" }} className="text-card-bag font-gramatika-reg">
                 Размер: {size}
               </Card.Text>
-              <Card.Text className="text-card-bag">
+              <Card.Text className="text-card-bag font-gramatika-reg">
                 Цвет: {color}
               </Card.Text>
             </div>
             <div style={{ display: "flex", flexDirection: "column", width: "100%", alignSelf: "flex-end" }}>
-              <Card.Text className="text-card-bag">
+              <Card.Text className="text-card-bag font-gramatika-reg">
                 Цена: {cost} ₽
               </Card.Text>
               <div style={{ display: 'flex', flexDirection: "row", alignItems: "center", gap: "10px", backgroundColor: "gray", width: "fit-content", padding: 0, borderRadius: "5px", margin: 0, height: "30px", marginTop: "5px" }}>
-                <button className="amountBtn minus" onClick={handleRemoveFromBag}>-</button>
+                <button className="amountBtn minus font-gramatika-reg" onClick={handleRemoveFromBag}>-</button>
                 {amount}
-                <button className="amountBtn plus" onClick={handleAddToBag}>+</button>
+                <button className="amountBtn plus font-gramatika-reg" onClick={handleAddToBag}>+</button>
               </div>
             </div>
           </div>

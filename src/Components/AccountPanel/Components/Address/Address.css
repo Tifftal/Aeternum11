@@ -125,6 +125,19 @@
     }
     
     .goods-in-order-self {
-        width: fit-content
+        width: fit-content;
+        font-size: 12px;
+        margin-top: 10px;
     }
+
+    .goods-in-order-self thead th {
+        font-size: 12px;
+    }
+
+    .goods-in-order-self tbody td {
+        text-align: left;
+        padding: 10px;
+    }
+
+
 }

@@ -18,28 +18,30 @@ const Wishlist = () => {
             .then(response => {
                 const wishes = [...response.data.wishlist];
 
-                let goodsInBag = [];
-                // eslint-disable-next-line
-                wishes.map(wish => {
-                    api.get(`${URI}/good/${wish.id}`, {
-                        headers: {
-                            "Authorization": `Bearer ${window.localStorage.getItem("jwtToken")}`
-                        }
+                // Use Promise.all to wait for all asynchronous calls to complete
+                Promise.all(
+                    wishes.map(wish =>
+                        api.get(`${URI}/good/${wish.id}`, {
+                            headers: {
+                                "Authorization": `Bearer ${window.localStorage.getItem("jwtToken")}`
+                            }
+                        })
+                    )
+                )
+                    .then(responses => {
+                        // responses is an array containing the data from all API calls
+                        const goodsInBag = responses.map(response => response.data);
+                        setWishlist(goodsInBag);
                     })
-                        .then(response => {
-                            goodsInBag.push(response.data);
-
-                            setWishlist(goodsInBag);
-                        })
-                        .catch(error => {
-                            console.error(error);
-                        })
-                })
+                    .catch(error => {
+                        console.error(error);
+                    });
             })
             .catch(error => {
                 console.error(error);
-            })
-    }, [])
+            });
+    }, []);
+
 
     const handleRemoveFromWishlist = (wishId) => {
         // Update the state by removing the deleted item
@@ -67,18 +69,18 @@ const Wishlist = () => {
 
     return (
         <div className="wishlist">
-        {wishlist.length === 0 ? (
-            <div className="empty-bag">
-                <p>Ваш вишлист пуст</p>
-                <a href="/catalog"><button className="font-gramatika-bold">Перейти в каталог</button></a>
-            </div>
-        ) : (
-            <div className="menu_wishlist">
-                {wishlist?.map(wish => (
-                    <WishlistCard key={wish.id} data={wish} onRemove={handleRemoveFromWishlist} />
-                ))}
-            </div>
-        )}
+            {wishlist.length === 0 ? (
+                <div className="empty-bag">
+                    <p className="font-gramatika-reg">Ваш вишлист пуст</p>
+                    <a href="/catalog"><button className="font-gramatika-bold">Перейти в каталог</button></a>
+                </div>
+            ) : (
+                <div className="menu_wishlist">
+                    {wishlist?.map(wish => (
+                        <WishlistCard key={wish.id} data={wish} onRemove={handleRemoveFromWishlist} />
+                    ))}
+                </div>
+            )}
         </div>
     )
 }

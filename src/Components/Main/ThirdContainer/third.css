@@ -47,16 +47,15 @@
     margin: 4%;
     padding: 0;
     text-transform: none;
-    font-family: 'Prata', serif;
-    font-size: 170%;
+    font-size: 180%;
     font-weight: normal;
+    margin-top: 10%;
 }
 
 .posterInfo p {
     margin: 0;
     padding: 0;
     text-transform: none;
-    font-family: 'Prata', serif;
     font-size: 110%;
     font-weight: normal;
     margin: 8%;

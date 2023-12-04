@@ -218,9 +218,8 @@ const Product = () => {
                 </div>
             ) : (null)}
             <div className="product-info">
-                {/* <h2 className="font-gramatika-bold">{category.name}</h2> */}
-                <h1>{data.name}</h1>
-                <p>{data.cost} ₽</p>
+                <h1 className="font-gramatika-bold">{data.name}</h1>
+                <p className="font-gramatika-reg">{data.cost} ₽</p>
                 <button className="liked" onClick={handleAddToWishlist}>
                     <img src="../../IMG/icons8-закладка-100.png" alt="icon-down" />
                 </button>
@@ -237,7 +236,7 @@ const Product = () => {
                         ></div>
                     ))}
                 </div>
-                <h3 className="color">{selectedColor}</h3>
+                <h3 className="color font-gramatika-reg">{selectedColor}</h3>
                 <select className="productSize" value={selectedSize} onChange={handleSizeChange}>
                     <option value="" disabled hidden>
                         Выберите размер
@@ -254,18 +253,18 @@ const Product = () => {
                 </button>
                 {error && <p style={{ color: "red" }} className="font-gramatika-bold">Выберите цвет товара и размер</p>}
                 {data && data.description && (
-                    <ul className="description">
+                    <ul className="description font-gramatika-reg">
                         {data.description.split(',').map((item, index) => (
                             <li key={index}>{item.trim()}</li>
                         ))}
                     </ul>
                 )}
-                <h5 className="compound" style={{ marginBottom: "20px" }}> Артикул: {data.vendorCode}</h5>
-                <h5 className="compound" style={{ color: "gray" }}>Состав: </h5>
-                <h5 className="compound" style={{ marginBottom: "20px" }}>{data.compound}</h5>
-                <h5 className="compound" style={{ color: "gray" }}>Рекомендации по уходу: </h5>
-                <h5 className="compound" style={{ marginBottom: "20px" }}>{data.recommendations}</h5>
-                <h5 className="compound">{data.onModel}</h5>
+                <h5 className="compound font-gramatika-reg" style={{ marginBottom: "20px" }}> Артикул: {data.vendorCode}</h5>
+                <h5 className="compound font-gramatika-reg" style={{ color: "gray" }}>Состав: </h5>
+                <h5 className="compound font-gramatika-reg" style={{ marginBottom: "20px" }}>{data.compound}</h5>
+                <h5 className="compound font-gramatika-reg" style={{ color: "gray" }}>Рекомендации по уходу: </h5>
+                <h5 className="compound font-gramatika-reg" style={{ marginBottom: "20px" }}>{data.recommendations}</h5>
+                <h5 className="compound font-gramatika-reg">{data.onModel}</h5>
             </div>
             {showAlert && <Alert message="Товар добавлен в корзину!" />}
             {showAlertWishlist && <Alert message="Товар добавлен в вишлист!" />}
