@@ -5,12 +5,12 @@ const SideBarAdmin = (props) => {
 
     return (
         <div className="adminSideBar">
-            {/* <button
+            <button
                 className={props.tab === "MainPage" ? "active" : ""}
                 onClick={() => { props.setTab("MainPage") }}
             >
-                <img src="../IMG/icons8-главная-144.png" />Г
-            </button> */}
+                <img src="../IMG/icons8-главная-144.png" />Главная страница
+            </button>
             <button
                 className={props.tab === "Navbar" ? "active" : ""}
                 onClick={() => { props.setTab("Navbar") }}

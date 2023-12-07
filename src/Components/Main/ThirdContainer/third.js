@@ -1,9 +1,31 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./third.css"
 import { useTranslation } from "react-i18next";
+import api from "../../../api/axiosConfig";
+import { URI } from "../../../api/config";
 
 const Third = () => {
     const [t] = useTranslation("global");
+    const [data, setData] = useState();
+
+    useEffect(() => {
+        api.get(`${URI}/firstPage`)
+            .then(response => {
+                console.log(response)
+                // let categoriesId = [];
+                // const sections = response.data;
+                // // eslint-disable-next-line
+                // sections.map(categories => {
+                
+                //     categoriesId = [...categories.categories]
+                // })
+                // console.log("CATEGORIES", categoriesId)
+                // setCategories(categoriesId)
+            })
+            .catch(err => {
+                console.error(err);
+            });
+    }, []);
 
     return (
         <div className="third">

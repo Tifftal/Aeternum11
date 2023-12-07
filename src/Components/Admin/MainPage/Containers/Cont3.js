@@ -13,10 +13,10 @@ const Container3 = () => {
                     <div className="posterImg-cont3">
                     </div>
                     <div className="posterInfo-cont3 font-gramatika-bold">
-                        <h2>Featured</h2>
-                        <h1>text</h1>
-                        <p>text</p>
-                        <a href="/"><button>Discover more</button></a>
+                        <h2 className="font-gramatika-bold">Рекомендуем</h2>
+                        <h1 className="font-gramatika-reg">text</h1>
+                        <p className="font-gramatika-reg">text</p>
+                        <a href="/"><button>Узнать больше</button></a>
                     </div>
                 </div>
 
@@ -28,15 +28,11 @@ const Container3 = () => {
                         </div>
                         <div className="cont-3-inputs">
                             <div className="input-form-cont-3">
-                                <input className='input-text' type='text' placeholder="Title Eng"></input>
-                                <input className='input-text' type='text' placeholder="Text Eng"></input>
-                            </div>
-                            <div className="input-form-cont-3">
-                                <input className='input-text' type='text' placeholder="Title Rus"></input>
-                                <input className='input-text' type='text' placeholder="Text Rus"></input>
+                                <input className='input-text' type='text' placeholder="Заголовок"></input>
+                                <input className='input-text' type='text' placeholder="Текст"></input>
                             </div>
                         </div>
-                        <button className="edit-cont3 font-gramatika-bold">Submit</button>
+                        <button className="edit-cont3 font-gramatika-bold">Сохранить</button>
                     </form>
                 </div>
             </div>

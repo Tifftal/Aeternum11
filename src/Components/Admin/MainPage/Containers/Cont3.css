@@ -63,22 +63,22 @@
     margin: 4%;
     padding: 0;
     text-transform: none;
-    font-family: 'Prata', serif;
     font-size: 100%;
     font-weight: normal;
     text-transform: capitalize;
+    margin-top: 20px;
 }
 
 .posterInfo-cont3 p {
     margin: 0;
     padding: 0;
     text-transform: none;
-    font-family: 'Prata', serif;
     font-size: 80%;
     font-weight: normal;
     margin: 8%;
     letter-spacing: 0.7px;
     line-height: 170%;
+    margin-top: 5px;
 }
 
 .posterInfo-cont3 a {
@@ -87,10 +87,10 @@
 
 .posterInfo-cont3 button {
     width: 100%;
-    height: 5vh;
+    height: 4vh;
     background: none;
     border: 1px solid white;
-    border-radius: 10px;
+    border-radius: 7px;
     cursor: pointer;
     color: white;
     text-transform: uppercase;
@@ -99,6 +99,7 @@
     transition: .3s;
     font-weight: 700;
     letter-spacing: 0.5px;
+    margin-top: 20px;
 }
 
 .posterInfo-cont3 button:hover {
