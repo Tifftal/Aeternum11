@@ -19,7 +19,7 @@ const Catalog = () => {
                 
                     categoriesId = [...categories.categories]
                 })
-                console.log("CATEGORIES", categoriesId)
+                // console.log("CATEGORIES", categoriesId)
                 setCategories(categoriesId)
             })
             .catch(err => {

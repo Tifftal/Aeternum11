@@ -180,7 +180,6 @@ const Goods = () => {
 
     };
 
-
     const HandleCloseEditPopupImage = () => {
         setIsOpenEditPopupImage(false);
         setCurrentGoodId(null);
