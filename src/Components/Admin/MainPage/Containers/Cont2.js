@@ -14,12 +14,19 @@ const Container2 = () => {
     const [isOpenPopup, setOpenPopup] = useState(false);
     const [image, setImage] = useState('');
     const [name, setName] = useState('');
-    const [sections, setSections] = useState([]);
+    const [sections, setSections] = useState([{}]);
     const [chosenCategory, setChosenCategory] = useState(null);
 
     const handleSelectChange = (e) => {
         const selectedCategoryId = e.target.value;
         setChosenCategory(selectedCategoryId);
+        api.get(`${URI}/categories/${selectedCategoryId}`)
+            .then(response => {
+                setName(response.data.name)
+            })
+            .catch(error => {
+                console.error(error);
+            })
     }
 
     useEffect(() => {
@@ -33,12 +40,46 @@ const Container2 = () => {
 
         api.get(`${URI}/sections`)
             .then(response => {
-                setSections(response.data);
+                const sections = response.data
+                const categories = []
+                sections.map(section => {
+                    section.categories.map(category => {
+                        categories.push(category)
+                    })
+                })
+                setSections(categories);
+
             })
             .catch(error => {
                 console.error(error);
             })
     }, [])
+
+    const UpdateData = () => {
+        api.get(`${URI}/fiveCategories`)
+            .then(response => {
+                setCategories(response.data);
+            })
+            .catch(error => {
+                console.error(error);
+            })
+
+        api.get(`${URI}/sections`)
+            .then(response => {
+                const sections = response.data
+                const categories = []
+                sections.map(section => {
+                    section.categories.map(category => {
+                        categories.push(category)
+                    })
+                })
+                setSections(categories);
+
+            })
+            .catch(error => {
+                console.error(error);
+            })
+    }
 
     const HandleOpenPopup = (idx) => {
         const currentCategory = categories[idx];
@@ -72,6 +113,7 @@ const Container2 = () => {
                     });
 
                     setImage(resizedImage);
+                    console.log(resizedImage);
                 },
                 'blob'
             );
@@ -87,36 +129,41 @@ const Container2 = () => {
         }
         console.log(id);
         console.log(chosenCategory);
-        api.put(`${URI}/fiveCategory/${id}`, 
-        {
-            categoryId: Number(chosenCategory)            
-        },
-        {
-            headers: {
-                Authorization: `Bearer ${window.localStorage.getItem('jwtToken')}`,
-            }
-        })
-        .then(response => {
-            const formData = new FormData();
-            formData.append('file', image);
-            console.log(response.data.id);
-            api.post(`${URI}/fiveCategory/${response.data.id}/photo`, formData,
+        api.put(`${URI}/fiveCategory/${id}`,
+            {
+                categoryId: Number(chosenCategory),
+                categoryName: String(name),
+                path: `/assortment/${Number(chosenCategory)}`
+            },
             {
                 headers: {
-                    Authorization: `Bearer ${window.localStorage.getItem("jwtToken")}`,
-                    'Content-Type': 'multipart/form-data'
-                },
+                    Authorization: `Bearer ${window.localStorage.getItem('jwtToken')}`,
+                }
             })
             .then(response => {
-                console.log(response);
+                const formData = new FormData();
+                formData.append('file', image);
+                console.log(response.data.id);
+                api.post(`${URI}/fiveCategory/${response.data.id}/photo`, formData,
+                    {
+                        headers: {
+                            Authorization: `Bearer ${window.localStorage.getItem("jwtToken")}`,
+                            'Content-Type': 'multipart/form-data'
+                        },
+                    })
+                    .then(response => {
+                        console.log(response);
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    })
+
+                UpdateData();
+                handleClosePopup();
             })
             .catch(error => {
-                console.log(error);
+                console.error(error);
             })
-        })
-        .catch(error => {
-            console.error(error);
-        })
     }
 
     return (
@@ -143,14 +190,14 @@ const Container2 = () => {
                                 required
                             >
                                 <option value="" disabled>Выберите категорию</option>
-                                {categories.map((category) => (
-                                    <option key={category.categoryId} value={category.categoryId}>
-                                        {category.categoryName}
+                                {sections.map((category) => (
+                                    <option key={category.id} value={category.id}>
+                                        {category.name}
                                     </option>
                                 ))}
                             </select>
                         </div>
-                        <button onClick={() => {handleUploadVitrin(category.id)}}>Сохранить</button>
+                        <button onClick={() => { handleUploadVitrin(category.id) }}>Сохранить</button>
                     </form>
                 </VitrinaPopup>
             ) : (
