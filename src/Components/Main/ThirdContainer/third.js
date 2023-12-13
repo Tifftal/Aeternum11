@@ -2,25 +2,16 @@ import React, { useEffect, useState } from "react";
 import "./third.css"
 import { useTranslation } from "react-i18next";
 import api from "../../../api/axiosConfig";
-import { URI } from "../../../api/config";
+import { Minio, URI } from "../../../api/config";
 
 const Third = () => {
     const [t] = useTranslation("global");
-    const [data, setData] = useState();
+    const [data, setData] = useState({});
 
     useEffect(() => {
         api.get(`${URI}/firstPage`)
             .then(response => {
-                console.log(response)
-                // let categoriesId = [];
-                // const sections = response.data;
-                // // eslint-disable-next-line
-                // sections.map(categories => {
-                
-                //     categoriesId = [...categories.categories]
-                // })
-                // console.log("CATEGORIES", categoriesId)
-                // setCategories(categoriesId)
+                setData(response.data);
             })
             .catch(err => {
                 console.error(err);
@@ -35,8 +26,8 @@ const Third = () => {
                 </div>
                 <div className="posterInfo font-gramatika-bold">
                     <h2>рекомендуем</h2>
-                    <h1 className="font-gramatika-bold">Lorem ipsum dolor</h1>
-                    <p className="font-gramatika-reg">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                    <h1 className="font-gramatika-bold">{data.name}</h1>
+                    <p className="font-gramatika-reg">{data.description}</p>
                     <a href="/"><button className="font-gramatika-bold">узнать больше</button></a>
                 </div>
             </div>

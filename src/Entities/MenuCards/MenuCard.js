@@ -1,17 +1,18 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import "./MenuCard.css";
+import { Minio } from "../../api/config";
 
 const MenuCard = ({ data }) => {
   const [t] = useTranslation("global");
 
   return (
     <div className="menu-card">
-      <a href={data.a.href} style={window.innerWidth < 768 ? {
+      <a href={`assortment/${data.id}`} style={window.innerWidth < 768 ? {
         padding: "20px 0 20px 0"
       } : {
 
-      }}><img src={data.img.src} style={{ backgroundColor: "white" }} />{data.a.content}</a>
+      }}><img src={`${Minio}/${data.path}`} style={{ backgroundColor: "white" }} />{data.categoryName}</a>
     </div>
   );
 };
