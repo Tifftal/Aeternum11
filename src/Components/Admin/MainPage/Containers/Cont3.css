@@ -132,18 +132,39 @@
 }
 
 .edit-cont-3 input {
-    display: flex;
     margin: 1% 0;
     background: none;
     color: white;
     font-size: 90%;
     margin-top: 3%;
+    width: 96%;
+}
+
+.edit-cont-3 select {
+    border-radius: 10px;
     width: 100%;
+    height: 2.5rem;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    outline: none;
+    text-align: center;
+    font-size: 100%;
+    font-weight: 400;
+    color: #111111;
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-size: 7%;
+    background-position: 95% 50%;
+    padding-left: 3%;
+    margin-top: 3%;
 }
 
 .edit-cont-3 input[type=text] {
-    border-radius: 10px;
-    height: 1.5rem;
+    border-radius: 5px;
+    height: 1.8rem;
     padding: 1% 2%;
     border: 1px solid white;
 }
