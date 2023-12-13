@@ -191,7 +191,7 @@ const Container3 = () => {
             <div className="cont3-flex-row">
                 <div className="poster-cont3">
                     <div className="posterImg-cont3">
-                        <img src={data.path}/>
+                        <img src={`${Minio}/${data.path}`}/>
                     </div>
                     <div className="posterInfo-cont3 font-gramatika-bold">
                         <h2 className="font-gramatika-bold">Рекомендуем</h2>

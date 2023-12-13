@@ -2,11 +2,10 @@ import React, { useState, useEffect } from "react";
 import "./Cont2.css"
 import { useTranslation } from "react-i18next";
 import api from "../../../../api/axiosConfig";
-import { URI } from "../../../../api/config";
+import { Minio, URI } from "../../../../api/config";
 import EditPopup from "../../Goods/Popup/EditPopup";
 import { setDefaultNamespace } from "i18next";
 import Resizer from "react-image-file-resizer";
-
 const Container2 = () => {
 
     const [categories, setCategories] = useState([]);
@@ -32,6 +31,7 @@ const Container2 = () => {
     useEffect(() => {
         api.get(`${URI}/fiveCategories`)
             .then(response => {
+                console.log(response);
                 setCategories(response.data);
             })
             .catch(error => {
@@ -48,7 +48,7 @@ const Container2 = () => {
                     })
                 })
                 setSections(categories);
-
+                console.log(response);
             })
             .catch(error => {
                 console.error(error);
@@ -207,7 +207,7 @@ const Container2 = () => {
             <div className="example-cont-2 font-gramatika-bold">
                 {categories.map((data, idx) => (
                     <div className="card-cont-2" key={idx}>
-                        <img src={data.path || "../IMG/test.jpg"} />
+                        <img src={`${Minio}/${data.path}` || "../IMG/test.jpg"} />
                         <p>{data.categoryName}</p>
                         <button onClick={() => { HandleOpenPopup(idx) }}>Редактировать</button>
                     </div>
