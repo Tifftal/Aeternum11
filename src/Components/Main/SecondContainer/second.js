@@ -1,27 +1,39 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import './second.css';
 import { useTranslation } from "react-i18next";
 
 import MenuCard from "../../../Entities/MenuCards/MenuCard";
-import { getData } from "./lib/data";
 import { Carousel } from "../../Carousel/Carousel";
+import api from "../../../api/axiosConfig";
+import { URI } from "../../../api/config";
 
 const Second = () => {
     const [t] = useTranslation("global");
-    const data = getData(t);
+    // const data = getData(t);
+    const [categories, setCategories] = useState([])
+
+    useEffect(() => {
+        api.get(`${URI}/fiveCategories`)
+        .then(response => {
+            setCategories(response.data);
+        })
+        .catch(error => {
+            console.error(error);
+        })
+    })
 
     return (
         <div className="second">
             <div className="menu font-gramatika-bold">
                 {window.innerWidth > 775 ?
                     (
-                        data.map((card, idx) => (
+                        categories.map((card, idx) => (
                             <MenuCard key={idx} data={card} />
                         )
                         )
                     )
                     : (
-                        <Carousel items={data} />
+                        <Carousel items={categories} />
                     )
                 }
             </div>
