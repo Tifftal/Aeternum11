@@ -31,6 +31,7 @@ const Third = () => {
         <div className="third">
             <div className="poster">
                 <div className="posterImg">
+                    <img src=""/>
                 </div>
                 <div className="posterInfo font-gramatika-bold">
                     <h2>рекомендуем</h2>
