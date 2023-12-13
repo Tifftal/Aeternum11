@@ -30,7 +30,8 @@ const Fifth = () => {
                     Aeternum Eleven
                 </h2>
                 <h3 className="font-gramatika-reg">
-                    {t("fifth.text")}
+                    Философия творческого союза AETERNUM ELEVEN
+                    основана на общих ценностях культуры, искусства, осознанности и духа времени.
                 </h3>
             </div>
 
