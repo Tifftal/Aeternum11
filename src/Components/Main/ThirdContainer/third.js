@@ -12,6 +12,7 @@ const Third = () => {
         api.get(`${URI}/firstPage`)
             .then(response => {
                 setData(response.data);
+                console.log(response.data)
             })
             .catch(err => {
                 console.error(err);
@@ -28,7 +29,7 @@ const Third = () => {
                     <h2>рекомендуем</h2>
                     <h1 className="font-gramatika-bold">{data.name}</h1>
                     <p className="font-gramatika-reg">{data.description}</p>
-                    <a href="/"><button className="font-gramatika-bold">узнать больше</button></a>
+                    <a href={`/product/${data.goodId}`}><button className="font-gramatika-bold">узнать больше</button></a>
                 </div>
             </div>
         </div>
