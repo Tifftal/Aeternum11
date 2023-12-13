@@ -10,8 +10,8 @@ const Popup = ({ onClose, setIsOpen, selectedGood, onDataUpdate, count, setCount
         compound: selectedGood.compound,
         description: selectedGood.description,
         backColor: {
-            name: selectedGood.backColor.name,
-            code: selectedGood.backColor.code,
+            name: "Белый",
+            code: "white",
         },
         onModel: selectedGood.onModel,
         vendorCode: selectedGood.vendorCode,
@@ -27,8 +27,8 @@ const Popup = ({ onClose, setIsOpen, selectedGood, onDataUpdate, count, setCount
             compound: editedGood.compound,
             description: editedGood.description,
             backColor: {
-                name: editedGood.backColor.name,
-                code: editedGood.backColor.code,
+                name: "Белый",
+                code: "white",
             },
             onModel: editedGood.onModel,
             vendorCode: editedGood.vendorCode,
@@ -125,7 +125,7 @@ const Popup = ({ onClose, setIsOpen, selectedGood, onDataUpdate, count, setCount
                             />
                         </div>
 
-                        <div className='form-group-edit'>
+                        {/* <div className='form-group-edit'>
                             <label htmlFor="backColor" className='label'>Цвет/Код фона:</label>
                             <div>
                                 <input
@@ -143,7 +143,7 @@ const Popup = ({ onClose, setIsOpen, selectedGood, onDataUpdate, count, setCount
                                     onChange={(e) => handleInputChange(e, 'backColor.code')}
                                 />
                             </div>
-                        </div>
+                        </div> */}
 
                         <div className='form-group-edit'>
                             <label htmlFor="vendorCode" className='label'>Артикул:</label>
