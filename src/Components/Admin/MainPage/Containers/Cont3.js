@@ -150,6 +150,7 @@ const Container3 = () => {
             let newCount = count;
             newCount++;
             setCount(newCount);
+            UpdateData();
         } catch (error) {
             console.error(error);
         }

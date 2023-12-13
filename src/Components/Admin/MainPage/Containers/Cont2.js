@@ -153,6 +153,7 @@ const Container2 = () => {
                     })
                     .then(response => {
                         console.log(response);
+                        UpdateData();
                     })
                     .catch(error => {
                         console.log(error);
@@ -177,7 +178,7 @@ const Container2 = () => {
                     selectedGood={category}
                 >
                     <form className="form-edit-popup-size" onSubmit={(e) => e.preventDefault()}>
-                        <div style={{ display: "flex", flexDirection: "row" }}>
+                        <div className="five-cat">
                             <input
                                 type="file"
                                 accept="image/*"
@@ -197,7 +198,7 @@ const Container2 = () => {
                                 ))}
                             </select>
                         </div>
-                        <button onClick={() => { handleUploadVitrin(category.id) }}>Сохранить</button>
+                        <button className="five-cat-btn font-gramatika-bold" onClick={() => { handleUploadVitrin(category.id) }}>Сохранить</button>
                     </form>
                 </VitrinaPopup>
             ) : (
