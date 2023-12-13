@@ -20,7 +20,7 @@ const Second = () => {
         .catch(error => {
             console.error(error);
         })
-    })
+    }, [])
 
     return (
         <div className="second">

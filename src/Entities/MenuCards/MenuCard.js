@@ -8,7 +8,7 @@ const MenuCard = ({ data }) => {
 
   return (
     <div className="menu-card">
-      <a href={`assortment/${data.id}`} style={window.innerWidth < 768 ? {
+      <a href={`assortment/${data.categoryId}`} style={window.innerWidth < 768 ? {
         padding: "20px 0 20px 0"
       } : {
 
