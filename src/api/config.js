@@ -1,2 +1,2 @@
-export const URI = "http://45.12.74.94:8082/api";
-export const Minio = "http://45.12.74.94:9000/photos" 
+export const URI = "https://aeternumeleven.com/api";
+export const Minio = "https://aeternumeleven.com/photos" 
