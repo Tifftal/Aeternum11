@@ -31,7 +31,7 @@ const Navbar = () => {
             <div className="left">
                 <div className="dropDown">
                     <button className="dropDownBtn font-gramatika-reg">
-                        Женщины
+                        Каталог
                     </button>
                     <div className="content">
                         <DropW />

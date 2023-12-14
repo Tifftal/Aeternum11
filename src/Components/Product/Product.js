@@ -5,9 +5,11 @@ import { Minio, URI } from "../../api/config";
 import api from "../../api/axiosConfig";
 import LoadingText from "../Loader/Loader";
 import Alert from "../Alert/Alert";
+import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
+
 
 const Product = () => {
-    const [selectedImage, setSelectedImage] = useState(null);
+    const [selectedImage, setSelectedImage] = useState({});
     const [selectedColor, setSelectedColor] = useState('');
     const [selectedSize, setSelectedSize] = useState('');
     const [selectedColorSizes, setSelectedColorSizes] = useState([]);
@@ -23,6 +25,21 @@ const Product = () => {
     const [photos, setPhotosById] = useState([]);
 
     const { id } = useParams();
+
+    const handleChooseNextPhoto = (photo) => {
+        // Implement your logic to choose the next photo
+        // For simplicity, we'll just switch to the next photo in the array
+        const currentIndex = photos.findIndex((p) => p.position === photo.position);
+        const nextIndex = (currentIndex + 1) % photos.length;
+        const nextPhoto = photos[nextIndex];
+        console.log(nextPhoto);
+        setSelectedImage({
+            selected: nextPhoto.image,
+            position: nextPhoto.position
+        });
+    };
+
+
 
     const handleSetColor = (name) => {
         const selectedColorData = color.find(color => color.name === name);
@@ -115,12 +132,15 @@ const Product = () => {
                 const fetchPromises = good.photos.map(fetchPhoto);
 
                 await Promise.all(fetchPromises)
-
-                setPhotosById(photos);
+                setPhotosById(photos.sort((a, b) => a.position - b.position));
                 try {
                     // eslint-disable-next-line
                     const selected = photos.sort((a, b) => a.position - b.position)
-                    setSelectedImage(selected[0].image);
+                    setSelectedImage({
+                        selected: selected[0].image,
+                        position: selected[0].position,
+                    }
+                    );
                 } catch {
                     // console.error(error);
                 }
@@ -130,55 +150,6 @@ const Product = () => {
             });
     }, [id]);
 
-    // useEffect(() => {
-    //     // This useEffect runs after the component is mounted
-    //     const selectSingle = document.querySelector('.__select');
-    //     const selectSingle_title = selectSingle.querySelector('.__select__title');
-    //     const selectSingle_labels = selectSingle.querySelectorAll('.__select__label');
-
-    //     // Toggle menu
-    //     const handleToggleMenu = () => {
-    //         if ('active' === selectSingle.getAttribute('data-state')) {
-    //             selectSingle.setAttribute('data-state', '');
-    //         } else {
-    //             selectSingle.setAttribute('data-state', 'active');
-    //         }
-    //     };
-
-    //     selectSingle_title.addEventListener('click', handleToggleMenu);
-
-    //     // Close when click to option
-    //     const handleOptionClick = (evt) => {
-    //         selectSingle_title.textContent = evt.target.textContent;
-    //         selectSingle.setAttribute('data-state', '');
-    //     };
-
-    //     for (let i = 0; i < selectSingle_labels.length; i++) {
-    //         selectSingle_labels[i].addEventListener('click', handleOptionClick);
-    //     }
-
-    //     // Reset title
-    //     const reset = document.querySelector('.reset');
-    //     if (reset) {
-    //         const handleResetClick = () => {
-    //             selectSingle_title.textContent = selectSingle_title.getAttribute('data-default');
-    //         };
-    //         reset.addEventListener('click', handleResetClick);
-
-    //         // Cleanup event listeners when the component is unmounted
-    //         return () => {
-    //             selectSingle_title.removeEventListener('click', handleToggleMenu);
-    //             for (let i = 0; i < selectSingle_labels.length; i++) {
-    //                 selectSingle_labels[i].removeEventListener('click', handleOptionClick);
-    //             }
-    //             reset.removeEventListener('click', handleResetClick);
-    //         };
-    //     }
-    // }, []);
-
-
-
-
     return (
         <div className="product">
             {window.innerWidth > 768 ? (
@@ -187,7 +158,13 @@ const Product = () => {
                         .map((photo) => (
                             // eslint-disable-next-line
                             <img
-                                onClick={() => { setSelectedImage(photo.image) }}
+                                onClick={() => {
+                                    setSelectedImage({
+                                        selected: photo.image,
+                                        position: photo.position
+                                    }
+                                    )
+                                }}
                                 src={`${photo.image}`}
                                 alt={`Image ${photo.id}`}
                             />
@@ -195,13 +172,28 @@ const Product = () => {
                     }
                 </div>
             ) : (null)}
-            <div className="product-photo">
+            <div className="product-photo" onClick={() => handleChooseNextPhoto(selectedImage)}>
                 {selectedImage === null ? (
                     <LoadingText />
                 ) : (
-                    <img src={selectedImage} alt="main-product" />
-                )
-                }
+                    <TransformWrapper
+                        style={{ display: "flex", alignItems: "center", justifyContent: "center" }}
+                        defaultScale={10}
+                        defaultPositionX={0}
+                        defaultPositionY={0}
+                        wheel={{ step: 200 }}
+                        doubleClick={{mode:"reset"}}
+                    >
+                        <TransformComponent style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+                            <img
+                                src={selectedImage.selected}
+                                alt="main-product"
+                                style={{ margin: "0 auto", cursor: "pointer" }}
+                                onClick={() => handleChooseNextPhoto(selectedImage)}
+                            />
+                        </TransformComponent>
+                    </TransformWrapper>
+                )}
             </div>
             {window.innerWidth <= 768 ? (
                 <div className="scroll-panel">
@@ -209,7 +201,7 @@ const Product = () => {
                         .map((photo) => (
                             // eslint-disable-next-line
                             <img
-                                onClick={() => { setSelectedImage(photo.image) }}
+                                onClick={() => { setSelectedImage({ selected: photo.image, position: photo.position }) }}
                                 src={`${photo.image}`}
                                 alt={`Image ${photo.id}`}
                             />
