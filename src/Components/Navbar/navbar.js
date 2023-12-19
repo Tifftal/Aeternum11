@@ -28,22 +28,28 @@ const Navbar = () => {
             {isOpen && (
                 <Popup onClose={HandleCloseNote} setIsOpen={setIsOpen} />
             )}
-            <div className="left">
-                <div className="dropDown">
-                    <button className="dropDownBtn font-gramatika-reg">
-                        Каталог
-                    </button>
-                    <div className="content">
-                        <DropW />
+            {window.innerWidth > 768 ? (
+                <>
+                    <div className="left">
+                        <div className="dropDown">
+                            <button className="dropDownBtn font-gramatika-reg">
+                                Каталог
+                            </button>
+                            <div className="content">
+                                <DropW />
+                            </div>
+                        </div>
+                    </div>
+                    <div className="center font-gramatika-bold">
+                        <a href="/"> Aeternum Eleven </a>
+                    </div>
+                </>
+            ) : (
+                <div className="left">
+                    <div className="font-gramatika-bold">
+                        <a href="/"><img src="../IMG/Group 6.png" style={{width: "40px", height: "auto"}}></img></a>
                     </div>
                 </div>
-            </div>
-            {window.innerWidth > 768 ? (
-                <div className="center font-gramatika-bold">
-                    <a href="/"> Aeternum Eleven </a>
-                </div>
-            ) : (
-                null
             )
             }
             <div className="right">
@@ -64,7 +70,7 @@ const Navbar = () => {
                                     Вишлист
                                 </button>
                             </a>
-                        ): (null)
+                        ) : (null)
                         }
                         <a href="/bw">
                             <button className="ordinary font-gramatika-reg" onClick={() => { window.localStorage.setItem("bw", "bag") }}>
