@@ -1,12 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import './first.css';
 import { useTranslation } from "react-i18next";
+import api from "../../../api/axiosConfig";
+import { Minio, URI } from "../../../api/config";
 
 const First = () => {
     const [t] = useTranslation("global");
+    const [data, setData] = useState('');
+
+    useEffect(() => {
+        api.get(`${URI}/background`)
+            .then(response => {
+                setData(response)
+                console.log(response.data)
+            })
+            .catch(err => {
+                console.error(err);
+            });
+    }, []);
 
     return (
-        <div className="first">
+        <div className="first" style={{backgroundImage: `${Minio}/${data.path}`}}>
             <div className="text font-gramatika-reg">
                 <p>
                     Aeternum Eleven – экологически сознательный бренд доступной роскоши.
