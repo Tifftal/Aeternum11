@@ -188,7 +188,7 @@ const Container3 = () => {
 
     return (
         <div className="container-3">
-            <h1 className="font-gramatika-bold">Container 2</h1>
+            <h1 className="font-gramatika-bold">Постер</h1>
             <div className="cont3-flex-row">
                 <div className="poster-cont3">
                     <div className="posterImg-cont3">
@@ -198,7 +198,7 @@ const Container3 = () => {
                         <h2 className="font-gramatika-bold">Рекомендуем</h2>
                         <h1 className="font-gramatika-reg">{data.name}</h1>
                         <p className="font-gramatika-reg">{data.description}</p>
-                        <a href="/"><button>Узнать больше</button></a>
+                        <a href="#"><button>Узнать больше</button></a>
                     </div>
                 </div>
 
