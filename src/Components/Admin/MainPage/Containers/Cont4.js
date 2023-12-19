@@ -26,7 +26,6 @@ const Container4 = () => {
                 (uri) => {
                     const resizedImage = new File([uri], selectedFile.name, {
                         type: 'image/jpeg',
-                        lastModified: Date.now(),
                     });
 
                     setSelectedImage(resizedImage);
