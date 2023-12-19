@@ -45,7 +45,7 @@ const Catalog = () => {
                 <a href="/">Главная</a>
                 <p>/</p>
                 {/* eslint-disable-next-line */}
-                <a href="#">Женщины</a>
+                <a href="#">Каталог</a>
                 <p>/</p>
                 {/* eslint-disable-next-line */}
                 <a href="#">Одежда</a>

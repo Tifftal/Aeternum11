@@ -27,7 +27,7 @@ const Assortment = () => {
                 <a href="/">Главная</a>
                 <p>/</p>
                 {/* eslint-disable-next-line */}
-                <a href="#">Женщины</a>
+                <a href="#">Каталог</a>
                 <p>/</p>
                 <a href="/catalog">Одежда</a>
                 <p>/</p>

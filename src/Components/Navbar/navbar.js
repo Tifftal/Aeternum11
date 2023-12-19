@@ -45,9 +45,17 @@ const Navbar = () => {
                     </div>
                 </>
             ) : (
-                <div className="left">
+                <div className="left" style={{alignItems: "center"}}>
                     <div className="font-gramatika-bold">
-                        <a href="/"><img src="../IMG/Group 6.png" style={{width: "40px", height: "auto"}}></img></a>
+                        <a href="/"><img src="../IMG/Group 6.png" style={{ width: "40px", height: "auto" }}></img></a>
+                    </div>
+                    <div className="dropDown">
+                        <button className="dropDownBtn font-gramatika-reg">
+                            Каталог
+                        </button>
+                        <div className="content">
+                            <DropW />
+                        </div>
                     </div>
                 </div>
             )
