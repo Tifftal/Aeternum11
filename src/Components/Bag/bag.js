@@ -84,7 +84,11 @@ const Bag = () => {
                     }
                 )
                 .then((response) => {
+                    if (response.status === 200) {
 
+                        console.log(response);
+                        window.location.href = JSON.parse(response.data.url);
+                    }
                     setMyBag([])
                 })
                 .catch((error) => {
@@ -124,7 +128,7 @@ const Bag = () => {
                     </div>
                     <div>
                         <p>Доставка</p>
-                        <p>Free</p>
+                        <p>Бесплатно</p>
                     </div>
                     {/* <div>
                         <p>Налоговый сбор</p>
@@ -146,6 +150,17 @@ const Bag = () => {
                 <button className="font-gramatika-bold" type="submit" onClick={submitForm}>
                     Продолжить
                 </button>
+                <div style={{ display: "flex", flexDirection: "column", width: "100%", alignItems: "center", color: "darkgray" }}>
+                    <p>Услуги доставки и возврата бесплатны по РФ</p>
+                    <a
+                        href="../../Реквизиты.pdf"
+                        download
+                        style={{color: "darkgray"}}
+                    >
+                        Реквизиты ООО "ЭТЕРНУМ"
+                    </a>
+                    <p>ИНН 9705198035</p>
+                </div>
             </div>
         </div>
     );
