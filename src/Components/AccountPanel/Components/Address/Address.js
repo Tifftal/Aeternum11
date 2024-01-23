@@ -42,8 +42,9 @@ const Address = () => {
             }
         })
             .then(response => {
-                setContent(response.data.content);
-                const orders = response.data.content;
+                console.log(response);
+                setContent(response.data);
+                const orders = response.data;
 
                 api.get(`${URI}/user/me`, {
                     headers: {
